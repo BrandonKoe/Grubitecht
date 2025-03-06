@@ -12,31 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: TestRuleTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_DefaultGameObject: {fileID: 389547044080733877, guid: 0ca2086e474479b4a8e87bc54c839a50, type: 3}
-  m_DefaultColliderType: 2
+  m_DefaultSprite: {fileID: 0}
+  m_DefaultGameObject: {fileID: 127546370002083302, guid: 0ca2086e474479b4a8e87bc54c839a50, type: 3}
+  m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 0}
-    m_GameObject: {fileID: 389547044080733877, guid: 0ca2086e474479b4a8e87bc54c839a50, type: 3}
-    m_MinAnimationSpeed: 1
-    m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.5
-    m_Output: 0
-    m_ColliderType: 0
-    m_RandomTransform: 0
-    m_Neighbors: 01000000010000000100000001000000
-    m_NeighborPositions:
-    - {x: 0, y: 1, z: 0}
-    - {x: -1, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: -1, z: 0}
-    m_RuleTransform: 0
-  - m_Id: 1
-    m_Sprites:
-    - {fileID: 0}
-    m_GameObject: {fileID: 5276459464118811231, guid: 58fa958da2e6f0240961e9d7f13fe189, type: 3}
+    m_GameObject: {fileID: 127546370002083302, guid: 0ca2086e474479b4a8e87bc54c839a50, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
