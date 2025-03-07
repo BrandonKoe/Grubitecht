@@ -17,7 +17,7 @@ using UnityEditor;
 
 [CreateAssetMenu]
 [CustomGridBrush(false, true, false, "Test Grid Brush")]
-public class TestGridBrush : GridBrush
+public class TestGridBrush : GridBrushBase
 {
     #if UNITY_EDITOR
     public static void CreateTestBrush()
