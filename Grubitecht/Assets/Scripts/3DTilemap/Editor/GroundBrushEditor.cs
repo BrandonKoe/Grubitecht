@@ -34,5 +34,28 @@ namespace Grubitecht.Editor.Tilemaps
                 }).Select(x => x.gameObject).ToArray();
             }
         }
+
+        // Allows us to access and modify our GroundBrush object from this editor script.
+        public GroundBrush targetBrush {  get { return target as GroundBrush; } }
+
+        /// <summary>
+        /// Changes whether or not we should place vales half a cell higher than normal to allow for easier painting of stepping stones.
+        /// </summary>
+        /// <param name="gridLayout">Unused.</param>
+        /// <param name="brushTarget">Unused.</param>
+        /// <param name="position">Unused.</param>
+        /// <param name="tool">Unused.</param>
+        /// <param name="executing">Unused.</param>
+        public override void OnPaintSceneGUI(GridLayout gridLayout, GameObject brushTarget, BoundsInt position, 
+            GridBrushBase.Tool tool, bool executing)
+        {
+            Event currentEvent = Event.current;
+            // Do not know if there is a new input system equivalent for this.  Will research.
+            if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.Space)
+            {
+                targetBrush.HalfStepPlacement = !targetBrush.HalfStepPlacement;
+            }
+            base.OnPaintSceneGUI(gridLayout, brushTarget, position, tool, executing);
+        }
     }
 }

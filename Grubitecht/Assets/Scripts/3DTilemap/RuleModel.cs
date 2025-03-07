@@ -15,6 +15,10 @@ namespace Grubitecht.Tilemaps
     {
         [SerializeField] private Transform modelContainer;
         [SerializeField] private RuleTile3D info;
-    } 
 
+        public void UpdateRuleModel()
+        {
+
+        }
+    } 
 }
