@@ -24,7 +24,7 @@ namespace Grubitecht.Editor.Tilemaps
             {
                 // Stage handle is basically an editing context.  This method makes it easier to find components.
                 StageHandle currentStageHandle = StageUtility.GetCurrentStageHandle();
-                return currentStageHandle.FindComponentsOfType<Tilemap3D>().Where(x =>
+                return currentStageHandle.FindComponentsOfType<Tilemap3DLayer>().Where(x =>
                 {
                     GameObject gameObject;
                     return (gameObject = x.gameObject).scene.isLoaded

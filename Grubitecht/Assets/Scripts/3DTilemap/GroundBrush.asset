@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35673bef36b066d4292d1847408a2c46, type: 3}
   m_Name: GroundBrush
   m_EditorClassIdentifier: 
-  tile: {fileID: 6503145262876607480, guid: 714ba194aa6e1d34982bdbdb0945c32f, type: 3}
+  tile: {fileID: 1392518241151262608, guid: 714ba194aa6e1d34982bdbdb0945c32f, type: 3}
   offset: {x: 0, y: 0, z: 0}

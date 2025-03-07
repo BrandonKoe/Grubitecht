@@ -37,6 +37,14 @@ namespace Grubitecht.Tilemaps
         #endif
         #endregion
 
+        /// <summary>
+        /// Paints 3D tilemaps to the currently selected tilemap layer.
+        /// </summary>
+        /// <param name="gridLayout">The grid layout (tilemap in this case) to paint to.</param>
+        /// <param name="brushTarget">
+        /// The target of the brush.  This is the GameObject of the tilemap we are painting on.
+        /// </param>
+        /// <param name="position">The position to paint at.</param>
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
             base.Paint(gridLayout, brushTarget, position);
@@ -55,6 +63,12 @@ namespace Grubitecht.Tilemaps
         public override void Erase(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
             
+        }
+
+        private static Transform GetObjectInCell(GridLayout grid, Transform parent, Vector3Int position)
+        {
+            int childCount = parent.childCount;
+            throw new System.NotImplementedException();
         }
     }
 }
