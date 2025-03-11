@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35673bef36b066d4292d1847408a2c46, type: 3}
-  m_Name: GroundBrush
+  m_Name: Tile 3D Brush
   m_EditorClassIdentifier: 
-  tile: {fileID: 1392518241151262608, guid: 714ba194aa6e1d34982bdbdb0945c32f, type: 3}
+  tile: {fileID: 7536403156683368525, guid: 6eaa16a14e9f6894a9ce3e0ba9c5dc89, type: 3}
   offset: {x: 0, y: 0, z: 0}
+  <HalfStepPlacement>k__BackingField: 0

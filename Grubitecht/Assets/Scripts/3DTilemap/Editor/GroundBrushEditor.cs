@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Grubitecht.Editor.Tilemaps
 {
-    [CustomEditor(typeof(GroundBrush))]
+    [CustomEditor(typeof(Tile3DBrush))]
     public class GroundBrushEditor : GridBrushEditorBase
     {
         // Need to have this or else the tilemaps wont show up as valid targets under the tile palette editor.
@@ -36,7 +36,7 @@ namespace Grubitecht.Editor.Tilemaps
         }
 
         // Allows us to access and modify our GroundBrush object from this editor script.
-        public GroundBrush targetBrush {  get { return target as GroundBrush; } }
+        public Tile3DBrush targetBrush {  get { return target as Tile3DBrush; } }
 
         /// <summary>
         /// Changes whether or not we should place vales half a cell higher than normal to allow for easier painting of stepping stones.

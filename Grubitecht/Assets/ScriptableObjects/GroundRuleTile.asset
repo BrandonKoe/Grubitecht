@@ -12,9 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b7e568d84e539469031847483aa321, type: 3}
   m_Name: GroundRuleTile
   m_EditorClassIdentifier: 
-  isComposite: 0
-  models:
-  - modelObject: {fileID: 0}
+  <IsComposite>k__BackingField: 1
+  <Models>k__BackingField:
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: 2a932bb2336adf84b9fb253ae6adbc4e, type: 3}
     rules:
-    - rulingPosition: {x: 0, y: 0, z: 0}
-      ruleType: 0
+    - rulingPosition: {x: 0, y: 1, z: 0}
+      ruleType: 1
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: be9332862a29ce440b7e3fe17a113378, type: 3}
+    rules:
+    - rulingPosition: {x: 0, y: 0, z: -1}
+      ruleType: 1
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: e190612ddff2b054db789a3ec4d0142c, type: 3}
+    rules:
+    - rulingPosition: {x: 0, y: 0, z: 1}
+      ruleType: 1
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: 59b197123a09ab243a24d2807c849229, type: 3}
+    rules:
+    - rulingPosition: {x: -1, y: 0, z: 0}
+      ruleType: 1
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: 1d19f8470755ca34c98771e876663c4e, type: 3}
+    rules:
+    - rulingPosition: {x: 1, y: 0, z: 0}
+      ruleType: 1
+  - <ModelObject>k__BackingField: {fileID: 919132149155446097, guid: 74d44d2ee64831641a224afff1b2f7c1, type: 3}
+    rules:
+    - rulingPosition: {x: 0, y: -1, z: 0}
+      ruleType: 1
