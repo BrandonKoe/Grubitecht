@@ -1,9 +1,9 @@
 /*****************************************************************************
-// File Name : GroundBrushEditor.cs
+// File Name : Tile3DBrushEditor.cs
 // Author : Brandon Koederitz
 // Creation Date : March 6, 2025
 //
-// Brief Description : custom editor for a 3D ground brush.
+// Brief Description : custom editor for a 3D tile brush.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using System.Linq;
@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Grubitecht.Editor.Tilemaps
 {
     [CustomEditor(typeof(Tile3DBrush))]
-    public class GroundBrushEditor : GridBrushEditorBase
+    public class Tile3DBrushEditor : GridBrushEditorBase
     {
         // Need to have this or else the tilemaps wont show up as valid targets under the tile palette editor.
         public override GameObject[] validTargets

@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name : GroundBrush.cs
+// File Name : Tile3DBrush.cs
 // Author : Brandon Koederitz
 // Creation Date : March 7, 2025
 //
@@ -30,6 +30,7 @@ namespace Grubitecht.Tilemaps
         #region CONSTS
         private const float CELL_SIZE = 1f;
         #endregion
+        [Header("Tile 3D Brush Settings")]
         [SerializeField] private Tile3D tile;
         [SerializeField] private Vector3 offset;
 
@@ -40,8 +41,8 @@ namespace Grubitecht.Tilemaps
         #endregion
 
         #region EditorOnly
-#if UNITY_EDITOR
-        public static void CreateTestBrush()
+        #if UNITY_EDITOR
+        public static void CreateGridBrush3D()
         {
             string path = EditorUtility.SaveFilePanelInProject("Save Tile 3D Brush", "New Tile 3D Brush", "asset", 
                 "Saved Tile 3D Brush");
@@ -72,18 +73,26 @@ namespace Grubitecht.Tilemaps
             //    currentTilemapObject = brushTarget;
             //}
 
+            PlaceTile(tile, gridLayout, brushTarget.transform, position, brushTarget.GetComponent<Tilemap3DLayer>());
+        }
+
+        /// <summary>
+        /// Places a 3D tile on a given tilemap.
+        /// </summary>
+        /// <param name="tile">The tile to place.</param>
+        /// <param name="gridLayout">The grid layout this tilemap belongs to.</param>
+        /// <param name="targetTransform">The transform of the tilemap layer we are painting on.</param>
+        /// <param name="position">The position of the tile.</param>
+        /// <param name="currentLayer">The current layer we are painting on.</param>
+        protected virtual void PlaceTile(Tile3D tile, GridLayout gridLayout, Transform targetTransform, Vector3Int position, 
+            Tilemap3DLayer currentLayer)
+        {
             // If there is already an object in a cell, dont paint it.
-            if (GetObjectInCell(gridLayout, brushTarget.transform, position) != null)
+            if (GetObjectInCell(gridLayout, targetTransform, position) != null)
             {
                 return;
             }
 
-            PlaceTile(gridLayout, brushTarget.transform, position, brushTarget.GetComponent<Tilemap3DLayer>());
-        }
-
-        private void PlaceTile(GridLayout gridLayout, Transform targetTransform, Vector3Int position, 
-            Tilemap3DLayer currentLayer)
-        {
             Vector3 worldPos = GetWorldPositionCentered(gridLayout, position, targetTransform);
             worldPos = worldPos + offset;
             // If the user has pressed the space key, then we increment the position of the tile by half the cell
@@ -173,18 +182,31 @@ namespace Grubitecht.Tilemaps
         /// <summary>
         /// Erases the Tile3D at the location of the brush on the selected tilemap layer.
         /// </summary>
-        /// <param name="gridLayout">The grid layout (tilemap in this case) to erase from.</param>
+        /// <param name="gridLayout">The grid layout to erase from.</param>
         /// <param name="brushTarget">
         /// The target of the brush.  This is the GameObject of the tilemap we are painting on.
         /// </param>
         /// <param name="position">The position to erase at.</param>
         public override void Erase(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            Transform toErase = GetObjectInCell(gridLayout, brushTarget.transform, position);
+            EraseTile(gridLayout, brushTarget.transform, position, brushTarget.GetComponent<Tilemap3DLayer>());
+        }
+
+        /// <summary>
+        /// Erases the Tile3D at the location of the brush on the selected tilemap layer.
+        /// </summary>
+        /// <param name="gridLayout">The grid layout to eraase from.</param>
+        /// <param name="targetTransform">The transform of the tilemap layer to erase from.</param>
+        /// <param name="position">the position to erase from.</param>
+        /// <param name="layer">The tilemap layer to erase from.</param>
+        protected virtual void EraseTile(GridLayout gridLayout, Transform targetTransform, Vector3Int position, 
+            Tilemap3DLayer layer)
+        {
+            Transform toErase = GetObjectInCell(gridLayout, targetTransform, position);
             if (toErase != null)
             {
                 // Need to update adjacent rule tiles when a tile is erased.
-                UpdateAdjacentRules(gridLayout, position, brushTarget.GetComponent<Tilemap3DLayer>(), null);
+                UpdateAdjacentRules(gridLayout, position, layer, null);
                 DestroyImmediate(toErase.gameObject);
             }
         }
