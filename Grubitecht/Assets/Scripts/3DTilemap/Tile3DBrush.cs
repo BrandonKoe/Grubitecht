@@ -6,6 +6,14 @@
 // Brief Description : A grid brush that can paint ground objects on a 3D tilemap.
 *****************************************************************************/
 using UnityEngine;
+using Unity.VisualScripting;
+using System.Dynamic;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
+
+
+
+
 
 
 #if UNITY_EDITOR
@@ -27,8 +35,8 @@ namespace Grubitecht.Tilemaps
 
         [field: SerializeField] public bool HalfStepPlacement { get; set; }
 
-        private Tilemap3DLayer currentLayer;
-        private GameObject currentTilemapObject;
+        //[SerializeReference] private Tilemap3DLayer currentLayer;
+        //[SerializeReference] private GameObject currentTilemapObject;
         #endregion
 
         #region EditorOnly
@@ -56,14 +64,13 @@ namespace Grubitecht.Tilemaps
         {
             base.Paint(gridLayout, brushTarget, position);
 
-            // Updates the current layer that is selected by the brush.  When a new grid is selected, then we get the
-            // 3D layer of that grid.  Done this way to save a GetComponent call each paint.
-            if (currentTilemapObject != brushTarget)
-            {
-                currentLayer = brushTarget.GetComponent<Tilemap3DLayer>();
-                Debug.Log("Set current layer to " + currentLayer);
-                currentTilemapObject = brushTarget;
-            }
+            // We cant store a layer reference as assets cannot reference objects in a scene.
+            //if (currentTilemapObject != brushTarget)
+            //{
+            //    currentLayer = brushTarget.GetComponent<Tilemap3DLayer>();
+            //    //Debug.Log("Set current layer to " + currentLayer);
+            //    currentTilemapObject = brushTarget;
+            //}
 
             // If there is already an object in a cell, dont paint it.
             if (GetObjectInCell(gridLayout, brushTarget.transform, position) != null)
@@ -71,10 +78,11 @@ namespace Grubitecht.Tilemaps
                 return;
             }
 
-            PlaceTile(gridLayout, brushTarget.transform, position);
+            PlaceTile(gridLayout, brushTarget.transform, position, brushTarget.GetComponent<Tilemap3DLayer>());
         }
 
-        private void PlaceTile(GridLayout gridLayout, Transform targetTransform, Vector3Int position)
+        private void PlaceTile(GridLayout gridLayout, Transform targetTransform, Vector3Int position, 
+            Tilemap3DLayer currentLayer)
         {
             Vector3 worldPos = GetWorldPositionCentered(gridLayout, position, targetTransform);
             worldPos = worldPos + offset;
@@ -86,52 +94,80 @@ namespace Grubitecht.Tilemaps
             // Need to manually set Y because unity tilemaps dont normally support depth.
             createdTile.transform.position = worldPos;
             // Run logic with the RuleModel script here.
-            UpdateRuleModel(gridLayout, position, createdTile, true);
+
+            // Update rule tiles
+            // Get the tile in that cell if it is not provided.
+            Dictionary<Vector3, Tile3D> adjInfo = UpdateAdjacentRules(gridLayout, position, currentLayer, createdTile);
+            // Sends the info for the created tile to update the rule model.
+            if (createdTile.RuleModel != null)
+            {
+                createdTile.RuleModel.SetRuleModel(adjInfo);
+            }
         }
 
         /// <summary>
-        /// Updates a given tile's rule model component
+        /// Updates all adjacent rule tiles now that this tile has changed
         /// </summary>
-        /// <param name="gridLayout"></param>
-        /// <param name="position"></param>
-        /// <param name="tileToUpdate"></param>
-        private void UpdateRuleModel(GridLayout gridLayout, Vector3Int position, Tile3D tileToUpdate, 
-            bool updateAdjacent)
+        /// <param name="gridLayout">The grid layout that the tile belongs to.</param>
+        /// <param name="position">The position of the tile.</param>
+        /// <param name="currentLayer">The current layer</param>
+        /// <param name="tileToUpdate">The tile to update.</param>
+        /// <returns>Information about those adjacent tiles.</returns>
+        private static Dictionary<Vector3, Tile3D> UpdateAdjacentRules(GridLayout gridLayout, Vector3Int position, 
+            Tilemap3DLayer currentLayer, Tile3D tileToUpdate)
         {
-            if (tileToUpdate.RuleModel != null)
+            Dictionary<Vector3, Tile3D> cellInfo = new();
+            for (int y = -1; y <= 1; y++)
             {
-                AdjacentCellInfo cellInfo = new();
-                for (int y = -1; y <= 1; y++)
+                Tilemap3DLayer layer;
+                if (y == -1)
                 {
-                    Tilemap3DLayer layer;
-                    if (y == -1)
-                    {
-                        layer = currentLayer.BelowLayer;
-                    }
-                    else if (y == 1)
-                    {
-                        layer = currentLayer.AboveLayer;
-                    }
-                    else
-                    {
-                        layer = currentLayer;
-                    }
-                    // Skips over layers that dont exist.
-                    if (layer == null) { continue; }
+                    layer = currentLayer.BelowLayer;
+                }
+                else if (y == 1)
+                {
+                    layer = currentLayer.AboveLayer;
+                }
+                else
+                {
+                    layer = currentLayer;
+                }
+                // Skips over layers that dont exist.
+                if (layer == null) { continue; }
 
-                    for (int x = -1; x <= 1; x++)
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int z = -1; z <= 1; z++)
                     {
-                        for (int z = -1; z <= 1; z++)
+                        // Adj represents the direction that we are evaluating.  Need to swap z and y because of how
+                        // unity evaluates tilemap depth internally.
+                        Vector3Int adj = new(x, y, z);
+                        // Skip over this tile.  Rule models do not need to know about themselves.
+                        if (adj == Vector3Int.zero) { continue; }
+                        Tile3D adjacentTile = GetTileInCell(gridLayout, layer.transform,
+                            ShiftGridPosition(position, adj));
+
+                        if (adjacentTile != null && adjacentTile.RuleModel != null)
                         {
-                            Vector3Int adj = new(x, y, z);
-                            cellInfo.AdjacentTiles[adj] = GetTileInCell(gridLayout, layer.transform,
-                                position + adj);
+                            adjacentTile.RuleModel.UpdateFace(tileToUpdate, -adj);
                         }
+
+                        cellInfo.Add(adj, adjacentTile);
                     }
                 }
-
-                tileToUpdate.RuleModel.UpdateRuleModel(cellInfo);
             }
+
+            return cellInfo;
+        }
+
+        /// <summary>
+        /// Shifts a grid position by a given offset, ignoring changes to elevation.
+        /// </summary>
+        /// <param name="gridPos">The position to shift.</param>
+        /// <param name="offset">The offset to shift it  by.</param>
+        private static Vector3Int ShiftGridPosition(Vector3Int gridPos, Vector3Int offset)
+        {
+            return new Vector3Int(gridPos.x + offset.x, gridPos.y + offset.z, gridPos.z);
         }
 
         /// <summary>
@@ -147,6 +183,8 @@ namespace Grubitecht.Tilemaps
             Transform toErase = GetObjectInCell(gridLayout, brushTarget.transform, position);
             if (toErase != null)
             {
+                // Need to update adjacent rule tiles when a tile is erased.
+                UpdateAdjacentRules(gridLayout, position, brushTarget.GetComponent<Tilemap3DLayer>(), null);
                 DestroyImmediate(toErase.gameObject);
             }
         }
@@ -209,7 +247,7 @@ namespace Grubitecht.Tilemaps
         private static Vector3 GetWorldPositionCentered(GridLayout grid, Vector3Int position, 
             Transform targetTransform)
         {
-            // Create a value that lets us center our spawne game objects to line up with the grid.
+            // Create a value that lets us center our spawned game objects to line up with the grid.
             Vector3 center = new Vector3(CELL_SIZE / 2, CELL_SIZE / 2, 0f);
             //Vector3Int cellPos = new Vector3Int(position.x, yPos, position.y);
             Vector3 worldPos = grid.LocalToWorld(grid.CellToLocalInterpolated(position + center));

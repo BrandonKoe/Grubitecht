@@ -17,63 +17,41 @@ namespace Grubitecht.Tilemaps
         [SerializeField] private Transform modelContainer;
         [field: SerializeField] public RuleTile3D RuleTile { get; private set; }
 
-        // Composite model settings
-        private readonly Dictionary<RuleTile3D.ModelInfo, GameObject> compositeModels = new();
+        // model settings
+        [SerializeField] private readonly Dictionary<RuleTile3D.ModelInfo, GameObject> activeModelDict = new();
+        [SerializeField] private Dictionary<Vector3, Tile3D> adjacentTileInfo;
 
-        // Non-Composite model settings
-        private RuleTile3D.ModelInfo dominantModel;
-        private GameObject modelObject;
+        //// Non-Composite model settings
+        //private RuleTile3D.ModelInfo dominantModel;
+        //private GameObject modelObject;
 
         /// <summary>
-        /// Updates this rule model based on the information of it's RuleTile3D and the passed in adjacent cell info.
+        /// Updates this rule model on tile creation based on adjacent tile info passed in by the brush.
         /// </summary>
-        /// <param name="info">Info about the cells adjacent to this one.</param>
-        public void UpdateRuleModel(AdjacentCellInfo info)
+        /// <param name="adjInfo">Info about the tiles adjacent to this one.</param>
+        public void SetRuleModel(Dictionary<Vector3, Tile3D> adjInfo)
         {
-            foreach (var model in RuleTile.Models)
+            Debug.Log("Rule Model Set");
+            adjacentTileInfo = adjInfo;
+            RuleTile.BakeModel(adjacentTileInfo, modelContainer, activeModelDict);
+        }
+
+        /// <summary>
+        /// Updates the adjacent tiles information this tile stores with new information.
+        /// </summary>
+        /// <param name="tile">The information on the tile that is now adjacent to this one.</param>
+        /// <param name="direction">The direction from this tile to the passed in tile.</param>
+        public void UpdateFace(Tile3D tile, Vector3Int direction)
+        {
+            if (adjacentTileInfo.ContainsKey(direction))
             {
-                if (model == null) { continue; }
-                
-                // Has the rule tile evaluate the passed in adjacent cell info based on the rules for a given model.
-                bool isValid = model.Evaluate(info, RuleTile);
-                // Update the model here.
-                // If the model should be composite, then we check it against the currently present models and add
-                // it if it doesnt already exist.
-                if (RuleTile.IsComposite)
-                {
-                    if (isValid)
-                    {
-                        // Add the model
-                        if (!compositeModels.ContainsKey(model))
-                        {
-                            GameObject newModel = Instantiate(model.ModelObject, modelContainer);
-                            newModel.transform.localPosition = Vector3.zero;
-                            compositeModels.Add(model, newModel);
-                        }
-                    }
-                    else
-                    {
-                        // Remove the model
-                        if (compositeModels.ContainsKey(model))
-                        {
-                            DestroyImmediate(compositeModels[model]);
-                            compositeModels.Remove(model);
-                        }
-                    }
-                }
-                // If the model is not composite, then we simply override the current model.
-                else
-                {
-                    if (isValid && model != dominantModel)
-                    {
-                        DestroyImmediate(modelObject);
-                        modelObject = Instantiate(model.ModelObject, modelContainer);
-                        modelObject.transform.localPosition = Vector3.zero;
-                        dominantModel = model;
-                    }
-                    break;
-                }
+                adjacentTileInfo[direction] = tile;
             }
+            else
+            {
+                adjacentTileInfo.Add(direction, tile);
+            }
+            RuleTile.BakeModel(adjacentTileInfo, modelContainer, activeModelDict);
         }
     } 
 }
