@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5dc71c3ce08f94ba6afa5405f97d30, type: 3}
   m_Name: Extend 3D Brush
   m_EditorClassIdentifier: 
-  tile: {fileID: 7536403156683368525, guid: 6eaa16a14e9f6894a9ce3e0ba9c5dc89, type: 3}
+  tile: {fileID: 5653067263737023261, guid: 6eaa16a14e9f6894a9ce3e0ba9c5dc89, type: 3}
   offset: {x: 0, y: 0, z: 0}
   <HalfStepPlacement>k__BackingField: 0
   wallTile: {fileID: 1357833480410013839, guid: 323c9f3e2a886624aba21e31bc0981d8, type: 3}

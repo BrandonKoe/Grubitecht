@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35673bef36b066d4292d1847408a2c46, type: 3}
   m_Name: Tile 3D Brush
   m_EditorClassIdentifier: 
-  tile: {fileID: 7536403156683368525, guid: 6eaa16a14e9f6894a9ce3e0ba9c5dc89, type: 3}
+  tile: {fileID: 5653067263737023261, guid: 6eaa16a14e9f6894a9ce3e0ba9c5dc89, type: 3}
   offset: {x: 0, y: 0, z: 0}
   <HalfStepPlacement>k__BackingField: 0

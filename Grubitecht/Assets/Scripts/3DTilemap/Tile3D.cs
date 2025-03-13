@@ -5,15 +5,20 @@
 //
 // Brief Description : Foundational component for game objects that act as 3D tiles.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Grubitecht.Tilemaps
 {
     public class Tile3D : MonoBehaviour
     {
         [field: SerializeField] public RuleModel RuleModel { get; private set; }
-    }
 
+        /// <summary>
+        /// Callback functions to manage setting values on tile creation and destruction in edit mode.
+        /// </summary>
+        /// <param name="position">The position of this tile.</param>
+        public virtual void OnTileCreation(Vector3Int position) { } 
+        public virtual void OnTileDestruction(Vector3Int position) { }
+    }
 }

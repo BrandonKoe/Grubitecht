@@ -4,6 +4,8 @@
 // Creation Date : March 7, 2025
 //
 // Brief Description : A grid brush that can paint ground objects on a 3D tilemap.
+// Remarks: This project will use a Vector3Int schematic that matches unity's tilemap system, with X and Y
+// representing points along the grid and Z representing elevation.
 *****************************************************************************/
 using UnityEngine;
 using Unity.VisualScripting;
@@ -29,6 +31,8 @@ namespace Grubitecht.Tilemaps
         #region vars
         #region CONSTS
         private const float CELL_SIZE = 1f;
+        private const string CREATION_MESSAGE_NAME = "OnTileCreated";
+        private const string DESTRUCTION_MESSAGE_NAME = "OnTileDestroyed";
         #endregion
         [Header("Tile 3D Brush Settings")]
         [SerializeField] private Tile3D tile;
@@ -100,13 +104,12 @@ namespace Grubitecht.Tilemaps
             if (HalfStepPlacement) { worldPos.y += CELL_SIZE / 2; }
             // Use InstantiatePrefab to keep a prefab link on created tile prefabs.
             Tile3D createdTile = PrefabUtility.InstantiatePrefab(tile, targetTransform) as Tile3D;
-            // Need to manually set Y because unity tilemaps dont normally support depth.
             createdTile.transform.position = worldPos;
-            // Run logic with the RuleModel script here.
+            createdTile.OnTileCreation(position);
 
             // Update rule tiles
             // Get the tile in that cell if it is not provided.
-            Dictionary<Vector3, Tile3D> adjInfo = UpdateAdjacentRules(gridLayout, position, currentLayer, createdTile);
+            AdjacentTileInfo adjInfo = UpdateAdjacentRules(gridLayout, position, currentLayer, createdTile);
             // Sends the info for the created tile to update the rule model.
             if (createdTile.RuleModel != null)
             {
@@ -122,18 +125,18 @@ namespace Grubitecht.Tilemaps
         /// <param name="currentLayer">The current layer</param>
         /// <param name="tileToUpdate">The tile to update.</param>
         /// <returns>Information about those adjacent tiles.</returns>
-        private static Dictionary<Vector3, Tile3D> UpdateAdjacentRules(GridLayout gridLayout, Vector3Int position, 
+        private static AdjacentTileInfo UpdateAdjacentRules(GridLayout gridLayout, Vector3Int position, 
             Tilemap3DLayer currentLayer, Tile3D tileToUpdate)
         {
-            Dictionary<Vector3, Tile3D> cellInfo = new();
-            for (int y = -1; y <= 1; y++)
+            AdjacentTileInfo cellInfo = new();
+            for (int z = -1; z <= 1; z++)
             {
                 Tilemap3DLayer layer;
-                if (y == -1)
+                if (z == -1)
                 {
                     layer = currentLayer.BelowLayer;
                 }
-                else if (y == 1)
+                else if (z == 1)
                 {
                     layer = currentLayer.AboveLayer;
                 }
@@ -146,15 +149,15 @@ namespace Grubitecht.Tilemaps
 
                 for (int x = -1; x <= 1; x++)
                 {
-                    for (int z = -1; z <= 1; z++)
+                    for (int y = -1; y <= 1; y++)
                     {
-                        // Adj represents the direction that we are evaluating.  Need to swap z and y because of how
-                        // unity evaluates tilemap depth internally.
+                        // Adj represents the direction that we are evaluating.  X and Y move along the tilemap, while
+                        // Z represents the height.
                         Vector3Int adj = new(x, y, z);
                         // Skip over this tile.  Rule models do not need to know about themselves.
                         if (adj == Vector3Int.zero) { continue; }
                         Tile3D adjacentTile = GetTileInCell(gridLayout, layer.transform,
-                            ShiftGridPosition(position, adj));
+                            position + adj);
 
                         if (adjacentTile != null && adjacentTile.RuleModel != null)
                         {
@@ -169,15 +172,15 @@ namespace Grubitecht.Tilemaps
             return cellInfo;
         }
 
-        /// <summary>
-        /// Shifts a grid position by a given offset, ignoring changes to elevation.
-        /// </summary>
-        /// <param name="gridPos">The position to shift.</param>
-        /// <param name="offset">The offset to shift it  by.</param>
-        private static Vector3Int ShiftGridPosition(Vector3Int gridPos, Vector3Int offset)
-        {
-            return new Vector3Int(gridPos.x + offset.x, gridPos.y + offset.z, gridPos.z);
-        }
+        ///// <summary>
+        ///// Shifts a grid position by a given offset, ignoring changes to elevation.
+        ///// </summary>
+        ///// <param name="gridPos">The position to shift.</param>
+        ///// <param name="offset">The offset to shift it  by.</param>
+        //private static Vector3Int ShiftGridPosition(Vector3Int gridPos, Vector3Int offset)
+        //{
+        //    return new Vector3Int(gridPos.x + offset.x, gridPos.y + offset.z, gridPos.z);
+        //}
 
         /// <summary>
         /// Erases the Tile3D at the location of the brush on the selected tilemap layer.
@@ -202,9 +205,10 @@ namespace Grubitecht.Tilemaps
         protected virtual void EraseTile(GridLayout gridLayout, Transform targetTransform, Vector3Int position, 
             Tilemap3DLayer layer)
         {
-            Transform toErase = GetObjectInCell(gridLayout, targetTransform, position);
+            Tile3D toErase = GetTileInCell(gridLayout, targetTransform, position);
             if (toErase != null)
             {
+                toErase.OnTileDestruction(position);
                 // Need to update adjacent rule tiles when a tile is erased.
                 UpdateAdjacentRules(gridLayout, position, layer, null);
                 DestroyImmediate(toErase.gameObject);
@@ -245,18 +249,28 @@ namespace Grubitecht.Tilemaps
         /// <returns>The transform of the object within that cell.</returns>
         private static Tile3D GetTileInCell(GridLayout grid, Transform targetTransform, Vector3Int position)
         {
-            Vector3 worldPos = GetWorldPositionCentered(grid, position, targetTransform);
-            Bounds bounds = new Bounds(worldPos, Vector3.one * CELL_SIZE);
-
-            for (int i = 0; i < targetTransform.childCount; i++)
+            Transform tileTransform = GetObjectInCell(grid, targetTransform, position);
+            if (tileTransform != null && tileTransform.TryGetComponent(out Tile3D tile))
             {
-                var child = targetTransform.GetChild(i);
-                if (bounds.Contains(child.position) && child.TryGetComponent(out Tile3D tile))
-                {
-                    return tile;
-                }
+                return tile;
             }
-            return null;
+            else
+            {
+                return null;
+            }
+
+            //Vector3 worldPos = GetWorldPositionCentered(grid, position, targetTransform);
+            //Bounds bounds = new Bounds(worldPos, Vector3.one * CELL_SIZE);
+
+            //for (int i = 0; i < targetTransform.childCount; i++)
+            //{
+            //    var child = targetTransform.GetChild(i);
+            //    if (bounds.Contains(child.position) && child.TryGetComponent(out Tile3D tile))
+            //    {
+            //        return tile;
+            //    }
+            //}
+            //return null;
         }
 
         /// <summary>

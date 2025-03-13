@@ -32,7 +32,7 @@ namespace Grubitecht.Tilemaps
             /// <param name="adjInfo">Info about adjacent tiles.</param>
             /// <param name="ruleTile">The rule tile this model belongs to.</param>
             /// <returns>Whether this model is valid to be shown or not.</returns>
-            public bool Evaluate(Dictionary<Vector3, Tile3D> adjInfo, RuleTile3D ruleTile)
+            public bool Evaluate(AdjacentTileInfo adjInfo, RuleTile3D ruleTile)
             {
                 bool antiResult = false;
                 foreach (var rule in rules)
@@ -48,7 +48,10 @@ namespace Grubitecht.Tilemaps
         [System.Serializable]
         private class Rule
         {
-            [SerializeField] internal Vector3Int rulingPosition;
+            [SerializeField, Tooltip("The relative position from this tile's position that this rule should " +
+                "apply to.  X and Y are along the grid, Z position is the height.  X position corresponds to X in" +
+                " Unity world space.")] 
+            internal Vector3Int rulingPosition;
             [SerializeField] private RuleType ruleType;
 
             /// <summary>
@@ -57,13 +60,13 @@ namespace Grubitecht.Tilemaps
             /// <param name="adjInfo">Info about the tiles adjacent to this evaluated tile.</param>
             /// <param name="ruleTile">The rule tile that this rule belongs to.</param>
             /// <returns>True if the rule is met, false if it is not met.</returns>
-            public bool ApplyRule(Dictionary<Vector3, Tile3D> adjInfo, RuleTile3D ruleTile)
+            public bool ApplyRule(AdjacentTileInfo adjInfo, RuleTile3D ruleTile)
             {
                 rulingPosition.ClampVector(-1, 1);
                 Tile3D tile;
                 if (adjInfo.ContainsKey(rulingPosition))
                 {
-                    tile = adjInfo[rulingPosition];
+                    tile = adjInfo.Get(rulingPosition);
                 }
                 else
                 {
@@ -130,7 +133,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="adjInfo">Info about the tiles adjacent to the tile to change the model of.</param>
         /// <param name="parentTransform">The transform that will contain the model.</param>
         /// <param name="activeModel">The model that the rule model component is actively using.</param>
-        public virtual void BakeModel(Dictionary<Vector3, Tile3D> adjInfo, Transform parentTransform, 
+        public virtual void BakeModel(AdjacentTileInfo adjInfo, Transform parentTransform, 
             Dictionary<ModelInfo, GameObject> activeModel)
         {
             foreach (var model in Models)
