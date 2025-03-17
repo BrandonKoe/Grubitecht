@@ -30,9 +30,7 @@ namespace Grubitecht.Tilemaps
     {
         #region vars
         #region CONSTS
-        private const float CELL_SIZE = 1f;
-        private const string CREATION_MESSAGE_NAME = "OnTileCreated";
-        private const string DESTRUCTION_MESSAGE_NAME = "OnTileDestroyed";
+        public const float CELL_SIZE = 1f;
         #endregion
         [Header("Tile 3D Brush Settings")]
         [SerializeField] private Tile3D tile;
@@ -223,7 +221,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="targetTransform">The transform of the object that contains the tilemap.</param>
         /// <param name="position">The position of the cell to evaluate.</param>
         /// <returns>The transform of the object within that cell.</returns>
-        private static Transform GetObjectInCell(GridLayout grid, Transform targetTransform, Vector3Int position)
+        protected static Transform GetObjectInCell(GridLayout grid, Transform targetTransform, Vector3Int position)
         {
             Vector3 worldPos = GetWorldPositionCentered(grid, position, targetTransform);
             Bounds bounds = new Bounds(worldPos, Vector3.one * CELL_SIZE);
@@ -247,7 +245,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="targetTransform">The transform of the object that contains the tilemap.</param>
         /// <param name="position">The position of the cell to evaluate.</param>
         /// <returns>The transform of the object within that cell.</returns>
-        private static Tile3D GetTileInCell(GridLayout grid, Transform targetTransform, Vector3Int position)
+        protected static Tile3D GetTileInCell(GridLayout grid, Transform targetTransform, Vector3Int position)
         {
             Transform tileTransform = GetObjectInCell(grid, targetTransform, position);
             if (tileTransform != null && tileTransform.TryGetComponent(out Tile3D tile))

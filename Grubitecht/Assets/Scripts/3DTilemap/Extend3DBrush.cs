@@ -33,6 +33,11 @@ namespace Grubitecht.Tilemaps
             // Recursively calls PlaceTile for each layer below this one.
             if (belowLayer != null)
             {
+                // Prematurely erases existing tiles so that placed ground tiles get overwritten with wall tiles.
+                if (GetObjectInCell(gridLayout, belowLayer.transform, position))
+                {
+                    base.EraseTile(gridLayout, belowLayer.transform, position, belowLayer);
+                }
                 PlaceTile(wallTile, gridLayout, belowLayer.transform, position, belowLayer);
             }
         }
