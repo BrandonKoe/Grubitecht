@@ -6,13 +6,11 @@
 // Brief Description : Allows an object to take up space in the world grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht
 {
-    public class GridObject : MonoBehaviour
+    public class GridObject : MonoBehaviour, ISelectable
     {
         [SerializeField] private Vector3 offset;
         public GroundTile CurrentSpace { get; set; }
@@ -43,6 +41,16 @@ namespace Grubitecht
             {
                 CurrentSpace.ContainedObject = this;
             }
+        }
+
+        public void OnSelect(ISelectable oldObj)
+        {
+            Debug.Log(this.name + " was selected.");
+        }
+
+        public void OnDeselect(ISelectable newObj)
+        {
+            Debug.Log(this.name + " was deselected.");
         }
     }
 }

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Grubitecht
 {
-    public class GroundTile : Tile3D
+    public class GroundTile : Tile3D, ISelectable
     {
         [Header("Ground Settings")]
         [SerializeField, ReadOnly] private Vector3Int gridPos;
@@ -82,6 +82,16 @@ namespace Grubitecht
                 return tile;
             }
             return null;
+        }
+
+        public void OnSelect(ISelectable oldObj)
+        {
+            Debug.Log(this.name + " was selected.");
+        }
+
+        public void OnDeselect(ISelectable newObj)
+        {
+            Debug.Log(this.name + " was deselected.");
         }
     }
 }
