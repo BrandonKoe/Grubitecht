@@ -10,7 +10,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht
+namespace Grubitecht.World
 {
     public class GroundTile : Tile3D, ISelectable
     {
@@ -37,6 +37,14 @@ namespace Grubitecht
                 return gridPos;
             }
         }
+
+        public float Height
+        {
+            get
+            {
+                return transform.position.y;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -61,7 +69,7 @@ namespace Grubitecht
         /// </summary>
         /// <param name="adjacent">The direction to get the adjacent tile from.</param>
         /// <returns>The tile adjacent to this one.</returns>
-        public GroundTile GetAdjaccentTile(Vector2Int adjacent)
+        public GroundTile GetAdjacentTile(Vector2Int adjacent)
         {
             if (groundDict.TryGetValue(GridPos2 + adjacent, out GroundTile tile))
             {
@@ -70,6 +78,34 @@ namespace Grubitecht
             return null;
         }
 
+        /// <summary>
+        /// Gets a list of all tiles adjacent to this tile.
+        /// </summary>
+        /// <returns>A list of all tiles adjacent to this tile.</returns>
+        public List<GroundTile> GetAdjacentTiles()
+        {
+            List<GroundTile> neighbors = new List<GroundTile>()
+            {
+                GetAdjacentTile(Vector2Int.right),
+                GetAdjacentTile(Vector2Int.left),
+                GetAdjacentTile(Vector2Int.up),
+                GetAdjacentTile(Vector2Int.down)
+            };
+            neighbors.RemoveAll(item => item == null);
+            return neighbors;
+        }
+
+        public void OnSelect(ISelectable oldObj)
+        {
+            Debug.Log(this.name + " was selected.");
+        }
+
+        public void OnDeselect(ISelectable newObj)
+        {
+            Debug.Log(this.name + " was deselected.");
+        }
+
+        #region Static Helpers
         /// <summary>
         /// Gets a tile at a given position.
         /// </summary>
@@ -84,14 +120,17 @@ namespace Grubitecht
             return null;
         }
 
-        public void OnSelect(ISelectable oldObj)
+        /// <summary>
+        /// Finds the Manhatten distance (or the total number of spaces between the two tiles when restricted to
+        /// orthogonal movement) between two tiles.
+        /// </summary>
+        /// <param name="tile1">The first tile.</param>
+        /// <param name="tile2">The second tile.</param>
+        /// <returns>The total number of spaces between the two tiles.</returns>
+        public static int FindManhattenDistance(GroundTile tile1, GroundTile tile2)
         {
-            Debug.Log(this.name + " was selected.");
+            return Mathf.Abs(tile1.GridPos2.x - tile2.GridPos2.x) + Mathf.Abs(tile1.GridPos2.y - tile2.GridPos2.y);
         }
-
-        public void OnDeselect(ISelectable newObj)
-        {
-            Debug.Log(this.name + " was deselected.");
-        }
+        #endregion
     }
 }

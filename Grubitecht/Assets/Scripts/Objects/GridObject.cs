@@ -8,11 +8,13 @@
 using Grubitecht.Tilemaps;
 using UnityEngine;
 
-namespace Grubitecht
+namespace Grubitecht.World
 {
-    public class GridObject : MonoBehaviour, ISelectable
+    public class GridObject : MonoBehaviour
     {
-        [SerializeField] private Vector3 offset;
+        [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
+            "tile.")] 
+        private Vector3 offset;
         public GroundTile CurrentSpace { get; set; }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace Grubitecht
             Vector2Int approxGridPos = new Vector2Int(Mathf.RoundToInt(transform.position.x - 
                 Tile3DBrush.CELL_SIZE / 2), Mathf.RoundToInt(transform.position.z - Tile3DBrush.CELL_SIZE / 2));
             SetCurrentSpace(GroundTile.GetTileAt(approxGridPos));
-            Debug.Log(CurrentSpace.ToString());
+            //Debug.Log(CurrentSpace.ToString());
         }
 
         /// <summary>
@@ -43,14 +45,14 @@ namespace Grubitecht
             }
         }
 
-        public void OnSelect(ISelectable oldObj)
+        /// <summary>
+        /// Gets the world space position this object should occupy when it is on a given tile.
+        /// </summary>
+        /// <param name="tile">The tile to get the position for this object of.</param>
+        /// <returns>The position of the tile plus the set offset of this object.</returns>
+        public Vector3 GetTilePosition(GroundTile tile)
         {
-            Debug.Log(this.name + " was selected.");
-        }
-
-        public void OnDeselect(ISelectable newObj)
-        {
-            Debug.Log(this.name + " was deselected.");
+            return tile.transform.position + offset;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Grubitecht
     {
         [SerializeField] private SelectionIndicator[] selectionIndicators;
         #region Component References
-        [SerializeField, HideInInspector] private Camera cam;
+        [SerializeReference, HideInInspector] private Camera cam;
         #endregion
 
         private InputAction selectAction;
@@ -93,35 +93,30 @@ namespace Grubitecht
             UpdateSelectionIndicator();
         }
 
+        /// <summary>
+        /// Updates the selection indicator to communicate to the player what is currently selected.
+        /// </summary>
         private void UpdateSelectionIndicator()
         {
+            // Disables the current indicator.
+            if (currentIndicator != null)
+            {
+                currentIndicator.Disable();
+                currentIndicator = null;
+            }
             if (CurrentSelection is MonoBehaviour selectedComponent)
             {
                 // Gets an indicator that is coded to handle the specific type of component specified.
                 // This lets me design multiple indicators that behave differently for different types of selectable
                 // objects.
                 SelectionIndicator indicator = Array.Find(selectionIndicators, item =>
-                item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
+                    item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
                 if (indicator != null)
                 {
-                    // Disables the old indicator.
-                    if (currentIndicator != null)
-                    {
-                        currentIndicator.Disable();
-                    }
                     indicator.Enable();
                     indicator.IndicateSelected(selectedComponent);
                     currentIndicator = indicator;
                 }
-            }
-            else
-            {
-                // Disables the current indicator if nothing is selected.
-                if (currentIndicator != null)
-                {
-                    currentIndicator.Disable();
-                }
-                currentIndicator = null;
             }
         }
 

@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Grubitecht.World;
 
 namespace Grubitecht.UI
 {
@@ -19,7 +20,7 @@ namespace Grubitecht.UI
         public override Type[] SelectedComponentTypes => new Type[] 
         { 
             typeof(GroundTile),
-            typeof(GridObject)
+            typeof(MovableObject)
         };
 
         /// <summary>
