@@ -20,7 +20,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="adjInfo">Info about the tiles adjacent to the tile to change the model of.</param>
         /// <param name="parentTransform">The transform that will contain the model.</param>
         /// <param name="activeModel">The models that the rule model component is actively using.</param>
-        public override void BakeModel(Dictionary<Vector3, Tile3D> adjInfo, Transform parentTransform, 
+        public override void BakeModel(AdjacentTileInfo adjInfo, Transform parentTransform, 
             Dictionary<ModelInfo, GameObject> activeModels)
         {
             //base.BakeModel(adjInfo, parentTransform, ref modelContainer);

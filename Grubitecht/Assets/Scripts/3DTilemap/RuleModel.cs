@@ -7,6 +7,7 @@
 // rule models around it.
 *****************************************************************************/
 
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Grubitecht.Tilemaps
 
         // model settings
         [SerializeField] private readonly Dictionary<RuleTile3D.ModelInfo, GameObject> activeModelDict = new();
-        [SerializeField] private Dictionary<Vector3, Tile3D> adjacentTileInfo;
+        [SerializeField, ReadOnly] private AdjacentTileInfo adjacentTileInfo;
 
         //// Non-Composite model settings
         //private RuleTile3D.ModelInfo dominantModel;
@@ -29,9 +30,9 @@ namespace Grubitecht.Tilemaps
         /// Updates this rule model on tile creation based on adjacent tile info passed in by the brush.
         /// </summary>
         /// <param name="adjInfo">Info about the tiles adjacent to this one.</param>
-        public void SetRuleModel(Dictionary<Vector3, Tile3D> adjInfo)
+        public void SetRuleModel(AdjacentTileInfo adjInfo)
         {
-            Debug.Log("Rule Model Set");
+            //Debug.Log("Rule Model Set");
             adjacentTileInfo = adjInfo;
             RuleTile.BakeModel(adjacentTileInfo, modelContainer, activeModelDict);
         }
@@ -45,7 +46,7 @@ namespace Grubitecht.Tilemaps
         {
             if (adjacentTileInfo.ContainsKey(direction))
             {
-                adjacentTileInfo[direction] = tile;
+                adjacentTileInfo.Set(direction, tile);
             }
             else
             {
