@@ -6,26 +6,40 @@
 // Brief Description : Allows an object to take up space in the world grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
+using System;
 using UnityEngine;
 
-namespace Grubitecht.World
+namespace Grubitecht.World.Objects
 {
-    public class GridObject : MonoBehaviour
+    public class GridObject : GridBehaviour
     {
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
             "tile.")] 
         private Vector3 offset;
+        [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
+            " that occupy space cannot be inside the same space as this object.")]
+        private bool occupySpace;
         public GroundTile CurrentSpace { get; set; }
 
         /// <summary>
         /// Assigns this object a space when it is created.
         /// </summary>
-        private void Start()
+        protected override void Awake()
         {
-            Vector2Int approxGridPos = new Vector2Int(Mathf.RoundToInt(transform.position.x - 
-                Tile3DBrush.CELL_SIZE / 2), Mathf.RoundToInt(transform.position.z - Tile3DBrush.CELL_SIZE / 2));
-            SetCurrentSpace(GroundTile.GetTileAt(approxGridPos));
+            base.Awake();
+            SetCurrentSpace(GetApproximateSpace());
             //Debug.Log(CurrentSpace.ToString());
+        }
+
+        /// <summary>
+        /// Gets an approximation of the space that this object's transform is currently at.
+        /// </summary>
+        /// <returns>The space that this object's transform is physically at in world space.</returns>
+        public GroundTile GetApproximateSpace()
+        {
+            Vector2Int approxGridPos = new Vector2Int(Mathf.RoundToInt(transform.position.x -
+                Tile3DBrush.CELL_SIZE / 2), Mathf.RoundToInt(transform.position.z - Tile3DBrush.CELL_SIZE / 2));
+            return GroundTile.GetTileAt(approxGridPos);
         }
 
         /// <summary>
@@ -34,14 +48,22 @@ namespace Grubitecht.World
         /// <param name="space">The space to move this object to.</param>
         public void SetCurrentSpace(GroundTile space)
         {
-            if (CurrentSpace != null)
-            {
-                CurrentSpace.ContainedObject = null;
-            }
+            GroundTile oldSpace = CurrentSpace;
             CurrentSpace = space;
-            if (CurrentSpace != null)
+            // Only assign the space's contained object value if this object is set to occupy space.
+            if (occupySpace)
             {
-                CurrentSpace.ContainedObject = this;
+                if (oldSpace != null)
+                {
+                    oldSpace.ContainedObject = null;
+                }
+                if (CurrentSpace != null)
+                {
+                    CurrentSpace.ContainedObject = this;
+                }
+                // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
+                // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
+                RefreshMap(this, oldSpace, CurrentSpace);
             }
         }
 

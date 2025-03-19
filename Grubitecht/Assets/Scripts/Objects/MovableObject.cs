@@ -8,7 +8,7 @@
 using Grubitecht.World.Pathfinding;
 using UnityEngine;
 
-namespace Grubitecht.World
+namespace Grubitecht.World.Objects
 {
     [RequireComponent(typeof(GridNavigator))]
     public class MovableObject : MonoBehaviour, ISelectable

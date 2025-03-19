@@ -5,11 +5,10 @@
 //
 // Brief Description : Indicates what object is selected through use of a UI object.
 *****************************************************************************/
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Grubitecht.World;
+using Grubitecht.World.Objects;
+using System;
+using UnityEngine;
 
 namespace Grubitecht.UI
 {

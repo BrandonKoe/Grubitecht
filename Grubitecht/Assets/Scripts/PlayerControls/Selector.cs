@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
 using System;
+using UnityEditor;
 
 namespace Grubitecht
 {
@@ -23,9 +24,11 @@ namespace Grubitecht
         [SerializeReference, HideInInspector] private Camera cam;
         #endregion
 
+        // Input actions
         private InputAction selectAction;
         private InputAction mousePosAction;
 
+        // Current Selections
         public static ISelectable currentSelection;
         private static SelectionIndicator currentIndicator;
 
