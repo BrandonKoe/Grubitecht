@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2930947354492480887}
   - component: {fileID: 1050384635004778268}
-  - component: {fileID: 5653067263737023261}
   - component: {fileID: 6073419251461348945}
+  - component: {fileID: 40518175069150306}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -56,20 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5653067263737023261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428279510351201946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e518c8b9d717dc243a2bd63f7b84af50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <RuleModel>k__BackingField: {fileID: 6073419251461348945}
-  gridPos: {x: 0, y: 0, z: 0}
 --- !u!114 &6073419251461348945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +72,20 @@ MonoBehaviour:
   <RuleTile>k__BackingField: {fileID: 11400000, guid: 8d13c5089a0a11b4aaaeda005913ea6a, type: 2}
   adjacentTileInfo:
     adjacentTiles: []
+--- !u!114 &40518175069150306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428279510351201946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e518c8b9d717dc243a2bd63f7b84af50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RuleModel>k__BackingField: {fileID: 6073419251461348945}
+  gridPos: {x: 0, y: 0, z: 0}
 --- !u!1 &4737718363310548229
 GameObject:
   m_ObjectHideFlags: 0

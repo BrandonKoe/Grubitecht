@@ -62,7 +62,7 @@ namespace Grubitecht.World
         /// </summary>
         private void Awake()
         {
-            groundDict.Add(GridPos2 , this);
+            groundDict.Add(GridPos2, this);
         }
 
         /// <summary>
