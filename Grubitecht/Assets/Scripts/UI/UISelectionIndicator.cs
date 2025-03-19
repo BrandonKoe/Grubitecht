@@ -15,12 +15,16 @@ namespace Grubitecht.UI
     public class UISelectionIndicator : SelectionIndicator
     {
         [SerializeField] private Vector2 offset;
+        [SerializeField] private Transform trackedTransform;
 
+        #region Properties
         public override Type[] SelectedComponentTypes => new Type[] 
         { 
             typeof(GroundTile),
             typeof(MovableObject)
         };
+        private RectTransform rectTransform => (RectTransform)transform;
+        #endregion
 
         /// <summary>
         /// Moves this UI objec to the screen position of the selected object.
@@ -28,9 +32,17 @@ namespace Grubitecht.UI
         /// <param name="selectedComponent">The component to move to.</param>
         public override void IndicateSelected(MonoBehaviour selectedComponent)
         {
-            RectTransform rectTrans = (RectTransform)transform;
-            rectTrans.position = (Vector2)Camera.main.WorldToScreenPoint(selectedComponent.transform.position)
-                + offset;
+            
+            trackedTransform = selectedComponent.transform;
+        }
+
+        /// <summary>
+        /// Continually updates the indicator's position to match the selected object's position.
+        /// This is a bit lazy but I can add better implementation later if needed.
+        /// </summary>
+        private void Update()
+        {
+            rectTransform.position = (Vector2)Camera.main.WorldToScreenPoint(trackedTransform.position) + offset;
         }
     }
 }
