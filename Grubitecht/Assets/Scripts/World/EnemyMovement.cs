@@ -5,10 +5,8 @@
 //
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
-using Grubitecht.World.Pathfinding;
 using Grubitecht.World.Objects;
-using System.Collections;
-using System.Collections.Generic;
+using Grubitecht.World.Pathfinding;
 using UnityEngine;
 
 namespace Grubitecht.World
