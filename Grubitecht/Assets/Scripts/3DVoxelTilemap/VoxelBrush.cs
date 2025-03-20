@@ -6,6 +6,8 @@
 // Brief Description : Brush for painting positions on the 3D mesh tilemap.
 *****************************************************************************/
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -46,12 +48,24 @@ namespace Grubitecht.Tilemaps
             if (tilemap == null) { return; }
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
+            AddTile(tilemap, position);
+        }
+
+        /// <summary>
+        /// Adds a tile to a given voxel tilemap.
+        /// </summary>
+        /// <param name="tilemap">The tilemap to add a tile to.</param>
+        /// <param name="position">The position to add the tile at.</param>
+        /// <param name="type">The type of tile to add.</param>
+        protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type = TileType.Ground)
+        {
             if (!tilemap.CheckCell(position, TileType.Ground))
             {
-                tilemap.Paint(position, TileType.Ground);
+                tilemap.Paint(position, type);
             }
-            Debug.Log(position);
+            //Debug.Log(tilemap.GridToLocalCorner(position));
         }
+
         /// <summary>
         /// Erases a voxel from the target 3D voxel tilemap
         /// </summary>
@@ -67,12 +81,21 @@ namespace Grubitecht.Tilemaps
             if (tilemap == null) { return; }
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
+            EraseTile(tilemap, position);
+        }
+
+        /// <summary>
+        /// Erases a tile from a given Voxel tilemap.
+        /// </summary>
+        /// <param name="tilemap">The tilemap to erase from.</param>
+        /// <param name="position">The position to erase at.</param>
+        protected virtual void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
+        {
             if (tilemap.CheckCell(position))
             {
                 tilemap.Erase(position);
             }
-
-            Debug.Log(position);
+            //Debug.Log(tilemap.GridToLocalCorner(position));
         }
     }
 }

@@ -5,12 +5,12 @@
 //
 // Brief Description : Custom editor for the extend brush
 *****************************************************************************/
-using Grubitecht.OldTilemaps;
+using Grubitecht.Tilemaps;
 using UnityEditor;
 
 namespace Grubitecht.Editor.Tilemaps
 {
-    [CustomEditor(typeof(Extend3DBrush))]
+    [CustomEditor(typeof(VoxelExtendBrush))]
     public class VoxelExtendBrushEditor : VoxelBrushEditor
     {
         // Extend functionality here.
