@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     [CreateAssetMenu]
     [CustomGridBrush(false, true, false, "Extend 3D Brush")]

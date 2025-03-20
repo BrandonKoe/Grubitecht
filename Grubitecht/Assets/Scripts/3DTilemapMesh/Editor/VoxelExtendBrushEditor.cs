@@ -1,18 +1,18 @@
 /*****************************************************************************
-// File Name : GroundBrushEditor.cs
+// File Name : VoxelExtendBrushEditor.cs
 // Author : Brandon Koederitz
-// Creation Date : March 12, 2025
+// Creation Date : March 20, 2025
 //
-// Brief Description : custom editor for the extend brush
+// Brief Description : Custom editor for the extend brush
 *****************************************************************************/
 using Grubitecht.OldTilemaps;
 using UnityEditor;
 
-namespace Grubitecht.Editor.OldTilemaps
+namespace Grubitecht.Editor.Tilemaps
 {
     [CustomEditor(typeof(Extend3DBrush))]
-    public class Extend3DBrushEditor : Tile3DBrushEditor
+    public class VoxelExtendBrushEditor : VoxelBrushEditor
     {
-        // Add extend brush custom functionality here.
+        // Extend functionality here.
     }
 }

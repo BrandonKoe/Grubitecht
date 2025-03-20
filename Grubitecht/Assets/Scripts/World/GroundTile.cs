@@ -5,7 +5,7 @@
 //
 // Brief Description : Represnets a ground tile that an object can exist on.
 *****************************************************************************/
-using Grubitecht.Tilemaps;
+using Grubitecht.OldTilemaps;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;

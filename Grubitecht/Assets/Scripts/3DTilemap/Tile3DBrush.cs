@@ -22,7 +22,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 #endif
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     [CreateAssetMenu]
     [CustomGridBrush(false, true, false, "Tile 3D Brush")]

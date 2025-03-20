@@ -9,7 +9,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     [CreateAssetMenu(fileName = "CompositeRuleTile3D", menuName = "Tilemap3D/Composite Rule Tile 3D")]
     public class CompositeRuleTile3D : RuleTile3D

@@ -5,7 +5,7 @@
 //
 // Brief Description : Allows an object to take up space in the world grid.
 *****************************************************************************/
-using Grubitecht.Tilemaps;
+using Grubitecht.OldTilemaps;
 using System;
 using UnityEngine;
 

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     [CreateAssetMenu(fileName = "RuleTile3D", menuName = "Tilemap3D/Rule Tile 3D")]
     public class RuleTile3D : ScriptableObject

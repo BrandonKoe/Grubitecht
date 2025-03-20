@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name : Tilemap3DLayer.cs
 // Author : Brandon Koederitz
-// Creation Date : March 6, 2025
+// Creation Date : March 20, 2025
 //
 // Brief Description : Additional component that allows a Tilemap to act as a 3D tilemap
 *****************************************************************************/
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     [RequireComponent(typeof(Tilemap))]
     public class Tilemap3DLayer : MonoBehaviour
