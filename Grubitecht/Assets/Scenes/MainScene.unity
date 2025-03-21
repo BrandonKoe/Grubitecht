@@ -665,6 +665,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 1
   ignoreBlockedSpaces: 0
+  restrictMovementAxes: 0
   gridObject: {fileID: 645581723}
 --- !u!114 &645581723
 MonoBehaviour:
@@ -815,7 +816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  - {fileID: 2100000, guid: 20c0bb2f229a3fc45ba3d28e3766a6dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 1
   ignoreBlockedSpaces: 0
+  restrictMovementAxes: 0
   gridObject: {fileID: 2109768321}
 --- !u!114 &2109768324
 MonoBehaviour:
