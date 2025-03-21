@@ -10,9 +10,11 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using Grubitecht.World.Objects;
+using System;
 
 namespace Grubitecht.World
 {
+    [Obsolete("GroundTile and the Tile3D system is obsolete.  Use VoxelTilemap instead.")]
     public class GroundTile : Tile3D, ISelectable
     {
         [Header("Ground Settings")]

@@ -5,13 +5,11 @@
 //
 // Brief Description : Allows player to select objects in the game world that they click on.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
+using Grubitecht.Tilemaps;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Linq;
-using System;
-using UnityEditor;
 
 namespace Grubitecht
 {
@@ -107,19 +105,16 @@ namespace Grubitecht
                 currentIndicator.Disable();
                 currentIndicator = null;
             }
-            if (CurrentSelection is MonoBehaviour selectedComponent)
+            // Gets an indicator that is coded to handle the specific type of component specified.
+            // This lets me design multiple indicators that behave differently for different types of selectable
+            // objects.
+            SelectionIndicator indicator = Array.Find(selectionIndicators, item =>
+                item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
+            if (indicator != null)
             {
-                // Gets an indicator that is coded to handle the specific type of component specified.
-                // This lets me design multiple indicators that behave differently for different types of selectable
-                // objects.
-                SelectionIndicator indicator = Array.Find(selectionIndicators, item =>
-                    item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
-                if (indicator != null)
-                {
-                    indicator.Enable();
-                    indicator.IndicateSelected(selectedComponent);
-                    currentIndicator = indicator;
-                }
+                indicator.Enable();
+                indicator.IndicateSelected(CurrentSelection);
+                currentIndicator = indicator;
             }
         }
 
@@ -142,10 +137,14 @@ namespace Grubitecht
 
             if (Physics.Raycast(selectionRay, out RaycastHit results))
             {
-                // Attempts to get a component that implements the ISelectable interface.  if none is found on the
+                // Attempts to get a component that implements the ISelectable interface.  If none is found on the
                 // clicked object then null is returned instead.
                 if (results.collider.gameObject.TryGetComponent(out ISelectable selectable))
                 {
+                    if (selectable is VoxelTilemap3D tilemap)
+                    {
+                        return new SpaceSelection(Vector3Int.RoundToInt(results.point));
+                    }
                     return selectable;
                 }
             }

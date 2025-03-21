@@ -16,6 +16,8 @@ namespace Grubitecht.Tilemaps
     [CustomGridBrush(false, true, false, "Voxel Extend Brush")]
     public class VoxelExtendBrush : VoxelBrush
     {
+        [Header("Extend Brush Settings")]
+        [SerializeField] private TileType extendType;
         [SerializeField, Tooltip("The minimum depth that this brush will extend tiles to.")]
         private int minDepth = -1;
 
@@ -25,13 +27,13 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to add tiles to.</param>
         /// <param name="position">The position to add a tile at.</param>
         /// <param name="type">The type of tile to add.</param>
-        protected override void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type = TileType.Ground)
+        protected override void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
             base.AddTile(tilemap, position, type);
             if (position.z > minDepth)
             {
                 position.z--;
-                AddTile(tilemap, position, TileType.Wall);
+                AddTile(tilemap, position, extendType);
             }
         }
 

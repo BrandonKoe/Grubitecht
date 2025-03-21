@@ -20,7 +20,6 @@ namespace Grubitecht.UI
         #region Properties
         public override Type[] SelectedComponentTypes => new Type[] 
         { 
-            typeof(GroundTile),
             typeof(MovableObject)
         };
         private RectTransform rectTransform => (RectTransform)transform;
@@ -29,11 +28,13 @@ namespace Grubitecht.UI
         /// <summary>
         /// Moves this UI objec to the screen position of the selected object.
         /// </summary>
-        /// <param name="selectedComponent">The component to move to.</param>
-        public override void IndicateSelected(MonoBehaviour selectedComponent)
+        /// <param name="selection">The selected object</param>
+        public override void IndicateSelected(ISelectable selection)
         {
-            
-            trackedTransform = selectedComponent.transform;
+            if (selection is MonoBehaviour behaviour)
+            {
+                trackedTransform = behaviour.transform;
+            }
         }
 
         /// <summary>

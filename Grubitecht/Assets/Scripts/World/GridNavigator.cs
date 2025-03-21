@@ -72,7 +72,7 @@ namespace Grubitecht.World.Pathfinding
         public void SetDestination(GroundTile destination, bool includeAdjacent = false)
         {
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            GroundTile tileToStart = JUMP_TO_TARGET ? gridObject.GetApproximateSpace() : gridObject.CurrentSpace;
+            GroundTile tileToStart = JUMP_TO_TARGET ? gridObject.GetApproximateSpace() : gridObject.GridPosition;
             currentPath = Pathfinder.FindPath(tileToStart, destination, jumpHiehgt, includeAdjacent);
             // Update stored values for destination and include adjacent settings.
             lastGivenDestination = destination;

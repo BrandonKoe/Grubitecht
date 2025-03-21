@@ -8,6 +8,10 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+using System;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,10 +22,10 @@ namespace Grubitecht.Tilemaps
     [RequireComponent(typeof(GridLayout))]
     [RequireComponent(typeof(MeshFilter))]
     [RequireComponent(typeof(MeshRenderer))]
-    public class VoxelTilemap3D : MonoBehaviour
+    public class VoxelTilemap3D : MonoBehaviour, ISelectable
     {
         #region CONSTS
-        private const float CELL_SIZE = 1f;
+        public const float CELL_SIZE = 1f;
         private static readonly Vector3Int[] CARDINAL_DIRECTIONS = new Vector3Int[]
         {
             Vector3Int.up,
@@ -38,9 +42,7 @@ namespace Grubitecht.Tilemaps
         [SerializeField] private string meshFilePath;
         [SerializeField] private string meshFileName;
         [Header("Tilemap Settings.")]
-        [SerializeField] private Material testMaterial;
-        [SerializeField] private List<Vector3Int> groundTiles;
-        [SerializeField] private List<Vector3Int> wallTiles;
+        [SerializeField] private SubTilemap[] subTilemaps;
 
         private static VoxelTilemap3D instance;
 
@@ -58,6 +60,18 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region Nested Classes
+        /// <summary>
+        /// Class to represent a specific sub-tilemap of this tilemap.
+        /// </summary>
+        [System.Serializable]
+        private class SubTilemap
+        {
+            [SerializeField] internal TileType tileType;
+            [SerializeField] internal List<Vector3Int> tiles;
+        }
+        #endregion
+
         /// <summary>
         /// Paints a voxel on this tilemap.
         /// </summary>
@@ -65,25 +79,36 @@ namespace Grubitecht.Tilemaps
         /// <param name="type">The type of tile to paint.</param>
         public void Paint(Vector3Int position, TileType type)
         {
-            switch (type)
+            //switch (type)
+            //{
+            //    case TileType.Ground:
+            //        // Removes redundant tiles.
+            //        if (wallTiles.Contains(position))
+            //        {
+            //            wallTiles.Remove(position);
+            //        }
+            //        groundTiles.Add(position);
+            //        break;
+            //    case TileType.Wall:
+            //        if (groundTiles.Contains(position))
+            //        {
+            //            groundTiles.Remove(position);
+            //        }
+            //        wallTiles.Add(position);
+            //        break;
+            //    default:
+            //        break;
+            //}
+            foreach (SubTilemap submap in subTilemaps)
             {
-                case TileType.Ground:
-                    // Removes redundant tiles.
-                    if (wallTiles.Contains(position))
-                    {
-                        wallTiles.Remove(position);
-                    }
-                    groundTiles.Add(position);
-                    break;
-                case TileType.Wall:
-                    if (groundTiles.Contains(position))
-                    {
-                        groundTiles.Remove(position);
-                    }
-                    wallTiles.Add(position);
-                    break;
-                default:
-                    break;
+                if (submap.tiles.Contains(position) && submap.tileType != type)
+                {
+                    submap.tiles.Remove(position);
+                }
+                else if (!submap.tiles.Contains(position) && submap.tileType == type)
+                {
+                    submap.tiles.Add(position);
+                }
             }
             BakeMesh();
         }
@@ -94,13 +119,12 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to erase at.</param>
         public void Erase(Vector3Int position)
         {
-            if (groundTiles.Contains(position))
+            foreach (SubTilemap submap in subTilemaps)
             {
-                groundTiles.Remove(position);
-            }
-            if (wallTiles.Contains(position))
-            {
-                wallTiles.Remove(position);
+                if (submap.tiles.Contains(position))
+                {
+                    submap.tiles.Remove(position);
+                }
             }
             BakeMesh();
         }
@@ -112,7 +136,12 @@ namespace Grubitecht.Tilemaps
         /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
         public bool CheckCell(Vector3Int position)
         {
-            return groundTiles.Contains(position) | wallTiles.Contains(position);
+            bool returnVal = false;
+            foreach (SubTilemap submap in subTilemaps)
+            {
+                returnVal |= submap.tiles.Contains(position);
+            }
+            return returnVal;
         }
 
         /// <summary>
@@ -122,15 +151,17 @@ namespace Grubitecht.Tilemaps
         /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
         public bool CheckCell(Vector3Int position, TileType type)
         {
-            switch (type)
-            {
-                case TileType.Ground:
-                    return groundTiles.Contains(position);
-                case TileType.Wall:
-                    return wallTiles.Contains(position);
-                default:
-                    return groundTiles.Contains(position) | wallTiles.Contains(position);
-            }
+            List<Vector3Int> tileList = Array.Find(subTilemaps, item => item.tileType == type).tiles;
+            return tileList.Contains(position);
+            //switch (type)
+            //{
+            //    case TileType.Ground:
+            //        return groundTiles.Contains(position);
+            //    case TileType.Wall:
+            //        return wallTiles.Contains(position);
+            //    default:
+            //        return groundTiles.Contains(position) | wallTiles.Contains(position);
+            //}
         }
 
         /// <summary>
@@ -199,9 +230,12 @@ namespace Grubitecht.Tilemaps
         {
             internal Vector3Int position;
             internal Vector3Int normal;
-            internal Material material;
+            internal TileType tileType;
         }
 
+        /// <summary>
+        /// Creates the mesh that will visualize the tilemap.
+        /// </summary>
         private void BakeMesh()
         {
             // Define a dictionary to store indicies of our verticies.
@@ -224,9 +258,9 @@ namespace Grubitecht.Tilemaps
             }
 
             // Loops through all voxels in a list and queues faces that need to be rendered for them.
-            void AddVoxelFaces(List<Vector3Int> gridPositions)
+            void AddVoxelFaces(SubTilemap submap)
             {
-                foreach(Vector3Int gridPos in gridPositions)
+                foreach(Vector3Int gridPos in submap.tiles)
                 {
                     foreach (Vector3Int direction in CARDINAL_DIRECTIONS)
                     {
@@ -235,15 +269,15 @@ namespace Grubitecht.Tilemaps
                         {
                             continue;
                         }
-
-                        AddFace(gridPos, direction, testMaterial);
+                        // Uses ground by default.  Fix this.
+                        AddFace(gridPos, direction, submap.tileType);
                     }
                 }
             }
 
             List<int> trianglesList = new List<int>();
             // Adds a face that should be created when the mesh is baked.
-            void AddFace(Vector3Int gridPosition, Vector3Int direction, Material material)
+            void AddFace(Vector3Int gridPosition, Vector3Int direction, TileType type)
             {
                 direction = GridToLocalDirection(direction);
                 Vector3Int[] vertexOffsets = FaceLookup.GetVertexOffsets(direction);
@@ -256,7 +290,7 @@ namespace Grubitecht.Tilemaps
                 // Initializes the vertex signature that will be used for the verticies of this face.
                 VertexSignature signature;
                 signature.normal = direction;
-                signature.material = material;
+                signature.tileType = type;
 
                 // Creates or gets references to indicies based on the signature at each vertex position.
                 // Dont need to create new signatures as structs are defined on a per-variable basis.
@@ -286,8 +320,10 @@ namespace Grubitecht.Tilemaps
             #endregion
 
             // Add faces for ground and wall tiles.
-            AddVoxelFaces(groundTiles);
-            AddVoxelFaces(wallTiles);
+            foreach (SubTilemap submap in subTilemaps)
+            {
+                AddVoxelFaces(submap);
+            }
 
             // Mesh creation
             Vector3[] verticies = new Vector3[vertexCount];
@@ -302,17 +338,87 @@ namespace Grubitecht.Tilemaps
                 int index = pair.Value;
                 verticies[index] = pair.Key.position;
 
-                // Insert correct UV math to tile the voxels correctly here.
-                Vector2 uv = new Vector2(0, 0);
+                // Uses a sin wave with a period of 4 to alternate the UV values so that the faces tile correctly.
+
+                // Adjust UVs to account for texture offset here.
+                Vector2 uv = ProjectPositionToUV(pair.Key.position, pair.Key.normal, pair.Key.tileType);
 
                 uvs[index] = uv;
             }
 
+            DebugHelpers.LogCollection(uvs);
             mesh.Clear();
             mesh.vertices = verticies;
             mesh.uv = uvs;
             mesh.triangles = triangles;
         }
+
+        /// <summary>
+        /// Uses a sin wave to calculate the correct texturing of the UVs of the mesh.
+        /// </summary>
+        /// <remarks>
+        /// Makes a lot of assumptions about texture formatting.  Materials need to have a tiling value of 1/x and 1/y.
+        /// Textures need to be formatted so that each row has 3 faces, in the order side, top, bottom and each
+        /// Column is for a different type of tile.
+        /// </remarks>
+        /// <param name="pos">The position of the vertex we're calculating the UV for.</param>
+        /// <param name="direction">The direction of that vertex's normal.</param>
+        /// <returns>A Vector2 UV for that normal.s</returns>
+        private Vector2 ProjectPositionToUV(Vector3Int pos, Vector3Int direction, TileType type)
+        {
+            int xVal;
+            int yVal;
+            switch(direction.x, direction.y, direction.z)
+            {
+                case (0, 1, 0):
+                case (0, -1, 0):
+                    xVal = pos.x;
+                    yVal = pos.z;
+                    break;
+                case (1, 0, 0):
+                case (-1, 0, 0):
+                    xVal = pos.z;
+                    yVal = pos.y;
+                    break;
+                case (0, 0, 1):
+                case (0, 0, -1):
+                    xVal = pos.x;
+                    yVal = pos.y;
+                    break;
+                default:
+                    xVal = 0;
+                    yVal = 0;
+                    break;
+            }
+            float uvx = Mathf.Abs(Mathf.Sin(xVal * (Mathf.PI / 2)));
+            float uvy = Mathf.Abs(Mathf.Sin(yVal * (Mathf.PI / 2)));
+            // For Up and down faces, their texture should be different than the texture for side faces.
+            if (direction == Vector3Int.up)
+            {
+                uvx += 1;
+            }
+            else if (direction == Vector3Int.down)
+            {
+                uvx += 2;
+            }
+            // Offsets the Y value by the type's corresponding int value to offset the UV's on the texture.
+            uvy += (int)type;
+            return new Vector2(uvx, uvy);
+        }
         #endregion
+
+        /// <summary>
+        /// Nothing happens (at present) when the Voxel Tilemap is selected.  It just needs to be selectable for
+        /// the selection system to be able to select specific spaces.
+        /// </summary>
+        /// <param name="oldObj"></param>
+        public void OnSelect(ISelectable oldObj)
+        {
+            // Nothing happens.
+        }
+        public void OnDeselect(ISelectable newObj)
+        {
+            // nothing happens.
+        }
     }
 }

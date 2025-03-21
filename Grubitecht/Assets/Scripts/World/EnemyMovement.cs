@@ -62,7 +62,7 @@ namespace Grubitecht.World
             // Double check for null here to avoid errors.
             if (currentTarget != null)
             {
-                gridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true);
+                gridNavigator.SetDestination(currentTarget.gridObject.GridPosition, true);
             }
         }
     }

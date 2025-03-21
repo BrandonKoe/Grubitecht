@@ -19,6 +19,8 @@ namespace Grubitecht.Tilemaps
     [CustomGridBrush(false, true, false, "Voxel Brush")]
     public class VoxelBrush : GridBrushBase
     {
+        [Header("Voxel Brush Settings")]
+        [SerializeField] private TileType tileType;
         #region EditorOnly
         #if UNITY_EDITOR
         public static void CreateGridBrush3D()
@@ -48,7 +50,7 @@ namespace Grubitecht.Tilemaps
             if (tilemap == null) { return; }
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
-            AddTile(tilemap, position);
+            AddTile(tilemap, position, tileType);
         }
 
         /// <summary>
@@ -57,9 +59,9 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to add a tile to.</param>
         /// <param name="position">The position to add the tile at.</param>
         /// <param name="type">The type of tile to add.</param>
-        protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type = TileType.Ground)
+        protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
-            if (!tilemap.CheckCell(position, TileType.Ground))
+            if (!tilemap.CheckCell(position, type))
             {
                 tilemap.Paint(position, type);
             }
