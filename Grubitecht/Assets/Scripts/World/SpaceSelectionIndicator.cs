@@ -22,7 +22,7 @@ namespace Grubitecht.World
         {
             if (selection is SpaceSelection space)
             {
-                transform.position = space.Position + offset;
+                transform.position = space.WorldPosition + offset;
             }
         }
     }

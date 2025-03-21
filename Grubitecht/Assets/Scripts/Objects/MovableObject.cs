@@ -39,9 +39,9 @@ namespace Grubitecht.World.Objects
         {
             // If the player selects a ground tile right after selecting a moveable object, then the object should
             // move to that selected position.
-            if (newObj is GroundTile tile)
+            if (newObj is SpaceSelection space)
             {
-                gridNavigator.SetDestination(tile);
+                gridNavigator.SetDestination(space.GridPosition);
             }
             Debug.Log(this.name + " was deselected.");
         }

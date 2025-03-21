@@ -8,7 +8,6 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
 using System;
 
 
@@ -26,25 +25,32 @@ namespace Grubitecht.Tilemaps
     {
         #region CONSTS
         public const float CELL_SIZE = 1f;
-        private static readonly Vector3Int[] CARDINAL_DIRECTIONS = new Vector3Int[]
-        {
-            Vector3Int.up,
-            Vector3Int.down,
-            Vector3Int.left,
-            Vector3Int.right,
-            Vector3Int.forward,
-            Vector3Int.back
-        };
         private static readonly Vector3 GRID_CORNET_OFFSET = new Vector3(-0.5f, -0.5f, -0.5f);
         private const string ASSET_FOLDER = "Assets";
         private const string MESH_FILE_EXTENSION = ".mesh";
         #endregion
         [SerializeField] private string meshFilePath;
-        [SerializeField] private string meshFileName;
         [Header("Tilemap Settings.")]
         [SerializeField] private SubTilemap[] subTilemaps;
 
         private static VoxelTilemap3D instance;
+
+        private static VoxelTilemap3D Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    // If instance is null, then we attempt to find one.  Prevents race conditions.
+                    instance = FindObjectOfType<VoxelTilemap3D>();
+                    if (instance == null)
+                    {
+                        Debug.LogError("No VoxelTilemap exists in the scene");
+                    }
+                }
+                return instance;
+            }
+        }
 
         #region Component References
         [SerializeReference, HideInInspector] private GridLayout gridLayout;
@@ -71,6 +77,29 @@ namespace Grubitecht.Tilemaps
             [SerializeField] internal List<Vector3Int> tiles;
         }
         #endregion
+
+        /// <summary>
+        /// Assigns and de-assigns the instance of the tilemap that will be used as the default.
+        /// </summary>
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Debug.LogError("Multiple Voxel Tilemaps detected.  Please ensure each scene has only one tilemap.");
+                return;
+            }
+            else
+            {
+                instance = this;
+            }
+        }
+        private void OnDestroy()
+        {
+            if (instance == this)
+            {
+                instance = null;
+            }
+        }
 
         /// <summary>
         /// Paints a voxel on this tilemap.
@@ -129,6 +158,39 @@ namespace Grubitecht.Tilemaps
             BakeMesh();
         }
 
+        #region Cell Checking
+        #region Static Functions
+        /// <summary>
+        /// Gets all cells of a certain type that hace the same 2D coordinates.
+        /// </summary>
+        /// <param name="position">The 2D position to get cells at.</param>
+        /// <returns>All the cells with the given 2D position in a column.</returns>
+        public static List<Vector3Int> Main_GetCellsInColumn(Vector2Int position, TileType type)
+        {
+            return Instance.GetCellsInColumn(position, type);
+        }
+
+        /// <summary>
+        /// Checks the if a specific type of tile occupies a given cell in the main tilemap.
+        /// </summary>
+        /// <param name="position">The grid position of the cell to check.</param>
+        /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
+        public static bool Main_CheckCell(Vector3Int position, TileType type)
+        {
+            return Instance.CheckCell(position, type);
+        }
+
+        /// <summary>
+        /// Get the world position of a space.
+        /// </summary>
+        /// <param name="position">The grid position of the cell to check.</param>
+        /// <returns>The world position of the cell.</returns>
+        public static Vector3 Main_GridToWorldPos(Vector3Int position)
+        {
+            return Instance.GridToWorldPos(position);
+        }
+        #endregion
+
         /// <summary>
         /// Checks if a tile occupies a given cell.
         /// </summary>
@@ -165,11 +227,22 @@ namespace Grubitecht.Tilemaps
         }
 
         /// <summary>
+        /// Gets all tiles that share a 2D position.
+        /// </summary>
+        /// <param name="position">The position to get the cells at.</param>
+        /// <param name="type">The type of cells to get.</param>
+        /// <returns>A list of all cells with the given 2D position, regardless of height.</returns>
+        public List<Vector3Int> GetCellsInColumn(Vector2Int position, TileType type)
+        {
+            List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+            return cells.FindAll(item => item.x == position.x && item.y == position.y);
+        }
+        #endregion
+
+        /// <summary>
         /// Returns the world position of a cell in a grid layout at a given position.
         /// </summary>
-        /// <param name="grid">The grid that contains the cell to get the world position of.</param>
         /// <param name="position">The cell position to get the world position of.</param>
-        /// <param name="targetTransform">The transform of the object that contains the tilemap.</param>
         /// <returns>The world position of the cell.</returns>
         public Vector3 GridToWorldPos(Vector3Int position)
         {
@@ -211,6 +284,18 @@ namespace Grubitecht.Tilemaps
             return direction;
         }
 
+        /// <summary>
+        /// Gets the grid position of a world position.
+        /// </summary>
+        /// <param name="worldPos">The world position to get a grid position of.</param>
+        /// <returns>The grid position of that world position.</returns>
+        public Vector3Int WorldToGridPos(Vector3 worldPos)
+        {
+            Vector3Int gridPos = gridLayout.WorldToCell(worldPos);
+            // Need to assign the Z (or elevation) value manually.
+            gridPos.z = Mathf.RoundToInt(worldPos.y);
+            return gridPos;
+        }
         #region Mesh Construction
 #if UNITY_EDITOR
         /// <summary>
@@ -221,7 +306,7 @@ namespace Grubitecht.Tilemaps
         {
             Mesh mesh = new Mesh();
             meshFilter.sharedMesh = mesh;
-            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, meshFileName + MESH_FILE_EXTENSION);
+            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, gameObject.name + MESH_FILE_EXTENSION);
             AssetDatabase.CreateAsset(mesh, filePath);
         }
 #endif
@@ -262,7 +347,7 @@ namespace Grubitecht.Tilemaps
             {
                 foreach(Vector3Int gridPos in submap.tiles)
                 {
-                    foreach (Vector3Int direction in CARDINAL_DIRECTIONS)
+                    foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
                     {
                         // If there is a voxel adjacent to this one, then we skip drawing a face.
                         if (CheckCell(gridPos + direction))
@@ -346,7 +431,7 @@ namespace Grubitecht.Tilemaps
                 uvs[index] = uv;
             }
 
-            DebugHelpers.LogCollection(uvs);
+            //DebugHelpers.LogCollection(uvs);
             mesh.Clear();
             mesh.vertices = verticies;
             mesh.uv = uvs;

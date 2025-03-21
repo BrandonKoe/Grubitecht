@@ -81,22 +81,22 @@ namespace Grubitecht.World
             return null;
         }
 
-        /// <summary>
-        /// Gets a list of all tiles adjacent to this tile.
-        /// </summary>
-        /// <returns>A list of all tiles adjacent to this tile.</returns>
-        public List<GroundTile> GetAdjacentTiles()
-        {
-            List<GroundTile> neighbors = new List<GroundTile>()
-            {
-                GetAdjacentTile(Vector2Int.right),
-                GetAdjacentTile(Vector2Int.left),
-                GetAdjacentTile(Vector2Int.up),
-                GetAdjacentTile(Vector2Int.down)
-            };
-            neighbors.RemoveAll(item => item == null);
-            return neighbors;
-        }
+        ///// <summary>
+        ///// Gets a list of all tiles adjacent to this tile.
+        ///// </summary>
+        ///// <returns>A list of all tiles adjacent to this tile.</returns>
+        //public List<GroundTile> GetAdjacentTiles()
+        //{
+        //    List<GroundTile> neighbors = new List<GroundTile>()
+        //    {
+        //        GetAdjacentTile(Vector2Int.right),
+        //        GetAdjacentTile(Vector2Int.left),
+        //        GetAdjacentTile(Vector2Int.up),
+        //        GetAdjacentTile(Vector2Int.down)
+        //    };
+        //    neighbors.RemoveAll(item => item == null);
+        //    return neighbors;
+        //}
 
         public void OnSelect(ISelectable oldObj)
         {
@@ -121,18 +121,6 @@ namespace Grubitecht.World
                 return tile;
             }
             return null;
-        }
-
-        /// <summary>
-        /// Finds the Manhatten distance (or the total number of spaces between the two tiles when restricted to
-        /// orthogonal movement) between two tiles.
-        /// </summary>
-        /// <param name="tile1">The first tile.</param>
-        /// <param name="tile2">The second tile.</param>
-        /// <returns>The total number of spaces between the two tiles.</returns>
-        public static int FindManhattenDistance(GroundTile tile1, GroundTile tile2)
-        {
-            return Mathf.Abs(tile1.GridPos2.x - tile2.GridPos2.x) + Mathf.Abs(tile1.GridPos2.y - tile2.GridPos2.y);
         }
         #endregion
     }

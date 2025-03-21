@@ -12,16 +12,19 @@ namespace Grubitecht
 {
     public class SpaceSelection : ISelectable
     {
-        public Vector3Int Position { get; set; }
+        public Vector3Int GridPosition { get; set; }
+        public Vector3 WorldPosition { get; set; }
 
-        public SpaceSelection(Vector3Int pos)
+        public SpaceSelection(Vector3Int pos, Vector3 worldPosition)
         {
-            Position = pos;
+            GridPosition = pos;
+            WorldPosition = worldPosition;
         }
 
         public void OnSelect(ISelectable oldObj)
         {
             // Nothing happens.
+            Debug.Log(GridPosition);
         }
 
         public void OnDeselect(ISelectable newObj)

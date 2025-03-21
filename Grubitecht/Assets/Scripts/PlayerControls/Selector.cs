@@ -7,9 +7,11 @@
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Grubitecht.World.Objects;
 
 namespace Grubitecht
 {
@@ -105,16 +107,19 @@ namespace Grubitecht
                 currentIndicator.Disable();
                 currentIndicator = null;
             }
-            // Gets an indicator that is coded to handle the specific type of component specified.
-            // This lets me design multiple indicators that behave differently for different types of selectable
-            // objects.
-            SelectionIndicator indicator = Array.Find(selectionIndicators, item =>
-                item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
-            if (indicator != null)
+            if (CurrentSelection != null)
             {
-                indicator.Enable();
-                indicator.IndicateSelected(CurrentSelection);
-                currentIndicator = indicator;
+                // Gets an indicator that is coded to handle the specific type of component specified.
+                // This lets me design multiple indicators that behave differently for different types of selectable
+                // objects.
+                SelectionIndicator indicator = Array.Find(selectionIndicators, item =>
+                    item.SelectedComponentTypes.Contains(CurrentSelection.GetType()));
+                if (indicator != null)
+                {
+                    indicator.Enable();
+                    indicator.IndicateSelected(CurrentSelection);
+                    currentIndicator = indicator;
+                }
             }
         }
 
@@ -143,7 +148,12 @@ namespace Grubitecht
                 {
                     if (selectable is VoxelTilemap3D tilemap)
                     {
-                        return new SpaceSelection(Vector3Int.RoundToInt(results.point));
+                        Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
+                        List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos, 
+                            GridObject.VALID_GROUND_TYPE);
+                        // Gets the closest space to location the player clicked.
+                        gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();
+                        return new SpaceSelection(gridPos, tilemap.GridToWorldPos(gridPos));
                     }
                     return selectable;
                 }

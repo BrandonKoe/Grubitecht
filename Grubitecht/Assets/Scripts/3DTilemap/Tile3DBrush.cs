@@ -24,7 +24,7 @@ using UnityEditor;
 
 namespace Grubitecht.OldTilemaps
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Custom Brushes/Tile3D Brush")]
     [CustomGridBrush(false, true, false, "Tile 3D Brush")]
     public class Tile3DBrush : GridBrushBase
     {

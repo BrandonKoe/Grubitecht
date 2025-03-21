@@ -6,7 +6,6 @@
 // Brief Description : Brush for painting positions on the 3D mesh tilemap.
 *****************************************************************************/
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 #if UNITY_EDITOR
@@ -15,7 +14,7 @@ using UnityEditor;
 
 namespace Grubitecht.Tilemaps
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Custom Brushes/Voxel Brush")]
     [CustomGridBrush(false, true, false, "Voxel Brush")]
     public class VoxelBrush : GridBrushBase
     {
@@ -61,7 +60,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="type">The type of tile to add.</param>
         protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
-            if (!tilemap.CheckCell(position, type))
+            if (!tilemap.CheckCell(position))
             {
                 tilemap.Paint(position, type);
             }

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Grubitecht.Tilemaps
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Custom Brushes/Voxel Extend Brush")]
     [CustomGridBrush(false, true, false, "Voxel Extend Brush")]
     public class VoxelExtendBrush : VoxelBrush
     {
