@@ -12,16 +12,11 @@ using Grubitecht.World.Objects;
 
 namespace Grubitecht.World.Pathfinding
 {
+    public delegate void MovementFinishCallback();
     [RequireComponent(typeof(GridObject))]
     public class GridNavigator : GridBehaviour
     {
         #region CONSTS
-        // Determines how these objects consider what space they are on while moving.
-        // If true, then while moving they are considered to already be at their new position.
-        // If false, then they are considered to be on whatever space they are currently at along their path.
-        // This setting primarily affects how enemies will pathfind.
-        // This is not set as const purely to stop VS from yelling at me that some code us unreachable.
-        private static readonly bool JUMP_TO_TARGET = true;
         private const float PATH_CLAMP = 0.001f;
         #endregion
 
@@ -72,27 +67,27 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="includeAdjacent">
         /// If true, then this object will pathfind to a tile that is adjacent to the given destination tile.
         /// </param>
-        public void SetDestination(Vector3Int destinationSpace, bool includeAdjacent = false)
+        /// <param name="finishCallback">
+        /// A function to call when this object has finished moving.  Note that if a new destination is set while an
+        /// object is already moving, then the finish callback will be overwritten with the finish callback
+        /// for the new destination.
+        /// </param>
+        public void SetDestination(Vector3Int destinationSpace, bool includeAdjacent = false, 
+            MovementFinishCallback finishCallback = null)
         {
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            Vector3Int tileToStart = JUMP_TO_TARGET ? gridObject.GetApproximateSpace() : gridObject.CurrentSpace;
+            Vector3Int tileToStart = gridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
             // Update stored values for destination and include adjacent settings.
             lastGivenDestination = destinationSpace;
             lastIncludeAdjSetting = includeAdjacent;
 
-            if (movementRoutine == null)
+            if (movementRoutine != null)
             {
-                if (restrictMovementAxes)
-                {
-                    movementRoutine = StartCoroutine(RestrictedMovementRoutine());
-                }
-                else
-                {
-                    movementRoutine = StartCoroutine(LinearMovementRoutine());
-                }
-                
+                StopCoroutine(movementRoutine);
+                movementRoutine = null;
             }
+            movementRoutine = StartCoroutine(MovementRoutine(finishCallback));
         }
 
         /// <summary>
@@ -102,8 +97,13 @@ namespace Grubitecht.World.Pathfinding
         {
             if (movementRoutine != null)
             {
-                StopCoroutine(movementRoutine);
-                movementRoutine = null;
+                //StopCoroutine(movementRoutine);
+                //movementRoutine = null;
+                // Instead of instantly stopping movement, we should finish snapping to whatever space we are
+                // currently at.
+                Vector3Int endingSpace = currentPath[0];
+                currentPath.Clear();
+                currentPath.Add(endingSpace);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Grubitecht.World.Pathfinding
         /// </summary>
         /// <param name="movedObject">The object that was moved during this map refresh.</param>
         /// <param name="oldSpace">The old tile position of the moved object.</param>
-        /// <param name="newSpace">The new tile position of the moved object.</param>
+        /// <param name="newSpace">The new tile position of the moved object.</param>"
         protected override void OnMapRefresh(GridObject movedObject, Vector3Int oldSpace, Vector3Int newSpace)
         {
             // Never run this function if the moved object is this object.
@@ -128,57 +128,45 @@ namespace Grubitecht.World.Pathfinding
         /// Continually moves this object along a given path.
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator LinearMovementRoutine()
+        private IEnumerator MovementRoutine(MovementFinishCallback finishCallback)
         {
-            // If jump to target is set to true, then this object is considered to be on the last space in the path
-            // immediately as it starts moving.
-            if (JUMP_TO_TARGET && currentPath.Count > 1)
-            {
-                gridObject.SetCurrentSpace(currentPath[^1]);
-            }
             while (currentPath.Count > 0)
             {
                 float step = moveSpeed * Time.deltaTime;
                 Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
 
-                transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+                PerformMove(step, tilePos);
 
                 if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
                 {
-                    // If jump to target isnt set to true, then this object updates it's current space as it moves along the path.
-                    if (!JUMP_TO_TARGET)
-                    {
-                        gridObject.SetCurrentSpace(currentPath[0]);
-                    }
+                    gridObject.SetCurrentSpace(currentPath[0]);
+                    gridObject.SnapToSpace();
                     currentPath.RemoveAt(0);
                 }
 
                 yield return null;
             }
-
+            // Yield an extra time here to prevent an infinite loop where the finish callback re-calls set destination.
+            // This yield will turn that loop into a buffered loop each frame so it will still continue to loop, but
+            // wont cause the computer to crash and instead will refresh each frame.
+            yield return null;
+            // Invoke the given finish callback.
+            finishCallback?.Invoke();
             movementRoutine = null;
         }
 
         /// <summary>
-        /// Continually moves an object along the path, but restricts movement to only 1 axis at a time.
+        /// Moves this object towards it's next tile position by a given step.
         /// </summary>
-        /// <returns>Coroutine.</returns>
-        private IEnumerator RestrictedMovementRoutine()
+        /// <remarks>
+        /// Takes into account restricted movement type.
+        /// </remarks>
+        /// <param name="step">The amount to move towards the next tile position.</param>
+        /// <param name="tilePos">The position of the next tile in the path.</param>
+        private void PerformMove(float step, Vector3 tilePos)
         {
-            // If jump to target is set to true, then this object is considered to be on the last space in the path
-            // immediately as it starts moving.
-            if (JUMP_TO_TARGET && currentPath.Count > 1)
+            if (restrictMovementAxes)
             {
-                gridObject.SetCurrentSpace(currentPath[^1]);
-            }
-            //bool moveVertical = false;
-            while (currentPath.Count > 0)
-            {
-                float step = moveSpeed * Time.deltaTime;
-                Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
-
-                // Change this line to restrict movement.
-                //transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
                 Vector3 pos = transform.position;
                 if (tilePos.y > pos.y ||
                     (Mathf.Approximately(tilePos.x, pos.x) && Mathf.Approximately(tilePos.z, pos.z)))
@@ -194,21 +182,55 @@ namespace Grubitecht.World.Pathfinding
                     pos.z = Mathf.MoveTowards(pos.z, tilePos.z, step);
                 }
                 transform.position = pos;
-
-                if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
-                {
-                    // If jump to target isnt set to true, then this object updates it's current space as it moves along the path.
-                    if (!JUMP_TO_TARGET)
-                    {
-                        gridObject.SetCurrentSpace(currentPath[0]);
-                    }
-                    currentPath.RemoveAt(0);
-                }
-
-                yield return null;
             }
-
-            movementRoutine = null;
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+            }
         }
+
+        ///// <summary>
+        ///// Continually moves an object along the path, but restricts movement to only 1 axis at a time.
+        ///// </summary>
+        ///// <returns>Coroutine.</returns>
+        //private IEnumerator RestrictedMovementRoutine()
+        //{
+        //    while (currentPath.Count > 0)
+        //    {
+        //        float step = moveSpeed * Time.deltaTime;
+        //        Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
+
+        //        // Change this line to restrict movement.
+        //        //transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+        //        Vector3 pos = transform.position;
+        //        if (tilePos.y > pos.y ||
+        //            (Mathf.Approximately(tilePos.x, pos.x) && Mathf.Approximately(tilePos.z, pos.z)))
+        //        {
+        //            // If the next tile is higher than our current position or we are currently above our next tile,
+        //            // then move vertically.
+        //            pos.y = Mathf.MoveTowards(pos.y, tilePos.y, step);
+        //        }
+        //        else
+        //        {
+        //            // Move horizontally otherwise.
+        //            pos.x = Mathf.MoveTowards(pos.x, tilePos.x, step);
+        //            pos.z = Mathf.MoveTowards(pos.z, tilePos.z, step);
+        //        }
+        //        transform.position = pos;
+
+        //        if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
+        //        {
+        //            gridObject.SetCurrentSpace(currentPath[0]);
+        //            gridObject.SnapToSpace();
+        //            currentPath.RemoveAt(0);
+        //        }
+
+        //        yield return null;
+        //    }
+
+        //    movementRoutine = null;
+        //}
+
+        //private 
     }
 }

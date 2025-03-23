@@ -5,10 +5,9 @@
 //
 // Brief Description : custom editor for the extend brush
 *****************************************************************************/
-using Grubitecht.OldTilemaps;
 using UnityEditor;
 
-namespace Grubitecht.Editor.OldTilemaps
+namespace Grubitecht.OldTilemaps.Editors
 {
     [CustomEditor(typeof(Extend3DBrush))]
     public class Extend3DBrushEditor : Tile3DBrushEditor

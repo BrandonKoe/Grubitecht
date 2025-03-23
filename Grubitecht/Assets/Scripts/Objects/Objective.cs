@@ -5,14 +5,14 @@
 //
 // Brief Description : Controls objectives that enemies must destroy to defeat the player.
 *****************************************************************************/
-using System.Collections;
+using Grubitecht.Combat;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
     [RequireComponent(typeof(GridObject))]
+    [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
         private static readonly List<Objective> currentObjectives = new();
