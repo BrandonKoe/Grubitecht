@@ -61,7 +61,7 @@ namespace Grubitecht.World
         /// When this enemy loses a new target, if there are no valid targets, it pathfinds to the nearest objective.
         /// </summary>
         /// <param name="target">That target that just left range.</param>
-        private void HandleOnGainTarget(Attackable target)
+        private void HandleOnGainTarget()
         {
             gridNavigator.StopMoving();
         }
@@ -70,7 +70,7 @@ namespace Grubitecht.World
         /// When this enemy gains a new target, it stops moving.  Dont need to move if the target is in range alreaedy.
         /// </summary>
         /// <param name="target">The target that is now in range.</param>
-        private void HandleOnLoseTarget(Attackable target)
+        private void HandleOnLoseTarget()
         {
             PathToNearestObjective();
         }

@@ -9,7 +9,8 @@ using UnityEditor;
 
 namespace Grubitecht.Combat.Editors
 {
-    [CustomEditor(typeof(Targeter))]
+    [CustomEditor(typeof(Targeter), true)]
+    [CanEditMultipleObjects]
     public class TargeterEditor : Editor
     {
         // Allows us to access and modify our GroundBrush object from this editor script.

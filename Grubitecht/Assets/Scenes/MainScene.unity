@@ -614,10 +614,12 @@ GameObject:
   - component: {fileID: 645581723}
   - component: {fileID: 645581722}
   - component: {fileID: 645581721}
-  - component: {fileID: 645581728}
   - component: {fileID: 645581727}
+  - component: {fileID: 645581729}
+  - component: {fileID: 645581730}
+  - component: {fileID: 645581731}
   m_Layer: 0
-  m_Name: TextEnemy
+  m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridNavigator: {fileID: 645581722}
   gridObject: {fileID: 645581723}
-  targeter: {fileID: 645581728}
+  targeter: {fileID: 645581730}
 --- !u!114 &645581722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,9 +779,9 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &645581728
+--- !u!114 &645581729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -788,13 +790,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 645581719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4bdb62cf851ad42a252eea3bb94d51, type: 3}
+  m_Script: {fileID: 11500000, guid: c0a494ba4180fb345b25b3f57764fb55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Team>k__BackingField: 1
-  detectionRange: 1
-  targetAll: 0
+  combatant: {fileID: 645581729}
+  <CombatTeam>k__BackingField: 1
+--- !u!114 &645581730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645581719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcc494e5a0938e448dad27d0d2dbeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatant: {fileID: 645581729}
+  detectionRange: 3
+  targetingType: 0
   detectionArea: {fileID: 645581727}
+--- !u!114 &645581731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645581719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3404be6a9fec1d94eb5f368910f69758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatant: {fileID: 0}
+  attackDelay: 2
+  strength: 10
+  targeter: {fileID: 645581730}
 --- !u!1 &678122276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +1987,7 @@ GameObject:
   - component: {fileID: 2109768324}
   - component: {fileID: 2109768325}
   - component: {fileID: 2109768326}
+  - component: {fileID: 2109768327}
   m_Layer: 0
   m_Name: TestObjective
   m_TagString: Untagged
@@ -2108,6 +2141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <gridObject>k__BackingField: {fileID: 2109768321}
+  attackable: {fileID: 2109768325}
 --- !u!114 &2109768325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2120,7 +2154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f621950d4029aa468c091f0a6806d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Team>k__BackingField: 0
+  combatant: {fileID: 2109768327}
+  maxHealth: 50
+  <Health>k__BackingField: 0
 --- !u!54 &2109768326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2148,6 +2184,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2109768327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109768316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a494ba4180fb345b25b3f57764fb55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatant: {fileID: 2109768327}
+  <CombatTeam>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
