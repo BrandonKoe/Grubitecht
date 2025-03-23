@@ -1261,7 +1261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6d09c53010db14f802af42052eceb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilePath: Meshes
   subTilemaps:
   - tileType: 0
     tiles:
@@ -1497,6 +1496,12 @@ MonoBehaviour:
     - {x: -10, y: -9, z: 0}
     - {x: -9, y: -9, z: 0}
     - {x: -9, y: -10, z: 0}
+  meshUpdater:
+    meshFilePath: Meshes
+    meshFileName: TestSceneGrid
+    verticies: []
+    uvs: []
+    triangles: 
   gridLayout: {fileID: 1005244280}
   meshFilter: {fileID: 1005244284}
 --- !u!23 &1005244283

@@ -9,12 +9,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
-
-
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
 
 namespace Grubitecht.Tilemaps
 {
@@ -29,9 +24,14 @@ namespace Grubitecht.Tilemaps
         private const string ASSET_FOLDER = "Assets";
         private const string MESH_FILE_EXTENSION = ".mesh";
         #endregion
-        [SerializeField] private string meshFilePath;
+
+        [SerializeField] private string meshFilePath = "Meshes";
+        [SerializeField] private string meshFileName = "Level1Grid";
         [Header("Tilemap Settings.")]
         [SerializeField] private SubTilemap[] subTilemaps;
+#if UNITY_EDITOR
+        [SerializeField] private MeshUpdater meshUpdater;
+#endif
 
         private static VoxelTilemap3D instance;
 
@@ -139,7 +139,7 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Add(position);
                 }
             }
-            BakeMesh();
+            AddMeshPosition(position, type);
         }
 
         /// <summary>
@@ -155,8 +155,76 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Remove(position);
                 }
             }
-            BakeMesh();
+            RemoveMeshPosition(position);
         }
+
+        #region Mesh Updating
+#if UNITY_EDITOR
+        /// <summary>
+        /// Creates and assigns a mesh asset for this tilemap.
+        /// </summary>
+        [Button]
+        private void CreateMeshAsset()
+        {
+            Mesh mesh = new Mesh();
+            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, meshFileName + MESH_FILE_EXTENSION);
+            AssetDatabase.CreateAsset(mesh, filePath);
+        }
+#endif
+
+        /// <summary>
+        /// Updates the mesh for this tilemap by adding and removing faces based on an added or removed position.
+        /// </summary>
+        /// <remarks>
+        /// Only works in the Unity Editor.
+        /// </remarks>
+        /// <param name="gridPos">The position that was added/removed from the tilemap.</param>
+        private void AddMeshPosition(Vector3Int gridPos, TileType type)
+        {
+#if UNITY_EDITOR
+            foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
+            {
+                // If there is a voxel adjacent to this one, then we remove the face from that position in the opposite
+                // direction of direction.
+                if (CheckCell(gridPos + direction))
+                {
+                    // Because the mesh needs to work in world space, we always pass in the corner position that
+                    // corresponds to the bottl-left-back corner of the cell we are evaluating.
+                    meshUpdater.RemoveFace(GridToLocalCorner(gridPos + direction), -GridToLocalDirection(direction), 
+                        meshFilter.sharedMesh);
+                    // Dont run AddFace here as internal faces should not exist.
+                }
+                else
+                {
+                    // Add a face if there is not a filled tile in this relative direction.
+                    meshUpdater.AddFace(GridToLocalCorner(gridPos), GridToLocalDirection(direction), 
+                        type, meshFilter.sharedMesh);
+                }
+            }
+#endif
+        }
+        private void RemoveMeshPosition(Vector3Int gridPos)
+        {
+#if UNITY_EDITOR
+            foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
+            {
+                // If there is a voxel adjacent to this one, then we add a face for it so no holes exist.
+                if (CheckCell(gridPos + direction))
+                {
+
+                    // Because the mesh needs to work in world space, we always pass in the corner position that
+                    // corresponds to the bottl-left-back corner of the cell we are evaluating.
+                    meshUpdater.AddFace(GridToLocalCorner(gridPos + direction), -GridToLocalDirection(direction),
+                        GetTileType(gridPos + direction), meshFilter.sharedMesh);
+                    // Dont run AddFace here as internal faces should not exist.
+                }
+                // Always remove faces that point outwards from the erased tile.
+                meshUpdater.RemoveFace(GridToLocalCorner(gridPos), GridToLocalDirection(direction),
+                        meshFilter.sharedMesh);
+            }
+#endif
+        }
+        #endregion
 
         #region Cell Checking
         #region Static Functions
@@ -226,6 +294,19 @@ namespace Grubitecht.Tilemaps
             //}
         }
 
+        public TileType GetTileType(Vector3Int position)
+        {
+            foreach (SubTilemap submap in subTilemaps)
+            {
+                if (submap.tiles.Contains(position))
+                {
+                    return submap.tileType;
+                }
+            }
+            // Return wall as the default.
+            return TileType.Wall;
+        }
+
         /// <summary>
         /// Gets all tiles that share a 2D position.
         /// </summary>
@@ -239,6 +320,7 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region Conversions
         /// <summary>
         /// Returns the world position of a cell in a grid layout at a given position.
         /// </summary>
@@ -296,202 +378,9 @@ namespace Grubitecht.Tilemaps
             gridPos.z = Mathf.RoundToInt(worldPos.y);
             return gridPos;
         }
-        #region Mesh Construction
-#if UNITY_EDITOR
-        /// <summary>
-        /// Creates and assigns a mesh asset for this tilemap.
-        /// </summary>
-        [Button]
-        private void CreateMeshAsset()
-        {
-            Mesh mesh = new Mesh();
-            meshFilter.sharedMesh = mesh;
-            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, gameObject.name + MESH_FILE_EXTENSION);
-            AssetDatabase.CreateAsset(mesh, filePath);
-        }
-#endif
-
-        private struct VertexSignature
-        {
-            internal Vector3Int position;
-            internal Vector3Int normal;
-            internal TileType tileType;
-        }
-
-        /// <summary>
-        /// Creates the mesh that will visualize the tilemap.
-        /// </summary>
-        private void BakeMesh()
-        {
-            // Define a dictionary to store indicies of our verticies.
-            Dictionary<VertexSignature, int> vertexIndicies = new Dictionary<VertexSignature, int>();
-            int vertexCount = 0;
-
-            #region Local Functions
-            // Gets a vertex index with a given signature.
-            int GetVertexIndex(VertexSignature signature)
-            {
-                // Attempts to get a vertex index that already exists.
-                if (!vertexIndicies.TryGetValue(signature, out int index))
-                {
-                    // If no vertex exists with the given signature, then we add a new vertex with that signature.
-                    vertexCount++;
-                    index = vertexCount - 1;
-                    vertexIndicies.Add(signature, index);
-                }
-                return index;
-            }
-
-            // Loops through all voxels in a list and queues faces that need to be rendered for them.
-            void AddVoxelFaces(SubTilemap submap)
-            {
-                foreach(Vector3Int gridPos in submap.tiles)
-                {
-                    foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
-                    {
-                        // If there is a voxel adjacent to this one, then we skip drawing a face.
-                        if (CheckCell(gridPos + direction))
-                        {
-                            continue;
-                        }
-                        // Uses ground by default.  Fix this.
-                        AddFace(gridPos, direction, submap.tileType);
-                    }
-                }
-            }
-
-            List<int> trianglesList = new List<int>();
-            // Adds a face that should be created when the mesh is baked.
-            void AddFace(Vector3Int gridPosition, Vector3Int direction, TileType type)
-            {
-                direction = GridToLocalDirection(direction);
-                Vector3Int[] vertexOffsets = FaceLookup.GetVertexOffsets(direction);
-
-                // Gets the local position of the bottom-left-back corner of this grid position.
-                // Calling this Corner Space.  Verticies are calculated in corner space because the world is
-                // entirely made of 1 x 1 x 1 voxels that should have their corners exist at integer positions.
-                Vector3Int cornerPos = GridToLocalCorner(gridPosition);
-
-                // Initializes the vertex signature that will be used for the verticies of this face.
-                VertexSignature signature;
-                signature.normal = direction;
-                signature.tileType = type;
-
-                // Creates or gets references to indicies based on the signature at each vertex position.
-                // Dont need to create new signatures as structs are defined on a per-variable basis.
-                // Passing in signature gives the function and entirely new data set, it doesnt pass a reference.
-                // This part makes the assumption that 4 vertex offsets were obtained from GetVertexOffsets.
-                signature.position = cornerPos + vertexOffsets[0];
-                int bottomLeft = GetVertexIndex(signature);
-
-                signature.position = cornerPos + vertexOffsets[1];
-                int topLeft = GetVertexIndex(signature);
-
-                signature.position = cornerPos + vertexOffsets[2];
-                int topRight = GetVertexIndex(signature);
-
-                signature.position = cornerPos + vertexOffsets[3];
-                int bottomRight = GetVertexIndex(signature);
-
-                // Add these newly created verticies to the triangles list
-                trianglesList.Add(bottomLeft);
-                trianglesList.Add(topLeft);
-                trianglesList.Add(topRight);
-
-                trianglesList.Add(bottomLeft);
-                trianglesList.Add(topRight);
-                trianglesList.Add(bottomRight);
-            }
-            #endregion
-
-            // Add faces for ground and wall tiles.
-            foreach (SubTilemap submap in subTilemaps)
-            {
-                AddVoxelFaces(submap);
-            }
-
-            // Mesh creation
-            Vector3[] verticies = new Vector3[vertexCount];
-            Vector2[] uvs = new Vector2[vertexCount];
-            int[] triangles = trianglesList.ToArray();
-
-            // Gets a reference to a pre-existing mesh file.
-            Mesh mesh = meshFilter.sharedMesh;
-
-            foreach (var pair in vertexIndicies)
-            {
-                int index = pair.Value;
-                verticies[index] = pair.Key.position;
-
-                // Uses a sin wave with a period of 4 to alternate the UV values so that the faces tile correctly.
-
-                // Adjust UVs to account for texture offset here.
-                Vector2 uv = ProjectPositionToUV(pair.Key.position, pair.Key.normal, pair.Key.tileType);
-
-                uvs[index] = uv;
-            }
-
-            //DebugHelpers.LogCollection(uvs);
-            mesh.Clear();
-            mesh.vertices = verticies;
-            mesh.uv = uvs;
-            mesh.triangles = triangles;
-        }
-
-        /// <summary>
-        /// Uses a sin wave to calculate the correct texturing of the UVs of the mesh.
-        /// </summary>
-        /// <remarks>
-        /// Makes a lot of assumptions about texture formatting.  Materials need to have a tiling value of 1/x and 1/y.
-        /// Textures need to be formatted so that each row has 3 faces, in the order side, top, bottom and each
-        /// Column is for a different type of tile.
-        /// </remarks>
-        /// <param name="pos">The position of the vertex we're calculating the UV for.</param>
-        /// <param name="direction">The direction of that vertex's normal.</param>
-        /// <returns>A Vector2 UV for that normal.s</returns>
-        private Vector2 ProjectPositionToUV(Vector3Int pos, Vector3Int direction, TileType type)
-        {
-            int xVal;
-            int yVal;
-            switch(direction.x, direction.y, direction.z)
-            {
-                case (0, 1, 0):
-                case (0, -1, 0):
-                    xVal = pos.x;
-                    yVal = pos.z;
-                    break;
-                case (1, 0, 0):
-                case (-1, 0, 0):
-                    xVal = pos.z;
-                    yVal = pos.y;
-                    break;
-                case (0, 0, 1):
-                case (0, 0, -1):
-                    xVal = pos.x;
-                    yVal = pos.y;
-                    break;
-                default:
-                    xVal = 0;
-                    yVal = 0;
-                    break;
-            }
-            float uvx = Mathf.Abs(Mathf.Sin(xVal * (Mathf.PI / 2)));
-            float uvy = Mathf.Abs(Mathf.Sin(yVal * (Mathf.PI / 2)));
-            // For Up and down faces, their texture should be different than the texture for side faces.
-            if (direction == Vector3Int.up)
-            {
-                uvx += 1;
-            }
-            else if (direction == Vector3Int.down)
-            {
-                uvx += 2;
-            }
-            // Offsets the Y value by the type's corresponding int value to offset the UV's on the texture.
-            uvy += (int)type;
-            return new Vector2(uvx, uvy);
-        }
         #endregion
 
+        #region Selection Dummies
         /// <summary>
         /// Nothing happens (at present) when the Voxel Tilemap is selected.  It just needs to be selectable for
         /// the selection system to be able to select specific spaces.
@@ -505,5 +394,6 @@ namespace Grubitecht.Tilemaps
         {
             // nothing happens.
         }
+        #endregion
     }
 }
