@@ -665,7 +665,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 1
   ignoreBlockedSpaces: 0
-  restrictMovementAxes: 0
+  restrictMovementAxes: 1
   gridObject: {fileID: 645581723}
 --- !u!114 &645581723
 MonoBehaviour:
@@ -2051,7 +2051,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 1
   ignoreBlockedSpaces: 0
-  restrictMovementAxes: 0
+  restrictMovementAxes: 1
   gridObject: {fileID: 2109768321}
 --- !u!114 &2109768324
 MonoBehaviour:

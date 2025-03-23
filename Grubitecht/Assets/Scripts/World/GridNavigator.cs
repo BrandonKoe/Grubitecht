@@ -85,7 +85,7 @@ namespace Grubitecht.World.Pathfinding
             {
                 if (restrictMovementAxes)
                 {
-                    movementRoutine = StartCoroutine(LinearMovementRoutine());
+                    movementRoutine = StartCoroutine(RestrictedMovementRoutine());
                 }
                 else
                 {
@@ -171,14 +171,29 @@ namespace Grubitecht.World.Pathfinding
             {
                 gridObject.SetCurrentSpace(currentPath[^1]);
             }
-            bool moveVertical = false;
+            //bool moveVertical = false;
             while (currentPath.Count > 0)
             {
                 float step = moveSpeed * Time.deltaTime;
                 Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
 
                 // Change this line to restrict movement.
-                transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+                //transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+                Vector3 pos = transform.position;
+                if (tilePos.y > pos.y ||
+                    (Mathf.Approximately(tilePos.x, pos.x) && Mathf.Approximately(tilePos.z, pos.z)))
+                {
+                    // If the next tile is higher than our current position or we are currently above our next tile,
+                    // then move vertically.
+                    pos.y = Mathf.MoveTowards(pos.y, tilePos.y, step);
+                }
+                else
+                {
+                    // Move horizontally otherwise.
+                    pos.x = Mathf.MoveTowards(pos.x, tilePos.x, step);
+                    pos.z = Mathf.MoveTowards(pos.z, tilePos.z, step);
+                }
+                transform.position = pos;
 
                 if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
                 {
