@@ -5,7 +5,6 @@
 //
 // Brief Description : Custom editor for debug brush.
 *****************************************************************************/
-using Grubitecht.Tilemaps;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -13,7 +12,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Grubitecht.Editor.Tilemaps
+namespace Grubitecht.Tilemaps.Editors
 {
     [CustomEditor(typeof(DebugBrush))]
     public class DebugEditor : GridBrushEditorBase

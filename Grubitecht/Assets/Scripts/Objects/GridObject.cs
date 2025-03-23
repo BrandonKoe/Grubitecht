@@ -39,6 +39,7 @@ namespace Grubitecht.World.Objects
             base.Awake();
             allObjectList.Add(this);
             SetCurrentSpace(GetApproximateSpace());
+            SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
         }
 
@@ -88,6 +89,14 @@ namespace Grubitecht.World.Objects
         }
 
         /// <summary>
+        /// Snaps this object to the position it should occupy for it's current space.
+        /// </summary>
+        public void SnapToSpace()
+        {
+            transform.position = GetOccupyPosition(CurrentSpace);
+        }
+
+        /// <summary>
         /// Gets the world space position this object should occupy when it is on a given tile.
         /// </summary>
         /// <param name="tile">The tile to get the position for this object of.</param>
@@ -104,7 +113,6 @@ namespace Grubitecht.World.Objects
         /// <returns>The object at that space.</returns>
         public static GridObject GetObjectAtSpace(Vector3Int space)
         {
-            Debug.Log("Object " + allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) + "was found at space " + space);
             return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
         }
     }
