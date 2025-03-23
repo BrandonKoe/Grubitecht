@@ -5,21 +5,22 @@
 //
 // Brief Description : Controls objectives that enemies must destroy to defeat the player.
 *****************************************************************************/
-using System.Collections;
+using Grubitecht.Combat;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
     [RequireComponent(typeof(GridObject))]
+    [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
         private static readonly List<Objective> currentObjectives = new();
 
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject {  get; private set; }
-        #endregion
+        [SerializeReference, HideInInspector] private Attackable attackable;
+
 
         /// <summary>
         /// Assign compomnent references on reset.
@@ -27,14 +28,22 @@ namespace Grubitecht.World.Objects
         private void Reset()
         {
             gridObject = GetComponent<GridObject>();
+            attackable = GetComponent<Attackable>();
         }
+        #endregion
 
         /// <summary>
-        /// Add this objective to the list of current objectives when it awakes.
+        /// Add this objective to the list of current objectives when it awakes & subscribe to the Attacker OnDeath
+        /// event.
         /// </summary>
         private void Awake()
         {
             currentObjectives.Add(this);
+            attackable.OnDeath += OnDeath;
+        }
+        private void OnDestroy()
+        {
+            attackable.OnDeath -= OnDeath;
         }
 
         /// <summary>
@@ -60,6 +69,14 @@ namespace Grubitecht.World.Objects
                 }
             }
             return lowestDistObj;
+        }
+
+        /// <summary>
+        /// Handles behaviour that should happen when this objective dies.
+        /// </summary>
+        private void OnDeath()
+        {
+            currentObjectives.Remove(this);
         }
     }
 }

@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     public class Tile3D : MonoBehaviour
     {

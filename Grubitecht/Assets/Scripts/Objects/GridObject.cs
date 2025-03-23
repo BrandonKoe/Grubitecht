@@ -6,20 +6,30 @@
 // Brief Description : Allows an object to take up space in the world grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
+using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
     public class GridObject : GridBehaviour
     {
+        #region CONSTS
+        public const TileType VALID_GROUND_TYPE = TileType.Ground;
+        #endregion
+
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
             "tile.")] 
         private Vector3 offset;
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
         private bool occupySpace;
-        public GroundTile CurrentSpace { get; set; }
+        // Note: This is the position of the voxel we are standing on.
+        [field: SerializeField, ReadOnly] public Vector3Int CurrentSpace { get; set; }
+
+        private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
         /// <summary>
         /// Assigns this object a space when it is created.
@@ -27,44 +37,63 @@ namespace Grubitecht.World.Objects
         protected override void Awake()
         {
             base.Awake();
+            allObjectList.Add(this);
             SetCurrentSpace(GetApproximateSpace());
+            SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            allObjectList.Remove(this);
         }
 
         /// <summary>
         /// Gets an approximation of the space that this object's transform is currently at.
         /// </summary>
         /// <returns>The space that this object's transform is physically at in world space.</returns>
-        public GroundTile GetApproximateSpace()
+        public Vector3Int GetApproximateSpace()
         {
-            Vector2Int approxGridPos = new Vector2Int(Mathf.RoundToInt(transform.position.x -
-                Tile3DBrush.CELL_SIZE / 2), Mathf.RoundToInt(transform.position.z - Tile3DBrush.CELL_SIZE / 2));
-            return GroundTile.GetTileAt(approxGridPos);
+            Vector2Int approxSpace = new Vector2Int();
+            approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
+            approxSpace.y = Mathf.RoundToInt(transform.position.z - VoxelTilemap3D.CELL_SIZE / 2);
+            // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
+            // the one with the closest elevation.  This ensures that the object snaps from gravity.
+            List<Vector3Int> possibleSpaces = VoxelTilemap3D.Main_GetCellsInColumn(approxSpace, VALID_GROUND_TYPE);
+            return possibleSpaces.OrderBy(item => Vector3.Distance(transform.position, item)).First();
         }
 
         /// <summary>
         /// Moves this object to a new space.
         /// </summary>
-        /// <param name="space">The space to move this object to.</param>
-        public void SetCurrentSpace(GroundTile space)
+        /// <param name="newSpace">The space to move this object to.</param>
+        public void SetCurrentSpace(Vector3Int newSpace)
         {
-            GroundTile oldSpace = CurrentSpace;
-            CurrentSpace = space;
+            // Cant set our space to a space that doesnt exist.
+            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { return; }
+            Vector3Int oldSpace = CurrentSpace;
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
-                if (oldSpace != null)
+                // Two objects that occupy space cannot exist on the same space at once.
+                if (GetObjectAtSpace(newSpace) != null)
                 {
-                    oldSpace.ContainedObject = null;
-                }
-                if (CurrentSpace != null)
-                {
-                    CurrentSpace.ContainedObject = this;
+                    return;
                 }
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
                 RefreshMap(this, oldSpace, CurrentSpace);
             }
+            CurrentSpace = newSpace;
+        }
+
+        /// <summary>
+        /// Snaps this object to the position it should occupy for it's current space.
+        /// </summary>
+        public void SnapToSpace()
+        {
+            transform.position = GetOccupyPosition(CurrentSpace);
         }
 
         /// <summary>
@@ -72,9 +101,19 @@ namespace Grubitecht.World.Objects
         /// </summary>
         /// <param name="tile">The tile to get the position for this object of.</param>
         /// <returns>The position of the tile plus the set offset of this object.</returns>
-        public Vector3 GetTilePosition(GroundTile tile)
+        public Vector3 GetOccupyPosition(Vector3Int space)
         {
-            return tile.transform.position + offset;
+            return VoxelTilemap3D.Main_GridToWorldPos(space) + offset;
+        }
+
+        /// <summary>
+        /// Gets the object at a given space.
+        /// </summary>
+        /// <param name="space">The space to get the object from.</param>
+        /// <returns>The object at that space.</returns>
+        public static GridObject GetObjectAtSpace(Vector3Int space)
+        {
+            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
         }
     }
 }

@@ -9,9 +9,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Custom Brushes/Extend 3D Brush")]
     [CustomGridBrush(false, true, false, "Extend 3D Brush")]
     public class Extend3DBrush : Tile3DBrush
     {

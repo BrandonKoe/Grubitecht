@@ -7,8 +7,6 @@
 // player.
 *****************************************************************************/
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht
@@ -17,7 +15,7 @@ namespace Grubitecht
     {
         public abstract Type[] SelectedComponentTypes { get; }
 
-        public abstract void IndicateSelected(MonoBehaviour selectedComponent);
+        public abstract void IndicateSelected(ISelectable selection);
 
         /// <summary>
         /// Enables and disables this indicator by the Selector.

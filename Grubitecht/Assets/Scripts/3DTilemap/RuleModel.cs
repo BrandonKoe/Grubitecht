@@ -11,7 +11,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht.Tilemaps
+namespace Grubitecht.OldTilemaps
 {
     public class RuleModel : MonoBehaviour
     {

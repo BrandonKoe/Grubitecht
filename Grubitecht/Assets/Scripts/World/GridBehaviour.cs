@@ -16,7 +16,7 @@ namespace Grubitecht.World
     public abstract class GridBehaviour : MonoBehaviour
     {
         // Event to call functions that should run whenever a grid object is moved to a new space.
-        public static event Action<GridObject, GroundTile, GroundTile> OnMapRefreshEvent;
+        public static event Action<GridObject, Vector3Int, Vector3Int> OnMapRefreshEvent;
 
         /// <summary>
         /// Subscribe and unsubscribe OnMapRefresh to the refresh event
@@ -35,19 +35,19 @@ namespace Grubitecht.World
         /// updating pathfinding.
         /// </summary>
         /// <param name="movedObject">The object that was moved during this map refresh.</param>
-        /// <param name="oldTile">The old tile position of the moved object.</param>
-        /// <param name="newTile">The new tile position of the moved object.</param>
-        protected virtual void OnMapRefresh(GridObject movedObject, GroundTile oldTile, GroundTile newTile) { }
+        /// <param name="oldSpace">The old tile position of the moved object.</param>
+        /// <param name="newSpace">The new tile position of the moved object.</param>
+        protected virtual void OnMapRefresh(GridObject movedObject, Vector3Int oldSpace, Vector3Int newSpace) { }
         
         /// <summary>
         /// Calls OnMapRefresh for all GridBehaviours
         /// </summary>
         /// <param name="movedObject">The object that was moved during this map refresh.</param>
-        /// <param name="oldTile">The old tile position of the moved object.</param>
-        /// <param name="newTile">The new tile position of the moved object.</param>
-        protected void RefreshMap(GridObject movedObject, GroundTile oldTile, GroundTile newTile)
+        /// <param name="oldSpace">The old tile position of the moved object.</param>
+        /// <param name="newSpace">The new tile position of the moved object.</param>
+        protected void RefreshMap(GridObject movedObject, Vector3Int oldSpace, Vector3Int newSpace)
         {
-            OnMapRefreshEvent?.Invoke(movedObject, oldTile, newTile);
+            OnMapRefreshEvent?.Invoke(movedObject, oldSpace, newSpace);
         }
     }
 }

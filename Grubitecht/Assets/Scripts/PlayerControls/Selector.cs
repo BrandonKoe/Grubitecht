@@ -5,13 +5,13 @@
 //
 // Brief Description : Allows player to select objects in the game world that they click on.
 *****************************************************************************/
-using System.Collections;
+using Grubitecht.Tilemaps;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Linq;
-using System;
-using UnityEditor;
+using Grubitecht.World.Objects;
 
 namespace Grubitecht
 {
@@ -107,7 +107,7 @@ namespace Grubitecht
                 currentIndicator.Disable();
                 currentIndicator = null;
             }
-            if (CurrentSelection is MonoBehaviour selectedComponent)
+            if (CurrentSelection != null)
             {
                 // Gets an indicator that is coded to handle the specific type of component specified.
                 // This lets me design multiple indicators that behave differently for different types of selectable
@@ -117,7 +117,7 @@ namespace Grubitecht
                 if (indicator != null)
                 {
                     indicator.Enable();
-                    indicator.IndicateSelected(selectedComponent);
+                    indicator.IndicateSelected(CurrentSelection);
                     currentIndicator = indicator;
                 }
             }
@@ -142,10 +142,19 @@ namespace Grubitecht
 
             if (Physics.Raycast(selectionRay, out RaycastHit results))
             {
-                // Attempts to get a component that implements the ISelectable interface.  if none is found on the
+                // Attempts to get a component that implements the ISelectable interface.  If none is found on the
                 // clicked object then null is returned instead.
                 if (results.collider.gameObject.TryGetComponent(out ISelectable selectable))
                 {
+                    if (selectable is VoxelTilemap3D tilemap)
+                    {
+                        Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
+                        List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos, 
+                            GridObject.VALID_GROUND_TYPE);
+                        // Gets the closest space to location the player clicked.
+                        gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();
+                        return new SpaceSelection(gridPos, tilemap.GridToWorldPos(gridPos));
+                    }
                     return selectable;
                 }
             }

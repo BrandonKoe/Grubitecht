@@ -5,14 +5,13 @@
 //
 // Brief Description : custom editor for a 3D tile brush.
 *****************************************************************************/
-using Grubitecht.Tilemaps;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-namespace Grubitecht.Editor.Tilemaps
+namespace Grubitecht.OldTilemaps.Editors
 {
     [CustomEditor(typeof(Tile3DBrush))]
     public class Tile3DBrushEditor : GridBrushEditorBase
