@@ -40,5 +40,31 @@ namespace Grubitecht
             input.z = Mathf.Abs(input.z);
             return input;   
         }
+
+        /// <summary>
+        /// Returns the canonical modulus of a number to the mod of another number
+        /// </summary>
+        /// <remarks>
+        /// Differs from % in that % gives the remainder, which can be negative.  In this case, negative number loop 
+        /// around.
+        /// </remarks>
+        /// <param name="x">The first neumber</param>
+        /// <param name="m">The number to take the mod of.</param>
+        /// <returns>The canonical modulus number of X mod M.</returns>
+        public static int Mod(int x, int m)
+        {
+            return ((x % m) + m) % m;
+        }
+
+        /// <summary>
+        /// Gets the sign of a given number
+        /// </summary>
+        /// <param name="x">The number to get the sign of.</param>
+        /// <returns>-1, 0, or 1, depending ont the sign of the number.</returns>
+        public static int GetSign(int x)
+        {
+            if (x == 0) { return 0; }
+            return Mathf.Abs(x) / x;
+        }
     }
 }
