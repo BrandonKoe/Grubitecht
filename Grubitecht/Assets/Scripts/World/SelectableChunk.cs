@@ -10,11 +10,22 @@ using UnityEngine;
 
 namespace Grubitecht.World
 {
-    [RequireComponent(typeof(MeshFilter))]
-    [RequireComponent(typeof(MeshRenderer))]
     [RequireComponent(typeof(MeshCollider))]
-    public class SelectableChunk : Chunk, ISelectable
+    [RequireComponent(typeof(Chunk))]
+    public class SelectableChunk : MonoBehaviour, ISelectable
     {
+        #region Component References
+        [field: SerializeReference, HideInInspector] public Chunk Chunk { get; private set; }
+
+        /// <summary>
+        /// Assign components on reset.
+        /// </summary>
+        private void Reset()
+        {
+            Chunk = GetComponent<Chunk>();
+        }
+        #endregion
+
         /// <summary>
         /// Nothing happens (at present) when the Voxel Tilemap is selected.  It just needs to be selectable for
         /// the selection system to be able to select specific spaces.

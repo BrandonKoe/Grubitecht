@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 468440042726157893}
   - component: {fileID: 377902068383107455}
   - component: {fileID: 6234905082186971504}
-  - component: {fileID: 1826331040428088194}
+  - component: {fileID: 6073547567372331550}
+  - component: {fileID: 1214763057400588176}
   m_Layer: 3
   m_Name: Chunk
   m_TagString: Untagged
@@ -107,7 +108,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &1826331040428088194
+--- !u!114 &6073547567372331550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,3 +125,16 @@ MonoBehaviour:
   <MeshPath>k__BackingField: 
   meshFilter: {fileID: 468440042726157893}
   meshCollider: {fileID: 6234905082186971504}
+--- !u!114 &1214763057400588176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274663019562479761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 6073547567372331550}

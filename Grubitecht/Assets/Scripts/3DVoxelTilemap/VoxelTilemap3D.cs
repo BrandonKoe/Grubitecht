@@ -301,6 +301,7 @@ namespace Grubitecht.Tilemaps
         {
             Mesh mesh = new Mesh();
             chunk.ChunkMesh = mesh;
+            mesh.MarkDynamic();
             string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, chunk.gameObject.name + 
                 chunk.ChunkPos.ToString() + MESH_FILE_EXTENSION);
             chunk.MeshPath = filePath;

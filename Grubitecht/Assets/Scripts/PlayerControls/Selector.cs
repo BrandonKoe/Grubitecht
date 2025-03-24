@@ -147,9 +147,9 @@ namespace Grubitecht
                 // clicked object then null is returned instead.
                 if (results.collider.gameObject.TryGetComponent(out ISelectable selectable))
                 {
-                    if (selectable is SelectableChunk chunk)
+                    if (selectable is SelectableChunk selectedChunk)
                     {
-                        VoxelTilemap3D tilemap = chunk.Tilemap;
+                        VoxelTilemap3D tilemap = selectedChunk.Chunk.Tilemap;
                         Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
                         List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos, 
                             GridObject.VALID_GROUND_TYPE);

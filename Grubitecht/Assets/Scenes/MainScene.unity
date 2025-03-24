@@ -1259,8 +1259,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshFilePath: Meshes/TestSceneGrid
-  chunkPrefab: {fileID: 1826331040428088194, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  chunks: []
+  chunkPrefab: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
+  chunks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   chunkSize: 16
   subTilemaps:
   - tileType: 0
