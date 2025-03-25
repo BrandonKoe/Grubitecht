@@ -11,8 +11,20 @@ using UnityEngine;
 
 namespace Grubitecht.Combat
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Combatant : CombatBehaviour
     {
         [field: SerializeField] public Team CombatTeam { get; private set; }
+
+        /// <summary>
+        /// Update rigidbody values on reset, as the rigidbody should always be kinematic and never use gravity.
+        /// </summary>
+        protected override void Reset()
+        {
+            base.Reset();
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
     }
 }

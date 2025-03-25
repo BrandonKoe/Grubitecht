@@ -5,30 +5,19 @@
 //
 // Brief Description : Allows an object to have health and be attacked by attackers.
 *****************************************************************************/
+using Grubitecht.UI;
 using NaughtyAttributes;
 using System;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class Attackable : CombatBehaviour
     {
         [SerializeField] private int maxHealth;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
 
         public event Action OnDeath;
-
-        /// <summary>
-        /// Update rigidbody values on reset, as the rigidbody should always be kinematic and never use gravity.
-        /// </summary>
-        protected override void Reset()
-        {
-            base.Reset();
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.useGravity = false;
-        }
 
         /// <summary>
         /// Set health to max.
@@ -47,7 +36,7 @@ namespace Grubitecht.Combat
         public void TakeDamage(int incomingDamage)
         {
             // Apply any damage reductions here.
-            Debug.Log($"{gameObject.name} was hit for {incomingDamage} damage");
+            //Debug.Log($"{gameObject.name} was hit for {incomingDamage} damage");
             ChangeHealth(-incomingDamage);
         }
 
@@ -59,6 +48,7 @@ namespace Grubitecht.Combat
         {
             // Show the change to the health value here.
             Health += value;
+            DamageIndicator.DisplayHealthChange(value, this);
             if (Health <= 0)
             {
                 Die();

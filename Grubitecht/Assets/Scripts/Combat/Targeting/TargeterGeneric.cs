@@ -49,8 +49,8 @@ namespace Grubitecht.Combat
         /// <param name="other">The object that entered this targeter's range.</param>
         private void OnTriggerEnter(Collider other)
         {
-            // This targeter should never interact with itself.
-            if (other.gameObject == gameObject) { return; }
+            // This targeter should never interact with itself or other triggers.
+            if (other.gameObject == gameObject || other.isTrigger) { return; }
             //Debug.Log("New Target");
             if (other.TryGetComponent(out T atk) && CheckTarget(atk.Team))
             {

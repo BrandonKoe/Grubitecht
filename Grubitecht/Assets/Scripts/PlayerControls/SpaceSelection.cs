@@ -24,7 +24,7 @@ namespace Grubitecht
         public void OnSelect(ISelectable oldObj)
         {
             // Nothing happens.
-            Debug.Log(GridPosition);
+            //Debug.Log(GridPosition);
         }
 
         public void OnDeselect(ISelectable newObj)
