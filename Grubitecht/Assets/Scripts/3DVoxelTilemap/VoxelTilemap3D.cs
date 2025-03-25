@@ -111,7 +111,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to paint at.</param>
         /// <param name="type">The type of tile to paint.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        public void Paint(Vector3Int position, TileType type, bool refreshMesh)
+        public void Paint(Vector3Int position, TileType type)
         {
             foreach (SubTilemap submap in subTilemaps)
             {
@@ -124,10 +124,10 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Add(position);
                 }
             }
-            if (refreshMesh)
-            {
-                BakeMesh(position);
-            }
+            //if (refreshMesh)
+            //{
+            //    BakeMesh(position);
+            //}
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Grubitecht.Tilemaps
         /// </summary>
         /// <param name="position">The position to erase at.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        public void Erase(Vector3Int position, bool refreshMesh)
+        public void Erase(Vector3Int position)
         {
             foreach (SubTilemap submap in subTilemaps)
             {
@@ -144,10 +144,10 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Remove(position);
                 }
             }
-            if (refreshMesh)
-            {
-                BakeMesh(position);
-            }
+            //if (refreshMesh)
+            //{
+            //    BakeMesh(position);
+            //}
         }
         #endregion
 
@@ -320,7 +320,7 @@ namespace Grubitecht.Tilemaps
         /// Updates the mesh that renders the tilemap.
         /// </summary>
         /// <param name="gridPos">The position on the tilemap that was edited.</param>
-        private void BakeMesh(Vector3Int gridPos)
+        public void BakeMesh(Vector3Int gridPos)
         {
             Vector2Int chunkPos = GetChunkPos(gridPos);
 

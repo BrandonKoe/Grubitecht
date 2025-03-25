@@ -33,14 +33,6 @@ namespace Grubitecht.Tilemaps
 #endif
         #endregion
 
-        protected virtual bool RefreshMeshDefault
-        {
-            get
-            {
-                return true;
-            }
-        }    
-
 
         /// <summary>
         /// Paints a voxel to the target 3D voxel tilemap
@@ -58,7 +50,8 @@ namespace Grubitecht.Tilemaps
             if (tilemap == null) { return; }
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
-            AddTile(tilemap, position, tileType, RefreshMeshDefault);
+            AddTile(tilemap, position, tileType);
+            tilemap.BakeMesh(position);
         }
 
         /// <summary>
@@ -68,11 +61,11 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to add the tile at.</param>
         /// <param name="type">The type of tile to add.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type, bool refreshMesh)
+        protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
             if (!tilemap.CheckCell(position))
             {
-                tilemap.Paint(position, type, refreshMesh);
+                tilemap.Paint(position, type);
             }
             //Debug.Log(tilemap.GridToLocalCorner(position));
         }
@@ -92,7 +85,8 @@ namespace Grubitecht.Tilemaps
             if (tilemap == null) { return; }
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
-            EraseTile(tilemap, position, RefreshMeshDefault);
+            EraseTile(tilemap, position);
+            tilemap.BakeMesh(position);
         }
 
         /// <summary>
@@ -101,11 +95,11 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to erase from.</param>
         /// <param name="position">The position to erase at.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        protected virtual void EraseTile(VoxelTilemap3D tilemap, Vector3Int position, bool refreshMesh)
+        protected virtual void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
             if (tilemap.CheckCell(position))
             {
-                tilemap.Erase(position, refreshMesh);
+                tilemap.Erase(position);
             }
             //Debug.Log(tilemap.GridToLocalCorner(position));
         }

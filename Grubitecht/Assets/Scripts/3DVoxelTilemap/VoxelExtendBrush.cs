@@ -21,8 +21,6 @@ namespace Grubitecht.Tilemaps
         [SerializeField, Tooltip("The minimum depth that this brush will extend tiles to.")]
         private int minDepth = -1;
 
-        protected override bool RefreshMeshDefault => false;
-
         /// <summary>
         /// Adds a tile and extends it downwards with wall tiles to the minimum depth.
         /// </summary>
@@ -30,18 +28,13 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to add a tile at.</param>
         /// <param name="type">The type of tile to add.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        protected override void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type, bool refreshMesh)
+        protected override void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
-            base.AddTile(tilemap, position, type, refreshMesh);
+            base.AddTile(tilemap, position, type);
             if (position.z > minDepth)
             {
                 position.z--;
-                // Only the last tile placed should refresh the mesh.
-                if (!(position.z > minDepth))
-                {
-                    refreshMesh = true;
-                }
-                AddTile(tilemap, position, extendType, refreshMesh);
+                AddTile(tilemap, position, extendType);
             }
         }
 
@@ -51,18 +44,13 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to erase tiles from.</param>
         /// <param name="position">The position to erase a tile at.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        protected override void EraseTile(VoxelTilemap3D tilemap, Vector3Int position, bool refreshMesh)
+        protected override void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
-            base.EraseTile(tilemap, position, refreshMesh);
+            base.EraseTile(tilemap, position);
             if (position.z > minDepth)
             {
                 position.z--;
-                // Only the last tile erased should refresh the mesh.
-                if (!(position.z > minDepth))
-                {
-                    refreshMesh = true;
-                }
-                EraseTile(tilemap, position, refreshMesh);
+                EraseTile(tilemap, position);
             }
         }
     }

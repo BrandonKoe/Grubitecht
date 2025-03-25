@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2085130667221396343
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437131417601657913, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: strength
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Name
+      value: TiphiaFlyer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: detectionRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292136827923787625, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612967252612730060, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612967252612730060, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: jumpHeight
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612967252612730060, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: ignoreBlockedSpaces
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612967252612730060, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: restrictMovementAxes
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c49bd8c04679b404986746339f828842, type: 3}
