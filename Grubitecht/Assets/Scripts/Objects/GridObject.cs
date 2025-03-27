@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
-    public class GridObject : GridBehaviour
+    public class GridObject : MonoBehaviour
     {
         #region CONSTS
         public const TileType VALID_GROUND_TYPE = TileType.Ground;
@@ -34,18 +34,18 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Assigns this object a space when it is created.
         /// </summary>
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
+            //base.Awake();
             allObjectList.Add(this);
             SetCurrentSpace(GetApproximateSpace());
             SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
+            //base.OnDestroy();
             allObjectList.Remove(this);
         }
 
@@ -83,7 +83,9 @@ namespace Grubitecht.World.Objects
                 }
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
-                RefreshMap(this, oldSpace, CurrentSpace);
+                // Switching this system to one where grid navigators only re-evaluate paths if they run into
+                // a problem, not each time the map changes.
+                //RefreshMap(this, oldSpace, CurrentSpace);
             }
             CurrentSpace = newSpace;
         }
@@ -114,6 +116,16 @@ namespace Grubitecht.World.Objects
         public static GridObject GetObjectAtSpace(Vector3Int space)
         {
             return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
+        }
+
+        /// <summary>
+        /// Checks if a given space is occupied.
+        /// </summary>
+        /// <param name="space">The space to check.</param>
+        /// <returns>True if the space is occupied.</returns>
+        public static bool CheckOccupied(Vector3Int space)
+        {
+            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) != null;
         }
     }
 }

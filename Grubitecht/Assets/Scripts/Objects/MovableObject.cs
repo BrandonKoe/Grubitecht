@@ -11,31 +11,39 @@ using UnityEngine;
 namespace Grubitecht.World.Objects
 {
     [RequireComponent(typeof(GridNavigator))]
-    public class MovableObject : MonoBehaviour, ISelectable
+    [RequireComponent(typeof(SelectableObject))]
+    public class MovableObject : MonoBehaviour
     {
         #region Component References
         [SerializeReference, HideInInspector] private GridNavigator gridNavigator;
-        #endregion
-
+        [SerializeReference, HideInInspector] private SelectableObject selectable;
         /// <summary>
         /// Assign component references.
         /// </summary>
         private void Reset()
         {
             gridNavigator = GetComponent<GridNavigator>();
+            selectable = GetComponent<SelectableObject>();
         }
+        #endregion
 
-        public void OnSelect(ISelectable oldObj)
+        /// <summary>
+        /// Subscribe/unsubscribe from the OnDeselectEvent to control movement.
+        /// </summary>
+        private void Awake()
         {
-            // Do nothing on select.
-            Debug.Log(this.name + " was selected.");
+            selectable.OnDeselectEvent += MoveObject;
+        }
+        private void OnDestroy()
+        {
+            selectable.OnDeselectEvent -= MoveObject;
         }
 
         /// <summary>
         /// Navigates this object to a new selected space when it is deselected.
         /// </summary>
         /// <param name="newObj">The newly selected object.</param>
-        public void OnDeselect(ISelectable newObj)
+        public void MoveObject(ISelectable newObj)
         {
             // If the player selects a ground tile right after selecting a moveable object, then the object should
             // move to that selected position.
@@ -43,7 +51,6 @@ namespace Grubitecht.World.Objects
             {
                 gridNavigator.SetDestination(space.GridPosition);
             }
-            Debug.Log(this.name + " was deselected.");
         }
     }
 }

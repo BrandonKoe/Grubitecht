@@ -20,7 +20,7 @@ namespace Grubitecht.UI
         #region Properties
         public override Type[] SelectedComponentTypes => new Type[] 
         { 
-            typeof(MovableObject)
+            typeof(SelectableObject)
         };
         private RectTransform rectTransform => (RectTransform)transform;
         #endregion
@@ -43,6 +43,12 @@ namespace Grubitecht.UI
         /// </summary>
         private void Update()
         {
+            // Automatically disable this indicator if the tracked transform is null.
+            if (trackedTransform == null)
+            {
+                Disable();
+                return;
+            }
             rectTransform.position = (Vector2)Camera.main.WorldToScreenPoint(trackedTransform.position) + offset;
         }
     }

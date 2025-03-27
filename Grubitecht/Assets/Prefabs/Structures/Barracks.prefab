@@ -135,6 +135,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barracks
       objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350014025086623811, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
       value: 4
@@ -182,9 +210,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 279858048249971797}
+  detectionVisual: {fileID: 7610381134669924077}
   detectionRange: 4
   targetingType: 0
   detectionArea: {fileID: 5460026061390281899}
+  selectableObject: {fileID: 4914845466961708621}
 --- !u!114 &7366750140203755977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,8 +236,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 792690008691415358, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
   m_PrefabInstance: {fileID: 2776132120228408263}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4914845466961708621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+  m_PrefabInstance: {fileID: 2776132120228408263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812467525025399166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &5460026061390281899 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+  m_PrefabInstance: {fileID: 2776132120228408263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7610381134669924077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
   m_PrefabInstance: {fileID: 2776132120228408263}
   m_PrefabAsset: {fileID: 0}

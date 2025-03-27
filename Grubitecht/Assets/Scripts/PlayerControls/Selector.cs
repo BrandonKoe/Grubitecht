@@ -157,6 +157,10 @@ namespace Grubitecht
                         gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();
                         return new SpaceSelection(gridPos, tilemap.GridToWorldPos(gridPos));
                     }
+                    else if (selectable is SelectableObject selectableObject)
+                    {
+                        // Display a UI element to show info about the object.
+                    }
                     return selectable;
                 }
             }

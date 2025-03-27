@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1071180697793237669}
   - component: {fileID: 510308414473040261}
   - component: {fileID: 3340188535086003367}
+  - component: {fileID: 9176177978430806204}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridNavigator: {fileID: 8990034152954963938}
+  selectable: {fileID: 9176177978430806204}
 --- !u!114 &1071180697793237669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +230,18 @@ MonoBehaviour:
   combatant: {fileID: 510308414473040261}
   maxHealth: 50
   <Health>k__BackingField: 0
+--- !u!114 &9176177978430806204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677708571776409698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8198032086363522331
 GameObject:
   m_ObjectHideFlags: 0

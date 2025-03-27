@@ -44,7 +44,7 @@ namespace Grubitecht.UI
         /// <returns>Coroutine.</returns>
         private IEnumerator DeathRoutine()
         {
-            yield return new WaitForSeconds(animator.GetAnimationDuration());
+            yield return new WaitForSeconds(animator.GetAnimationDuration() - 0.01f);
             Destroy(gameObject);
         }
     }

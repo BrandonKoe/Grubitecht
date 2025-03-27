@@ -13,6 +13,8 @@ using Grubitecht.World.Objects;
 
 namespace Grubitecht.World
 {
+    [Obsolete("Grid Behaviour is obsolete.  Check for roadblocks as a path is executed through instead and " +
+        "re-evaluate when a problem is found.")]
     public abstract class GridBehaviour : MonoBehaviour
     {
         // Event to call functions that should run whenever a grid object is moved to a new space.
