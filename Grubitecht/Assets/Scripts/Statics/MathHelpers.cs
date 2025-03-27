@@ -66,5 +66,25 @@ namespace Grubitecht
             if (x == 0) { return 0; }
             return Mathf.Abs(x) / x;
         }
+
+        /// <summary>
+        /// Converts an angle in degrees to a unit vector pointing in that direction.
+        /// </summary>
+        /// <param name="angle">The angle to convert to a vector.</param>
+        /// <returns>A Vector2 corresponding to that angle.</returns>
+        public static Vector2 DegAngleToUnitVector(float angle)
+        {
+            return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
+        }
+
+        /// <summary>
+        /// Converts a vector to an angle in degrees.
+        /// </summary>
+        /// <param name="vector">The vector to convert to an angle.</param>
+        /// <returns>The angle that corresponds to that vector.</returns>
+        public static float VectorToDegAngle(Vector2 vector)
+        {
+            return Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
+        }
     }
 }

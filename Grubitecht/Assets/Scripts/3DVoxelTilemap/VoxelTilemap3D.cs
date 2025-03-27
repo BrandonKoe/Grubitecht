@@ -9,6 +9,8 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -151,7 +153,6 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
-        #region Cell Checking
         #region Static Functions
         /// <summary>
         /// Gets all cells of a certain type that hace the same 2D coordinates.
@@ -161,6 +162,21 @@ namespace Grubitecht.Tilemaps
         public static List<Vector3Int> Main_GetCellsInColumn(Vector2Int position, TileType type)
         {
             return Instance.GetCellsInColumn(position, type);
+        }
+
+        /// <summary>
+        /// Finds the cell in a column that is the closest to a reference position
+        /// </summary>
+        /// <param name="position">The poistion of the clumn to get a cell from</param>
+        /// <param name="referencePosition">
+        /// The position to use as a reference when evaluating the closest cell.
+        /// </param>
+        /// <param name="type">The type of cells to get.</param>
+        /// <returns>The cell in the column closest to the reference position.</returns>
+        public static Vector3Int Main_GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, 
+            TileType type)
+        {
+            return instance.GetClosestCellInColumn(position, referencePosition, type);
         }
 
         /// <summary>
@@ -183,6 +199,7 @@ namespace Grubitecht.Tilemaps
             return Instance.GridToWorldPos(position);
         }
         #endregion
+        #region Cell Checking
 
         /// <summary>
         /// Checks if a tile occupies a given cell.
@@ -229,6 +246,22 @@ namespace Grubitecht.Tilemaps
         {
             List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
             return cells.FindAll(item => item.x == position.x && item.y == position.y);
+        }
+
+        /// <summary>
+        /// Finds the cell in a column that is the closest to a reference position
+        /// </summary>
+        /// <param name="position">The poistion of the clumn to get a cell from</param>
+        /// <param name="referencePosition">
+        /// The position to use as a reference when evaluating the closest cell.
+        /// </param>
+        /// <param name="type">The type of cells to get.</param>
+        /// <returns>The cell in the column closest to the reference position.</returns>
+        public Vector3Int GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, TileType type)
+        {
+            List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+            return cells.FindAll(item => item.x == position.x && item.y == position.y).
+                OrderBy(item => Vector3.Distance(item, referencePosition)).FirstOrDefault();
         }
         #endregion
 

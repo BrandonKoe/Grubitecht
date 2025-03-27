@@ -62,11 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3521fcf41e3085f43b22409430828c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  <MoveSpeed>k__BackingField: 3
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
-  gridObject: {fileID: 1771765419267222160}
+  <GridObject>k__BackingField: {fileID: 1771765419267222160}
 --- !u!114 &4383107722421398176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d6436082c10e94790bae559f5c6ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridNavigator: {fileID: 2122973274948460703}
+  <GridNavigator>k__BackingField: {fileID: 2122973274948460703}
   selectable: {fileID: 983212686841175952}
 --- !u!114 &983212686841175952
 MonoBehaviour:

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Grubitecht.World.Objects;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.World.Pathfinding
 {
@@ -20,8 +21,8 @@ namespace Grubitecht.World.Pathfinding
         private const float PATH_CLAMP = 0.001f;
         #endregion
 
-        [Header("Movement Settings")]
-        [SerializeField] private float moveSpeed;
+        [field: Header("Movement Settings")]
+        [field: SerializeField] public float MoveSpeed { get; private set; }
         [SerializeField, Tooltip("How large of an upward incline this object can move up.")] 
         private int jumpHeight;
         [SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
@@ -33,12 +34,21 @@ namespace Grubitecht.World.Pathfinding
 
 
         #region Component References
-        [SerializeReference, HideInInspector] private GridObject gridObject;
+        [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
+
+        /// <summary>
+        /// Assign necessary component references on reset.
+        /// </summary>
+        private void Reset()
+        {
+            GridObject = GetComponent<GridObject>();
+        }
         #endregion
         private Coroutine movementRoutine;
         private List<Vector3Int> currentPath;
 
         #region Propeties
+        public Vector2Int Direction { get; private set; }
         public bool IsMoving
         {
             get
@@ -47,14 +57,6 @@ namespace Grubitecht.World.Pathfinding
             }
         }
         #endregion
-
-        /// <summary>
-        /// Assign necessary component references on reset.
-        /// </summary>
-        private void Reset()
-        {
-            gridObject = GetComponent<GridObject>();
-        }
 
         /// <summary>
         /// Moves an object to a target destination on the grid.
@@ -72,7 +74,7 @@ namespace Grubitecht.World.Pathfinding
             MovementFinishCallback finishCallback = null)
         {
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            Vector3Int tileToStart = gridObject.CurrentSpace;
+            Vector3Int tileToStart = GridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
 
             if (movementRoutine != null)
@@ -109,21 +111,30 @@ namespace Grubitecht.World.Pathfinding
         {
             while (currentPath.Count > 0)
             {
-                float step = moveSpeed * Time.deltaTime;
+                float step = MoveSpeed * Time.deltaTime;
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
                 if (GridObject.CheckOccupied(currentPath[0]))
                 {
                     SetDestination(destination, includeAdj);
                 }
-                Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
+                Vector3 tilePos = GridObject.GetOccupyPosition(currentPath[0]);
 
                 PerformMove(step, tilePos);
 
                 if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
                 {
-                    gridObject.SetCurrentSpace(currentPath[0]);
-                    gridObject.SnapToSpace();
+                    GridObject.SetCurrentSpace(currentPath[0]);
+                    GridObject.SnapToSpace();
                     currentPath.RemoveAt(0);
+                    // Update direction here to ensure directions are updated for later code execution.
+                    if (currentPath.Count > 0)
+                    {
+                        Direction = (Vector2Int)(currentPath[0] - GridObject.CurrentSpace);
+                    }
+                    else
+                    {
+                        Direction = Vector2Int.zero;
+                    }
                 }
 
                 yield return null;
@@ -167,6 +178,7 @@ namespace Grubitecht.World.Pathfinding
             }
             else
             {
+                Debug.Log("Moving");
                 transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
             }
         }

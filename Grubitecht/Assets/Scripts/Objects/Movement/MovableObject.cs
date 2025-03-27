@@ -15,14 +15,14 @@ namespace Grubitecht.World.Objects
     public class MovableObject : MonoBehaviour
     {
         #region Component References
-        [SerializeReference, HideInInspector] private GridNavigator gridNavigator;
+        [field: SerializeReference, HideInInspector] public GridNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
         /// <summary>
         /// Assign component references.
         /// </summary>
         private void Reset()
         {
-            gridNavigator = GetComponent<GridNavigator>();
+            GridNavigator = GetComponent<GridNavigator>();
             selectable = GetComponent<SelectableObject>();
         }
         #endregion
@@ -49,8 +49,19 @@ namespace Grubitecht.World.Objects
             // move to that selected position.
             if (newObj is SpaceSelection space)
             {
-                gridNavigator.SetDestination(space.GridPosition);
+                if (GridNavigator.IsMoving || GrubManager.RequestGrub(this))
+                {
+                    GridNavigator.SetDestination(space.GridPosition, false, RecallGrub);
+                }
             }
+        }
+
+        /// <summary>
+        /// Recalls a grub delegated to moving this object from the grub controller.
+        /// </summary>
+        private void RecallGrub()
+        {
+            GrubManager.ReturnGrub(this);
         }
     }
 }

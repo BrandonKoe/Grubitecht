@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: restrictMovementAxes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8612967252612730060, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <MoveSpeed>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

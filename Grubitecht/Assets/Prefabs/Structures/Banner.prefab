@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: <MoveSpeed>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6465410776955885236, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
     - {fileID: 2729263653826720574, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}

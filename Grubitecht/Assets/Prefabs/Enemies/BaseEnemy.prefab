@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3521fcf41e3085f43b22409430828c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  <MoveSpeed>k__BackingField: 2
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
-  gridObject: {fileID: 7292136827923787625}
+  <GridObject>k__BackingField: {fileID: 7292136827923787625}
 --- !u!114 &4697995366346233101
 MonoBehaviour:
   m_ObjectHideFlags: 0

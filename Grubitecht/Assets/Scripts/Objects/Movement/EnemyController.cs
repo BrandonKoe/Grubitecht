@@ -14,13 +14,13 @@ namespace Grubitecht.World
 {
     [RequireComponent(typeof(GridNavigator))]
     [RequireComponent(typeof(Targeter))]
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyController : MonoBehaviour
     {
         private Objective currentTarget;
 
         #region Component References
-        [SerializeReference, HideInInspector] private GridNavigator gridNavigator;
-        [SerializeReference, HideInInspector] private GridObject gridObject;
+        [field: SerializeReference, HideInInspector] public  GridNavigator GridNavigator { get; private set; }
+        [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Grubitecht.World
         /// </summary>
         private void Reset()
         {
-            gridNavigator = GetComponent<GridNavigator>();
-            gridObject = GetComponent<GridObject>();
+            GridNavigator = GetComponent<GridNavigator>();
+            GridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
 
         }
@@ -63,7 +63,7 @@ namespace Grubitecht.World
         /// <param name="target">That target that just left range.</param>
         private void HandleOnGainTarget()
         {
-            gridNavigator.StopMoving();
+            GridNavigator.StopMoving();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Grubitecht.World
                     //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
                     // When the enemy arrives at it's destination, if it doesnt have a target still, then we
                     // attempt to pathfind again.
-                    gridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
+                    GridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
                 }
             }
         }
