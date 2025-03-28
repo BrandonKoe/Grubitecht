@@ -17,6 +17,7 @@ namespace Grubitecht.Waves
     public class WaveManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text waveTimerText;
+        [SerializeField] private GameObject winLevelDisplay;
         [SerializeField] private float delayBetweenWaves;
         private int totalWaves;
         private int waveNum;
@@ -137,6 +138,17 @@ namespace Grubitecht.Waves
 
                 waveNum++;
             }
+
+            // Win the level once all waves are detfeated.
+            WinLevel();
+        }
+
+        /// <summary>
+        /// Handles behaviour that should happen when you win a level.
+        /// </summary>
+        private void WinLevel()
+        {
+            winLevelDisplay.SetActive(true);
         }
     }
 }
