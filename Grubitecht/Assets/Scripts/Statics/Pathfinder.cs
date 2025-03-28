@@ -90,6 +90,7 @@ namespace Grubitecht
         public static List<Vector3Int> FindPath(Vector3Int startingTile, Vector3Int endingTile, int climbHeight, 
             bool includeAdjacent = false, bool ignoreBlockedSpaces = false)
         {
+            Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new List<PathNode>();
             List<Vector3Int> closedList = new List<Vector3Int>();

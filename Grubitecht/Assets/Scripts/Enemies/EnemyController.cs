@@ -6,6 +6,7 @@
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
 using Grubitecht.Combat;
+using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using UnityEngine;
@@ -40,11 +41,15 @@ namespace Grubitecht.World
         /// </summary>
         private void Awake()
         {
+            // Adds this enemy to the wave manager's enemy list.
+            WaveManager.AddEnemy(this);
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
         }
         private void OnDestroy()
         {
+            // Removes this enemy from the wave manager's enemy list when it is destroyed.
+            WaveManager.RemoveEnemy(this);
             targeter.OnGainTarget -= HandleOnGainTarget;
             targeter.OnLoseTarget -= HandleOnLoseTarget;
         }

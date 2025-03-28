@@ -15,6 +15,7 @@ namespace Grubitecht.UI
         [SerializeField] private DamageNumber damageNumberPrefab;
         [SerializeField] private Color loseHealthColor;
         [SerializeField] private Color gainHealthColor;
+        [SerializeField] private bool useWorldSpaceCanvas;
         private static DamageIndicator instance;
 
         /// <summary>
@@ -48,7 +49,17 @@ namespace Grubitecht.UI
         public static void DisplayHealthChange(int healthChange, Attackable target)
         {
             DamageNumber num = Instantiate(instance.damageNumberPrefab, instance.transform);
-            num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+            if (instance.useWorldSpaceCanvas)
+            {
+                num.transform.position = target.transform.position;
+                Vector3 pos = num.transform.localPosition;
+                pos.z = 0;
+                num.transform.localPosition = pos;
+            }
+            else
+            {
+                num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+            }
             Color numColor = healthChange > 0 ? instance.gainHealthColor : instance.loseHealthColor;
             num.Initialize(healthChange, numColor);
         }

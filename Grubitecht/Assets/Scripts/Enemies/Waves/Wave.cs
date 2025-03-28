@@ -19,7 +19,14 @@ namespace Grubitecht.Waves
         public class Subwave
         {
             [field: SerializeField] public float Delay { get; private set; }
-            [field: SerializeField] public EnemyController[] Enemies { get; private set; }
+            [field: SerializeField] public EnemyType[] Enemies { get; private set; }
+        }
+
+        [System.Serializable]
+        public class EnemyType
+        {
+            [field: SerializeField] public int Count { get; private set; }
+            [field: SerializeField] public EnemyController EnemyPrefab { get; private set; }
         }
         #endregion
     }

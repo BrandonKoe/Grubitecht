@@ -115,7 +115,8 @@ namespace Grubitecht.World.Pathfinding
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
                 if (GridObject.CheckOccupied(currentPath[0]))
                 {
-                    SetDestination(destination, includeAdj);
+                    SetDestination(destination, includeAdj, finishCallback);
+                    yield break;
                 }
                 Vector3 tilePos = GridObject.GetOccupyPosition(currentPath[0]);
 
@@ -178,7 +179,7 @@ namespace Grubitecht.World.Pathfinding
             }
             else
             {
-                Debug.Log("Moving");
+                //Debug.Log("Moving");
                 transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
             }
         }

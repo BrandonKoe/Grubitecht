@@ -37,6 +37,16 @@ namespace Grubitecht.Waves
         #endregion
 
         #region Properties
+        public int WaveCount
+        {
+            get
+            {
+                return waves.Length;
+            }
+        }
+        #endregion
+
+        #region Properties
         private static Transform EnemyParent
         {
             get
@@ -49,6 +59,18 @@ namespace Grubitecht.Waves
             }
         }
         #endregion
+
+        /// <summary>
+        /// Subscribes/Unsubscrive starting a wave to the WaveManager's NewWaveEvent.
+        /// </summary>
+        private void Awake()
+        {
+            WaveManager.StartWaveEvent += StartWave;
+        }
+        private void OnDestroy()
+        {
+            WaveManager.StartWaveEvent -= StartWave;
+        }
 
         /// <summary>
         /// Starts a wave at a given index.
@@ -73,16 +95,18 @@ namespace Grubitecht.Waves
             {
                 yield return new WaitForSeconds(subwave.Delay);
 
-                SpawnSubwave(subwave);
+                StartCoroutine(SpawnSubwave(subwave));
             }
-            // End of the wave.
+            // Wave is finished.
+            WaveManager.MarkFinishedWave();
         }
 
         /// <summary>
-        /// Spawns a given subwave
+        /// Spawns a given subwave over time.
         /// </summary>
         /// <param name="subwave">The subwavea to spawn.</param>
-        private void SpawnSubwave(Wave.Subwave subwave)
+        /// <returns>Coroutine.</returns>
+        private IEnumerator SpawnSubwave(Wave.Subwave subwave)
         {
             int range = 0;
             List<Vector3Int> usedPositions = new List<Vector3Int>();
@@ -95,8 +119,9 @@ namespace Grubitecht.Waves
                     int yRange = range - x;
                     // Loops through both positive and negative values for y that yields a manhatten distance of
                     // range from the spawn point.
-                    for (int y = -range; y <= range; y *= -1)
+                    for (int i = -1; i < 2; i += 2)
                     {
+                        int y = i * yRange;
                         // Check the positive and negative cells that have a manhatten distance of range.
                         Vector2Int checkPos = new Vector2Int(x, y) + (Vector2Int)gridObject.CurrentSpace;
                         Vector3Int checkCell = VoxelTilemap3D.Main_GetClosestCellInColumn(checkPos,
@@ -110,6 +135,7 @@ namespace Grubitecht.Waves
                         // If this position hasnt already been used for this subwave, then return it.
                         if (!usedPositions.Contains(checkCell))
                         {
+                            usedPositions.Add(checkCell);
                             return checkCell;
                         }
                     }
@@ -120,12 +146,17 @@ namespace Grubitecht.Waves
                 return FindPosition();
             }
 
-            foreach (EnemyController enemy in subwave.Enemies)
+            // Spawns each enemy with the designated quantity.
+            foreach (Wave.EnemyType enemy in subwave.Enemies)
             {
-                EnemyController spawnedEnemy = Instantiate(enemy, EnemyParent);
+                for (int i  = 0; i < enemy.Count; i++)
+                {
+                    EnemyController spawnedEnemy = Instantiate(enemy.EnemyPrefab, EnemyParent);
 
-                spawnedEnemy.GridObject.SetCurrentSpace(FindPosition());
-                spawnedEnemy.GridObject.SnapToSpace();
+                    spawnedEnemy.GridObject.SetCurrentSpace(FindPosition());
+                    spawnedEnemy.GridObject.SnapToSpace();
+                    yield return null;
+                }
             }
         }
     }

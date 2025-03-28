@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583d59fd8a3bb4e4890c62e93fc45c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridNavigator: {fileID: 8612967252612730060}
-  gridObject: {fileID: 7292136827923787625}
+  <GridNavigator>k__BackingField: {fileID: 8612967252612730060}
+  <GridObject>k__BackingField: {fileID: 7292136827923787625}
   targeter: {fileID: 6308435001518308473}
 --- !u!135 &5437131417601657913
 SphereCollider:
