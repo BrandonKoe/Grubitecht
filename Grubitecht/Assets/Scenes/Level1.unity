@@ -2184,7 +2184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
   winLevelDisplay: {fileID: 1403608348}
-  delayBetweenWaves: 5
+  delayBetweenWaves: 30
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0

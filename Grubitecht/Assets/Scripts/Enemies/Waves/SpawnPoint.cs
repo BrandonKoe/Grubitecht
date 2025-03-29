@@ -8,10 +8,9 @@
 using Grubitecht.Tilemaps;
 using Grubitecht.World;
 using Grubitecht.World.Objects;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using System.Linq;
 
 namespace Grubitecht.Waves
 {
@@ -95,7 +94,7 @@ namespace Grubitecht.Waves
             {
                 yield return new WaitForSeconds(subwave.Delay);
 
-                StartCoroutine(SpawnSubwave(subwave));
+                SpawnSubwave(subwave);
             }
             // Wave is finished.
             WaveManager.MarkFinishedWave();
@@ -106,7 +105,7 @@ namespace Grubitecht.Waves
         /// </summary>
         /// <param name="subwave">The subwavea to spawn.</param>
         /// <returns>Coroutine.</returns>
-        private IEnumerator SpawnSubwave(Wave.Subwave subwave)
+        private void SpawnSubwave(Wave.Subwave subwave)
         {
             int range = 0;
             List<Vector3Int> usedPositions = new List<Vector3Int>();
@@ -116,7 +115,7 @@ namespace Grubitecht.Waves
                 for (int x = -range; x <= range; x++)
                 {
                     // Find the possible variance in y positions for a given range.
-                    int yRange = range - x;
+                    int yRange = range - Mathf.Abs(x);
                     // Loops through both positive and negative values for y that yields a manhatten distance of
                     // range from the spawn point.
                     for (int i = -1; i < 2; i += 2)
@@ -153,9 +152,12 @@ namespace Grubitecht.Waves
                 {
                     EnemyController spawnedEnemy = Instantiate(enemy.EnemyPrefab, EnemyParent);
 
-                    spawnedEnemy.gridObject.SetCurrentSpace(FindPosition());
+                    //spawnedEnemy.name = spawnedEnemy.name + i;
+                    Vector3Int pos = FindPosition();
+                    spawnedEnemy.gridObject.SetCurrentSpace(pos);
                     spawnedEnemy.gridObject.SnapToSpace();
-                    yield return null;
+                    spawnedEnemy.StartMoving();
+                    //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
                 }
             }
         }

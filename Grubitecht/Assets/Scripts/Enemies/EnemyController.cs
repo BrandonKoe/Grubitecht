@@ -6,15 +6,10 @@
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
 using Grubitecht.Combat;
-using Grubitecht.Tilemaps;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Grubitecht.World
 {
@@ -57,14 +52,6 @@ namespace Grubitecht.World
         }
 
         /// <summary>
-        /// Start navigating to the objective when this object is enabled.
-        /// </summary>
-        private void OnEnable()
-        {
-            mapNavigator.StartMoving(Objective.NavMap);
-        }
-
-        /// <summary>
         /// When this enemy loses a new target, if there are no valid targets, it pathfinds to the nearest objective.
         /// </summary>
         private void HandleOnGainTarget()
@@ -76,6 +63,17 @@ namespace Grubitecht.World
         /// When this enemy gains a new target, it stops moving.  Dont need to move if the target is in range alreaedy.
         /// </summary>
         private void HandleOnLoseTarget()
+        {
+            StartMoving();
+        }
+
+        /// <summary>
+        /// Starts this enemy's movement.
+        /// </summary>
+        /// <remarks>
+        /// Called by the spawn point when this enemy spawns.
+        /// </remarks>
+        public void StartMoving()
         {
             mapNavigator.StartMoving(Objective.NavMap);
         }

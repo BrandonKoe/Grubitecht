@@ -6,8 +6,6 @@
 // Brief Description : Manages operations that should be carried out once per level.
 *****************************************************************************/
 using Grubitecht.World.Objects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World

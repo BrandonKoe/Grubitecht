@@ -78,7 +78,7 @@ namespace Grubitecht.World.Pathfinding
         {
             Debug.Log("Creating Navigation Map");
             Dictionary<Vector3Int, int> map = new Dictionary<Vector3Int, int>();
-            List<Vector3Int> tiles = new List<Vector3Int>();
+            List<Vector3Int> tiles = VoxelTilemap3D.Main_GetTilemap(GridObject.VALID_GROUND_TYPE);
             foreach (Vector3Int tile in tiles)
             {
                 // Really big number is defined above in CONSTS.  I just named it that because I though it would be
@@ -100,7 +100,7 @@ namespace Grubitecht.World.Pathfinding
         public static Dictionary<Vector3Int, int> UpdateNavigationMap(Dictionary<Vector3Int, int> referenceMap,
             Vector3Int[] destinations)
         {
-            Debug.Log("Updating Navigation Map");
+            //Debug.Log("Updating Navigation Map" + referenceMap.Count);
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
             List<Vector3Int> unvisited = new List<Vector3Int>();
             List<Vector3Int> visited = new List<Vector3Int>();

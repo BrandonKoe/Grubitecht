@@ -7,11 +7,8 @@
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
-using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 namespace Grubitecht

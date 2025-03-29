@@ -77,9 +77,10 @@ namespace Grubitecht.World.Objects
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
+                GridObject objInSpace = GetObjectAtSpace(newSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
-                if (GetObjectAtSpace(newSpace) != null)
-                {
+                if (objInSpace != null && objInSpace != this)
+                { 
                     return;
                 }
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
