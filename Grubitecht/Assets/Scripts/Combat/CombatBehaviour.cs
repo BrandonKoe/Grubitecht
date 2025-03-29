@@ -11,7 +11,6 @@ using UnityEngine;
 
 namespace Grubitecht.Combat
 {
-    [RequireComponent(typeof(Combatant))]
     public abstract class CombatBehaviour : MonoBehaviour
     {
         #region Component References

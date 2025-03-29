@@ -11,6 +11,7 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackableTargeter))]
+    [RequireComponent(typeof(Combatant))]
     public class Attacker : CombatBehaviour
     {
         [SerializeField] private float attackDelay;

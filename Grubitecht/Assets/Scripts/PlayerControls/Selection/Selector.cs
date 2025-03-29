@@ -13,6 +13,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Grubitecht.World.Objects;
 using Grubitecht.World;
+using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace Grubitecht
 {
@@ -165,6 +167,11 @@ namespace Grubitecht
                 }
             }
             return null;
+        }
+        [Button]
+        private void ResetScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

@@ -12,6 +12,7 @@ using UnityEngine;
 
 namespace Grubitecht.Combat
 {
+    [RequireComponent(typeof(Combatant))]
     public abstract class Targeter : CombatBehaviour
     {
         [SerializeField] private Transform detectionVisual;

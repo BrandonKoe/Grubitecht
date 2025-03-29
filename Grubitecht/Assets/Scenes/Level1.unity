@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 95301366f2d24a8418d4cbcfc9834e67, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 55b4fe8c9a096824e82b11022b42f9fe, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1838,13 +1838,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1486313, y: 0.4265217, z: 0.052181996, w: 0.89065427}
+  m_LocalRotation: {x: 0.4128527, y: 0.42214906, z: -0.080211475, w: 0.80306226}
   m_LocalPosition: {x: -16.96, y: 16.05, z: -13.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 12.723, y: 52.636, z: 13.019}
+  m_LocalEulerAnglesHint: {x: 46.955, y: 63.676, z: 18.78}
 --- !u!1 &715932575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
-  winLevelDisplay: {fileID: 0}
+  winLevelDisplay: {fileID: 1403608348}
   delayBetweenWaves: 30
 --- !u!4 &818700403
 Transform:
@@ -6495,7 +6495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1403608349
 RectTransform:
   m_ObjectHideFlags: 0

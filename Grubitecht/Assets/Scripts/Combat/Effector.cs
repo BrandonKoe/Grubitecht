@@ -13,6 +13,7 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackerTargeter))]
+    [RequireComponent(typeof(Combatant))]
     public abstract class Effector : CombatBehaviour
     {
         #region Component References

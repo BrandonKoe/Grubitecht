@@ -58,6 +58,7 @@ namespace Grubitecht.World.Objects
             Vector2Int approxSpace = new Vector2Int();
             approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
             approxSpace.y = Mathf.RoundToInt(transform.position.z - VoxelTilemap3D.CELL_SIZE / 2);
+            //Debug.Log(approxSpace);
             // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
             // the one with the closest elevation.  This ensures that the object snaps from gravity.
             List<Vector3Int> possibleSpaces = VoxelTilemap3D.Main_GetCellsInColumn(approxSpace, VALID_GROUND_TYPE);

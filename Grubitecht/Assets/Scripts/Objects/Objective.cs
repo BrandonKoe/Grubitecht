@@ -44,6 +44,7 @@ namespace Grubitecht.World.Objects
         private void OnDestroy()
         {
             attackable.OnDeath -= OnDeath;
+            currentObjectives.Remove(this);
         }
 
         /// <summary>

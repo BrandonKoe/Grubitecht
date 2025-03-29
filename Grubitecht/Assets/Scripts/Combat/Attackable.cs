@@ -12,6 +12,7 @@ using UnityEngine;
 
 namespace Grubitecht.Combat
 {
+    [RequireComponent(typeof(Combatant))]
     public class Attackable : CombatBehaviour
     {
         [SerializeField] private int maxHealth;
