@@ -144,6 +144,7 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
+  updateSpaceDuringPath: 1
   <GridObject>k__BackingField: {fileID: 2840198212046638825}
 --- !u!114 &6362432172321354175
 MonoBehaviour:
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 2694432537194622866}
   <CombatTeam>k__BackingField: 0
+  <CombatTags>k__BackingField: 0
 --- !u!135 &7873178021456172908
 SphereCollider:
   m_ObjectHideFlags: 0

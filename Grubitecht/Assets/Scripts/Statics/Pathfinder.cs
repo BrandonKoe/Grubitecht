@@ -7,8 +7,11 @@
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 namespace Grubitecht
@@ -68,6 +71,7 @@ namespace Grubitecht
         }
         #endregion
 
+        #region A* Pathfinding
         /// <summary>
         /// Finds a path between two tiles.
         /// </summary>
@@ -183,5 +187,6 @@ namespace Grubitecht
             }
             return adjSpaces;
         }
+        #endregion
     }
 }

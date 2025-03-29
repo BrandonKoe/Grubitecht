@@ -28,6 +28,13 @@ namespace Grubitecht.Combat
                 return combatant.CombatTeam;
             }
         }
+        public CombatTags Tags
+        {
+            get
+            {
+                return combatant.CombatTags;
+            }
+        }
         #endregion
     }
 }

@@ -20,7 +20,6 @@ namespace Grubitecht.World
         private Objective currentTarget;
 
         #region Component References
-        [field: SerializeReference, HideInInspector] public  GridNavigator GridNavigator { get; private set; }
         [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
 
@@ -29,7 +28,6 @@ namespace Grubitecht.World
         /// </summary>
         private void Reset()
         {
-            GridNavigator = GetComponent<GridNavigator>();
             GridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
 

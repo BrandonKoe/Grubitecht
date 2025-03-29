@@ -19,6 +19,8 @@ namespace Grubitecht.Combat
         [SerializeField, Min(0.1f)] private float detectionRange;
         [SerializeField, Tooltip("Controls what teams this component will target.")]
         protected TargetType targetingType;
+        [SerializeField, Tooltip("Controls what tags this targeter can target.")]
+        protected CombatTags canTargetTags;
         // Events.
         public event Action OnGainTarget;
         public event Action OnLoseTarget;
@@ -107,6 +109,16 @@ namespace Grubitecht.Combat
                 default:
                     return false;
             }
+        }
+
+        /// <summary>
+        /// Checks if this targeter should target another object based on it's tags.
+        /// </summary>
+        /// <param name="otherTags">The tags of the other object to target.</param>
+        /// <returns>Whether this targeter can target the object or not.</returns>
+        protected bool CheckTags(CombatTags otherTags)
+        {
+            return (canTargetTags & otherTags) == otherTags;
         }
 
         /// <summary>

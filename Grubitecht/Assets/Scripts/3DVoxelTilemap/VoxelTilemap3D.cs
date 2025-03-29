@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.UIElements;
+
 
 
 #if UNITY_EDITOR
@@ -197,6 +199,16 @@ namespace Grubitecht.Tilemaps
         public static Vector3 Main_GridToWorldPos(Vector3Int position)
         {
             return Instance.GridToWorldPos(position);
+        }
+
+        /// <summary>
+        /// Gets the list of tiles in this tilemap of a certain tile type.
+        /// </summary>
+        /// <param name="tileType">The type of tilemap list to get.</param>
+        /// <returns>The list of all tiles of a given type in the main tilemap.</returns>
+        public static List<Vector3Int> Main_GetTilemap(TileType type)
+        {
+            return Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
         }
         #endregion
         #region Cell Checking

@@ -5,11 +5,10 @@
 //
 // Brief Description : Allows a grid object to move along the grid using pathfinding.
 *****************************************************************************/
+using Grubitecht.World.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Grubitecht.World.Objects;
-using Grubitecht.Tilemaps;
 
 namespace Grubitecht.World.Pathfinding
 {
@@ -31,7 +30,9 @@ namespace Grubitecht.World.Pathfinding
         [SerializeField, Tooltip("If checked, then this object is only able to move in one cardinal direction " +
             "while moving along a path.")] 
         private bool restrictMovementAxes;
-
+        [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
+            "path, or immediately as soon as it starts moving.")]
+        private bool updateSpaceDuringPath;
 
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
@@ -46,6 +47,7 @@ namespace Grubitecht.World.Pathfinding
         #endregion
         private Coroutine movementRoutine;
         private List<Vector3Int> currentPath;
+        private Vector3Int currentPathSpace;
 
         #region Propeties
         public Vector2Int Direction { get; private set; }
@@ -109,6 +111,12 @@ namespace Grubitecht.World.Pathfinding
         private IEnumerator MovementRoutine(Vector3Int destination, bool includeAdj, 
             MovementFinishCallback finishCallback)
         {
+            // If we're set to only update our current space once, then set it before we begin moving and double check
+            // that placement later.
+            if (!updateSpaceDuringPath)
+            {
+                GridObject.SetCurrentSpace(currentPathSpace);
+            }
             while (currentPath.Count > 0)
             {
                 float step = MoveSpeed * Time.deltaTime;
@@ -124,8 +132,16 @@ namespace Grubitecht.World.Pathfinding
 
                 if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
                 {
-                    GridObject.SetCurrentSpace(currentPath[0]);
-                    GridObject.SnapToSpace();
+                    if (updateSpaceDuringPath)
+                    {
+                        GridObject.SetCurrentSpace(currentPath[0]);
+                        GridObject.SnapToSpace();
+                    }
+                    else
+                    {
+                        // Updates a var that keeps track of our current space in the path.
+                        currentPathSpace = currentPath[0];
+                    }
                     currentPath.RemoveAt(0);
                     // Update direction here to ensure directions are updated for later code execution.
                     if (currentPath.Count > 0)
@@ -144,6 +160,13 @@ namespace Grubitecht.World.Pathfinding
             // This yield will turn that loop into a buffered loop each frame so it will still continue to loop, but
             // wont cause the computer to crash and instead will refresh each frame.
             yield return null;
+            // Double check our current space is correct.  If we ended at a space other than our destination, then we
+            // should set our current space to that space instead.
+            if (!updateSpaceDuringPath && destination != currentPathSpace)
+            {
+                GridObject.SetCurrentSpace(currentPathSpace);
+                GridObject.SnapToSpace();
+            }
             // Invoke the given finish callback.
             finishCallback?.Invoke();
             movementRoutine = null;

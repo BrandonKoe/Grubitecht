@@ -149,6 +149,7 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
+  updateSpaceDuringPath: 1
   <GridObject>k__BackingField: {fileID: 7292136827923787625}
 --- !u!114 &4697995366346233101
 MonoBehaviour:
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
   <CombatTeam>k__BackingField: 1
+  <CombatTags>k__BackingField: 0
 --- !u!114 &6308435001518308473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +218,7 @@ MonoBehaviour:
   detectionVisual: {fileID: 2377592230455766907}
   detectionRange: 1
   targetingType: 0
+  canTargetTags: 0
   detectionArea: {fileID: 5437131417601657913}
   selectableObject: {fileID: 6254574678074587637}
 --- !u!114 &5677027583254957291

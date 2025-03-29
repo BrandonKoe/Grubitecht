@@ -52,7 +52,7 @@ namespace Grubitecht.Combat
             // This targeter should never interact with itself or other triggers.
             if (other.gameObject == gameObject || other.isTrigger) { return; }
             //Debug.Log("New Target");
-            if (other.TryGetComponent(out T atk) && CheckTarget(atk.Team))
+            if (other.TryGetComponent(out T atk) && CheckTarget(atk.Team) && CheckTags(atk.Tags))
             {
                 inRange.Add(atk);
                 OnGainTargetGeneric?.Invoke(atk);

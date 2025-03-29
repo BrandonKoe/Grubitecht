@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6613458905804352060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -159,13 +159,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Click on objects to select them.
 
-    When you have a structure selected,
-    click on a space to move it to that position.
+    You can move structures, objectives,
+    and terrain by selecting them and then clicking a space.
 
-    Structures automatically attack
-    incoming enemies.
+    Structures automatically
+    attack enemies.
 
-    Defend your objective to win.'
+    Defend your objectives from the waves of enemies.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

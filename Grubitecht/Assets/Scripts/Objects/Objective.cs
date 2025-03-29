@@ -7,6 +7,7 @@
 *****************************************************************************/
 using Grubitecht.Combat;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -15,6 +16,7 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
+        public static readonly NavigationMap NavMap = new NavigationMap();
         private static readonly List<Objective> currentObjectives = new();
 
         #region Component References
@@ -48,6 +50,15 @@ namespace Grubitecht.World.Objects
         }
 
         /// <summary>
+        /// Gets the current spaces of all objectives.
+        /// </summary>
+        /// <returns>An array of spaces representing the spaces of all objectives.</returns>
+        private static Vector3Int[] GetObjectivePositions()
+        {
+            return currentObjectives.Select(item => item.gridObject.CurrentSpace).ToArray();
+        }
+
+        /// <summary>
         /// Gets the closest objective to a given position.
         /// </summary>
         /// <param name="position">The position to get the nearest objective to.</param>
@@ -78,6 +89,14 @@ namespace Grubitecht.World.Objects
         private void OnDeath()
         {
             currentObjectives.Remove(this);
+        }
+
+        /// <summary>
+        /// Updates the objective nav map.
+        /// </summary>
+        public static void UpdateNavMap()
+        {
+            NavMap.UpdateMap(GetObjectivePositions());
         }
     }
 }

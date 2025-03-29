@@ -565,6 +565,7 @@ MonoBehaviour:
   detectionVisual: {fileID: 2731574801595987342}
   detectionRange: 7
   targetingType: 0
+  canTargetTags: -1
   detectionArea: {fileID: 554199331391295432}
   selectableObject: {fileID: 594484448342160686}
 --- !u!114 &1005915541958408702
