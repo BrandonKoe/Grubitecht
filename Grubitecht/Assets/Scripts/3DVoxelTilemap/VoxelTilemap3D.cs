@@ -178,7 +178,7 @@ namespace Grubitecht.Tilemaps
         public static Vector3Int Main_GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, 
             TileType type)
         {
-            return instance.GetClosestCellInColumn(position, referencePosition, type);
+            return Instance.GetClosestCellInColumn(position, referencePosition, type);
         }
 
         /// <summary>

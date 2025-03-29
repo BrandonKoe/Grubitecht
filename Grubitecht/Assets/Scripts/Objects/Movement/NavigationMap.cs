@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Grubitecht.World
+namespace Grubitecht.World.Pathfinding
 {
     public class NavigationMap
     {
@@ -76,6 +76,7 @@ namespace Grubitecht.World
         /// <returns>A dictionary that represents a map of ground tiles and their distance to an objective.</returns>
         public static Dictionary<Vector3Int, int> CreateNavigationMap()
         {
+            Debug.Log("Creating Navigation Map");
             Dictionary<Vector3Int, int> map = new Dictionary<Vector3Int, int>();
             List<Vector3Int> tiles = new List<Vector3Int>();
             foreach (Vector3Int tile in tiles)
@@ -99,6 +100,7 @@ namespace Grubitecht.World
         public static Dictionary<Vector3Int, int> UpdateNavigationMap(Dictionary<Vector3Int, int> referenceMap,
             Vector3Int[] destinations)
         {
+            Debug.Log("Updating Navigation Map");
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
             List<Vector3Int> unvisited = new List<Vector3Int>();
             List<Vector3Int> visited = new List<Vector3Int>();

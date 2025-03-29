@@ -1,9 +1,9 @@
 /*****************************************************************************
 // File Name : GridNavigator.cs
 // Author : Brandon Koederitz
-// Creation Date : March 18, 2025
+// Creation Date : March 29, 2025
 //
-// Brief Description : Allows a grid object to move along the grid using pathfinding.
+// Brief Description : Base class for all components that control movement along the grid.
 *****************************************************************************/
 using Grubitecht.World.Objects;
 using System.Collections;
@@ -12,46 +12,39 @@ using UnityEngine;
 
 namespace Grubitecht.World.Pathfinding
 {
-    public delegate void MovementFinishCallback();
     [RequireComponent(typeof(GridObject))]
-    public class GridNavigator : MonoBehaviour
+    public abstract class GridNavigator : MonoBehaviour
     {
         #region CONSTS
-        private const float PATH_CLAMP = 0.001f;
+        protected const float SPACE_CLAMP = 0.001f;
         #endregion
 
         [field: Header("Movement Settings")]
-        [field: SerializeField] public float MoveSpeed { get; private set; }
-        [SerializeField, Tooltip("How large of an upward incline this object can move up.")] 
-        private int jumpHeight;
+        [field: SerializeField] public float MoveSpeed { get; protected set; }
+        [SerializeField, Tooltip("How large of an upward incline this object can move up.")]
+        protected int jumpHeight;
         [SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
-            "world")] 
-        private bool ignoreBlockedSpaces;
+            "world")]
+        protected bool ignoreBlockedSpaces;
         [SerializeField, Tooltip("If checked, then this object is only able to move in one cardinal direction " +
-            "while moving along a path.")] 
-        private bool restrictMovementAxes;
-        [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
-            "path, or immediately as soon as it starts moving.")]
-        private bool updateSpaceDuringPath;
+            "while moving along a path.")]
+        protected bool restrictMovementAxes;
 
         #region Component References
-        [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
+        [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
 
         /// <summary>
         /// Assign necessary component references on reset.
         /// </summary>
         private void Reset()
         {
-            GridObject = GetComponent<GridObject>();
+            gridObject = GetComponent<GridObject>();
         }
         #endregion
-        private Coroutine movementRoutine;
-        private List<Vector3Int> currentPath;
-        private Vector3Int currentPathSpace;
+        protected Coroutine movementRoutine;
 
-        #region Propeties
-        public Vector2Int Direction { get; private set; }
-        public bool IsMoving
+        #region Properties
+        public virtual bool IsMoving
         {
             get
             {
@@ -60,117 +53,7 @@ namespace Grubitecht.World.Pathfinding
         }
         #endregion
 
-        /// <summary>
-        /// Moves an object to a target destination on the grid.
-        /// </summary>
-        /// <param name="destinationSpace">The tile to move to.</param>
-        /// <param name="includeAdjacent">
-        /// If true, then this object will pathfind to a tile that is adjacent to the given destination tile.
-        /// </param>
-        /// <param name="finishCallback">
-        /// A function to call when this object has finished moving.  Note that if a new destination is set while an
-        /// object is already moving, then the finish callback will be overwritten with the finish callback
-        /// for the new destination.
-        /// </param>
-        public void SetDestination(Vector3Int destinationSpace, bool includeAdjacent = false, 
-            MovementFinishCallback finishCallback = null)
-        {
-            //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            Vector3Int tileToStart = GridObject.CurrentSpace;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
-
-            if (movementRoutine != null)
-            {
-                StopCoroutine(movementRoutine);
-                movementRoutine = null;
-            }
-            movementRoutine = StartCoroutine(MovementRoutine(destinationSpace, includeAdjacent, finishCallback));
-        }
-
-        /// <summary>
-        /// Stops this object's movement.
-        /// </summary>
-        public void StopMoving()
-        {
-            if (movementRoutine != null)
-            {
-                //StopCoroutine(movementRoutine);
-                //movementRoutine = null;
-                // Instead of instantly stopping movement, we should finish snapping to whatever space we are
-                // currently at.
-                Vector3Int endingSpace = currentPath[0];
-                currentPath.Clear();
-                currentPath.Add(endingSpace);
-            }
-        }
-
-        /// <summary>
-        /// Continually moves this object along a given path.
-        /// </summary>
-        /// <returns>Coroutine.</returns>
-        private IEnumerator MovementRoutine(Vector3Int destination, bool includeAdj, 
-            MovementFinishCallback finishCallback)
-        {
-            // If we're set to only update our current space once, then set it before we begin moving and double check
-            // that placement later.
-            if (!updateSpaceDuringPath)
-            {
-                GridObject.SetCurrentSpace(currentPathSpace);
-            }
-            while (currentPath.Count > 0)
-            {
-                float step = MoveSpeed * Time.deltaTime;
-                // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (GridObject.CheckOccupied(currentPath[0]))
-                {
-                    SetDestination(destination, includeAdj, finishCallback);
-                    yield break;
-                }
-                Vector3 tilePos = GridObject.GetOccupyPosition(currentPath[0]);
-
-                PerformMove(step, tilePos);
-
-                if (Vector3.Distance(transform.position, tilePos) < PATH_CLAMP)
-                {
-                    if (updateSpaceDuringPath)
-                    {
-                        GridObject.SetCurrentSpace(currentPath[0]);
-                        GridObject.SnapToSpace();
-                    }
-                    else
-                    {
-                        // Updates a var that keeps track of our current space in the path.
-                        currentPathSpace = currentPath[0];
-                    }
-                    currentPath.RemoveAt(0);
-                    // Update direction here to ensure directions are updated for later code execution.
-                    if (currentPath.Count > 0)
-                    {
-                        Direction = (Vector2Int)(currentPath[0] - GridObject.CurrentSpace);
-                    }
-                    else
-                    {
-                        Direction = Vector2Int.zero;
-                    }
-                }
-
-                yield return null;
-            }
-            // Yield an extra time here to prevent an infinite loop where the finish callback re-calls set destination.
-            // This yield will turn that loop into a buffered loop each frame so it will still continue to loop, but
-            // wont cause the computer to crash and instead will refresh each frame.
-            yield return null;
-            // Double check our current space is correct.  If we ended at a space other than our destination, then we
-            // should set our current space to that space instead.
-            if (!updateSpaceDuringPath && destination != currentPathSpace)
-            {
-                GridObject.SetCurrentSpace(currentPathSpace);
-                GridObject.SnapToSpace();
-            }
-            // Invoke the given finish callback.
-            finishCallback?.Invoke();
-            movementRoutine = null;
-        }
+        public abstract void StopMoving();
 
         /// <summary>
         /// Moves this object towards it's next tile position by a given step.
@@ -178,10 +61,10 @@ namespace Grubitecht.World.Pathfinding
         /// <remarks>
         /// Takes into account restricted movement type.
         /// </remarks>
-        /// <param name="step">The amount to move towards the next tile position.</param>
         /// <param name="tilePos">The position of the next tile in the path.</param>
-        private void PerformMove(float step, Vector3 tilePos)
+        protected void PerformMove(Vector3 tilePos)
         {
+            float step = MoveSpeed * Time.deltaTime;
             if (restrictMovementAxes)
             {
                 Vector3 pos = transform.position;

@@ -153,8 +153,8 @@ namespace Grubitecht.Waves
                 {
                     EnemyController spawnedEnemy = Instantiate(enemy.EnemyPrefab, EnemyParent);
 
-                    spawnedEnemy.GridObject.SetCurrentSpace(FindPosition());
-                    spawnedEnemy.GridObject.SnapToSpace();
+                    spawnedEnemy.gridObject.SetCurrentSpace(FindPosition());
+                    spawnedEnemy.gridObject.SnapToSpace();
                     yield return null;
                 }
             }

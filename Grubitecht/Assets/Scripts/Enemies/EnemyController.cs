@@ -6,31 +6,35 @@
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
 using Grubitecht.Combat;
+using Grubitecht.Tilemaps;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Grubitecht.World
 {
-    [RequireComponent(typeof(GridNavigator))]
+    [RequireComponent(typeof(MapNavigator))]
     [RequireComponent(typeof(Targeter))]
     public class EnemyController : MonoBehaviour
     {
-        private Objective currentTarget;
-
         #region Component References
-        [field: SerializeReference, HideInInspector] public GridObject GridObject { get; private set; }
+        [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
+        [SerializeReference, HideInInspector] private MapNavigator mapNavigator;
 
         /// <summary>
         /// Assign component references on reset.
         /// </summary>
         private void Reset()
         {
-            GridObject = GetComponent<GridObject>();
+            gridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
-
+            mapNavigator = GetComponent<MapNavigator>();
         }
         #endregion
 
@@ -53,49 +57,47 @@ namespace Grubitecht.World
         }
 
         /// <summary>
-        /// Start pathfinding to the objective on game start for now.
+        /// Start navigating to the objective when this object is enabled.
         /// </summary>
-        private void Start()
+        private void OnEnable()
         {
-            PathToNearestObjective();
+            mapNavigator.StartMoving(Objective.NavMap);
         }
 
         /// <summary>
         /// When this enemy loses a new target, if there are no valid targets, it pathfinds to the nearest objective.
         /// </summary>
-        /// <param name="target">That target that just left range.</param>
         private void HandleOnGainTarget()
         {
-            GridNavigator.StopMoving();
+            mapNavigator.StopMoving();
         }
 
         /// <summary>
         /// When this enemy gains a new target, it stops moving.  Dont need to move if the target is in range alreaedy.
         /// </summary>
-        /// <param name="target">The target that is now in range.</param>
         private void HandleOnLoseTarget()
         {
-            PathToNearestObjective();
+            mapNavigator.StartMoving(Objective.NavMap);
         }
 
-        /// <summary>
-        /// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
-        /// </summary>
-        private void PathToNearestObjective()
-        {
-            if (!targeter.HasTarget)
-            {
-                currentTarget = Objective.GetNearestObjective(transform.position);
-                // Nearest objective should never be null in actual gameplay as if it is then the level is lost.
-                // Double check for null here to avoid errors.
-                if (currentTarget != null)
-                {
-                    //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
-                    // When the enemy arrives at it's destination, if it doesnt have a target still, then we
-                    // attempt to pathfind again.
-                    GridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
-                }
-            }
-        }
+        ///// <summary>
+        ///// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
+        ///// </summary>
+        //private void PathToNearestObjective()
+        //{
+        //    if (!targeter.HasTarget)
+        //    {
+        //        currentTarget = Objective.GetNearestObjective(transform.position);
+        //        // Nearest objective should never be null in actual gameplay as if it is then the level is lost.
+        //        // Double check for null here to avoid errors.
+        //        if (currentTarget != null)
+        //        {
+        //            //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
+        //            // When the enemy arrives at it's destination, if it doesnt have a target still, then we
+        //            // attempt to pathfind again.
+        //            GridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
+        //        }
+        //    }
+        //}
     }
 }

@@ -35,14 +35,14 @@ namespace Grubitecht.World
         /// Initializes this component with values.
         /// </summary>
         /// <param name="follow">The GridNavigator to follow.</param>
-        public void Initialize(GridNavigator follow)
+        public void Initialize(PathNavigator follow)
         {
             if (followRoutine != null)
             {
                 StopCoroutine(followRoutine);
                 followRoutine = null;
             }
-            gridObject.SetCurrentSpace(follow.GridObject.CurrentSpace - (Vector3Int)follow.Direction);
+            gridObject.SetCurrentSpace(follow.gridObject.CurrentSpace - (Vector3Int)follow.Direction);
             gridObject.SnapToSpace();
             isFollowing = true;
             followRoutine = StartCoroutine(FollowRoutine(follow));
@@ -53,22 +53,22 @@ namespace Grubitecht.World
         /// </summary>
         /// <param name="followedObject">The object that this grub is following.</param>
         /// <returns>Coroutine.</returns>
-        private IEnumerator FollowRoutine(GridNavigator followedObject)
+        private IEnumerator FollowRoutine(PathNavigator followedObject)
         {
-            Vector3Int referenceSpace = followedObject.GridObject.CurrentSpace;
+            Vector3Int referenceSpace = followedObject.gridObject.CurrentSpace;
 
             while (isFollowing)
             {
-                if (followedObject.GridObject.CurrentSpace != referenceSpace)
+                if (followedObject.gridObject.CurrentSpace != referenceSpace)
                 {
                     // updates this object's position whenever the followed object moves to a new space.
-                    referenceSpace = followedObject.GridObject.CurrentSpace;
+                    referenceSpace = followedObject.gridObject.CurrentSpace;
                     gridObject.SetCurrentSpace(referenceSpace - (Vector3Int)followedObject.Direction);
                     gridObject.SnapToSpace();
                 }
                 // Moves this grub towards the followed grid navigator.
                 float step = followedObject.MoveSpeed * Time.deltaTime;
-                Vector3 tilePos = gridObject.GetOccupyPosition(followedObject.GridObject.CurrentSpace);
+                Vector3 tilePos = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace);
                 SetRotation(followedObject.Direction);
                 transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
                 //Vector3 pos = followedObject.transform.position + -(Vector3Int)followedObject.Direction;

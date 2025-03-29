@@ -9,6 +9,7 @@ using Grubitecht.Combat;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Grubitecht.World.Pathfinding;
 
 namespace Grubitecht.World.Objects
 {

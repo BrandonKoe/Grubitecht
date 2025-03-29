@@ -10,19 +10,19 @@ using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
-    [RequireComponent(typeof(GridNavigator))]
+    [RequireComponent(typeof(PathNavigator))]
     [RequireComponent(typeof(SelectableObject))]
     public class MovableObject : MonoBehaviour
     {
         #region Component References
-        [field: SerializeReference, HideInInspector] public GridNavigator GridNavigator { get; private set; }
+        [field: SerializeReference, HideInInspector] public PathNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
         /// <summary>
         /// Assign component references.
         /// </summary>
         private void Reset()
         {
-            GridNavigator = GetComponent<GridNavigator>();
+            GridNavigator = GetComponent<PathNavigator>();
             selectable = GetComponent<SelectableObject>();
         }
         #endregion
