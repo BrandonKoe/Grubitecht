@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 namespace Grubitecht.UI
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenu : BaseMenu
     {
         [SerializeField,Tooltip("The name of the scene to load when the player hits play.")] 
         private string playScene;

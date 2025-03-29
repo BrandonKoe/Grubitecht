@@ -5,8 +5,6 @@
 //
 // Brief Description : Root class for components that interact with the game's combat system.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
