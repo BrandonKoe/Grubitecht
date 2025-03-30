@@ -27,6 +27,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to add tiles to.</param>
         /// <param name="position">The position to add a tile at.</param>
         /// <param name="type">The type of tile to add.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected override void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
             base.AddTile(tilemap, position, type);
@@ -42,6 +43,7 @@ namespace Grubitecht.Tilemaps
         /// </summary>
         /// <param name="tilemap">The tilemap to erase tiles from.</param>
         /// <param name="position">The position to erase a tile at.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected override void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
             base.EraseTile(tilemap, position);

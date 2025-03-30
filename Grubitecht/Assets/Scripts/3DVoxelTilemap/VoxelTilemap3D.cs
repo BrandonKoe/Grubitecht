@@ -9,6 +9,8 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+using UnityEngine.UIElements;
 
 
 
@@ -19,9 +21,9 @@ using UnityEditor;
 namespace Grubitecht.Tilemaps
 {
     [RequireComponent(typeof(GridLayout))]
-    [RequireComponent(typeof(MeshFilter))]
-    [RequireComponent(typeof(MeshRenderer))]
-    public class VoxelTilemap3D : MonoBehaviour, ISelectable
+    //[RequireComponent(typeof(MeshFilter))]
+    //[RequireComponent(typeof(MeshRenderer))]
+    public class VoxelTilemap3D : MonoBehaviour
     {
         #region CONSTS
         public const float CELL_SIZE = 1f;
@@ -29,7 +31,12 @@ namespace Grubitecht.Tilemaps
         private const string ASSET_FOLDER = "Assets";
         private const string MESH_FILE_EXTENSION = ".mesh";
         #endregion
-        [SerializeField] private string meshFilePath;
+        [SerializeField,Tooltip("The file path where the chunk meshes for this tilemap are stored.")]
+        private string meshFilePath;
+        [Header("Chunks")]
+        [SerializeField] private Chunk chunkPrefab;
+        [SerializeField, ReadOnly] private List<Chunk> chunks;
+        [SerializeField] private int chunkSize = 16;
         [Header("Tilemap Settings.")]
         [SerializeField] private SubTilemap[] subTilemaps;
 
@@ -54,7 +61,6 @@ namespace Grubitecht.Tilemaps
 
         #region Component References
         [SerializeReference, HideInInspector] private GridLayout gridLayout;
-        [SerializeReference, HideInInspector] private MeshFilter meshFilter;
 
         /// <summary>
         /// Assign Component references on reset.
@@ -62,7 +68,6 @@ namespace Grubitecht.Tilemaps
         private void Reset()
         {
             gridLayout = GetComponent<GridLayout>();
-            meshFilter = GetComponent<MeshFilter>();
         }
         #endregion
 
@@ -78,6 +83,7 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region Setup
         /// <summary>
         /// Assigns and de-assigns the instance of the tilemap that will be used as the default.
         /// </summary>
@@ -100,34 +106,17 @@ namespace Grubitecht.Tilemaps
                 instance = null;
             }
         }
+        #endregion
 
+        #region Adding/Removing Tiles
         /// <summary>
         /// Paints a voxel on this tilemap.
         /// </summary>
         /// <param name="position">The position to paint at.</param>
         /// <param name="type">The type of tile to paint.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         public void Paint(Vector3Int position, TileType type)
         {
-            //switch (type)
-            //{
-            //    case TileType.Ground:
-            //        // Removes redundant tiles.
-            //        if (wallTiles.Contains(position))
-            //        {
-            //            wallTiles.Remove(position);
-            //        }
-            //        groundTiles.Add(position);
-            //        break;
-            //    case TileType.Wall:
-            //        if (groundTiles.Contains(position))
-            //        {
-            //            groundTiles.Remove(position);
-            //        }
-            //        wallTiles.Add(position);
-            //        break;
-            //    default:
-            //        break;
-            //}
             foreach (SubTilemap submap in subTilemaps)
             {
                 if (submap.tiles.Contains(position) && submap.tileType != type)
@@ -139,13 +128,17 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Add(position);
                 }
             }
-            BakeMesh();
+            //if (refreshMesh)
+            //{
+            //    BakeMesh(position);
+            //}
         }
 
         /// <summary>
         /// Erases a voxel from this tilemap.
         /// </summary>
         /// <param name="position">The position to erase at.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         public void Erase(Vector3Int position)
         {
             foreach (SubTilemap submap in subTilemaps)
@@ -155,10 +148,13 @@ namespace Grubitecht.Tilemaps
                     submap.tiles.Remove(position);
                 }
             }
-            BakeMesh();
+            //if (refreshMesh)
+            //{
+            //    BakeMesh(position);
+            //}
         }
+        #endregion
 
-        #region Cell Checking
         #region Static Functions
         /// <summary>
         /// Gets all cells of a certain type that hace the same 2D coordinates.
@@ -168,6 +164,21 @@ namespace Grubitecht.Tilemaps
         public static List<Vector3Int> Main_GetCellsInColumn(Vector2Int position, TileType type)
         {
             return Instance.GetCellsInColumn(position, type);
+        }
+
+        /// <summary>
+        /// Finds the cell in a column that is the closest to a reference position
+        /// </summary>
+        /// <param name="position">The poistion of the clumn to get a cell from</param>
+        /// <param name="referencePosition">
+        /// The position to use as a reference when evaluating the closest cell.
+        /// </param>
+        /// <param name="type">The type of cells to get.</param>
+        /// <returns>The cell in the column closest to the reference position.</returns>
+        public static Vector3Int Main_GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, 
+            TileType type)
+        {
+            return Instance.GetClosestCellInColumn(position, referencePosition, type);
         }
 
         /// <summary>
@@ -189,7 +200,18 @@ namespace Grubitecht.Tilemaps
         {
             return Instance.GridToWorldPos(position);
         }
+
+        /// <summary>
+        /// Gets the list of tiles in this tilemap of a certain tile type.
+        /// </summary>
+        /// <param name="tileType">The type of tilemap list to get.</param>
+        /// <returns>The list of all tiles of a given type in the main tilemap.</returns>
+        public static List<Vector3Int> Main_GetTilemap(TileType type)
+        {
+            return Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+        }
         #endregion
+        #region Cell Checking
 
         /// <summary>
         /// Checks if a tile occupies a given cell.
@@ -237,8 +259,25 @@ namespace Grubitecht.Tilemaps
             List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
             return cells.FindAll(item => item.x == position.x && item.y == position.y);
         }
+
+        /// <summary>
+        /// Finds the cell in a column that is the closest to a reference position
+        /// </summary>
+        /// <param name="position">The poistion of the clumn to get a cell from</param>
+        /// <param name="referencePosition">
+        /// The position to use as a reference when evaluating the closest cell.
+        /// </param>
+        /// <param name="type">The type of cells to get.</param>
+        /// <returns>The cell in the column closest to the reference position.</returns>
+        public Vector3Int GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, TileType type)
+        {
+            List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+            return cells.FindAll(item => item.x == position.x && item.y == position.y).
+                OrderBy(item => Vector3.Distance(item, referencePosition)).FirstOrDefault();
+        }
         #endregion
 
+        #region Conversions
         /// <summary>
         /// Returns the world position of a cell in a grid layout at a given position.
         /// </summary>
@@ -296,17 +335,21 @@ namespace Grubitecht.Tilemaps
             gridPos.z = Mathf.RoundToInt(worldPos.y);
             return gridPos;
         }
+        #endregion
+
         #region Mesh Construction
 #if UNITY_EDITOR
         /// <summary>
-        /// Creates and assigns a mesh asset for this tilemap.
+        /// Creates and assigns a mesh asset for a given chunk of the tilemap.
         /// </summary>
-        [Button]
-        private void CreateMeshAsset()
+        private void CreateMeshAsset(Chunk chunk)
         {
             Mesh mesh = new Mesh();
-            meshFilter.sharedMesh = mesh;
-            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, gameObject.name + MESH_FILE_EXTENSION);
+            chunk.ChunkMesh = mesh;
+            mesh.MarkDynamic();
+            string filePath = System.IO.Path.Join(ASSET_FOLDER, meshFilePath, chunk.gameObject.name + 
+                chunk.ChunkPos.ToString() + MESH_FILE_EXTENSION);
+            chunk.MeshPath = filePath;
             AssetDatabase.CreateAsset(mesh, filePath);
         }
 #endif
@@ -319,9 +362,51 @@ namespace Grubitecht.Tilemaps
         }
 
         /// <summary>
-        /// Creates the mesh that will visualize the tilemap.
+        /// Updates the mesh that renders the tilemap.
         /// </summary>
-        private void BakeMesh()
+        /// <param name="gridPos">The position on the tilemap that was edited.</param>
+        public void BakeMesh(Vector3Int gridPos)
+        {
+            Vector2Int chunkPos = GetChunkPos(gridPos);
+
+            // Ensures no null references exist when finding chunks.
+            chunks.RemoveAll(item => item == null);
+            // Get the chunk we are working with.
+            Chunk chunk = GetChunk(chunkPos);
+            // Make a new chunk if we are working with a chunk that doesn't exist.
+            if (chunk == null)
+            {
+                chunk = CreateNewChunk(chunkPos);
+            }
+            BakeChunkMesh(chunk);
+
+            // If we are painting on the edge where two chunks intersect, then we need to update both chunks to avoid
+            // a chunk not updating properly and showing a hole.
+            Vector3Int relativePos = GridToRelativePos(gridPos);
+            if (relativePos.x == 0 || relativePos.x == chunkSize - 1)
+            {
+                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.x) * Vector2Int.right);
+                Chunk offsetChunk = GetChunk(offsetChunkPos);
+                if (offsetChunk != null)
+                {
+                    BakeChunkMesh(offsetChunk);
+                }
+            }
+            if (relativePos.y == 0 || relativePos.y == chunkSize - 1)
+            {
+                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.y) * Vector2Int.up);
+                Chunk offsetChunk = GetChunk(offsetChunkPos);
+                if (offsetChunk != null)
+                {
+                    BakeChunkMesh(offsetChunk);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Creates the mesh that will visualize a specific chunk of the tilemap.
+        /// </summary>
+        private void BakeChunkMesh(Chunk chunk)
         {
             // Define a dictionary to store indicies of our verticies.
             Dictionary<VertexSignature, int> vertexIndicies = new Dictionary<VertexSignature, int>();
@@ -342,11 +427,16 @@ namespace Grubitecht.Tilemaps
                 return index;
             }
 
-            // Loops through all voxels in a list and queues faces that need to be rendered for them.
-            void AddVoxelFaces(SubTilemap submap)
+            // Loops through all voxels in a submap that are within the chunk add adds their faces to the mesh.
+            bool AddVoxelFaces(SubTilemap submap, Vector2Int chunkPos)
             {
-                foreach(Vector3Int gridPos in submap.tiles)
+                bool returnValue = false;
+                List<Vector3Int> inChunk = submap.tiles.FindAll(item => GetChunkPos(item) == chunkPos);
+                foreach (Vector3Int gridPos in inChunk)
                 {
+                    // If at least one position from this submap was evaluated, then were will return true.
+                    // Only return false if this submap is empty.
+                    returnValue |= true;
                     foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
                     {
                         // If there is a voxel adjacent to this one, then we skip drawing a face.
@@ -354,15 +444,16 @@ namespace Grubitecht.Tilemaps
                         {
                             continue;
                         }
-                        // Uses ground by default.  Fix this.
-                        AddFace(gridPos, direction, submap.tileType);
+                        // Turns the grid position into a position relative to the chunk we are in.
+                        AddFace(GridToRelativePos(gridPos), direction, submap.tileType);
                     }
                 }
+                return returnValue;
             }
 
             List<int> trianglesList = new List<int>();
             // Adds a face that should be created when the mesh is baked.
-            void AddFace(Vector3Int gridPosition, Vector3Int direction, TileType type)
+            void AddFace(Vector3Int relativePos, Vector3Int direction, TileType type)
             {
                 direction = GridToLocalDirection(direction);
                 Vector3Int[] vertexOffsets = FaceLookup.GetVertexOffsets(direction);
@@ -370,7 +461,7 @@ namespace Grubitecht.Tilemaps
                 // Gets the local position of the bottom-left-back corner of this grid position.
                 // Calling this Corner Space.  Verticies are calculated in corner space because the world is
                 // entirely made of 1 x 1 x 1 voxels that should have their corners exist at integer positions.
-                Vector3Int cornerPos = GridToLocalCorner(gridPosition);
+                Vector3Int cornerPos = GridToLocalCorner(relativePos);
 
                 // Initializes the vertex signature that will be used for the verticies of this face.
                 VertexSignature signature;
@@ -404,10 +495,18 @@ namespace Grubitecht.Tilemaps
             }
             #endregion
 
+            bool notEmpty = false;
             // Add faces for ground and wall tiles.
             foreach (SubTilemap submap in subTilemaps)
             {
-                AddVoxelFaces(submap);
+                notEmpty |= AddVoxelFaces(submap, chunk.ChunkPos);
+            }
+            // If, after looping through all the submaps, our chunk contains no values then we should destroy this
+            // chunk.
+            if (!notEmpty)
+            {
+                DestroyChunk(chunk);
+                return;
             }
 
             // Mesh creation
@@ -416,7 +515,7 @@ namespace Grubitecht.Tilemaps
             int[] triangles = trianglesList.ToArray();
 
             // Gets a reference to a pre-existing mesh file.
-            Mesh mesh = meshFilter.sharedMesh;
+            Mesh mesh = chunk.ChunkMesh;
 
             foreach (var pair in vertexIndicies)
             {
@@ -492,18 +591,82 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region Chunking
         /// <summary>
-        /// Nothing happens (at present) when the Voxel Tilemap is selected.  It just needs to be selectable for
-        /// the selection system to be able to select specific spaces.
+        /// Gets the chunk at a given chunk position.
         /// </summary>
-        /// <param name="oldObj"></param>
-        public void OnSelect(ISelectable oldObj)
+        /// <param name="chunkPos">The chunk position to check.</param>
+        /// <returns>The chunk at the given chunk position.</returns>
+        private Chunk GetChunk(Vector2Int chunkPos)
         {
-            // Nothing happens.
+            return chunks.Find(item => item.ChunkPos == chunkPos);
         }
-        public void OnDeselect(ISelectable newObj)
+
+        /// <summary>
+        /// Gets the chunk position of a certain space on the grid.
+        /// </summary>
+        /// <param name="gridPos">The grid position to get the chunk of.</param>
+        /// <returns>The position of the chunk this grid lies on.</returns>
+        private Vector2Int GetChunkPos(Vector3Int gridPos)
         {
-            // nothing happens.
+            gridPos.x = GetChunkPos(gridPos.x);
+            gridPos.y = GetChunkPos(gridPos.y);
+            return (Vector2Int)gridPos;
         }
+
+        /// <summary>
+        /// Converts a component of a grid position into a chunk position.
+        /// </summary>
+        /// <param name="gridPos">The position on the grid.</param>
+        /// <returns>The chunk position the grid is within.</returns>
+        private int GetChunkPos(int gridPos)
+        {
+            int skew = MathHelpers.GetSign(gridPos) < 0 ? -(chunkSize - 1): 0;
+            return (gridPos + skew) / chunkSize;
+        }
+
+        /// <summary>
+        /// Converts a grid position into a relative position within it's chunk.
+        /// </summary>
+        /// <param name="gridPos"></param>
+        /// <returns></returns>
+        private Vector3Int GridToRelativePos(Vector3Int gridPos)
+        {
+            gridPos.x = MathHelpers.Mod(gridPos.x, chunkSize);
+            gridPos.y = MathHelpers.Mod(gridPos.y, chunkSize);
+            return gridPos;
+        }
+
+        /// <summary>
+        /// Creates a new chunk at a given chunk position.
+        /// </summary>
+        /// <param name="chunkPos">The chunk position to create the chunk at.</param>
+        /// <returns>The created chunk.</returns>
+        private Chunk CreateNewChunk(Vector2Int chunkPos)
+        {
+            Chunk chunk = PrefabUtility.InstantiatePrefab(chunkPrefab, transform) as Chunk;
+            chunk.transform.position = new Vector3(chunkPos.x, 0, chunkPos.y) * chunkSize;
+            chunk.Initialize(this, chunkPos);
+            chunks.Add(chunk);
+#if UNITY_EDITOR
+            CreateMeshAsset(chunk);
+#endif
+            return chunk;
+        }
+
+        /// <summary>
+        /// Destroys a given chunk.
+        /// </summary>
+        /// <param name="chunk">The chunk to destroy.</param>
+        private void DestroyChunk(Chunk chunk)
+        {
+            chunks.Remove(chunk);
+#if UNITY_EDITOR
+            // Deletes the mesh associated with this chunk.
+            AssetDatabase.DeleteAsset(chunk.MeshPath);
+#endif
+            DestroyImmediate(chunk.gameObject);
+        }
+        #endregion
     }
 }

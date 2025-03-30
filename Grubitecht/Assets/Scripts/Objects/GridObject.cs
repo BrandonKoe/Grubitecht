@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Grubitecht.World.Objects
 {
-    public class GridObject : GridBehaviour
+    public class GridObject : MonoBehaviour
     {
         #region CONSTS
         public const TileType VALID_GROUND_TYPE = TileType.Ground;
@@ -31,21 +31,23 @@ namespace Grubitecht.World.Objects
 
         private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
+        public event Action OnChangeSpace;
+
         /// <summary>
         /// Assigns this object a space when it is created.
         /// </summary>
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
+            //base.Awake();
             allObjectList.Add(this);
             SetCurrentSpace(GetApproximateSpace());
             SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
+            //base.OnDestroy();
             allObjectList.Remove(this);
         }
 
@@ -58,6 +60,7 @@ namespace Grubitecht.World.Objects
             Vector2Int approxSpace = new Vector2Int();
             approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
             approxSpace.y = Mathf.RoundToInt(transform.position.z - VoxelTilemap3D.CELL_SIZE / 2);
+            //Debug.Log(approxSpace);
             // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
             // the one with the closest elevation.  This ensures that the object snaps from gravity.
             List<Vector3Int> possibleSpaces = VoxelTilemap3D.Main_GetCellsInColumn(approxSpace, VALID_GROUND_TYPE);
@@ -71,21 +74,27 @@ namespace Grubitecht.World.Objects
         public void SetCurrentSpace(Vector3Int newSpace)
         {
             // Cant set our space to a space that doesnt exist.
-            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { return; }
+            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { Debug.Log("Invalid Space " + newSpace); return; }
             Vector3Int oldSpace = CurrentSpace;
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
+                GridObject objInSpace = GetObjectAtSpace(newSpace);
+                //Debug.Log(objInSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
-                if (GetObjectAtSpace(newSpace) != null)
-                {
+                if (objInSpace != null && objInSpace != this)
+                { 
                     return;
                 }
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
-                RefreshMap(this, oldSpace, CurrentSpace);
+                // Switching this system to one where grid navigators only re-evaluate paths if they run into
+                // a problem, not each time the map changes.
+                //RefreshMap(this, oldSpace, CurrentSpace);
             }
             CurrentSpace = newSpace;
+            //Debug.Log(name + " changed space");
+            OnChangeSpace?.Invoke();
         }
 
         /// <summary>
@@ -114,6 +123,16 @@ namespace Grubitecht.World.Objects
         public static GridObject GetObjectAtSpace(Vector3Int space)
         {
             return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
+        }
+
+        /// <summary>
+        /// Checks if a given space is occupied.
+        /// </summary>
+        /// <param name="space">The space to check.</param>
+        /// <returns>True if the space is occupied.</returns>
+        public static bool CheckOccupied(Vector3Int space)
+        {
+            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) != null;
         }
     }
 }

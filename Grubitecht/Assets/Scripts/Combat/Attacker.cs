@@ -11,10 +11,11 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackableTargeter))]
+    [RequireComponent(typeof(Combatant))]
     public class Attacker : CombatBehaviour
     {
         [SerializeField] private float attackDelay;
-        [SerializeField] private int strength;
+        [field: SerializeField] public int AttackStat { get; set; }
         private bool isAttacking;
         #region Component References
         [SerializeReference, HideInInspector] private AttackableTargeter targeter;
@@ -24,6 +25,7 @@ namespace Grubitecht.Combat
         /// </summary>
         protected override void Reset()
         {
+            base.Reset();
             targeter = GetComponent<AttackableTargeter>();
         }
         #endregion
@@ -38,8 +40,8 @@ namespace Grubitecht.Combat
         }
         private void OnDestroy()
         {
-            targeter.OnGainTarget += HandleOnGainTarget;
-            targeter.OnLoseTarget += HandleOnLoseTarget;
+            targeter.OnGainTarget -= HandleOnGainTarget;
+            targeter.OnLoseTarget -= HandleOnLoseTarget;
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace Grubitecht.Combat
                 return;
             }
             // Attack the closest target.
-            target.TakeDamage(strength);
+            target.TakeDamage(AttackStat);
         }
     }
 }

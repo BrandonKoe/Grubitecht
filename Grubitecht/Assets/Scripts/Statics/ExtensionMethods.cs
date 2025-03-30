@@ -25,6 +25,18 @@ namespace Grubitecht
             value.y = Mathf.Clamp(value.y, min, max);
             value.z = Mathf.Clamp(value.z, min, max);
         }
+
+        /// <summary>
+        /// Returns the duration of the current animation this animator is playing.
+        /// </summary>
+        /// <param name="animator">The animator to get the animation duraction of.</param>
+        /// <returns>The duration of the animation this animator is executing in seconds.</returns>
+        public static float GetAnimationDuration(this Animator animator)
+        {
+            animator.Update(0);
+            float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+            return animationDuration;
+        }
     }
 
 }

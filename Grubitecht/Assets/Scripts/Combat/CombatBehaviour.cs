@@ -5,13 +5,10 @@
 //
 // Brief Description : Root class for components that interact with the game's combat system.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
-    [RequireComponent(typeof(Combatant))]
     public abstract class CombatBehaviour : MonoBehaviour
     {
         #region Component References
@@ -29,6 +26,13 @@ namespace Grubitecht.Combat
             get 
             {
                 return combatant.CombatTeam;
+            }
+        }
+        public CombatTags Tags
+        {
+            get
+            {
+                return combatant.CombatTags;
             }
         }
         #endregion

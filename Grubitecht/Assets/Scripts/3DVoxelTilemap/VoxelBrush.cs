@@ -33,6 +33,7 @@ namespace Grubitecht.Tilemaps
 #endif
         #endregion
 
+
         /// <summary>
         /// Paints a voxel to the target 3D voxel tilemap
         /// </summary>
@@ -50,6 +51,7 @@ namespace Grubitecht.Tilemaps
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
             AddTile(tilemap, position, tileType);
+            tilemap.BakeMesh(position);
         }
 
         /// <summary>
@@ -58,6 +60,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="tilemap">The tilemap to add a tile to.</param>
         /// <param name="position">The position to add the tile at.</param>
         /// <param name="type">The type of tile to add.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position, TileType type)
         {
             if (!tilemap.CheckCell(position))
@@ -83,6 +86,7 @@ namespace Grubitecht.Tilemaps
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
             EraseTile(tilemap, position);
+            tilemap.BakeMesh(position);
         }
 
         /// <summary>
@@ -90,6 +94,7 @@ namespace Grubitecht.Tilemaps
         /// </summary>
         /// <param name="tilemap">The tilemap to erase from.</param>
         /// <param name="position">The position to erase at.</param>
+        /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected virtual void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
             if (tilemap.CheckCell(position))
