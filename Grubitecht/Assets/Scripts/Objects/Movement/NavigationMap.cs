@@ -3,7 +3,7 @@
 // Author : Brandon Koederitz
 // Creation Date : March 29, 2025
 //
-// Brief Description : Uses a pseudo-Dijkra pathfinding algorith to construct a map of the level with distances
+// Brief Description : Uses a pseudo-Dijkstra pathfinding algorith to construct a map of the level with distances
 // pertaining to the distance from a certain set of positions.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
@@ -39,6 +39,7 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="positions">The positions of the objects to update the map with.</param>
         public void UpdateMap(Vector3Int[] positions)
         {
+            if (mapDict == null) { return; }
             mapDict = UpdateNavigationMap(mapDict, positions);
         }
 
@@ -68,7 +69,7 @@ namespace Grubitecht.World.Pathfinding
         }
         #endregion
 
-        #region Dijkra's Style Pathfinding Nav-Mesh
+        #region Dijkstra's Style Pathfinding Nav-Mesh
 
         /// <summary>
         /// Generates a path map based on the ground positions of the voxel tilemap
@@ -100,7 +101,7 @@ namespace Grubitecht.World.Pathfinding
         public static Dictionary<Vector3Int, int> UpdateNavigationMap(Dictionary<Vector3Int, int> referenceMap,
             Vector3Int[] destinations)
         {
-            //Debug.Log("Updating Navigation Map" + referenceMap.Count);
+            Debug.Log("Updating Navigation Map" + referenceMap.Count);
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
             List<Vector3Int> unvisited = new List<Vector3Int>();
             List<Vector3Int> visited = new List<Vector3Int>();

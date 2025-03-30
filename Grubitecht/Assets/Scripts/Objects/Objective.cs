@@ -43,11 +43,15 @@ namespace Grubitecht.World.Objects
         {
             currentObjectives.Add(this);
             attackable.OnDeath += OnDeath;
+            // Need to update the nav map whenever the objective changes spaces.  This may cause lag.
+            gridObject.OnChangeSpace += UpdateNavMap;
         }
+
         private void OnDestroy()
         {
             attackable.OnDeath -= OnDeath;
             currentObjectives.Remove(this);
+            gridObject.OnChangeSpace -= UpdateNavMap;
         }
 
         /// <summary>

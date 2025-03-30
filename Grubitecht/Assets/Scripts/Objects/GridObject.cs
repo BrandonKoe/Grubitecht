@@ -31,6 +31,8 @@ namespace Grubitecht.World.Objects
 
         private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
+        public event Action OnChangeSpace;
+
         /// <summary>
         /// Assigns this object a space when it is created.
         /// </summary>
@@ -72,12 +74,13 @@ namespace Grubitecht.World.Objects
         public void SetCurrentSpace(Vector3Int newSpace)
         {
             // Cant set our space to a space that doesnt exist.
-            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { return; }
+            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { Debug.Log("Invalid Space " + newSpace); return; }
             Vector3Int oldSpace = CurrentSpace;
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
                 GridObject objInSpace = GetObjectAtSpace(newSpace);
+                //Debug.Log(objInSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
                 if (objInSpace != null && objInSpace != this)
                 { 
@@ -90,6 +93,8 @@ namespace Grubitecht.World.Objects
                 //RefreshMap(this, oldSpace, CurrentSpace);
             }
             CurrentSpace = newSpace;
+            //Debug.Log(name + " changed space");
+            OnChangeSpace?.Invoke();
         }
 
         /// <summary>

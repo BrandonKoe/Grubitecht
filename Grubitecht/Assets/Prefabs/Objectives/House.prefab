@@ -172,8 +172,8 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
+  <gridObject>k__BackingField: {fileID: 3825473799906071446}
   updateSpaceDuringPath: 0
-  <GridObject>k__BackingField: {fileID: 3825473799906071446}
 --- !u!114 &5662944055489265786
 MonoBehaviour:
   m_ObjectHideFlags: 0

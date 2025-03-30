@@ -44,7 +44,6 @@ namespace Grubitecht.World.Pathfinding
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             Vector3Int tileToStart = gridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
-
             if (movementRoutine != null)
             {
                 StopCoroutine(movementRoutine);
@@ -81,7 +80,7 @@ namespace Grubitecht.World.Pathfinding
             // that placement later.
             if (!updateSpaceDuringPath)
             {
-                gridObject.SetCurrentSpace(currentPathSpace);
+                gridObject.SetCurrentSpace(destination);
             }
             while (currentPath.Count > 0)
             {

@@ -163,9 +163,10 @@ MonoBehaviour:
     and terrain by selecting them and then clicking a space.
 
     Structures automatically
-    attack enemies.
+    attack enemies.  The banner structure will buff nearby structures instead.
 
-    Defend your objectives from the waves of enemies.'
+    Defend
+    your objectives from the waves of enemies.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
