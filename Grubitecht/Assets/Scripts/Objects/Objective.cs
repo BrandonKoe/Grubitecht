@@ -96,7 +96,7 @@ namespace Grubitecht.World.Objects
             currentObjectives.Remove(this);
             if (currentObjectives.Count == 0)
             {
-
+                LevelManager.LoseLevel();
             }
             else
             {

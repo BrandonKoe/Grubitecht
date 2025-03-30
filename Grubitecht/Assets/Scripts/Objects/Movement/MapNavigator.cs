@@ -83,7 +83,7 @@ namespace Grubitecht.World.Pathfinding
                 }
                 // Snap to the space after movement has finished.
                 gridObject.SnapToSpace();
-                // In here for now to stop potential infinite loops.
+                // In here for now to stop potential infinite loops that can cause crashes.
                 yield return null;
             }
             movementRoutine = null;

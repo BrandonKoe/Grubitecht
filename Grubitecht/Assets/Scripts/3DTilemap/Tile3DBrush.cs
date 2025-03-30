@@ -8,15 +8,6 @@
 // representing points along the grid and Z representing elevation.
 *****************************************************************************/
 using UnityEngine;
-using Unity.VisualScripting;
-using System.Dynamic;
-using System.Collections.Generic;
-using UnityEngine.UIElements;
-
-
-
-
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -100,8 +91,10 @@ namespace Grubitecht.OldTilemaps
             // If the user has pressed the space key, then we increment the position of the tile by half the cell
             // size to allow for the easy creation of stepping stones in our map.
             if (HalfStepPlacement) { worldPos.y += CELL_SIZE / 2; }
+#if UNITY_EDITOR
             // Use InstantiatePrefab to keep a prefab link on created tile prefabs.
             Tile3D createdTile = PrefabUtility.InstantiatePrefab(tile, targetTransform) as Tile3D;
+#endif
             createdTile.transform.position = worldPos;
             createdTile.OnTileCreation(position);
 

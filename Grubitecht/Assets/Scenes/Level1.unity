@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da6657a780464498747850026db5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winLevelDisplay: {fileID: 0}
+  loseLevelDisplay: {fileID: 0}
 --- !u!1001 &227617112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2757,8 +2759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
-  winLevelDisplay: {fileID: 1403608348}
-  delayBetweenWaves: 30
+  delayBetweenWaves: 45
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0

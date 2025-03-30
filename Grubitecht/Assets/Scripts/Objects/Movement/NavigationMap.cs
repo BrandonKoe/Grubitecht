@@ -90,6 +90,16 @@ namespace Grubitecht.World.Pathfinding
         }
 
         /// <summary>
+        /// Resets a navigation map with the default values.
+        /// </summary>
+        /// <param name="refMap"></param>
+        /// <returns></returns>
+        public static Dictionary<Vector3Int, int> ResetNavigationMap(Dictionary<Vector3Int, int> refMap)
+        {
+            return refMap.ToDictionary(item => item.Key, item => REALLY_BIG_NUMBER);
+        }
+
+        /// <summary>
         /// Updates a path map using A Dijkra style pathfinding algorithm.
         /// </summary>
         /// <remarks>
@@ -101,7 +111,8 @@ namespace Grubitecht.World.Pathfinding
         public static Dictionary<Vector3Int, int> UpdateNavigationMap(Dictionary<Vector3Int, int> referenceMap,
             Vector3Int[] destinations)
         {
-            Debug.Log("Updating Navigation Map" + referenceMap.Count);
+            referenceMap = ResetNavigationMap(referenceMap);
+            Debug.Log("Updating Navigation Map with " + referenceMap.Count + " spaces and " + destinations.Length + " destinations");
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
             List<Vector3Int> unvisited = new List<Vector3Int>();
             List<Vector3Int> visited = new List<Vector3Int>();

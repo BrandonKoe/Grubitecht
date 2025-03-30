@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
@@ -64,6 +76,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5437131417601657913, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: strength
       value: 1
@@ -79,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Name
       value: TiphiaForerunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: detectionRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7289939843691556427, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
