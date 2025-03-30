@@ -94,6 +94,16 @@ namespace Grubitecht.World.Objects
         private void OnDeath()
         {
             currentObjectives.Remove(this);
+            if (currentObjectives.Count == 0)
+            {
+
+            }
+            else
+            {
+                // Need to update the nav map when an objective is destroyed so that enemies dont funnel towards
+                // an emmpty space.
+                UpdateNavMap();
+            }
         }
 
         /// <summary>

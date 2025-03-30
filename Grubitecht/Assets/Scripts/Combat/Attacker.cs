@@ -5,6 +5,7 @@
 //
 // Brief Description : Base class for components that let an object attack and deal damage to attackable objects.
 *****************************************************************************/
+using Grubitecht.World;
 using System.Collections;
 using UnityEngine;
 
@@ -73,7 +74,7 @@ namespace Grubitecht.Combat
         /// <returns>Coroutine.</returns>
         private IEnumerator AttackRoutine()
         {
-            while (isAttacking)
+            while (isAttacking && LevelManager.IsPlaying)
             {
                 yield return new WaitForSeconds(attackDelay);
                 Attack();

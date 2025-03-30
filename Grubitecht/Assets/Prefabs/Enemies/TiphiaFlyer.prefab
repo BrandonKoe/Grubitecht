@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4839938847972710440, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <CombatTags>k__BackingField
       value: -1
@@ -78,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <AttackStat>k__BackingField
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Name

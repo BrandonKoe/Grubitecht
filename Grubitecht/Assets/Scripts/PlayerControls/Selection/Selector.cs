@@ -92,6 +92,8 @@ namespace Grubitecht
         /// <param name="obj">unused.</param>
         private void SelectAction_Performed(InputAction.CallbackContext obj)
         {
+            // Players cannot select if the level is not playing.
+            if (!LevelManager.IsPlaying) { return; }
             ISelectable clicked = GetSelectableAtMousePos();
             // If the currently selected object is clicked, then it is deselected.
             CurrentSelection = clicked == CurrentSelection ? null : clicked;
