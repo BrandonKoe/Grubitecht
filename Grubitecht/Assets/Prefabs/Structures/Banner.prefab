@@ -384,6 +384,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   targeter: {fileID: 5197117241284157715}
   attackBoost: 3
+  selectableObject: {fileID: 7498736004895158522}
 --- !u!114 &3442883350765597410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
