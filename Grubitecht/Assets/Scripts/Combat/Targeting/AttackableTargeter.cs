@@ -12,6 +12,14 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(SphereCollider))]
     public class AttackableTargeter : TargeterGeneric<Attackable>
     {
-        
+        protected override void SubscribeDeadRemoval()
+        {
+            Attackable.DeathBroadcast += RemoveTarget;
+        }
+
+        protected override void UnsubscribeDeadRemoval()
+        {
+            Attackable.DeathBroadcast -= RemoveTarget;
+        }
     }
 }

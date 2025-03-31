@@ -93,7 +93,11 @@ namespace Grubitecht.Waves
             foreach (Wave.Subwave subwave in wave.Subwaves)
             {
                 yield return new WaitForSeconds(subwave.Delay);
-
+                // Stop spawning waves if the level is finished.
+                if (!LevelManager.IsPlaying)
+                {
+                    yield break;
+                }
                 SpawnSubwave(subwave);
             }
             // Wave is finished.

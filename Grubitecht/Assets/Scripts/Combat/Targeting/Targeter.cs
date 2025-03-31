@@ -58,7 +58,7 @@ namespace Grubitecht.Combat
         /// Subscribe/Unsubscribe enabling/disabling the visualizer to the selectable object component on this 
         /// object's OnSelect and OnDeselect events so the visualizer will appear when this object is selected.
         /// </summary>
-        private void Awake()
+        protected override void Awake()
         {
             if (selectableObject != null)
             {
@@ -68,7 +68,7 @@ namespace Grubitecht.Combat
                 selectableObject.OnDeselectEvent += DisableVisualizer;
             }
         }
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             if (selectableObject != null)
             {

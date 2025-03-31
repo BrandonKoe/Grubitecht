@@ -52,11 +52,6 @@ namespace Grubitecht.World.Pathfinding
             // Dont move if our current path is empty.
             if (currentPath.Count == 0)
             {
-                // If we're already moving, then we should stop if our new path is empty.
-                if(IsMoving)
-                {
-                    StopMoving();
-                }
                 return;
             }
             if (movementRoutine != null)
