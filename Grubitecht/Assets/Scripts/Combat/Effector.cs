@@ -32,13 +32,15 @@ namespace Grubitecht.Combat
         /// <summary>
         /// Subscribe/Unsubscribe from targeter events.
         /// </summary>
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             targeter.OnGainTargetGeneric += HandleOnGainTarget;
             targeter.OnLoseTargetGeneric += HandleOnLoseTarget;
         }
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.Awake();
             targeter.OnGainTargetGeneric -= HandleOnGainTarget;
             targeter.OnLoseTargetGeneric -= HandleOnLoseTarget;
         }

@@ -23,7 +23,7 @@ namespace Grubitecht.World.Pathfinding
     {
         #region CONSTS
         // The number of tiles that get evaluated per frame. More means more chance of lag, but a faster refresh time.
-        private const int TILES_PER_FRAME = 1;
+        private const int TILES_PER_SECOND = 120;
         #endregion
         private readonly DestinationGetterFunc destinationGetter;
         private readonly int climbHeight;
@@ -173,9 +173,9 @@ namespace Grubitecht.World.Pathfinding
                 // Mark this current node as visited.
                 visited.Add(currentNode);
                 unvisited.Remove(currentNode);
-                // Only evaluate a certain number of tiles each frame before yielding control to avoid lag.
+                // Only evaluate a certain number of tiles each second before yielding control to avoid lag.
                 iterationCounter++;
-                if (iterationCounter == TILES_PER_FRAME)
+                if (iterationCounter >= Mathf.RoundToInt(TILES_PER_SECOND * Time.deltaTime))
                 {
                     iterationCounter = 0;
                     yield return null;

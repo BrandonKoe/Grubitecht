@@ -9,7 +9,6 @@ using Grubitecht.Combat;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
-using NaughtyAttributes;
 using UnityEngine;
 
 namespace Grubitecht.World
@@ -74,7 +73,6 @@ namespace Grubitecht.World
         /// <remarks>
         /// Called by the spawn point when this enemy spawns.
         /// </remarks>
-        [Button]
         public void StartMoving()
         {
             mapNavigator.StartMoving(Objective.NavMap);

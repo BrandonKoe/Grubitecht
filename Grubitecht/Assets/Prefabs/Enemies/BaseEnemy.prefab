@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
+  attackable: {fileID: 0}
   <CombatTeam>k__BackingField: 1
   <CombatTags>k__BackingField: 0
 --- !u!114 &6308435001518308473
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
+  attackable: {fileID: 0}
   detectionVisual: {fileID: 2377592230455766907}
   detectionRange: 1
   targetingType: 0
@@ -233,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
+  attackable: {fileID: 0}
   attackDelay: 2
   <AttackStat>k__BackingField: 5
   targeter: {fileID: 6308435001518308473}
@@ -276,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
+  attackable: {fileID: 0}
   maxHealth: 20
   <Health>k__BackingField: 0
 --- !u!114 &6254574678074587637
@@ -307,6 +311,7 @@ MonoBehaviour:
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
+  ignorePreviousSpaces: 0
 --- !u!114 &6023088415999457275
 MonoBehaviour:
   m_ObjectHideFlags: 0

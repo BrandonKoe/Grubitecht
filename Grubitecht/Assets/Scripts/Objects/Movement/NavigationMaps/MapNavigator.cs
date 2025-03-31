@@ -21,7 +21,9 @@ namespace Grubitecht.World.Pathfinding
         // than 1 so that they value moving towards the objective more.
         private const float AVOIDANCE_BIAS = 0.1f;
         #endregion
-
+        [SerializeField, Tooltip("If this is set to true, then this object will not move to the space it was " +
+            "previously on.")] 
+        private bool ignorePreviousSpaces;
         private bool isMoving;
 
         public override bool IsMoving => isMoving;
@@ -63,14 +65,17 @@ namespace Grubitecht.World.Pathfinding
                 // Exclude inaccessible spaces here.
                 possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && (GridObject.GetObjectAtSpace(item) != null));
                 possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.z - item.z) > jumpHeight);
-                possibleSpaces.RemoveAll(item => item == previousSpace);
+                if (ignorePreviousSpaces)
+                {
+                    possibleSpaces.RemoveAll(item => item == previousSpace);
+                }
 
                 // If the object runs into another object while pathfinding, then it should attempt to get away from
                 // that object as much as possible in addition to moving towards the objective.  This is to make it so
                 // that objects attempt to find a new path if their current one is blocked.
                 Vector3Int nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item)).FirstOrDefault();
 
-                Debug.Log("Moving to space with distance value: " + navMap.GetDistanceValue(nextSpace));
+                //Debug.Log($"Moving to space {nextSpace} with distance value: {navMap.GetDistanceValue(nextSpace)}");
 
                 // If zero is returned, then that is the default and there must be no valid spaces to move to at the
                 // moment.
@@ -97,6 +102,7 @@ namespace Grubitecht.World.Pathfinding
                 // In here for now to stop potential infinite loops that can cause crashes.
                 yield return null;
             }
+            Debug.Log("Movement finished");
             movementRoutine = null;
         }
     }

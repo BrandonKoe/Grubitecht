@@ -20,11 +20,14 @@ namespace Grubitecht.Combat
 
         public event Action OnDeath;
 
+        public static event Action<Attackable> DeathBroadcast;
+
         /// <summary>
         /// Set health to max.
         /// </summary>
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Health = maxHealth;
         }
 
@@ -62,7 +65,8 @@ namespace Grubitecht.Combat
         private void Die()
         {
             OnDeath?.Invoke();
-
+            // Broadcast out to any listeners that this object has died.
+            DeathBroadcast?.Invoke(this);
             // Destroy the game object when objects die for now.
             Destroy(gameObject);
         }
