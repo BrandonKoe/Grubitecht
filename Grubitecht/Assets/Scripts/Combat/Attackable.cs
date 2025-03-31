@@ -17,6 +17,7 @@ namespace Grubitecht.Combat
     {
         [SerializeField] private int maxHealth;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
+        [SerializeField] private Color damageIndicatorColor;
 
         public event Action OnDeath;
 
@@ -52,7 +53,7 @@ namespace Grubitecht.Combat
         {
             // Show the change to the health value here.
             Health += value;
-            DamageIndicator.DisplayHealthChange(value, this);
+            DamageIndicator.DisplayHealthChange(value, this, damageIndicatorColor);
             if (Health <= 0)
             {
                 Die();

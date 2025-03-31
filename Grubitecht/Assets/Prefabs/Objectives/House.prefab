@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 510308414473040261}
+  attackable: {fileID: 0}
   <CombatTeam>k__BackingField: 0
   <CombatTags>k__BackingField: 0
 --- !u!114 &3340188535086003367
@@ -180,8 +181,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 510308414473040261}
+  attackable: {fileID: 0}
   maxHealth: 50
   <Health>k__BackingField: 0
+  damageIndicatorColor: {r: 0.9216414, g: 0.98742133, b: 0.87253267, a: 1}
 --- !u!114 &706373850487136439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0.5, z: 0}
   occupySpace: 1
+  <CauseAvoidance>k__BackingField: 1
   <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &8198032086363522331
 GameObject:

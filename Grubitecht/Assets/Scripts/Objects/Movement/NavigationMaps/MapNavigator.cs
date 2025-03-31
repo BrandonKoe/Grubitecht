@@ -16,11 +16,6 @@ namespace Grubitecht.World.Pathfinding
 {
     public class MapNavigator : GridNavigator
     {
-        #region CONSTS
-        // How much map navigators prefer to move away from spaces that resulted in a roadblock.  Should be less
-        // than 1 so that they value moving towards the objective more.
-        private const float AVOIDANCE_BIAS = 0.1f;
-        #endregion
         [SerializeField, Tooltip("If this is set to true, then this object will not move to the space it was " +
             "previously on.")] 
         private bool ignorePreviousSpaces;
@@ -70,9 +65,6 @@ namespace Grubitecht.World.Pathfinding
                     possibleSpaces.RemoveAll(item => item == previousSpace);
                 }
 
-                // If the object runs into another object while pathfinding, then it should attempt to get away from
-                // that object as much as possible in addition to moving towards the objective.  This is to make it so
-                // that objects attempt to find a new path if their current one is blocked.
                 Vector3Int nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item)).FirstOrDefault();
 
                 //Debug.Log($"Moving to space {nextSpace} with distance value: {navMap.GetDistanceValue(nextSpace)}");
