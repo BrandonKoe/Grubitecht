@@ -337,8 +337,9 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region EditorOnly
+        #if UNITY_EDITOR
         #region Mesh Construction
-#if UNITY_EDITOR
         /// <summary>
         /// Creates and assigns a mesh asset for a given chunk of the tilemap.
         /// </summary>
@@ -352,7 +353,6 @@ namespace Grubitecht.Tilemaps
             chunk.MeshPath = filePath;
             AssetDatabase.CreateAsset(mesh, filePath);
         }
-#endif
 
         private struct VertexSignature
         {
@@ -648,9 +648,7 @@ namespace Grubitecht.Tilemaps
             chunk.transform.position = new Vector3(chunkPos.x, 0, chunkPos.y) * chunkSize;
             chunk.Initialize(this, chunkPos);
             chunks.Add(chunk);
-#if UNITY_EDITOR
             CreateMeshAsset(chunk);
-#endif
             return chunk;
         }
 
@@ -661,12 +659,12 @@ namespace Grubitecht.Tilemaps
         private void DestroyChunk(Chunk chunk)
         {
             chunks.Remove(chunk);
-#if UNITY_EDITOR
             // Deletes the mesh associated with this chunk.
             AssetDatabase.DeleteAsset(chunk.MeshPath);
-#endif
             DestroyImmediate(chunk.gameObject);
         }
+        #endregion
+        #endif
         #endregion
     }
 }

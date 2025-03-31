@@ -8,7 +8,6 @@
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
-using System.Net.Http.Headers;
 using UnityEngine;
 
 namespace Grubitecht.World

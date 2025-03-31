@@ -51,7 +51,9 @@ namespace Grubitecht.Tilemaps
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
             AddTile(tilemap, position, tileType);
+#if UNITY_EDITOR
             tilemap.BakeMesh(position);
+#endif
         }
 
         /// <summary>
@@ -86,7 +88,9 @@ namespace Grubitecht.Tilemaps
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
             EraseTile(tilemap, position);
+#if UNITY_EDITOR
             tilemap.BakeMesh(position);
+#endif
         }
 
         /// <summary>

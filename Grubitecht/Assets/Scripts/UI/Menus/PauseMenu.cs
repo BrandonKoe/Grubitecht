@@ -16,7 +16,6 @@ namespace Grubitecht.UI
     {
         [SerializeField,Tooltip("The GameObjec that contains all of the pause menu content")] 
         private GameObject pauseMenuObject;
-        [SerializeField] private string mainMenuName = "MainMenu";
         public static bool IsPaused { get; private set; }
 
         private InputAction pauseAction;
@@ -99,14 +98,6 @@ namespace Grubitecht.UI
         {
             // Update this with proper transitions later.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        /// <summary>
-        /// Returns to the main menu.
-        /// </summary>
-        public void ReturnToMainMenu()
-        {
-            // Update this with proper transitions later.
-            SceneManager.LoadScene(mainMenuName);
         }
         #endregion
     }

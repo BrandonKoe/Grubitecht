@@ -33,7 +33,8 @@ namespace Grubitecht.UI
         public void Initialize(int healthChange, Color color)
         {
             text.color = color;
-            text.text = healthChange.ToString();
+            string indicString = healthChange > 0 ? "+" : "";
+            text.text = indicString + healthChange.ToString();
             // Destroy this text once it's animation has finished.
             StartCoroutine(DeathRoutine());
         }

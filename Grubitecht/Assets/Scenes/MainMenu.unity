@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 911e3312529be534ca93f81f2a10f378, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 55b4fe8c9a096824e82b11022b42f9fe, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedc136b36599924cb32d72b10ffafe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playScene: Level1
+  playScene: LevelSelect
 --- !u!1 &208068081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,8 +2506,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 72457745}
   - {fileID: 418459591}
+  - {fileID: 72457745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

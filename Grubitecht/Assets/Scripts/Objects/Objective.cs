@@ -17,7 +17,7 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
-        public static readonly NavigationMap NavMap = new NavigationMap();
+        public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
         private static readonly List<Objective> currentObjectives = new();
 
         #region Component References
@@ -44,14 +44,14 @@ namespace Grubitecht.World.Objects
             currentObjectives.Add(this);
             attackable.OnDeath += OnDeath;
             // Need to update the nav map whenever the objective changes spaces.  This may cause lag.
-            gridObject.OnChangeSpace += UpdateNavMap;
+            //gridObject.OnChangeSpace += UpdateNavMap;
         }
 
         private void OnDestroy()
         {
             attackable.OnDeath -= OnDeath;
             currentObjectives.Remove(this);
-            gridObject.OnChangeSpace -= UpdateNavMap;
+            //gridObject.OnChangeSpace -= UpdateNavMap;
         }
 
         /// <summary>
@@ -94,6 +94,16 @@ namespace Grubitecht.World.Objects
         private void OnDeath()
         {
             currentObjectives.Remove(this);
+            if (currentObjectives.Count == 0)
+            {
+                LevelManager.LoseLevel();
+            }
+            //else
+            //{
+            //    // Need to update the nav map when an objective is destroyed so that enemies dont funnel towards
+            //    // an emmpty space.
+            //    UpdateNavMap();
+            //}
         }
 
         /// <summary>

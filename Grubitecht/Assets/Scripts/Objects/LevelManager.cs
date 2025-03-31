@@ -12,7 +12,10 @@ namespace Grubitecht.World
 {
     public class LevelManager : MonoBehaviour
     {
+        [SerializeField] private GameObject winLevelDisplay;
+        [SerializeField] private GameObject loseLevelDisplay;
         private static LevelManager current;
+        public static bool IsPlaying { get; private set; }
 
         /// <summary>
         /// Assign/Deassign the singleton instance.
@@ -27,6 +30,7 @@ namespace Grubitecht.World
             else
             {
                 current = this;
+                IsPlaying = true;
             }
         }
         private void OnDestroy()
@@ -46,7 +50,29 @@ namespace Grubitecht.World
         private void Start()
         {
             Objective.NavMap.CreateMap();
+            // Need to bake an initial nav map then start buffered updates later.
             Objective.UpdateNavMap();
+            Objective.NavMap.StartUpdating(this);
         }
+
+        #region Win & Lose
+        /// <summary>
+        /// Handles behaviour that should happen when you win a level.
+        /// </summary>
+        public static void WinLevel()
+        {
+            current.winLevelDisplay.SetActive(true);
+            IsPlaying = false;
+        }
+
+        /// <summary>
+        /// Handles behaviour that should happen when you lose a level.
+        /// </summary>
+        public static void LoseLevel()
+        {
+            current.loseLevelDisplay.SetActive(true);
+            IsPlaying = false;
+        }
+        #endregion
     }
 }

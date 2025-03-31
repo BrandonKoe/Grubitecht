@@ -34,8 +34,8 @@ namespace Grubitecht
             private PathNode(Vector3Int tile, Vector3Int start, Vector3Int end)
             {
                 this.space = tile;
-                g = FindManhattenDistance(start, tile);
-                h = FindManhattenDistance(tile, end);
+                g = MathHelpers.FindManhattenDistance((Vector2Int)start, (Vector2Int)tile);
+                h = MathHelpers.FindManhattenDistance((Vector2Int)tile, (Vector2Int)end);
             }
 
             /// <summary>
@@ -52,18 +52,6 @@ namespace Grubitecht
                     return null;
                 }
                 return new PathNode(tile, start, end);
-            }
-
-            /// <summary>
-            /// Finds the Manhatten distance (or the total number of spaces between the two tiles when restricted to
-            /// orthogonal movement) between two tiles.
-            /// </summary>
-            /// <param name="tile1">The first tile.</param>
-            /// <param name="tile2">The second tile.</param>
-            /// <returns>The total number of spaces between the two tiles.</returns>
-            public static int FindManhattenDistance(Vector3Int tile1, Vector3Int tile2)
-            {
-                return Mathf.Abs(tile1.x - tile2.x) + Mathf.Abs(tile1.y - tile2.y);
             }
         }
         #endregion
@@ -127,7 +115,7 @@ namespace Grubitecht
 
                     // Exclude any inaccessible tiles here.
                     if ((GridObject.GetObjectAtSpace(neighbor) != null && !ignoreBlockedSpaces) || 
-                        closedList.Contains(neighbor) || 
+                        closedList.Contains(neighbor) ||
                         Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
                     {
                         continue;
@@ -179,7 +167,7 @@ namespace Grubitecht
             List<Vector3Int> adjSpaces = new List<Vector3Int>();
             foreach (Vector2Int direction in CardinalDirections.CARDINAL_DIRECTIONS_2)
             {
-                adjSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)position + direction, 
+                adjSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)position + direction,
                     GridObject.VALID_GROUND_TYPE));
             }
             return adjSpaces;

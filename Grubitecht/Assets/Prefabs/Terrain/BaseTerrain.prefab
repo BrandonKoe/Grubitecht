@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3737562052447210376}
-  - component: {fileID: 1771765419267222160}
   - component: {fileID: 2122973274948460703}
   - component: {fileID: 4383107722421398176}
   - component: {fileID: 983212686841175952}
+  - component: {fileID: 268430985258743202}
   m_Layer: 0
   m_Name: BaseTerrain
   m_TagString: Untagged
@@ -35,21 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1771765419267222160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371548894496269515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f439b95da8c8e3459ae5cdd5ecd6d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.2, z: 0}
-  occupySpace: 1
-  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &2122973274948460703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +51,7 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
-  <gridObject>k__BackingField: {fileID: 1771765419267222160}
+  <gridObject>k__BackingField: {fileID: 268430985258743202}
   updateSpaceDuringPath: 1
 --- !u!114 &4383107722421398176
 MonoBehaviour:
@@ -94,3 +79,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &268430985258743202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371548894496269515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f5d41e9484ac1419d3337e840e3632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.4, z: 0}
+  occupySpace: 1
+  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}

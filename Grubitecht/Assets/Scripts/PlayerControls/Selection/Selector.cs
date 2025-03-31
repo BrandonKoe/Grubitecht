@@ -92,6 +92,8 @@ namespace Grubitecht
         /// <param name="obj">unused.</param>
         private void SelectAction_Performed(InputAction.CallbackContext obj)
         {
+            // Players cannot select if the level is not playing.
+            if (!LevelManager.IsPlaying) { return; }
             ISelectable clicked = GetSelectableAtMousePos();
             // If the currently selected object is clicked, then it is deselected.
             CurrentSelection = clicked == CurrentSelection ? null : clicked;
@@ -153,7 +155,7 @@ namespace Grubitecht
                     {
                         VoxelTilemap3D tilemap = selectedChunk.Chunk.Tilemap;
                         Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
-                        List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos, 
+                        List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos,
                             GridObject.VALID_GROUND_TYPE);
                         // Gets the closest space to location the player clicked.
                         gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();

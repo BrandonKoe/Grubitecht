@@ -16,11 +16,14 @@ namespace Grubitecht.World.Pathfinding
 {
     public class MapNavigator : GridNavigator
     {
+        [SerializeField, Tooltip("If this is set to true, then this object will not move to the space it was " +
+            "previously on.")] 
+        private bool ignorePreviousSpaces;
         private bool isMoving;
 
         public override bool IsMoving => isMoving;
         /// <summary>
-        /// Starts/stops this enemie's movement.
+        /// Starts/stops this object's movement.
         /// </summary>
         public void StartMoving(NavigationMap navMap)
         {
@@ -47,7 +50,7 @@ namespace Grubitecht.World.Pathfinding
             while (isMoving)
             {
                 List<Vector3Int> possibleSpaces = new List<Vector3Int>();
-                //Debug.Log(gridObject.CurrentSpace);
+
                 // Get the target space.
                 foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
                 {
@@ -57,12 +60,17 @@ namespace Grubitecht.World.Pathfinding
                 // Exclude inaccessible spaces here.
                 possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && (GridObject.GetObjectAtSpace(item) != null));
                 possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.z - item.z) > jumpHeight);
-                possibleSpaces.RemoveAll(item => item == previousSpace);
-                //DebugHelpers.LogCollection(possibleSpaces);
+                if (ignorePreviousSpaces)
+                {
+                    possibleSpaces.RemoveAll(item => item == previousSpace);
+                }
 
-                Vector3Int nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item))
-                    .FirstOrDefault();
-                // If zero is returned, then that is the default and there must be no valid spaces to move to at the moment.
+                Vector3Int nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item)).FirstOrDefault();
+
+                //Debug.Log($"Moving to space {nextSpace} with distance value: {navMap.GetDistanceValue(nextSpace)}");
+
+                // If zero is returned, then that is the default and there must be no valid spaces to move to at the
+                // moment.
                 if (nextSpace == Vector3Int.zero)
                 {
                     yield return null;
@@ -83,9 +91,10 @@ namespace Grubitecht.World.Pathfinding
                 }
                 // Snap to the space after movement has finished.
                 gridObject.SnapToSpace();
-                // In here for now to stop potential infinite loops.
+                // In here for now to stop potential infinite loops that can cause crashes.
                 yield return null;
             }
+            Debug.Log("Movement finished");
             movementRoutine = null;
         }
     }

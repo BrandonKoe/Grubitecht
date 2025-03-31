@@ -46,7 +46,7 @@ namespace Grubitecht.UI
         /// </summary>
         /// <param name="healthChange">The change in the health of the attackable.</param>
         /// <param name="target">The attackable whose health changed.</param>
-        public static void DisplayHealthChange(int healthChange, Attackable target)
+        public static void DisplayHealthChange(int healthChange, Attackable target, Color damageIndicatorColor)
         {
             DamageNumber num = Instantiate(instance.damageNumberPrefab, instance.transform);
             if (instance.useWorldSpaceCanvas)
@@ -60,8 +60,8 @@ namespace Grubitecht.UI
             {
                 num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
             }
-            Color numColor = healthChange > 0 ? instance.gainHealthColor : instance.loseHealthColor;
-            num.Initialize(healthChange, numColor);
+            //Color numColor = healthChange > 0 ? instance.gainHealthColor : instance.loseHealthColor;
+            num.Initialize(healthChange, damageIndicatorColor);
         }
     }
 }

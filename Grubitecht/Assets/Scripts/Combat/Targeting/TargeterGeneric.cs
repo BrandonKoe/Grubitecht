@@ -5,6 +5,7 @@
 //
 // Brief Description : Root class for generic targeting systems that that can target specific components.
 *****************************************************************************/
+using Grubitecht.World.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,23 @@ namespace Grubitecht.Combat
         #endregion
 
         /// <summary>
+        /// Subscribe and unsubscribe to on death events corresponding to the type of object we're trying to target.
+        /// </summary>
+        protected override void Awake()
+        {
+            base.Awake();
+            SubscribeDeadRemoval();
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            UnsubscribeDeadRemoval();
+        }
+
+        protected abstract void SubscribeDeadRemoval();
+        protected abstract void UnsubscribeDeadRemoval();
+
+        /// <summary>
         /// When an attackable object enters this targeter's collider, it becomes in range.
         /// </summary>
         /// <param name="other">The object that entered this targeter's range.</param>
@@ -52,11 +70,9 @@ namespace Grubitecht.Combat
             // This targeter should never interact with itself or other triggers.
             if (other.gameObject == gameObject || other.isTrigger) { return; }
             //Debug.Log("New Target");
-            if (other.TryGetComponent(out T atk) && CheckTarget(atk.Team) && CheckTags(atk.Tags))
+            if (other.TryGetComponent(out T tar) && CheckTarget(tar.Team) && CheckTags(tar.Tags))
             {
-                inRange.Add(atk);
-                OnGainTargetGeneric?.Invoke(atk);
-                CallOnGain();
+                AddTarget(tar);
             }
         }
         /// <summary>
@@ -67,10 +83,28 @@ namespace Grubitecht.Combat
         {
             if (other.gameObject == gameObject) { return; }
             //Debug.Log("Lost Target");
-            if (other.TryGetComponent(out T atk) && inRange.Contains(atk))
+            if (other.TryGetComponent(out T tag))
             {
-                inRange.Remove(atk);
-                OnLoseTargetGeneric?.Invoke(atk);
+                RemoveTarget(tag);
+            }
+        }
+
+        /// <summary>
+        /// Adds/removes targets from the this object's effective range.
+        /// </summary>
+        /// <param name="target"></param>
+        protected void AddTarget(T target)
+        {
+            inRange.Add(target);
+            OnGainTargetGeneric?.Invoke(target);
+            CallOnGain();
+        }
+        protected void RemoveTarget(T target)
+        {
+            if (inRange.Contains(target))
+            {
+                inRange.Remove(target);
+                OnLoseTargetGeneric?.Invoke(target);
                 CallOnLose();
             }
         }

@@ -41,7 +41,7 @@ namespace Grubitecht.Tilemaps
         {
             // Sets the correct position based on the layer we are painting on.
             position.z = Mathf.RoundToInt(brushTarget.transform.position.y);
-            Debug.Log(position);
+            Debug.Log(World.Objects.Objective.NavMap.GetDistanceValue(position));
         }
     }
 }

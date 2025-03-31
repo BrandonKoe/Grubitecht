@@ -10,15 +10,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4839938847972710440, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <CombatTags>k__BackingField
@@ -70,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5437131417601657913, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: strength
@@ -78,15 +94,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <AttackStat>k__BackingField
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Name
       value: TiphiaFlyer
       objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: occupySpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: detectionRange
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7289939843691556427, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: ignoreBlockedSpaces

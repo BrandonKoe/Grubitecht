@@ -157,16 +157,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Click on objects to select them.
+  m_text: 'Hold Right Click to pan the camera around the map.
 
-    You can move structures, objectives,
-    and terrain by selecting them and then clicking a space.
+    Click on objects
+    to select them.
 
-    Structures automatically
-    attack enemies.  The banner structure will buff nearby structures instead.
+    You can move structures and terrain by selecting them and
+    then clicking a space.
 
-    Defend
-    your objectives from the waves of enemies.'
+    Structures automatically attack enemies.  The banner
+    structure will buff nearby structures instead.  The archery tower structure is
+    the only one that can hit the thin flying enemies.
+
+    Defend your objectives
+    from the waves of enemies.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -207,7 +211,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 50
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4

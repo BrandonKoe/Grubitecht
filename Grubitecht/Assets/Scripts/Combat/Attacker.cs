@@ -5,6 +5,8 @@
 //
 // Brief Description : Base class for components that let an object attack and deal damage to attackable objects.
 *****************************************************************************/
+using Grubitecht.World;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -20,6 +22,8 @@ namespace Grubitecht.Combat
         #region Component References
         [SerializeReference, HideInInspector] private AttackableTargeter targeter;
 
+        public static event Action<Attacker> DeathBroadcast;
+
         /// <summary>
         /// Assign component references on reset.
         /// </summary>
@@ -33,13 +37,15 @@ namespace Grubitecht.Combat
         /// <summary>
         /// Subscribe/Unsubscribe from targeter events.
         /// </summary>
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
         }
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             targeter.OnGainTarget -= HandleOnGainTarget;
             targeter.OnLoseTarget -= HandleOnLoseTarget;
         }
@@ -73,7 +79,7 @@ namespace Grubitecht.Combat
         /// <returns>Coroutine.</returns>
         private IEnumerator AttackRoutine()
         {
-            while (isAttacking)
+            while (isAttacking && LevelManager.IsPlaying)
             {
                 yield return new WaitForSeconds(attackDelay);
                 Attack();
@@ -94,6 +100,14 @@ namespace Grubitecht.Combat
             }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
+        }
+
+        /// <summary>
+        /// Broadcasts the object this component is attached to has died.
+        /// </summary>
+        protected override void BroadcastDeath()
+        {
+            DeathBroadcast?.Invoke(this);
         }
     }
 }

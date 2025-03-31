@@ -13,10 +13,12 @@ namespace Grubitecht.Combat
     {
         #region Component References
         [SerializeReference, HideInInspector] protected Combatant combatant;
+        [SerializeReference, HideInInspector] protected Attackable attackable;
 
         protected virtual void Reset()
         {
             combatant = GetComponent<Combatant>();
+            attackable = GetComponent<Attackable>();
         }
         #endregion
 
@@ -36,5 +38,29 @@ namespace Grubitecht.Combat
             }
         }
         #endregion
+
+        /// <summary>
+        /// Subscribe/Unsubscribe the OnDeath broadcast.
+        /// </summary>
+        protected virtual void Awake()
+        {
+            if (attackable != null)
+            {
+                attackable.OnDeath += BroadcastDeath;
+            }
+        }
+        protected virtual void OnDestroy()
+        {
+            if (attackable != null)
+            {
+                attackable.OnDeath += BroadcastDeath;
+            }
+        }
+
+        /// <summary>
+        /// Broadcasts out to any listeners that the object attached to this combat behaviour has died.  Used to
+        /// remove references.
+        /// </summary>
+        protected virtual void BroadcastDeath() { }
     }
 }

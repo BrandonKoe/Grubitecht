@@ -13,13 +13,10 @@ GameObject:
   - component: {fileID: 4544664398871985438}
   - component: {fileID: 7950244061249268236}
   - component: {fileID: 2854014468564949112}
-  - component: {fileID: 3825473799906071446}
-  - component: {fileID: 8990034152954963938}
-  - component: {fileID: 5662944055489265786}
   - component: {fileID: 1071180697793237669}
   - component: {fileID: 510308414473040261}
   - component: {fileID: 3340188535086003367}
-  - component: {fileID: 9176177978430806204}
+  - component: {fileID: 706373850487136439}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -141,53 +138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3825473799906071446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677708571776409698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f439b95da8c8e3459ae5cdd5ecd6d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.5, z: 0}
-  occupySpace: 1
-  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
---- !u!114 &8990034152954963938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677708571776409698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3521fcf41e3085f43b22409430828c5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 1
-  jumpHeight: 1
-  ignoreBlockedSpaces: 0
-  restrictMovementAxes: 0
-  <gridObject>k__BackingField: {fileID: 3825473799906071446}
-  updateSpaceDuringPath: 0
---- !u!114 &5662944055489265786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677708571776409698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d6436082c10e94790bae559f5c6ab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <GridNavigator>k__BackingField: {fileID: 8990034152954963938}
-  selectable: {fileID: 9176177978430806204}
 --- !u!114 &1071180697793237669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66a08841d9835743b267a2c76463113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <gridObject>k__BackingField: {fileID: 3825473799906071446}
+  <gridObject>k__BackingField: {fileID: 706373850487136439}
   attackable: {fileID: 3340188535086003367}
 --- !u!114 &510308414473040261
 MonoBehaviour:
@@ -215,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 510308414473040261}
+  attackable: {fileID: 0}
   <CombatTeam>k__BackingField: 0
   <CombatTags>k__BackingField: 0
 --- !u!114 &3340188535086003367
@@ -230,9 +181,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 510308414473040261}
+  attackable: {fileID: 0}
   maxHealth: 50
   <Health>k__BackingField: 0
---- !u!114 &9176177978430806204
+  damageIndicatorColor: {r: 0.9216414, g: 0.98742133, b: 0.87253267, a: 1}
+--- !u!114 &706373850487136439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,9 +194,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677708571776409698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
+  m_Script: {fileID: 11500000, guid: 99f5d41e9484ac1419d3337e840e3632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.5, z: 0}
+  occupySpace: 1
+  <CauseAvoidance>k__BackingField: 1
+  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &8198032086363522331
 GameObject:
   m_ObjectHideFlags: 0
