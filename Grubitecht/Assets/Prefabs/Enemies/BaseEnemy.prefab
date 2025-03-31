@@ -235,10 +235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
-  attackable: {fileID: 0}
+  attackable: {fileID: 4758113411827519971}
   attackDelay: 2
   <AttackStat>k__BackingField: 5
   targeter: {fileID: 6308435001518308473}
+  selectableObject: {fileID: 6254574678074587637}
 --- !u!54 &4589588747310273762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -279,10 +280,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
-  attackable: {fileID: 0}
+  attackable: {fileID: 4758113411827519971}
   maxHealth: 20
   <Health>k__BackingField: 0
-  damageIndicatorColor: {r: 0.26415092, g: 0.24257079, b: 0.0024919484, a: 1}
+  damageIndicatorColor: {r: 0.2627451, g: 0.24313726, b: 0.003921569, a: 1}
+  selectableObject: {fileID: 6254574678074587637}
 --- !u!114 &6254574678074587637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: 
+  objectDesription: 
 --- !u!114 &7289939843691556427
 MonoBehaviour:
   m_ObjectHideFlags: 0

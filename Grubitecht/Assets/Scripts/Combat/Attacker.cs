@@ -6,8 +6,10 @@
 // Brief Description : Base class for components that let an object attack and deal damage to attackable objects.
 *****************************************************************************/
 using Grubitecht.World;
+using Grubitecht.World.Objects;
 using System;
 using System.Collections;
+using Grubitecht.UI.InfoPanel;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -19,10 +21,11 @@ namespace Grubitecht.Combat
         [SerializeField] private float attackDelay;
         [field: SerializeField] public int AttackStat { get; set; }
         private bool isAttacking;
-        #region Component References
-        [SerializeReference, HideInInspector] private AttackableTargeter targeter;
 
         public static event Action<Attacker> DeathBroadcast;
+        #region Component References
+        [SerializeReference, HideInInspector] private AttackableTargeter targeter;
+        [SerializeReference, HideInInspector] private SelectableObject selectableObject;
 
         /// <summary>
         /// Assign component references on reset.
@@ -31,6 +34,7 @@ namespace Grubitecht.Combat
         {
             base.Reset();
             targeter = GetComponent<AttackableTargeter>();
+            selectableObject = GetComponent<SelectableObject>();
         }
         #endregion
 
@@ -42,12 +46,20 @@ namespace Grubitecht.Combat
             base.Awake();
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
+            if (selectableObject != null )
+            {
+                selectableObject.AddInfoGetter(InfoGetter);
+            }
         }
         protected override void OnDestroy()
         {
             base.OnDestroy();
             targeter.OnGainTarget -= HandleOnGainTarget;
             targeter.OnLoseTarget -= HandleOnLoseTarget;
+            if (selectableObject != null)
+            {
+                selectableObject.RemoveInfoGetter(InfoGetter);
+            }
         }
 
         /// <summary>
@@ -108,6 +120,19 @@ namespace Grubitecht.Combat
         protected override void BroadcastDeath()
         {
             DeathBroadcast?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Provides this component's values to display on the info panel when selected.
+        /// </summary>
+        /// <returns>The info about this component to display when this object is selected.</returns>
+        private InfoValueBase[] InfoGetter()
+        {
+            return new InfoValueBase[]
+            {
+                new NumValue(AttackStat, 2, "Attack"),
+                new NumValue(attackDelay, 3, "Attack Delay")
+            };
         }
     }
 }

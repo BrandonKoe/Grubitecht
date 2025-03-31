@@ -6,15 +6,14 @@
 // Brief Description : Allows player to select objects in the game world that they click on.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
+using Grubitecht.UI.InfoPanel;
+using Grubitecht.World;
+using Grubitecht.World.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Grubitecht.World.Objects;
-using Grubitecht.World;
-using UnityEngine.SceneManagement;
-using NaughtyAttributes;
 
 namespace Grubitecht
 {
@@ -51,6 +50,19 @@ namespace Grubitecht
                 if (value != null)
                 {
                     value.OnSelect(currentSelection);
+
+                }
+
+                // If the thing being selected is a selectable object, then we should update the info panel with
+                // info about it's values.
+                if (value is SelectableObject sObj)
+                {
+                    Debug.Log("Updating info panel values");
+                    InfoPanelController.UpdatePanel(sObj.GetInfoValues());
+                }
+                else
+                {
+                    InfoPanelController.HidePanel();
                 }
                 currentSelection = value;
             }
@@ -161,19 +173,10 @@ namespace Grubitecht
                         gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();
                         return new SpaceSelection(gridPos, tilemap.GridToWorldPos(gridPos));
                     }
-                    else if (selectable is SelectableObject selectableObject)
-                    {
-                        // Display a UI element to show info about the object.
-                    }
                     return selectable;
                 }
             }
             return null;
-        }
-        [Button]
-        private void ResetScene()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

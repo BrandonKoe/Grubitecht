@@ -100,6 +100,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TiphiaForerunner
       objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectName
+      value: Tiphia Forerunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectDesription
+      value: These scout tiphia are quite fast, but will easily fall to strong attacks.
+      objectReference: {fileID: 0}
     - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: detectionRange
       value: 2

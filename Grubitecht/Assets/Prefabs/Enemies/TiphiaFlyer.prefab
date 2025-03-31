@@ -108,6 +108,15 @@ PrefabInstance:
       propertyPath: occupySpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectName
+      value: Tiphia Flyer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectDesription
+      value: A winged tiphia that attacks with ranged stings.  Can only be hit by
+        ranged structures.
+      objectReference: {fileID: 0}
     - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: detectionRange
       value: 3

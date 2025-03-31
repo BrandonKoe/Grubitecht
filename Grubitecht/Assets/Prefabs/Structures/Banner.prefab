@@ -302,6 +302,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: objectName
+      value: Banner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: objectDesription
+      value: A banner bearing the Grub Town insignia.  The sight of it inspires nearby
+        grubs, boosting their damage.
+      objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
       value: 5
@@ -352,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 3442883350765597410}
+  attackable: {fileID: 0}
   detectionVisual: {fileID: 5023857816814874714}
   detectionRange: 5
   targetingType: 1
@@ -370,7 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cffd050d78be845bc3244b7b9d6422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatant: {fileID: 0}
+  combatant: {fileID: 3442883350765597410}
+  attackable: {fileID: 0}
   targeter: {fileID: 5197117241284157715}
   attackBoost: 3
 --- !u!114 &3442883350765597410 stripped

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 510308414473040261}
   - component: {fileID: 3340188535086003367}
   - component: {fileID: 706373850487136439}
+  - component: {fileID: 3668745979882885672}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -181,10 +182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 510308414473040261}
-  attackable: {fileID: 0}
+  attackable: {fileID: 3340188535086003367}
   maxHealth: 50
   <Health>k__BackingField: 0
-  damageIndicatorColor: {r: 0.9216414, g: 0.98742133, b: 0.87253267, a: 1}
+  damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
+  selectableObject: {fileID: 3668745979882885672}
 --- !u!114 &706373850487136439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +203,21 @@ MonoBehaviour:
   occupySpace: 1
   <CauseAvoidance>k__BackingField: 1
   <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!114 &3668745979882885672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677708571776409698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: House
+  objectDesription: The house of an ordinary grub citizen.  Defend these to the last,
+    as if they fall the town will be no more.
 --- !u!1 &8198032086363522331
 GameObject:
   m_ObjectHideFlags: 0
