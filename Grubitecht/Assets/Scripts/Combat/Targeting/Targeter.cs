@@ -5,6 +5,7 @@
 //
 // Brief Description : Root class for all targeting systems.
 *****************************************************************************/
+using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System;
 using UnityEditor;
@@ -66,6 +67,8 @@ namespace Grubitecht.Combat
                 DisableVisualizer(null);
                 selectableObject.OnSelectEvent += EnableVisualizer;
                 selectableObject.OnDeselectEvent += DisableVisualizer;
+                // Hook up the delegate
+                selectableObject.AddInfoGetter(InfoGetter);
             }
         }
         protected override void OnDestroy()
@@ -74,6 +77,8 @@ namespace Grubitecht.Combat
             {
                 selectableObject.OnSelectEvent -= EnableVisualizer;
                 selectableObject.OnDeselectEvent -= DisableVisualizer;
+                // Dont need to remove it here, but just in case.
+                selectableObject.RemoveInfoGetter(InfoGetter);
             }
         }
 
@@ -140,6 +145,18 @@ namespace Grubitecht.Combat
         protected void CallOnLose()
         {
             OnLoseTarget?.Invoke();
+        }
+
+        /// <summary>
+        /// Provides information to this object's SelectableObject component about the targeter's values.
+        /// </summary>
+        protected InfoValueBase[] InfoGetter()
+        {
+            return new InfoValueBase[]
+            {
+                new NumValue(detectionRange, 4, "Range"),
+                new StringValue($"Targets: {targetingType.ToString()}", 5)
+            };
         }
     }
 }

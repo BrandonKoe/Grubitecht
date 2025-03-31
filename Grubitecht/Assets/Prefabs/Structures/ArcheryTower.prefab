@@ -503,6 +503,15 @@ PrefabInstance:
       propertyPath: detectionRange
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: objectName
+      value: Archery Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: objectDesription
+      value: A tower manned by grub archers.  Can attack from long range and can
+        even hit flying enemies.
+      objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
       value: 7
@@ -562,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
+  attackable: {fileID: 0}
   detectionVisual: {fileID: 2731574801595987342}
   detectionRange: 7
   targetingType: 0
@@ -581,9 +591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
+  attackable: {fileID: 0}
   attackDelay: 2
   <AttackStat>k__BackingField: 4
   targeter: {fileID: 4729045751414896831}
+  selectableObject: {fileID: 594484448342160686}
 --- !u!114 &5735124070260143926 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}

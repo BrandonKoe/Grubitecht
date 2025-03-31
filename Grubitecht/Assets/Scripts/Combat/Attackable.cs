@@ -6,6 +6,8 @@
 // Brief Description : Allows an object to have health and be attacked by attackers.
 *****************************************************************************/
 using Grubitecht.UI;
+using Grubitecht.UI.InfoPanel;
+using Grubitecht.World.Objects;
 using NaughtyAttributes;
 using System;
 using UnityEngine;
@@ -23,6 +25,19 @@ namespace Grubitecht.Combat
 
         public static event Action<Attackable> DeathBroadcast;
 
+        #region Component References
+        [SerializeReference, HideInInspector] private SelectableObject selectableObject;
+
+        /// <summary>
+        /// Assign component references on reset.
+        /// </summary>
+        protected override void Reset()
+        {
+            base.Reset();
+            selectableObject = GetComponent<SelectableObject>();
+        }
+        #endregion
+
         /// <summary>
         /// Set health to max.
         /// </summary>
@@ -30,6 +45,19 @@ namespace Grubitecht.Combat
         {
             base.Awake();
             Health = maxHealth;
+            if (selectableObject != null)
+            {
+                selectableObject.AddInfoGetter(InfoGetter);
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if (selectableObject != null)
+            {
+                selectableObject.RemoveInfoGetter(InfoGetter);
+            }
         }
 
         /// <summary>
@@ -70,6 +98,19 @@ namespace Grubitecht.Combat
             DeathBroadcast?.Invoke(this);
             // Destroy the game object when objects die for now.
             Destroy(gameObject);
+        }
+
+
+        /// <summary>
+        /// Provides this component's values to display on the info panel when selected.
+        /// </summary>
+        /// <returns>The info about this component to display when this object is selected.</returns>
+        private InfoValueBase[] InfoGetter()
+        {
+            return new InfoValueBase[]
+            {
+                new NumValue(maxHealth, 1, "Max Health")
+            };
         }
     }
 }
