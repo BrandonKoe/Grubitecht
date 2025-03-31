@@ -86,5 +86,17 @@ namespace Grubitecht
         {
             return Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
         }
+
+        /// <summary>
+        /// Finds the Manhatten distance (or the total number of spaces between the two tiles when restricted to
+        /// orthogonal movement) between two tiles.
+        /// </summary>
+        /// <param name="tile1">The first tile.</param>
+        /// <param name="tile2">The second tile.</param>
+        /// <returns>The total number of spaces between the two tiles.</returns>
+        public static int FindManhattenDistance(Vector2Int tile1, Vector2Int tile2)
+        {
+            return Mathf.Abs(tile1.x - tile2.x) + Mathf.Abs(tile1.y - tile2.y);
+        }
     }
 }

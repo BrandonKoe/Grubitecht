@@ -94,7 +94,6 @@ namespace Grubitecht.OldTilemaps
 #if UNITY_EDITOR
             // Use InstantiatePrefab to keep a prefab link on created tile prefabs.
             Tile3D createdTile = PrefabUtility.InstantiatePrefab(tile, targetTransform) as Tile3D;
-#endif
             createdTile.transform.position = worldPos;
             createdTile.OnTileCreation(position);
 
@@ -106,6 +105,7 @@ namespace Grubitecht.OldTilemaps
             {
                 createdTile.RuleModel.SetRuleModel(adjInfo);
             }
+#endif
         }
 
         /// <summary>

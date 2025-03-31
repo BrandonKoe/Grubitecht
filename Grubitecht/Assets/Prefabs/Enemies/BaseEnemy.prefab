@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5093368743252289357}
   - component: {fileID: 4589500127795811804}
-  - component: {fileID: 7292136827923787625}
   - component: {fileID: 4697995366346233101}
   - component: {fileID: 5437131417601657913}
   - component: {fileID: 4839938847972710440}
@@ -103,6 +102,7 @@ GameObject:
   - component: {fileID: 4758113411827519971}
   - component: {fileID: 6254574678074587637}
   - component: {fileID: 7289939843691556427}
+  - component: {fileID: 6023088415999457275}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -150,21 +150,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7292136827923787625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5796121273222309063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f439b95da8c8e3459ae5cdd5ecd6d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 1, z: 0}
-  occupySpace: 1
-  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &4697995366346233101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583d59fd8a3bb4e4890c62e93fc45c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <gridObject>k__BackingField: {fileID: 7292136827923787625}
+  <gridObject>k__BackingField: {fileID: 6023088415999457275}
   targeter: {fileID: 6308435001518308473}
   mapNavigator: {fileID: 7289939843691556427}
 --- !u!135 &5437131417601657913
@@ -321,7 +306,23 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
-  <gridObject>k__BackingField: {fileID: 7292136827923787625}
+  <gridObject>k__BackingField: {fileID: 6023088415999457275}
+--- !u!114 &6023088415999457275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796121273222309063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f5d41e9484ac1419d3337e840e3632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 1, z: 0}
+  occupySpace: 1
+  <CauseAvoidance>k__BackingField: 0
+  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1001 &4887689510105145310
 PrefabInstance:
   m_ObjectHideFlags: 0

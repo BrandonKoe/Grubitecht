@@ -41,15 +41,30 @@ namespace Grubitecht.World.Pathfinding
         public void SetDestination(Vector3Int destinationSpace, bool includeAdjacent = false, 
             MovementFinishCallback finishCallback = null)
         {
+            // If our destination is already occupied, then we sould always include adjacent spaces.
+            if (GridObject.CheckOccupied(destinationSpace))
+            {
+                includeAdjacent = true;
+            }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             Vector3Int tileToStart = gridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
+            // Dont move if our current path is empty.
+            if (currentPath.Count == 0)
+            {
+                // If we're already moving, then we should stop if our new path is empty.
+                if(IsMoving)
+                {
+                    StopMoving();
+                }
+                return;
+            }
             if (movementRoutine != null)
             {
                 StopCoroutine(movementRoutine);
                 movementRoutine = null;
             }
-            movementRoutine = StartCoroutine(MovementRoutine(destinationSpace, includeAdjacent, finishCallback));
+            movementRoutine = StartCoroutine(MovementRoutine(currentPath[^1], includeAdjacent, finishCallback));
         }
 
         /// <summary>

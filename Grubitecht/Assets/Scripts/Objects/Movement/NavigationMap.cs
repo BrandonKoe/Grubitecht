@@ -7,10 +7,10 @@
 // pertaining to the distance from a certain set of positions.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
-using Grubitecht.World.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Grubitecht.World.Objects;
 
 namespace Grubitecht.World.Pathfinding
 {

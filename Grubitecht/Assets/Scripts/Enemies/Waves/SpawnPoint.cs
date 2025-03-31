@@ -124,7 +124,7 @@ namespace Grubitecht.Waves
                         // Check the positive and negative cells that have a manhatten distance of range.
                         Vector2Int checkPos = new Vector2Int(x, y) + (Vector2Int)gridObject.CurrentSpace;
                         Vector3Int checkCell = VoxelTilemap3D.Main_GetClosestCellInColumn(checkPos,
-                            gridObject.CurrentSpace, GridObject.VALID_GROUND_TYPE);
+                            (Vector3Int)gridObject.CurrentSpace, GridObject.VALID_GROUND_TYPE);
                         // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
                         // tilemap and we should ignore it.
                         if (checkCell == Vector3Int.zero && checkPos != Vector2Int.zero)

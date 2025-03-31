@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 6465410776955885236}
   - component: {fileID: 2729263653826720574}
   - component: {fileID: 3427604292020415745}
-  - component: {fileID: 2840198212046638825}
   - component: {fileID: 8455044086030430530}
   - component: {fileID: 6362432172321354175}
   - component: {fileID: 2694432537194622866}
   - component: {fileID: 7873178021456172908}
   - component: {fileID: 2319598026058498667}
   - component: {fileID: 7112244418961550730}
+  - component: {fileID: 190323637729111221}
   m_Layer: 0
   m_Name: OffensiveStructureBase
   m_TagString: Untagged
@@ -113,21 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2840198212046638825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296841208733248185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f439b95da8c8e3459ae5cdd5ecd6d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.5, z: 0}
-  occupySpace: 1
-  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &8455044086030430530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +129,7 @@ MonoBehaviour:
   jumpHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
-  <gridObject>k__BackingField: {fileID: 2840198212046638825}
+  <gridObject>k__BackingField: {fileID: 190323637729111221}
   updateSpaceDuringPath: 1
 --- !u!114 &6362432172321354175
 MonoBehaviour:
@@ -235,6 +220,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &190323637729111221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296841208733248185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f5d41e9484ac1419d3337e840e3632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.5, z: 0}
+  occupySpace: 1
+  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1001 &3184366104032238991
 PrefabInstance:
   m_ObjectHideFlags: 0

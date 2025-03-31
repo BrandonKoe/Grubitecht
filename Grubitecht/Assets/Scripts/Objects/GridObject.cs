@@ -22,10 +22,13 @@ namespace Grubitecht.World.Objects
 
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
             "tile.")] 
-        private Vector3 offset;
+        private Vector3 offset = new Vector3(0, 0.5f, 0);
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
-        private bool occupySpace;
+        private bool occupySpace = true;
+        [field: SerializeField, Tooltip("Whether this object should be avoided by map navigators when run into.  " +
+            "Should only be true of other enemies.")]
+        public bool CauseAvoidance { get; private set; } = true;
         // Note: This is the position of the voxel we are standing on.
         [field: SerializeField, ReadOnly] public Vector3Int CurrentSpace { get; set; }
 
