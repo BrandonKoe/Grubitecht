@@ -50,7 +50,9 @@ namespace Grubitecht.World
         private void Start()
         {
             Objective.NavMap.CreateMap();
+            // Need to bake an initial nav map then start buffered updates later.
             Objective.UpdateNavMap();
+            Objective.NavMap.StartUpdating(this);
         }
 
         #region Win & Lose

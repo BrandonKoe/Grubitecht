@@ -1,10 +1,10 @@
 /*****************************************************************************
-// File Name : NavigationMap.cs
+// File Name : BakedNavigationMap.cs
 // Author : Brandon Koederitz
 // Creation Date : March 29, 2025
 //
 // Brief Description : Uses a pseudo-Dijkstra pathfinding algorith to construct a map of the level with distances
-// pertaining to the distance from a certain set of positions.
+// pertaining to the distance from a certain set of positions.  This navigation map bakes the entire map at once.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using System.Collections.Generic;
@@ -23,30 +23,28 @@ namespace Grubitecht.World.Pathfinding
         // Use 1 as the default climb height for creating a navigation map.
         private const int BASE_CLIMB_HEIGHT = 1;
         #endregion
-        private static Dictionary<Vector3Int, int> mapDict;
-        #region Navigation Map
+
+        protected static Dictionary<Vector3Int, int> mapDict;
         /// <summary>
         /// Creates a new navigation map for the current level.
         /// </summary>
-        public void CreateMap()
+        public virtual void CreateMap()
         {
-            mapDict = CreateNavigationMap();
-        }
-
-        /// <summary>
-        /// Updates the objective navigation map to adapt to objectives being moved.
-        /// </summary>
-        /// <param name="positions">The positions of the objects to update the map with.</param>
-        public void UpdateMap(Vector3Int[] positions)
-        {
-            if (mapDict == null) { return; }
-            mapDict = UpdateNavigationMap(mapDict, positions);
+            Debug.Log("Creating Navigation Map");
+            mapDict = new Dictionary<Vector3Int, int>();
+            List<Vector3Int> tiles = VoxelTilemap3D.Main_GetTilemap(GridObject.VALID_GROUND_TYPE);
+            foreach (Vector3Int tile in tiles)
+            {
+                // Really big number is defined above in CONSTS.  I just named it that because I though it would be
+                // funny since that's its main purpose, to be a big number.
+                mapDict.Add(tile, REALLY_BIG_NUMBER);
+            }
         }
 
         /// <summary>
         /// Resets the current navigation map.
         /// </summary>
-        public void ResetMap()
+        public virtual void ResetMap()
         {
             mapDict = null;
         }
@@ -67,36 +65,25 @@ namespace Grubitecht.World.Pathfinding
             }
             return REALLY_BIG_NUMBER;
         }
-        #endregion
-
-        #region Dijkstra's Style Pathfinding Nav-Mesh
-
-        /// <summary>
-        /// Generates a path map based on the ground positions of the voxel tilemap
-        /// </summary>
-        /// <returns>A dictionary that represents a map of ground tiles and their distance to an objective.</returns>
-        public static Dictionary<Vector3Int, int> CreateNavigationMap()
-        {
-            Debug.Log("Creating Navigation Map");
-            Dictionary<Vector3Int, int> map = new Dictionary<Vector3Int, int>();
-            List<Vector3Int> tiles = VoxelTilemap3D.Main_GetTilemap(GridObject.VALID_GROUND_TYPE);
-            foreach (Vector3Int tile in tiles)
-            {
-                // Really big number is defined above in CONSTS.  I just named it that because I though it would be
-                // funny since that's its main purpose, to be a big number.
-                map.Add(tile, REALLY_BIG_NUMBER);
-            }
-            return map;
-        }
 
         /// <summary>
         /// Resets a navigation map with the default values.
         /// </summary>
         /// <param name="refMap"></param>
         /// <returns></returns>
-        public static Dictionary<Vector3Int, int> ResetNavigationMap(Dictionary<Vector3Int, int> refMap)
+        protected static Dictionary<Vector3Int, int> ResetNavigationMap(Dictionary<Vector3Int, int> refMap)
         {
             return refMap.ToDictionary(item => item.Key, item => REALLY_BIG_NUMBER);
+        }
+
+        /// <summary>
+        /// Updates the objective navigation map to adapt to objectives being moved.
+        /// </summary>
+        /// <param name="positions">The positions of the objects to update the map with.</param>
+        public void UpdateMap(Vector3Int[] positions)
+        {
+            if (mapDict == null) { return; }
+            mapDict = UpdateNavigationMap(mapDict, positions);
         }
 
         /// <summary>
@@ -153,6 +140,5 @@ namespace Grubitecht.World.Pathfinding
             // Return the map with updated distance values.
             return referenceMap;
         }
-        #endregion
     }
 }
