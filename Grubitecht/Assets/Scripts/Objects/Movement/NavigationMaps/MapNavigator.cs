@@ -59,7 +59,7 @@ namespace Grubitecht.World.Pathfinding
                 }
                 // Exclude inaccessible spaces here.
                 possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && (GridObject.GetObjectAtSpace(item) != null));
-                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.z - item.z) > jumpHeight);
+                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.z - item.z) > climbHeight);
                 if (ignorePreviousSpaces)
                 {
                     possibleSpaces.RemoveAll(item => item == previousSpace);

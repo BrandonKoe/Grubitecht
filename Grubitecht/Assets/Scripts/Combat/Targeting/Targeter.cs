@@ -14,7 +14,7 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public abstract class Targeter : CombatBehaviour
+    public abstract class Targeter : CombatBehaviour, IInfoProvider
     {
         [SerializeField] private Transform detectionVisual;
         [SerializeField, Min(0.1f)] private float detectionRange;
@@ -67,8 +67,6 @@ namespace Grubitecht.Combat
                 DisableVisualizer(null);
                 selectableObject.OnSelectEvent += EnableVisualizer;
                 selectableObject.OnDeselectEvent += DisableVisualizer;
-                // Hook up the delegate
-                selectableObject.AddInfoGetter(InfoGetter);
             }
         }
         protected override void OnDestroy()
@@ -77,8 +75,6 @@ namespace Grubitecht.Combat
             {
                 selectableObject.OnSelectEvent -= EnableVisualizer;
                 selectableObject.OnDeselectEvent -= DisableVisualizer;
-                // Dont need to remove it here, but just in case.
-                selectableObject.RemoveInfoGetter(InfoGetter);
             }
         }
 
@@ -150,12 +146,12 @@ namespace Grubitecht.Combat
         /// <summary>
         /// Provides information to this object's SelectableObject component about the targeter's values.
         /// </summary>
-        protected InfoValueBase[] InfoGetter()
+        public InfoValueBase[] InfoGetter()
         {
             return new InfoValueBase[]
             {
                 new NumValue(detectionRange, 4, "Range"),
-                new StringValue($"Targets: {targetingType.ToString()}", 5)
+                new StringValue($"Targets {targetingType.ToString()}", 5)
             };
         }
     }

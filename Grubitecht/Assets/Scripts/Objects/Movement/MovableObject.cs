@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows an object to be selected and moved along the world grid by the player.
 *****************************************************************************/
+using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Pathfinding;
 using UnityEngine;
 

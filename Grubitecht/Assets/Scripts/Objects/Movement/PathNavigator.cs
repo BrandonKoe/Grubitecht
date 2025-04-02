@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows a grid object to move along the grid using pathfinding.
 *****************************************************************************/
+using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using UnityEngine;
 namespace Grubitecht.World.Pathfinding
 {
     public delegate void MovementFinishCallback();
-    public class PathNavigator : GridNavigator
+    public class PathNavigator : GridNavigator, IInfoProvider
     {
         [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
     "path, or immediately as soon as it starts moving.")]
@@ -48,7 +49,7 @@ namespace Grubitecht.World.Pathfinding
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             Vector3Int tileToStart = gridObject.CurrentSpace;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, jumpHeight, includeAdjacent);
+            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
             // Dont move if our current path is empty.
             if (currentPath.Count == 0)
             {
@@ -144,6 +145,15 @@ namespace Grubitecht.World.Pathfinding
             // Invoke the given finish callback.
             finishCallback?.Invoke();
             movementRoutine = null;
+        }
+
+        public InfoValueBase[] InfoGetter()
+        {
+            return new InfoValueBase[]
+            {
+                new NumValue(MoveSpeed, 90, "Movement Speed"),
+                new NumValue(climbHeight, 91, "Climb Height")
+            };
         }
     }
 }

@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 2
-  jumpHeight: 1
+  climbHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 6023088415999457275}

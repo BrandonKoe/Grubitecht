@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public class Attackable : CombatBehaviour
+    public class Attackable : CombatBehaviour, IInfoProvider
     {
         [SerializeField] private int maxHealth;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
@@ -45,19 +45,6 @@ namespace Grubitecht.Combat
         {
             base.Awake();
             Health = maxHealth;
-            if (selectableObject != null)
-            {
-                selectableObject.AddInfoGetter(InfoGetter);
-            }
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            if (selectableObject != null)
-            {
-                selectableObject.RemoveInfoGetter(InfoGetter);
-            }
         }
 
         /// <summary>
@@ -105,7 +92,7 @@ namespace Grubitecht.Combat
         /// Provides this component's values to display on the info panel when selected.
         /// </summary>
         /// <returns>The info about this component to display when this object is selected.</returns>
-        private InfoValueBase[] InfoGetter()
+        public InfoValueBase[] InfoGetter()
         {
             return new InfoValueBase[]
             {
