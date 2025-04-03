@@ -17,15 +17,15 @@ namespace Grubitecht.Waves
     public class WaveManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text waveTimerText;
+        [SerializeField] private GameObject waveTimerObject;
         [SerializeField] private float delayBetweenWaves;
         private int totalWaves;
-        private int waveNum;
-        private int totalSpawnPoints;
         private int completedSpawnPoints;
         private bool allEnemiesDead;
         
         private static WaveManager currentLevel;
-        public static event Action<int> StartWaveEvent;
+        //public static event Action<int> StartWaveEvent;
+        private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
 
         /// <summary>
@@ -59,10 +59,9 @@ namespace Grubitecht.Waves
         /// </summary>
         private void FindSpawnPoints()
         {
-            SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
+            spawnPoints = FindObjectsOfType<SpawnPoint>();
             foreach (SpawnPoint spawnPoint in spawnPoints)
             {
-                totalSpawnPoints++;
                 if (spawnPoint.WaveCount > totalWaves)
                 {
                     totalWaves = spawnPoint.WaveCount;
@@ -110,11 +109,19 @@ namespace Grubitecht.Waves
         /// <returns></returns>
         private IEnumerator WaveRoutine()
         {
-            while (waveNum < totalWaves)
+            for (int waveNum = 0; waveNum < totalWaves; waveNum++)
             {
                 allEnemiesDead = false;
                 completedSpawnPoints = 0;
 
+                // Has each wave display the upcoming enemies for the first subwave.
+                foreach (SpawnPoint spawnPoint in spawnPoints)
+                {
+                    spawnPoint.DisplayPredictions(waveNum, delayBetweenWaves);
+                }
+
+                // Enable the timer object when waiting for a wave, disable it after the wave begins.
+                waveTimerObject.SetActive(true);
                 float waveDelayTimer = delayBetweenWaves;
                 while (waveDelayTimer > 0)
                 {
@@ -126,16 +133,19 @@ namespace Grubitecht.Waves
                     waveDelayTimer -= Time.deltaTime;
                     yield return null;
                 }
+                waveTimerObject.SetActive(true);
 
-                StartWaveEvent?.Invoke(waveNum);
+                // Has each spawn point start the next wave.
+                foreach (SpawnPoint spawnPoint in spawnPoints)
+                {
+                    spawnPoint.StartWave(waveNum);
+                }
 
                 // Wait until the wave is set as cleared when the last enemy is killed.
-                while (!allEnemiesDead || completedSpawnPoints < totalSpawnPoints)
+                while (!allEnemiesDead || completedSpawnPoints < spawnPoints.Length)
                 {
                     yield return null;
                 }
-
-                waveNum++;
             }
 
             // Win the level once all waves are detfeated.

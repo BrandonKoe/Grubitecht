@@ -82,7 +82,7 @@ namespace Grubitecht
         /// </summary>
         /// <param name="vector">The vector to convert to an angle.</param>
         /// <returns>The angle that corresponds to that vector.</returns>
-        public static float VectorToDegAngle(Vector2 vector)
+        public static float VectorToDegAngleWorld(Vector2 vector)
         {
             return Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
         }
