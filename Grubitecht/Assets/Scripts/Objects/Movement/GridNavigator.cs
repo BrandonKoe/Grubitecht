@@ -22,7 +22,7 @@ namespace Grubitecht.World.Pathfinding
         [field: Header("Movement Settings")]
         [field: SerializeField] public float MoveSpeed { get; protected set; }
         [SerializeField, Tooltip("How large of an upward incline this object can move up.")]
-        protected int jumpHeight;
+        protected int climbHeight;
         [SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
             "world")]
         protected bool ignoreBlockedSpaces;

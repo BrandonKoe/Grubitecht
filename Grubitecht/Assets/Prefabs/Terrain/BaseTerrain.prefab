@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 3
-  jumpHeight: 1
+  climbHeight: 1
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 268430985258743202}
@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fdb79a4cd747546815e2333519d54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: 
+  objectDesription: 
 --- !u!114 &268430985258743202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,4 +95,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0.4, z: 0}
   occupySpace: 1
+  <CauseAvoidance>k__BackingField: 1
   <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}

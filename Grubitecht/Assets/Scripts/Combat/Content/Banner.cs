@@ -7,13 +7,11 @@
 *****************************************************************************/
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
-    public class Banner : Effector
+    public class Banner : Effector, IInfoProvider
     {
         [SerializeField] private int attackBoost;
 
@@ -36,19 +34,11 @@ namespace Grubitecht.Combat
         protected override void Awake()
         {
             base.Awake();
-            if (selectableObject != null)
-            {
-                selectableObject.AddInfoGetter(InfoGetter);
-            }
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            if (selectableObject != null)
-            {
-                selectableObject.RemoveInfoGetter(InfoGetter);
-            }
         }
 
         /// <summary>
@@ -73,7 +63,7 @@ namespace Grubitecht.Combat
         /// Provides this component's values to display on the info panel when selected.
         /// </summary>
         /// <returns>The info about this component to display when this object is selected.</returns>
-        private InfoValueBase[] InfoGetter()
+        public InfoValueBase[] InfoGetter()
         {
             return new InfoValueBase[]
             {

@@ -27,6 +27,18 @@ namespace Grubitecht.World.Objects
         public event Action<ISelectable> OnSelectEvent;
         public event Action<ISelectable> OnDeselectEvent;
 
+        /// <summary>
+        /// Get references to all of this object's info getters on awake.
+        /// </summary>
+        private void Awake()
+        {
+            IInfoProvider[] providers = GetComponents<IInfoProvider>();
+            foreach (var component in providers)
+            {
+                infoGetters.Add(component.InfoGetter);
+            }
+        }
+
         public void OnSelect(ISelectable oldObj)
         {
             OnSelectEvent?.Invoke(oldObj);
@@ -38,24 +50,13 @@ namespace Grubitecht.World.Objects
         }
 
         /// <summary>
-        /// Adds/removes an info getter that this component will use to get the info to display on the info panel'
-        /// when this object is selected.
-        /// </summary>
-        public void AddInfoGetter(InfoValueGetter getter)
-        {
-            infoGetters.Add(getter);
-        }
-        public void RemoveInfoGetter(InfoValueGetter getter)
-        {
-            infoGetters.Remove(getter);
-        }
-
-        /// <summary>
         /// Gets the info values to display on the panel for this selected object.
         /// </summary>
         /// <returns>The list of info values that should be displayed on the info panel.</returns>
         public List<InfoValueBase> GetInfoValues()
         {
+
+
             // Sets up the list of values along with the default values that should be displayed for all selectable
             // objects.
             List<InfoValueBase> values = new List<InfoValueBase>()

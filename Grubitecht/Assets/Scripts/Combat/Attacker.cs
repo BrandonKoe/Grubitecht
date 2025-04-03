@@ -16,7 +16,7 @@ namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackableTargeter))]
     [RequireComponent(typeof(Combatant))]
-    public class Attacker : CombatBehaviour
+    public class Attacker : CombatBehaviour, IInfoProvider
     {
         [SerializeField] private float attackDelay;
         [field: SerializeField] public int AttackStat { get; set; }
@@ -46,20 +46,12 @@ namespace Grubitecht.Combat
             base.Awake();
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
-            if (selectableObject != null )
-            {
-                selectableObject.AddInfoGetter(InfoGetter);
-            }
         }
         protected override void OnDestroy()
         {
             base.OnDestroy();
             targeter.OnGainTarget -= HandleOnGainTarget;
             targeter.OnLoseTarget -= HandleOnLoseTarget;
-            if (selectableObject != null)
-            {
-                selectableObject.RemoveInfoGetter(InfoGetter);
-            }
         }
 
         /// <summary>
@@ -126,7 +118,7 @@ namespace Grubitecht.Combat
         /// Provides this component's values to display on the info panel when selected.
         /// </summary>
         /// <returns>The info about this component to display when this object is selected.</returns>
-        private InfoValueBase[] InfoGetter()
+        public InfoValueBase[] InfoGetter()
         {
             return new InfoValueBase[]
             {

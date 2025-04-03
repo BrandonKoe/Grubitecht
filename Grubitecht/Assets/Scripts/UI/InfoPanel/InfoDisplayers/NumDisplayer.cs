@@ -23,7 +23,7 @@ namespace Grubitecht.UI.InfoPanel
         public override void Initialize(NumValue valueRef)
         {
             base.Initialize(valueRef);
-            string valueText = $"{valueRef.IntName}: {valueRef.Value}";
+            string valueText = $"{valueRef.NumName}: {valueRef.Value}";
             text.text = valueText;
             text.fontSize = valueRef.FontSize;
             if (iconImage != null && valueRef.Icon != null)
