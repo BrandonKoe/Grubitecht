@@ -5,6 +5,7 @@
 //
 // Brief Description : Causes a grid object to follow another as it moves.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
@@ -12,23 +13,12 @@ using UnityEngine;
 
 namespace Grubitecht.World
 {
-    [RequireComponent(typeof(GridObject))]
     public class GrubController : MonoBehaviour
     {
+        [SerializeField] private float risingSpeed;
+        [SerializeField] private float followDistance = 1f;
         private Coroutine followRoutine;
         private bool isFollowing;
-
-        #region Component References
-        [SerializeReference, HideInInspector] private GridObject gridObject;
-
-        /// <summary>
-        /// Assign component references on reset.
-        /// </summary>
-        private void Reset()
-        {
-            gridObject = GetComponent<GridObject>();
-        }
-        #endregion
 
         /// <summary>
         /// Initializes this component with values.
@@ -41,8 +31,6 @@ namespace Grubitecht.World
                 StopCoroutine(followRoutine);
                 followRoutine = null;
             }
-            gridObject.SetCurrentSpace(follow.gridObject.CurrentSpace - (Vector3Int)follow.Direction);
-            gridObject.SnapToSpace();
             isFollowing = true;
             followRoutine = StartCoroutine(FollowRoutine(follow));
         }
@@ -54,26 +42,36 @@ namespace Grubitecht.World
         /// <returns>Coroutine.</returns>
         private IEnumerator FollowRoutine(PathNavigator followedObject)
         {
-            Vector3Int referenceSpace = followedObject.gridObject.CurrentSpace;
-
             while (isFollowing)
             {
-                if (followedObject.gridObject.CurrentSpace != referenceSpace)
-                {
-                    // updates this object's position whenever the followed object moves to a new space.
-                    referenceSpace = followedObject.gridObject.CurrentSpace;
-                    gridObject.SetCurrentSpace(referenceSpace - (Vector3Int)followedObject.Direction);
-                    gridObject.SnapToSpace();
-                }
-                // Moves this grub towards the followed grid navigator.
-                float step = followedObject.MoveSpeed * Time.deltaTime;
-                Vector3 tilePos = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace);
-                SetRotation(followedObject.Direction);
-                transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
-                //Vector3 pos = followedObject.transform.position + -(Vector3Int)followedObject.Direction;
+
+                //if (followedObject.gridObject.CurrentSpace != referenceSpace)
+                //{
+                //    // updates this object's position whenever the followed object moves to a new space.
+                //    referenceSpace = followedObject.gridObject.CurrentSpace;
+                //    gridObject.SetCurrentSpace(referenceSpace - (Vector3Int)followedObject.Direction);
+                //    gridObject.SnapToSpace();
+                //}
+
+                
+
+                //// Moves this grub towards the followed grid navigator.
+                //float step = followedObject.MoveSpeed * Time.deltaTime;
+                //Vector3 tilePos = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace);
+                //SetRotation(followedObject.Direction);
+                //transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
+                ////Vector3 pos = followedObject.transform.position + -(Vector3Int)followedObject.Direction;
 
                 yield return null;
             }
+        }
+
+
+        private void SnapToTransform(Transform followedTransform, Vector3Int gridDir)
+        {
+            Vector3Int direction = new Vector3Int(gridDir.x, gridDir.z, gridDir.y);
+            float savedY = transform.position.y;
+            transform.position = followedTransform.position;
         }
 
         /// <summary>
