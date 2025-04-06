@@ -5,6 +5,7 @@
 //
 // Brief Description : Causes a grid object to follow another as it moves.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
@@ -15,8 +16,11 @@ namespace Grubitecht.World
     [RequireComponent(typeof(GridObject))]
     public class GrubController : MonoBehaviour
     {
+        [SerializeField] private float rotationSpeed;
+        private Vector3Int targetSpace;
         private Coroutine followRoutine;
         private bool isFollowing;
+        private float dampAngleSmoother;
 
         #region Component References
         [SerializeReference, HideInInspector] private GridObject gridObject;
@@ -54,26 +58,51 @@ namespace Grubitecht.World
         /// <returns>Coroutine.</returns>
         private IEnumerator FollowRoutine(PathNavigator followedObject)
         {
-            Vector3Int referenceSpace = followedObject.gridObject.CurrentSpace;
+            // Rotates the grub towards the direction the followed object is moving in.
+            void RotateToward(Vector2Int direction)
+            {
+                Vector3 eulers = transform.eulerAngles;
+                float angle = MathHelpers.VectorToDegAngleWorld(direction);
+                // Calculate the speed our angle should rotate at based on the time it takes the object we're following to
+                // reach it's next space based on it's speed.
+                float angleSpeed = VoxelTilemap3D.CELL_SIZE / followedObject.MoveSpeed;
+                eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleSpeed);
+                //eulers.y = angle;
+                transform.eulerAngles = eulers;
+            }
+
+            // Use an event called by the path navigator we're following to update the space we should bne moving
+            // towards.
+            followedObject.NewSpaceEvent += UpdateTargetSpace;
+
+            // Updates the grub to start standing on the spot adjacent to the object that he will be pushing.
+            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace - 
+                (Vector3Int)followedObject.Direction);
+            targetSpace = followedObject.gridObject.CurrentSpace;
+            Vector3 eulers = transform.eulerAngles;
+            eulers.y = MathHelpers.VectorToDegAngleWorld(followedObject.Direction);
+            transform.eulerAngles = eulers;
 
             while (isFollowing)
             {
-                if (followedObject.gridObject.CurrentSpace != referenceSpace)
-                {
-                    // updates this object's position whenever the followed object moves to a new space.
-                    referenceSpace = followedObject.gridObject.CurrentSpace;
-                    gridObject.SetCurrentSpace(referenceSpace - (Vector3Int)followedObject.Direction);
-                    gridObject.SnapToSpace();
-                }
-                // Moves this grub towards the followed grid navigator.
+                // Moves this grub towards the space the followe object was most recently at.
                 float step = followedObject.MoveSpeed * Time.deltaTime;
-                Vector3 tilePos = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace);
-                SetRotation(followedObject.Direction);
+                Vector3 tilePos = gridObject.GetOccupyPosition(targetSpace);
+                RotateToward(followedObject.Direction);
                 transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
-                //Vector3 pos = followedObject.transform.position + -(Vector3Int)followedObject.Direction;
 
                 yield return null;
             }
+            followedObject.NewSpaceEvent -= UpdateTargetSpace;
+        }
+
+        /// <summary>
+        /// Updates the target space of this grub while it's following an object.
+        /// </summary>
+        /// <param name="tSpace">The spcae to follow.</param>
+        private void UpdateTargetSpace(Vector3Int tSpace)
+        {
+            targetSpace = tSpace;
         }
 
         /// <summary>
@@ -82,18 +111,6 @@ namespace Grubitecht.World
         public void RecallGrub()
         {
             Destroy(gameObject);
-        }
-
-        /// <summary>
-        /// Rotates the grub to face in the direction it is mkving.
-        /// </summary>
-        /// <param name="direction">The direction it is moving.</param>
-        private void SetRotation(Vector2Int direction)
-        {
-            float angle = MathHelpers.VectorToDegAngleWorld(direction);
-            Vector3 eulers = transform.eulerAngles;
-            eulers.y = angle;
-            transform.eulerAngles = eulers;
         }
     }
 }

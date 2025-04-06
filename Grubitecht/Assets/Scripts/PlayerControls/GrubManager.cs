@@ -55,26 +55,31 @@ namespace Grubitecht
         }
 
         /// <summary>
-        /// Requests a grub to move this object.
+        /// Checks if there is a grub available to move an object.
         /// </summary>
-        /// <param name="obj">The obj requesting to move.</param>
         /// <returns>True if there is a free grub, false if all grubs are in use.</returns>
-        public static bool RequestGrub(MovableObject obj)
+        public static bool CheckGrub()
         {
-            if (AvailableGrubs > 0)
+            return AvailableGrubs > 0;
+        }
+
+        /// <summary>
+        /// Assigns a grub to visually move a given object.
+        /// </summary>
+        /// <param name="obj">The object to move.</param>
+        public static void AssignGrub(MovableObject obj)
+        {
+            if (!CheckGrub())
             {
-                GrubController spawnedGrub = Instantiate(instance.grubPrefab, instance.transform);
-                // Spawn a grub.
-                dispatchedGrubs.Add(obj, spawnedGrub);
-                spawnedGrub.Initialize(obj.GridNavigator);
-                UpdateText();
-                return true;
+                Debug.LogError("There are no more grubs left to assign.");
+                return;
             }
-            else
-            {
-                // If no grubs are available, then we return false and the mover cannot move.
-                return false;
-            }
+            if (dispatchedGrubs.ContainsKey(obj)) { return; }
+            GrubController spawnedGrub = Instantiate(instance.grubPrefab, instance.transform);
+            // Spawn a grub.
+            dispatchedGrubs.Add(obj, spawnedGrub);
+            spawnedGrub.Initialize(obj.GridNavigator);
+            UpdateText();
         }
 
         /// <summary>
