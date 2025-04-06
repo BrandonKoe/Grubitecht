@@ -19,6 +19,7 @@ namespace Grubitecht.Waves
         [SerializeField] private TMP_Text waveTimerText;
         [SerializeField] private GameObject waveTimerObject;
         [SerializeField] private float delayBetweenWaves;
+        [SerializeField] private float firstWaveDelay;
         private int totalWaves;
         private int completedSpawnPoints;
         private bool allEnemiesDead;
@@ -109,20 +110,22 @@ namespace Grubitecht.Waves
         /// <returns></returns>
         private IEnumerator WaveRoutine()
         {
+            bool isFirst = true;
             for (int waveNum = 0; waveNum < totalWaves; waveNum++)
             {
                 allEnemiesDead = false;
                 completedSpawnPoints = 0;
 
+                float waveDelayTimer = isFirst ? delayBetweenWaves + firstWaveDelay : delayBetweenWaves;
+                isFirst = false;
                 // Has each wave display the upcoming enemies for the first subwave.
                 foreach (SpawnPoint spawnPoint in spawnPoints)
                 {
-                    spawnPoint.DisplayPredictions(waveNum, delayBetweenWaves);
+                    spawnPoint.DisplayPredictions(waveNum, waveDelayTimer);
                 }
 
                 // Enable the timer object when waiting for a wave, disable it after the wave begins.
                 waveTimerObject.SetActive(true);
-                float waveDelayTimer = delayBetweenWaves;
                 while (waveDelayTimer > 0)
                 {
                     // Update the UI here.

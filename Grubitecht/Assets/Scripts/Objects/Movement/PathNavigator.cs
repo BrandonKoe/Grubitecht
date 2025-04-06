@@ -7,6 +7,7 @@
 *****************************************************************************/
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Grubitecht.World.Pathfinding
 
         private List<Vector3Int> currentPath;
         private Vector3Int currentPathSpace;
+
+        public event Action<Vector3Int> NewSpaceEvent;
 
         #region Propeties
         public Vector2Int Direction { get; private set; }
@@ -87,11 +90,30 @@ namespace Grubitecht.World.Pathfinding
         private IEnumerator MovementRoutine(Vector3Int destination, bool includeAdj, 
             MovementFinishCallback finishCallback)
         {
+            void UpdateDirection()
+            {
+                // Update direction here to ensure directions are updated for later code execution.
+                if (currentPath.Count > 0)
+                {
+                    Direction = (Vector2Int)(currentPath[0] - gridObject.CurrentSpace);
+                }
+                else
+                {
+                    Direction = Vector2Int.zero;
+                }
+            }
+
             // If we're set to only update our current space once, then set it before we begin moving and double check
             // that placement later.
             if (!updateSpaceDuringPath)
             {
                 gridObject.SetCurrentSpace(destination);
+            }
+            // Update our current space and direction at the beginning.
+            if (currentPath.Count > 0)
+            {
+                currentPathSpace = gridObject.CurrentSpace;
+                UpdateDirection();
             }
             while (currentPath.Count > 0)
             {
@@ -107,26 +129,18 @@ namespace Grubitecht.World.Pathfinding
 
                 if (Vector3.Distance(transform.position, tilePos) < SPACE_CLAMP)
                 {
+                    // Updates a var that keeps track of our current space in the path.
+                    currentPathSpace = currentPath[0];
                     if (updateSpaceDuringPath)
                     {
-                        gridObject.SetCurrentSpace(currentPath[0]);
+                        gridObject.SetCurrentSpace(currentPathSpace);
                         gridObject.SnapToSpace();
                     }
-                    else
-                    {
-                        // Updates a var that keeps track of our current space in the path.
-                        currentPathSpace = currentPath[0];
-                    }
                     currentPath.RemoveAt(0);
-                    // Update direction here to ensure directions are updated for later code execution.
-                    if (currentPath.Count > 0)
-                    {
-                        Direction = (Vector2Int)(currentPath[0] - gridObject.CurrentSpace);
-                    }
-                    else
-                    {
-                        Direction = Vector2Int.zero;
-                    }
+                    UpdateDirection();
+                    // Broadcast out that this object has reached a new space.
+                    NewSpaceEvent?.Invoke(currentPathSpace);
+
                 }
 
                 yield return null;
@@ -142,6 +156,7 @@ namespace Grubitecht.World.Pathfinding
                 gridObject.SetCurrentSpace(currentPathSpace);
                 gridObject.SnapToSpace();
             }
+            currentPathSpace = Vector3Int.zero;
             // Invoke the given finish callback.
             finishCallback?.Invoke();
             movementRoutine = null;

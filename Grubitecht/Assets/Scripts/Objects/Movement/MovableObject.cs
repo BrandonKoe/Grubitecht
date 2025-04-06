@@ -50,9 +50,10 @@ namespace Grubitecht.World.Objects
             // move to that selected position.
             if (newObj is SpaceSelection space)
             {
-                if (GridNavigator.IsMoving || GrubManager.RequestGrub(this))
+                if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
                     GridNavigator.SetDestination(space.GridPosition, false, RecallGrub);
+                    GrubManager.AssignGrub(this);
                 }
             }
         }
