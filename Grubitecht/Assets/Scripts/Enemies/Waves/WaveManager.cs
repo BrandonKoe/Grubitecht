@@ -133,7 +133,7 @@ namespace Grubitecht.Waves
                     waveDelayTimer -= Time.deltaTime;
                     yield return null;
                 }
-                waveTimerObject.SetActive(true);
+                waveTimerObject.SetActive(false);
 
                 // Has each spawn point start the next wave.
                 foreach (SpawnPoint spawnPoint in spawnPoints)

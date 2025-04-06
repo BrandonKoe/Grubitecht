@@ -28,6 +28,7 @@ namespace Grubitecht
 
         // Input actions
         private InputAction selectAction;
+        private InputAction deselectAction;
         private InputAction mousePosAction;
 
         // Current Selections
@@ -84,9 +85,11 @@ namespace Grubitecht
             if (TryGetComponent(out PlayerInput input))
             {
                 selectAction = input.currentActionMap.FindAction("Select");
+                deselectAction = input.currentActionMap.FindAction("Deselect");
                 mousePosAction = input.currentActionMap.FindAction("MousePos");                                        
 
                 selectAction.performed += SelectAction_Performed;
+                deselectAction.performed += DeselectAction_Performed;
             }
         }
 
@@ -96,6 +99,7 @@ namespace Grubitecht
         private void OnDestroy()
         {
             selectAction.performed -= SelectAction_Performed;
+            deselectAction.performed += DeselectAction_Performed;
         }
 
         /// <summary>
@@ -110,6 +114,16 @@ namespace Grubitecht
             // If the currently selected object is clicked, then it is deselected.
             CurrentSelection = clicked == CurrentSelection ? null : clicked;
 
+            UpdateSelectionIndicator();
+        }
+
+        /// <summary>
+        /// Deselect the current object if the player inputs a right click.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void DeselectAction_Performed(InputAction.CallbackContext obj)
+        {
+            CurrentSelection = null;
             UpdateSelectionIndicator();
         }
 
