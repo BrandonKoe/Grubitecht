@@ -81,8 +81,8 @@ namespace Grubitecht
         {
             Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
-            List<PathNode> openList = new List<PathNode>();
-            List<Vector3Int> closedList = new List<Vector3Int>();
+            List<PathNode> openList = new();
+            List<Vector3Int> closedList = new();
 
             PathNode startNode = PathNode.NewNode(startingTile, startingTile, endingTile);
             openList.Add(startNode);
@@ -146,7 +146,7 @@ namespace Grubitecht
         /// <returns>A list of tiles that represents the path.</returns>
         private static List<Vector3Int> FinalizePath(PathNode startNode, PathNode endingNode)
         {
-            List<Vector3Int> result = new List<Vector3Int>();
+            List<Vector3Int> result = new();
             PathNode current = endingNode;
             while (current != startNode)
             {
@@ -164,7 +164,7 @@ namespace Grubitecht
         /// <returns>A list of all tiles adjacent to this tile.</returns>
         public static List<Vector3Int> GetAdjacentTiles(Vector3Int position)
         {
-            List<Vector3Int> adjSpaces = new List<Vector3Int>();
+            List<Vector3Int> adjSpaces = new();
             foreach (Vector2Int direction in CardinalDirections.CARDINAL_DIRECTIONS_2)
             {
                 adjSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)position + direction,

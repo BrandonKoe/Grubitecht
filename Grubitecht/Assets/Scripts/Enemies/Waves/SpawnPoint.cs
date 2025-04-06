@@ -218,7 +218,7 @@ namespace Grubitecht.Waves
                     Vector3Int pos = FindPosition();
                     spawnedEnemy.gridObject.SetCurrentSpace(pos);
                     spawnedEnemy.gridObject.SnapToSpace();
-                    spawnedEnemy.StartMoving();
+                    spawnedEnemy.PathToNearestObjective();
                     //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
                 }
             }

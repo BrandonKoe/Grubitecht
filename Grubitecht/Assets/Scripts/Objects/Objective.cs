@@ -17,7 +17,7 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
-        public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
+        //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
         private static readonly List<Objective> currentObjectives = new();
 
         #region Component References
@@ -106,12 +106,12 @@ namespace Grubitecht.World.Objects
             //}
         }
 
-        /// <summary>
-        /// Updates the objective nav map.
-        /// </summary>
-        public static void UpdateNavMap()
-        {
-            NavMap.UpdateMap(GetObjectivePositions());
-        }
+        ///// <summary>
+        ///// Updates the objective nav map.
+        ///// </summary>
+        //public static void UpdateNavMap()
+        //{
+        //    NavMap.UpdateMap(GetObjectivePositions());
+        //}
     }
 }
