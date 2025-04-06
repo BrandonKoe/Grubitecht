@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows the player to pan the camera within certain bounds.
 *****************************************************************************/
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,9 @@ namespace Grubitecht
         [SerializeField] private float panSpeed;
         private InputAction deltaAction;
         private InputAction panAction;
+
+        // Use this event to update graphics that change when the user moves their camera around.
+        public static event Action OnCameraPan;
 
         private bool isPanning;
 
@@ -75,6 +79,7 @@ namespace Grubitecht
                 newPos.y = Mathf.Clamp(newPos.y, panBoundsY.x, panBoundsY.y);
                 // Update the new camera position.
                 transform.localPosition = newPos;
+                OnCameraPan?.Invoke();
             }
         }
     }
