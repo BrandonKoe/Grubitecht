@@ -89,16 +89,23 @@ namespace Grubitecht.World
         {
             if (!targeter.HasTarget)
             {
-                currentTarget = Objective.GetNearestObjective(transform.position);
-                // Nearest objective should never be null in actual gameplay as if it is then the level is lost.
-                // Double check for null here to avoid errors.
-                if (currentTarget != null)
+                //currentTarget = Objective.GetNearestObjective(transform.position);
+                //// Nearest objective should never be null in actual gameplay as if it is then the level is lost.
+                //// Double check for null here to avoid errors.
+                //if (currentTarget != null)
+                //{
+                //    //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
+                //    // When the enemy arrives at it's destination, if it doesnt have a target still, then we
+                //    // attempt to pathfind again.
+                //    pathNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
+                //}
+                // Enemies always target the same objective in priority order.
+                Objective target = Objective.TargetObjective;
+                if (target != null)
                 {
-                    //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
-                    // When the enemy arrives at it's destination, if it doesnt have a target still, then we
-                    // attempt to pathfind again.
-                    pathNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
+                    pathNavigator.SetDestination(target.gridObject.CurrentSpace, true, PathToNearestObjective);
                 }
+               
             }
         }
     }

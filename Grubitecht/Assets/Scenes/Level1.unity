@@ -504,6 +504,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333240114}
     m_Modifications:
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: targetingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
       value: House4
@@ -1192,6 +1200,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333240114}
     m_Modifications:
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: targetingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
       value: House3
@@ -2525,6 +2541,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333240114}
     m_Modifications:
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: targetingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
       value: House2
@@ -2802,8 +2826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
   waveTimerObject: {fileID: 1247007368}
-  delayBetweenWaves: 20
-  firstWaveDelay: 25
+  delayBetweenWaves: 5
+  firstWaveDelay: 1
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0
@@ -6810,6 +6834,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333240114}
     m_Modifications:
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: targetingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
       value: House5
@@ -8541,6 +8569,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333240114}
     m_Modifications:
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: priority
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: targetingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
       value: House
