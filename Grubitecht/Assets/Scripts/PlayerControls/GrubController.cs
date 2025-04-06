@@ -90,7 +90,7 @@ namespace Grubitecht.World
         /// <param name="direction">The direction it is moving.</param>
         private void SetRotation(Vector2Int direction)
         {
-            float angle = MathHelpers.VectorToDegAngle(direction);
+            float angle = MathHelpers.VectorToDegAngleWorld(direction);
             Vector3 eulers = transform.eulerAngles;
             eulers.y = angle;
             transform.eulerAngles = eulers;

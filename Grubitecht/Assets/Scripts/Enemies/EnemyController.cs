@@ -18,6 +18,7 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Targeter))]
     public class EnemyController : MonoBehaviour
     {
+        [field: SerializeField] public Sprite EnemySpriteIcon { get; private set; }
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
