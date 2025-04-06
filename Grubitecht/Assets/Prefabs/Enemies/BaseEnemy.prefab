@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583d59fd8a3bb4e4890c62e93fc45c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <EnemySpriteIcon>k__BackingField: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
   targeter: {fileID: 6308435001518308473}
   mapNavigator: {fileID: 7289939843691556427}
