@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Grubitecht.World
 {
-    [RequireComponent(typeof(MapNavigator))]
+    [RequireComponent(typeof(PathNavigator))]
     [RequireComponent(typeof(Targeter))]
     public class EnemyController : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace Grubitecht.World
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
-        [SerializeReference, HideInInspector] private MapNavigator mapNavigator;
+        [SerializeReference, HideInInspector] private PathNavigator pathNavigator;
 
         /// <summary>
         /// Assign component references on reset.
@@ -31,9 +31,10 @@ namespace Grubitecht.World
         {
             gridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
-            mapNavigator = GetComponent<MapNavigator>();
+            pathNavigator = GetComponent<PathNavigator>();
         }
         #endregion
+        private Objective currentTarget;
 
         /// <summary>
         /// Subscribe and unsubscribe to targeter events that handle when this enemy updates its movement.
@@ -58,7 +59,7 @@ namespace Grubitecht.World
         /// </summary>
         private void HandleOnGainTarget()
         {
-            mapNavigator.StopMoving();
+            pathNavigator.StopMoving();
         }
 
         /// <summary>
@@ -66,39 +67,46 @@ namespace Grubitecht.World
         /// </summary>
         private void HandleOnLoseTarget()
         {
-            StartMoving();
-        }
-
-        /// <summary>
-        /// Starts this enemy's movement.
-        /// </summary>
-        /// <remarks>
-        /// Called by the spawn point when this enemy spawns.
-        /// </remarks>
-        [Button]
-        public void StartMoving()
-        {
-            mapNavigator.StartMoving(Objective.NavMap);
+            PathToNearestObjective();
         }
 
         ///// <summary>
-        ///// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
+        ///// Starts this enemy's movement.
         ///// </summary>
-        //private void PathToNearestObjective()
+        ///// <remarks>
+        ///// Called by the spawn point when this enemy spawns.
+        ///// </remarks>
+        //[Button]
+        //public void StartMoving()
         //{
-        //    if (!targeter.HasTarget)
-        //    {
-        //        currentTarget = Objective.GetNearestObjective(transform.position);
-        //        // Nearest objective should never be null in actual gameplay as if it is then the level is lost.
-        //        // Double check for null here to avoid errors.
-        //        if (currentTarget != null)
-        //        {
-        //            //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
-        //            // When the enemy arrives at it's destination, if it doesnt have a target still, then we
-        //            // attempt to pathfind again.
-        //            GridNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
-        //        }
-        //    }
+        //    pathNavigator.StartMoving(Objective.NavMap);
         //}
+
+        /// <summary>
+        /// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
+        /// </summary>
+        public void PathToNearestObjective()
+        {
+            if (!targeter.HasTarget)
+            {
+                //currentTarget = Objective.GetNearestObjective(transform.position);
+                //// Nearest objective should never be null in actual gameplay as if it is then the level is lost.
+                //// Double check for null here to avoid errors.
+                //if (currentTarget != null)
+                //{
+                //    //Debug.Log("Set destination to " + currentTarget.gridObject.CurrentSpace);
+                //    // When the enemy arrives at it's destination, if it doesnt have a target still, then we
+                //    // attempt to pathfind again.
+                //    pathNavigator.SetDestination(currentTarget.gridObject.CurrentSpace, true, PathToNearestObjective);
+                //}
+                // Enemies always target the same objective in priority order.
+                Objective target = Objective.TargetObjective;
+                if (target != null)
+                {
+                    pathNavigator.SetDestination(target.gridObject.CurrentSpace, true, PathToNearestObjective);
+                }
+               
+            }
+        }
     }
 }

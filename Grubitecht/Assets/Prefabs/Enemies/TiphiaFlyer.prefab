@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: climbHeight
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: restrictMovementAxes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4418353696940839030, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

@@ -132,7 +132,7 @@ MonoBehaviour:
   timerImage: {fileID: 5413139982817195551}
   backImageTransform: {fileID: 811095964497678629}
   enemyNumberText: {fileID: 8883098822231178880}
-  offset: 12
+  offset: 50
   angularOffset: 45
   padding: 0
 --- !u!1 &6531168678395178688

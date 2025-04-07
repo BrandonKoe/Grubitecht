@@ -39,8 +39,10 @@ namespace Grubitecht.World
             {
                 current = null;
             }
-            // Reset the navigation map when the level is unloaded & this object is destroyed.
-            Objective.NavMap.ResetMap();
+            //// Reset the navigation map when the level is unloaded & this object is destroyed.
+            //Objective.NavMap.ResetMap();
+            // Need to clear all the nodes the pathfinder has stored when the level ends.
+            Pathfinder.ClearNodes();
         }
 
         /// <summary>
@@ -49,10 +51,10 @@ namespace Grubitecht.World
         /// </summary>
         private void Start()
         {
-            Objective.NavMap.CreateMap();
-            // Need to bake an initial nav map then start buffered updates later.
-            Objective.UpdateNavMap();
-            Objective.NavMap.StartUpdating(this);
+            //Objective.NavMap.CreateMap();
+            //// Need to bake an initial nav map then start buffered updates later.
+            //Objective.UpdateNavMap();
+            //Objective.NavMap.StartUpdating(this);
         }
 
         #region Win & Lose
