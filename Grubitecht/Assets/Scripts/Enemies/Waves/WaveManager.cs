@@ -125,7 +125,10 @@ namespace Grubitecht.Waves
                 }
 
                 // Enable the timer object when waiting for a wave, disable it after the wave begins.
-                waveTimerObject.SetActive(true);
+                if (waveTimerObject != null)
+                {
+                    waveTimerObject.SetActive(true);
+                }
                 while (waveDelayTimer > 0)
                 {
                     // Update the UI here.
@@ -136,7 +139,10 @@ namespace Grubitecht.Waves
                     waveDelayTimer -= Time.deltaTime;
                     yield return null;
                 }
-                waveTimerObject.SetActive(false);
+                if (waveTimerObject != null)
+                {
+                    waveTimerObject.SetActive(false);
+                }
 
                 // Has each spawn point start the next wave.
                 foreach (SpawnPoint spawnPoint in spawnPoints)

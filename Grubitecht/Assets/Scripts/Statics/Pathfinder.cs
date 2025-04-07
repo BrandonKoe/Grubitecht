@@ -164,9 +164,13 @@ namespace Grubitecht
         public static List<VoxelTile> GetAdjacentTiles(VoxelTile tile)
         {
             List<VoxelTile> adjSpaces = new List<VoxelTile>();
-            foreach (Vector2Int direction in CardinalDirections.CARDINAL_DIRECTIONS_2)
+            foreach (Vector2Int direction in CardinalDirections.ORTHOGONAL_2D)
             {
-                adjSpaces.Add(tile.GetAdjacent(direction));
+                VoxelTile adjTile = tile.GetAdjacent(direction);
+                if (adjTile != null)
+                {
+                    adjSpaces.Add(adjTile);
+                }
             }
             return adjSpaces;
         }

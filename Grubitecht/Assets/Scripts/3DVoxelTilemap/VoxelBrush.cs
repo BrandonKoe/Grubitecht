@@ -18,7 +18,10 @@ namespace Grubitecht.Tilemaps
     [CustomGridBrush(false, true, false, "Voxel Brush")]
     public class VoxelBrush : GridBrushBase
     {
-        //[Header("Voxel Brush Settings")]
+        [Header("Voxel Brush Settings")]
+        [SerializeField, Tooltip("Whether tiles painted lower than a pre-existing tile should overwrite that " +
+            "higher tile")] 
+        private bool smoothAbove;
         #region EditorOnly
         #if UNITY_EDITOR
         public static void CreateGridBrush3D()
@@ -66,7 +69,7 @@ namespace Grubitecht.Tilemaps
         {
             if (!tilemap.CheckCell(position))
             {
-                tilemap.Paint(position);
+                tilemap.Paint(position, smoothAbove);
             }
             //Debug.Log(tilemap.GridToLocalCorner(position));
         }

@@ -15,22 +15,22 @@ namespace Grubitecht.Tilemaps
     [System.Serializable]
     public class VoxelTile
     {
-        #region CONSTS
-        private static readonly Dictionary<Vector2Int, int> ADJACENT_INDEX_REFERENCE = new Dictionary<Vector2Int, int>()
-        {
-            {Vector2Int.right, 0},
-            {Vector2Int.left, 1},
-            {Vector2Int.up, 2},
-            {Vector2Int.down, 3},
-            {new Vector2Int(1, 1), 4},
-            {new Vector2Int(1, -1), 5},
-            {new Vector2Int(-1, 1), 6},
-            {new Vector2Int(-1, -1), 7}
-        };
-        #endregion
+        //#region CONSTS
+        //private static readonly Dictionary<Vector2Int, int> ADJACENT_INDEX_REFERENCE = new Dictionary<Vector2Int, int>()
+        //{
+        //    {Vector2Int.right, 0},
+        //    {Vector2Int.left, 1},
+        //    {Vector2Int.up, 2},
+        //    {Vector2Int.down, 3},
+        //    {new Vector2Int(1, 1), 4},
+        //    {new Vector2Int(1, -1), 5},
+        //    {new Vector2Int(-1, 1), 6},
+        //    {new Vector2Int(-1, -1), 7}
+        //};
+        //#endregion
         [field: SerializeField] public Vector3Int GridPosition { get; private set; }
 
-        [field: SerializeField] private readonly VoxelTile[] adjacentSpaces = new VoxelTile[8];
+        //[field: SerializeField, HideInInspector] private VoxelTile[] adjacentTiles = new VoxelTile[8];
         public GridObject ContainedObject { get; set; }
 
         #region Properties
@@ -55,6 +55,15 @@ namespace Grubitecht.Tilemaps
             GridPosition = position;
         }
 
+        ///// <summary>
+        ///// Gives this tile references to tiles adjacent to it.
+        ///// </summary>
+        ///// <param name="adjTiles">The tiles adjacent to this tile.</param>
+        //public void SetAdjacnets(VoxelTile[] adjTiles)
+        //{
+        //    adjacentTiles = adjTiles;
+        //}
+
         /// <summary>
         /// Gets a tile adjacent to this one.
         /// </summary>
@@ -62,7 +71,7 @@ namespace Grubitecht.Tilemaps
         /// <returns>The tile adjacent to this one in the given direction.</returns>
         public VoxelTile GetAdjacent(Vector2Int direction)
         {
-            return adjacentSpaces[ADJACENT_INDEX_REFERENCE[direction]];
+            return VoxelTilemap3D.Main_GetTile(GridPosition2 + direction);
         }
     }
 }

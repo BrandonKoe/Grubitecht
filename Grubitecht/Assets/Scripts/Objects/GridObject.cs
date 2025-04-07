@@ -83,7 +83,7 @@ namespace Grubitecht.World.Objects
                 //Debug.Log(objInSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
                 if (objInSpace != null && objInSpace != this)
-                { 
+                {
                     return;
                 }
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
@@ -102,6 +102,8 @@ namespace Grubitecht.World.Objects
         /// </summary>
         public void SnapToSpace()
         {
+            // Cant snap to a space if we dont have one.
+            if (CurrentSpace == null) { return; }
             transform.position = GetOccupyPosition(CurrentSpace);
         }
 
@@ -112,6 +114,7 @@ namespace Grubitecht.World.Objects
         /// <returns>The position of the tile plus the set offset of this object.</returns>
         public Vector3 GetOccupyPosition(VoxelTile space)
         {
+            Debug.Log(space);
             return VoxelTilemap3D.Main_GridToWorldPos(space.GridPosition) + offset;
         }
 

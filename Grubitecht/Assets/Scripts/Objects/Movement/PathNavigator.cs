@@ -45,7 +45,7 @@ namespace Grubitecht.World.Pathfinding
         public void SetDestination(VoxelTile destinationSpace, bool includeAdjacent = false, 
             MovementFinishCallback finishCallback = null)
         {
-            // If our destination is already occupied, then we sould always include adjacent spaces.
+            // If our destination is already occupied, then we should always include adjacent spaces.
             if (destinationSpace.ContainedObject == null)
             {
                 includeAdjacent = true;

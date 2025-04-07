@@ -52,7 +52,7 @@ namespace Grubitecht.World.Pathfinding
                 List<VoxelTile> possibleSpaces = new List<VoxelTile>();
 
                 // Get the target space.
-                foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
+                foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
                     possibleSpaces.Add(gridObject.CurrentSpace.GetAdjacent(dir));
                 }

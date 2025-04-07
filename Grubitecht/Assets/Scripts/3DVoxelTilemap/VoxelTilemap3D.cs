@@ -119,7 +119,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to paint at.</param>
         /// <param name="type">The type of tile to paint.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        public void Paint(Vector3Int position)
+        public void Paint(Vector3Int position, bool smoothAbove)
         {
             //foreach (SubTilemap submap in subTilemaps)
             //{
@@ -135,9 +135,14 @@ namespace Grubitecht.Tilemaps
             VoxelTile existingTile = tiles.Find(item => item.GridPosition2 == (Vector2Int)position);
             if (existingTile != null)
             {
-                if (existingTile.GridPosition == position) { return; }
+                if (existingTile.GridPosition == position || 
+                    (!smoothAbove && existingTile.GridPosition.z > position.z)) 
+                {
+                    return; 
+                }
                 tiles.Remove(existingTile);
             }
+            //UpdateAdjacents(newTile);
             tiles.Add(new VoxelTile(position));
             //if (refreshMesh)
             //{
@@ -145,10 +150,20 @@ namespace Grubitecht.Tilemaps
             //}
         }
 
-        private VoxelTile[] GetAdjacents(Vector3Int)
-        {
-            foreach(Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
-        }
+        ///// <summary>
+        ///// Updates all tiles adjacent to a given tile, and gives the passed in tile references to those
+        ///// adjacent tiles.
+        ///// </summary>
+        ///// <param name="tile">The tile to update the adjacence for.</param>
+        //private void UpdateAdjacents(VoxelTile tile)
+        //{
+        //    VoxelTile[] adjTiles = new VoxelTile[8];
+        //    for (int i = 0; i < CardinalDirections.DIAGONAL_2D.Length; i++)
+        //    {
+        //        adjTiles[i] = GetTile(tile.GridPosition2 + CardinalDirections.DIAGONAL_2D[i]);
+        //    }
+        //    tile.SetAdjacnets(adjTiles);
+        //}
 
         /// <summary>
         /// Erases a voxel from this tilemap.
@@ -487,7 +502,7 @@ namespace Grubitecht.Tilemaps
                     // If at least one position was evaluated, then were will return true.
                     // Only return false if this chunk is empty.
                     returnValue |= true;
-                    foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
+                    foreach (Vector3Int direction in CardinalDirections.OOTHOGONAL_3D)
                     {
                         // If there is a voxel adjacent to this one, then we skip drawing a face.
                         if (CheckCell(gridPos + direction))

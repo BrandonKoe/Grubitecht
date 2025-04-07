@@ -9,7 +9,7 @@ using UnityEngine;
 
 public static class CardinalDirections
 {
-    public static readonly Vector3Int[] CARDINAL_DIRECTIONS = new Vector3Int[]
+    public static readonly Vector3Int[] OOTHOGONAL_3D = new Vector3Int[]
     {
             Vector3Int.up,
             Vector3Int.down,
@@ -19,11 +19,23 @@ public static class CardinalDirections
             Vector3Int.back
     };
 
-    public static readonly Vector2Int[] CARDINAL_DIRECTIONS_2 = new Vector2Int[]
+    public static readonly Vector2Int[] ORTHOGONAL_2D = new Vector2Int[]
     {
         Vector2Int.right,
         Vector2Int.left,
         Vector2Int.up,
         Vector2Int.down
+    };
+
+    public static readonly Vector2Int[] DIAGONAL_2D = new Vector2Int[]
+    {
+        Vector2Int.right,
+        Vector2Int.left,
+        Vector2Int.up,
+        Vector2Int.down,
+        new(1,1),
+        new(1,-1),
+        new(-1,1),
+        new(-1,-1)
     };
 }

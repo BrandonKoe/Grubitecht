@@ -153,12 +153,13 @@ namespace Grubitecht.World.Pathfinding
                 // Gets the node with the shortest distance.
                 currentNode = unvisited.OrderBy(item => mapBuffer[item]).FirstOrDefault();
                 // Loop through each adjacent tile.
-                foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
+                foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
                     VoxelTile target = currentNode.GetAdjacent(dir);
                     // Skips over already visited nodes, nodes that are out of climbing height, and nodes that
                     // are occupied.  (This version can afford to update for occupied cells.
-                    if (visited.Contains(target) ||
+                    if (target == null || 
+                        visited.Contains(target) ||
                         Mathf.Abs(currentNode.GridPosition.z - target.GridPosition.z) > climbHeight ||
                        target.ContainedObject != null)
                     { continue; }
