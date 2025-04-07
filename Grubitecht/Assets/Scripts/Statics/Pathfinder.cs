@@ -6,7 +6,6 @@
 // Brief Description : Uses an A* Pathfinding algorith to  find a path connecting two points on the grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
-using Grubitecht.World.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace Grubitecht
         #region Nested Classes
         private class PathNode
         {
-            internal Vector3Int space;
+            internal VoxelTile space;
             internal PathNode previousNode;
             internal int g;
             internal int h;
@@ -31,11 +30,11 @@ namespace Grubitecht
                 }
             }
 
-            private PathNode(Vector3Int tile, Vector3Int start, Vector3Int end)
+            private PathNode(VoxelTile tile, VoxelTile start, VoxelTile end)
             {
                 this.space = tile;
-                g = MathHelpers.FindManhattenDistance((Vector2Int)start, (Vector2Int)tile);
-                h = MathHelpers.FindManhattenDistance((Vector2Int)tile, (Vector2Int)end);
+                g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
+                h = MathHelpers.FindManhattenDistance(start.GridPosition2, end.GridPosition2);
             }
 
             /// <summary>
@@ -45,7 +44,7 @@ namespace Grubitecht
             /// <param name="start">The starting tile of the path.</param>
             /// <param name="end">The ending tile of the path.</param>
             /// <returns>A newly created path node for this tile.</returns>
-            internal static PathNode NewNode(Vector3Int tile, Vector3Int start, Vector3Int end)
+            internal static PathNode NewNode(VoxelTile tile, VoxelTile start, VoxelTile end)
             {
                 if (tile == null)
                 {
@@ -76,13 +75,13 @@ namespace Grubitecht
         /// Whether this path should go around spaces that have objects in them.
         /// </param>
         /// <returns>A list of tiles representing the path between the start and ending tiles.</returns>
-        public static List<Vector3Int> FindPath(Vector3Int startingTile, Vector3Int endingTile, int climbHeight, 
+        public static List<VoxelTile> FindPath(VoxelTile startingTile, VoxelTile endingTile, int climbHeight, 
             bool includeAdjacent = false, bool ignoreBlockedSpaces = false)
         {
             Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new List<PathNode>();
-            List<Vector3Int> closedList = new List<Vector3Int>();
+            List<VoxelTile> closedList = new List<VoxelTile>();
 
             PathNode startNode = PathNode.NewNode(startingTile, startingTile, endingTile);
             openList.Add(startNode);
@@ -103,8 +102,8 @@ namespace Grubitecht
                 }
 
                 // Check the neighboring tiles.
-                List<Vector3Int> neighbors = GetAdjacentTiles(current.space);
-                foreach (Vector3Int neighbor in neighbors)
+                List<VoxelTile> neighbors = GetAdjacentTiles(current.space);
+                foreach (VoxelTile neighbor in neighbors)
                 {
                     // If this path is marked to end at a tile adjacent to the target tile, then we finalize the path
                     // here where the neighbor to our current tile is the ending tile.
@@ -114,9 +113,9 @@ namespace Grubitecht
                     }
 
                     // Exclude any inaccessible tiles here.
-                    if ((GridObject.GetObjectAtSpace(neighbor) != null && !ignoreBlockedSpaces) || 
+                    if ((neighbor.ContainedObject != null && !ignoreBlockedSpaces) || 
                         closedList.Contains(neighbor) ||
-                        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
+                        Mathf.Abs(current.space.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
                     {
                         continue;
                     }
@@ -144,9 +143,9 @@ namespace Grubitecht
         /// <param name="startNode">The starting node of the path.</param>
         /// <param name="endingNode">The ending node of the path.</param>
         /// <returns>A list of tiles that represents the path.</returns>
-        private static List<Vector3Int> FinalizePath(PathNode startNode, PathNode endingNode)
+        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode)
         {
-            List<Vector3Int> result = new List<Vector3Int>();
+            List<VoxelTile> result = new List<VoxelTile>();
             PathNode current = endingNode;
             while (current != startNode)
             {
@@ -162,13 +161,12 @@ namespace Grubitecht
         /// Gets a list of all tiles adjacent to this tile, regardless of elevation difference.
         /// </summary>
         /// <returns>A list of all tiles adjacent to this tile.</returns>
-        public static List<Vector3Int> GetAdjacentTiles(Vector3Int position)
+        public static List<VoxelTile> GetAdjacentTiles(VoxelTile tile)
         {
-            List<Vector3Int> adjSpaces = new List<Vector3Int>();
+            List<VoxelTile> adjSpaces = new List<VoxelTile>();
             foreach (Vector2Int direction in CardinalDirections.CARDINAL_DIRECTIONS_2)
             {
-                adjSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)position + direction,
-                    GridObject.VALID_GROUND_TYPE));
+                adjSpaces.Add(tile.GetAdjacent(direction));
             }
             return adjSpaces;
         }

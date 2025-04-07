@@ -52,7 +52,7 @@ namespace Grubitecht.World.Objects
             {
                 if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
-                    GridNavigator.SetDestination(space.GridPosition, false, RecallGrub);
+                    GridNavigator.SetDestination(space.Tile, false, RecallGrub);
                     GrubManager.AssignGrub(this);
                 }
             }

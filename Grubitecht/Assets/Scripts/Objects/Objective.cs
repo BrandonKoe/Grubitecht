@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Grubitecht.World.Pathfinding;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.World.Objects
 {
@@ -58,7 +59,7 @@ namespace Grubitecht.World.Objects
         /// Gets the current spaces of all objectives.
         /// </summary>
         /// <returns>An array of spaces representing the spaces of all objectives.</returns>
-        private static Vector3Int[] GetObjectivePositions()
+        private static VoxelTile[] GetObjectivePositions()
         {
             return currentObjectives.Select(item => item.gridObject.CurrentSpace).ToArray();
         }

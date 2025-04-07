@@ -170,9 +170,9 @@ namespace Grubitecht.Waves
         private void SpawnSubwave(Wave.Subwave subwave)
         {
             int range = 0;
-            List<Vector3Int> usedPositions = new List<Vector3Int>();
+            List<VoxelTile> usedPositions = new List<VoxelTile>();
             // Finds a new position to spawn an enemy at that projects outward from the spawn point's position.
-            Vector3Int FindPosition()
+            VoxelTile FindPosition()
             {
                 for (int x = -range; x <= range; x++)
                 {
@@ -184,12 +184,11 @@ namespace Grubitecht.Waves
                     {
                         int y = i * yRange;
                         // Check the positive and negative cells that have a manhatten distance of range.
-                        Vector2Int checkPos = new Vector2Int(x, y) + (Vector2Int)gridObject.CurrentSpace;
-                        Vector3Int checkCell = VoxelTilemap3D.Main_GetClosestCellInColumn(checkPos,
-                            (Vector3Int)gridObject.CurrentSpace, GridObject.VALID_GROUND_TYPE);
+                        Vector2Int checkPos = new Vector2Int(x, y) + gridObject.CurrentSpace.GridPosition2;
+                        VoxelTile checkCell = VoxelTilemap3D.Main_GetTile(checkPos);
                         // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
                         // tilemap and we should ignore it.
-                        if (checkCell == Vector3Int.zero && checkPos != Vector2Int.zero)
+                        if (checkCell == null)
                         {
                             continue;
                         }
@@ -215,8 +214,8 @@ namespace Grubitecht.Waves
                     EnemyController spawnedEnemy = Instantiate(enemy.EnemyPrefab, EnemyParent);
 
                     //spawnedEnemy.name = spawnedEnemy.name + i;
-                    Vector3Int pos = FindPosition();
-                    spawnedEnemy.gridObject.SetCurrentSpace(pos);
+                    VoxelTile tile = FindPosition();
+                    spawnedEnemy.gridObject.SetCurrentSpace(tile);
                     spawnedEnemy.gridObject.SnapToSpace();
                     spawnedEnemy.StartMoving();
                     //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);

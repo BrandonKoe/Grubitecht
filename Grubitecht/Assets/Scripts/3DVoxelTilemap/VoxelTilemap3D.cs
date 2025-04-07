@@ -8,8 +8,9 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.Linq;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -35,7 +36,7 @@ namespace Grubitecht.Tilemaps
         [SerializeField, ReadOnly] private List<Chunk> chunks;
         [SerializeField] private int chunkSize = 16;
         [Header("Tilemap Settings.")]
-        [SerializeField] private SubTilemap[] subTilemaps;
+        [SerializeField] private List<VoxelTile> tiles;
 
         private static VoxelTilemap3D instance;
 
@@ -69,14 +70,20 @@ namespace Grubitecht.Tilemaps
         #endregion
 
         #region Nested Classes
-        /// <summary>
-        /// Class to represent a specific sub-tilemap of this tilemap.
-        /// </summary>
-        [System.Serializable]
-        private class SubTilemap
+        ///// <summary>
+        ///// Class to represent a specific sub-tilemap of this tilemap.
+        ///// </summary>
+        //[System.Serializable]
+        //private class SubTilemap
+        //{
+        //    [SerializeField] internal TileType tileType;
+        //    [SerializeField] internal List<Vector3Int> tiles;
+        //}
+
+        private enum TileType
         {
-            [SerializeField] internal TileType tileType;
-            [SerializeField] internal List<Vector3Int> tiles;
+            Ground,
+            Wall
         }
         #endregion
 
@@ -112,19 +119,29 @@ namespace Grubitecht.Tilemaps
         /// <param name="position">The position to paint at.</param>
         /// <param name="type">The type of tile to paint.</param>
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
-        public void Paint(Vector3Int position, TileType type)
+        public void Paint(Vector3Int position)
         {
-            foreach (SubTilemap submap in subTilemaps)
+            //foreach (SubTilemap submap in subTilemaps)
+            //{
+            //    if (submap.tiles.Contains(position) && submap.tileType != type)
+            //    {
+            //        submap.tiles.Remove(position);
+            //    }
+            //    else if (!submap.tiles.Contains(position) && submap.tileType == type)
+            //    {
+            //        submap.tiles.Add(position);
+            //    }
+            //}
+            VoxelTile existingTile = tiles.Find(item => item.GridPosition2 == (Vector2Int)position);
+            if (existingTile != null)
             {
-                if (submap.tiles.Contains(position) && submap.tileType != type)
-                {
-                    submap.tiles.Remove(position);
-                }
-                else if (!submap.tiles.Contains(position) && submap.tileType == type)
-                {
-                    submap.tiles.Add(position);
-                }
+                tiles.Remove(existingTile);
             }
+            else if (existingTile.GridPosition == position)
+            {
+                return;
+            }
+            tiles.Add(new VoxelTile(position));
             //if (refreshMesh)
             //{
             //    BakeMesh(position);
@@ -138,13 +155,18 @@ namespace Grubitecht.Tilemaps
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         public void Erase(Vector3Int position)
         {
-            foreach (SubTilemap submap in subTilemaps)
+            VoxelTile toErase = tiles.Find(item => item.GridPosition == position);
+            if (toErase != null)
             {
-                if (submap.tiles.Contains(position))
-                {
-                    submap.tiles.Remove(position);
-                }
+                tiles.Remove(toErase);
             }
+            //foreach (SubTilemap submap in subTilemaps)
+            //{
+            //    if (submap.tiles.Contains(position))
+            //    {
+            //        submap.tiles.Remove(position);
+            //    }
+            //}
             //if (refreshMesh)
             //{
             //    BakeMesh(position);
@@ -153,39 +175,37 @@ namespace Grubitecht.Tilemaps
         #endregion
 
         #region Static Functions
-        /// <summary>
-        /// Gets all cells of a certain type that hace the same 2D coordinates.
-        /// </summary>
-        /// <param name="position">The 2D position to get cells at.</param>
-        /// <returns>All the cells with the given 2D position in a column.</returns>
-        public static List<Vector3Int> Main_GetCellsInColumn(Vector2Int position, TileType type)
-        {
-            return Instance.GetCellsInColumn(position, type);
-        }
+        ///// <summary>
+        ///// Gets all cells of a certain type that hace the same 2D coordinates.
+        ///// </summary>
+        ///// <param name="position">The 2D position to get cells at.</param>
+        ///// <returns>All the cells with the given 2D position in a column.</returns>
+        //public static List<Vector3Int> Main_GetCellsInColumn(Vector2Int position)
+        //{
+        //    return Instance.GetCellsInColumn(position);
+        //}
 
-        /// <summary>
-        /// Finds the cell in a column that is the closest to a reference position
-        /// </summary>
-        /// <param name="position">The poistion of the clumn to get a cell from</param>
-        /// <param name="referencePosition">
-        /// The position to use as a reference when evaluating the closest cell.
-        /// </param>
-        /// <param name="type">The type of cells to get.</param>
-        /// <returns>The cell in the column closest to the reference position.</returns>
-        public static Vector3Int Main_GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, 
-            TileType type)
-        {
-            return Instance.GetClosestCellInColumn(position, referencePosition, type);
-        }
+        ///// <summary>
+        ///// Finds the cell in a column that is the closest to a reference position
+        ///// </summary>
+        ///// <param name="position">The poistion of the clumn to get a cell from</param>
+        ///// <param name="referencePosition">
+        ///// The position to use as a reference when evaluating the closest cell.
+        ///// </param>
+        ///// <returns>The cell in the column closest to the reference position.</returns>
+        //public static Vector3Int Main_GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition)
+        //{
+        //    return Instance.GetClosestCellInColumn(position, referencePosition);
+        //}
 
         /// <summary>
         /// Checks the if a specific type of tile occupies a given cell in the main tilemap.
         /// </summary>
         /// <param name="position">The grid position of the cell to check.</param>
         /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
-        public static bool Main_CheckCell(Vector3Int position, TileType type)
+        public static bool Main_CheckCell(Vector3Int position)
         {
-            return Instance.CheckCell(position, type);
+            return Instance.CheckCell(position);
         }
 
         /// <summary>
@@ -203,9 +223,24 @@ namespace Grubitecht.Tilemaps
         /// </summary>
         /// <param name="tileType">The type of tilemap list to get.</param>
         /// <returns>The list of all tiles of a given type in the main tilemap.</returns>
-        public static List<Vector3Int> Main_GetTilemap(TileType type)
+        public static List<VoxelTile> Main_GetTilemap()
         {
-            return Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+            return Instance.tiles;
+        }
+
+        /// <summary>
+        /// Allows external scripts to get references to tiles.
+        /// </summary>
+        /// <param name="position">The position to get the tile at.</param>
+        /// <returns>The tile at that position.</returns>
+        public static VoxelTile Main_GetTile(Vector3Int position)
+        {
+            return Instance.GetTile(position);
+        }
+
+        public static VoxelTile Main_GetTile(Vector2Int position)
+        {
+            return Instance.GetTile(position);
         }
         #endregion
         #region Cell Checking
@@ -217,60 +252,75 @@ namespace Grubitecht.Tilemaps
         /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
         public bool CheckCell(Vector3Int position)
         {
-            bool returnVal = false;
-            foreach (SubTilemap submap in subTilemaps)
-            {
-                returnVal |= submap.tiles.Contains(position);
-            }
-            return returnVal;
-        }
-
-        /// <summary>
-        /// Checks if a specific type of tile occupies a given cell.
-        /// </summary>
-        /// <param name="position">The grid position of the cell to check.</param>
-        /// <returns>True if there is a voxel in that cell, false if there is not.</returns>
-        public bool CheckCell(Vector3Int position, TileType type)
-        {
-            List<Vector3Int> tileList = Array.Find(subTilemaps, item => item.tileType == type).tiles;
-            return tileList.Contains(position);
-            //switch (type)
+            //bool returnVal = false;
+            //foreach (SubTilemap submap in subTilemaps)
             //{
-            //    case TileType.Ground:
-            //        return groundTiles.Contains(position);
-            //    case TileType.Wall:
-            //        return wallTiles.Contains(position);
-            //    default:
-            //        return groundTiles.Contains(position) | wallTiles.Contains(position);
+            //    returnVal |= submap.tiles.Contains(position);
             //}
+            return tiles.Any(item => item.GridPosition == position);
         }
 
-        /// <summary>
-        /// Gets all tiles that share a 2D position.
-        /// </summary>
-        /// <param name="position">The position to get the cells at.</param>
-        /// <param name="type">The type of cells to get.</param>
-        /// <returns>A list of all cells with the given 2D position, regardless of height.</returns>
-        public List<Vector3Int> GetCellsInColumn(Vector2Int position, TileType type)
-        {
-            List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
-            return cells.FindAll(item => item.x == position.x && item.y == position.y);
-        }
+        ///// <summary>
+        ///// Checks if a specific type of tile occupies a given cell.
+        ///// </summary>
+        ///// <param name="position">The grid position of the cell to check.</param>
+        ///// <returns>True if there is a voxel in that cell, false if there is not.</returns>
+        //public bool CheckCell(Vector3Int position)
+        //{
+        //    List<Vector3Int> tileList = Array.Find(subTilemaps, item => item.tileType == type).tiles;
+        //    return tileList.Contains(position);
+        //    //switch (type)
+        //    //{
+        //    //    case TileType.Ground:
+        //    //        return groundTiles.Contains(position);
+        //    //    case TileType.Wall:
+        //    //        return wallTiles.Contains(position);
+        //    //    default:
+        //    //        return groundTiles.Contains(position) | wallTiles.Contains(position);
+        //    //}
+        //}
+
+        ///// <summary>
+        ///// Gets all tiles that share a 2D position.
+        ///// </summary>
+        ///// <param name="position">The position to get the cells at.</param>
+        ///// <param name="type">The type of cells to get.</param>
+        ///// <returns>A list of all cells with the given 2D position, regardless of height.</returns>
+        //public List<Vector3Int> GetCellsInColumn(Vector2Int position)
+        //{
+        //    List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+        //    return cells.FindAll(item => item.x == position.x && item.y == position.y);
+        //}
+
+        ///// <summary>
+        ///// Finds the cell in a column that is the closest to a reference position
+        ///// </summary>
+        ///// <param name="position">The poistion of the clumn to get a cell from</param>
+        ///// <param name="referencePosition">
+        ///// The position to use as a reference when evaluating the closest cell.
+        ///// </param>
+        ///// <param name="type">The type of cells to get.</param>
+        ///// <returns>The cell in the column closest to the reference position.</returns>
+        //public Vector3Int GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, TileType type)
+        //{
+        //    List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
+        //    return cells.FindAll(item => item.x == position.x && item.y == position.y).
+        //        OrderBy(item => Vector3.Distance(item, referencePosition)).FirstOrDefault();
+        //}
 
         /// <summary>
-        /// Finds the cell in a column that is the closest to a reference position
+        /// Finds the tile at a given position.
         /// </summary>
-        /// <param name="position">The poistion of the clumn to get a cell from</param>
-        /// <param name="referencePosition">
-        /// The position to use as a reference when evaluating the closest cell.
-        /// </param>
-        /// <param name="type">The type of cells to get.</param>
-        /// <returns>The cell in the column closest to the reference position.</returns>
-        public Vector3Int GetClosestCellInColumn(Vector2Int position, Vector3Int referencePosition, TileType type)
+        /// <param name="position">The position to get the tile at.</param>
+        /// <returns>The tile at that position.</returns>
+        public VoxelTile GetTile(Vector3Int position)
         {
-            List<Vector3Int> cells = Array.Find(instance.subTilemaps, item => item.tileType == type).tiles;
-            return cells.FindAll(item => item.x == position.x && item.y == position.y).
-                OrderBy(item => Vector3.Distance(item, referencePosition)).FirstOrDefault();
+            return tiles.Find(item => item.GridPosition == position);
+        }
+
+        public VoxelTile GetTile(Vector2Int position)
+        {
+            return tiles.Find(item => item.GridPosition2 == position);
         }
         #endregion
 
@@ -425,14 +475,15 @@ namespace Grubitecht.Tilemaps
             }
 
             // Loops through all voxels in a submap that are within the chunk add adds their faces to the mesh.
-            bool AddVoxelFaces(SubTilemap submap, Vector2Int chunkPos)
+            bool AddVoxelFaces(List<VoxelTile> tilemap, Vector2Int chunkPos)
             {
                 bool returnValue = false;
-                List<Vector3Int> inChunk = submap.tiles.FindAll(item => GetChunkPos(item) == chunkPos);
+                List<Vector3Int> inChunk = tilemap.Select(item => item.GridPosition).ToList()
+                    .FindAll(item => GetChunkPos(item) == chunkPos);
                 foreach (Vector3Int gridPos in inChunk)
                 {
-                    // If at least one position from this submap was evaluated, then were will return true.
-                    // Only return false if this submap is empty.
+                    // If at least one position was evaluated, then were will return true.
+                    // Only return false if this chunk is empty.
                     returnValue |= true;
                     foreach (Vector3Int direction in CardinalDirections.CARDINAL_DIRECTIONS)
                     {
@@ -441,8 +492,40 @@ namespace Grubitecht.Tilemaps
                         {
                             continue;
                         }
-                        // Turns the grid position into a position relative to the chunk we are in.
-                        AddFace(GridToRelativePos(gridPos), direction, submap.tileType);
+                        // Special exception for downards facing faces.  They should always render at the bottom of
+                        // the tilemap
+                        if (direction == Vector3Int.down)
+                        {
+                            Vector3Int bottomedPos = new Vector3Int(gridPos.x, gridPos.y, 0);
+                            AddFace(GridToRelativePos(bottomedPos), direction, TileType.Ground);
+                        }
+                        else
+                        {
+                            // Turns the grid position into a position relative to the chunk we are in.
+                            AddFace(GridToRelativePos(gridPos), direction, TileType.Ground);
+                        }
+
+                        // If this face is a horizontal face, then we should also add faces downward until we reach 
+                        // a space where that face is occluded.
+
+                        // Check if this face is is not up/down facing.
+                        if (direction.z == 0)
+                        {
+                            Vector3Int cascadePos = gridPos + Vector3Int.down;
+                            while (cascadePos.z >= 0)
+                            {
+                                // If there is a voxel that would now block this face, then we should stop cascading
+                                // and adding wall faces.
+                                if (CheckCell(cascadePos + direction))
+                                {
+                                    break;
+                                }
+                                // Turns the grid position into a position relative to the chunk we are in.
+                                AddFace(GridToRelativePos(cascadePos), direction, TileType.Wall);
+
+                                cascadePos = cascadePos + Vector3Int.down;
+                            }
+                        }
                     }
                 }
                 return returnValue;
@@ -492,12 +575,7 @@ namespace Grubitecht.Tilemaps
             }
             #endregion
 
-            bool notEmpty = false;
-            // Add faces for ground and wall tiles.
-            foreach (SubTilemap submap in subTilemaps)
-            {
-                notEmpty |= AddVoxelFaces(submap, chunk.ChunkPos);
-            }
+            bool notEmpty = AddVoxelFaces(tiles, chunk.ChunkPos);
             // If, after looping through all the submaps, our chunk contains no values then we should destroy this
             // chunk.
             if (!notEmpty)

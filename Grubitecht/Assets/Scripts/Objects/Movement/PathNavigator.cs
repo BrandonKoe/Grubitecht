@@ -5,8 +5,8 @@
 //
 // Brief Description : Allows a grid object to move along the grid using pathfinding.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.UI.InfoPanel;
-using Grubitecht.World.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,10 +21,10 @@ namespace Grubitecht.World.Pathfinding
     "path, or immediately as soon as it starts moving.")]
         protected bool updateSpaceDuringPath;
 
-        private List<Vector3Int> currentPath;
-        private Vector3Int currentPathSpace;
+        private List<VoxelTile> currentPath;
+        private VoxelTile currentPathSpace;
 
-        public event Action<Vector3Int> NewSpaceEvent;
+        public event Action<VoxelTile> NewSpaceEvent;
 
         #region Propeties
         public Vector2Int Direction { get; private set; }
@@ -42,16 +42,16 @@ namespace Grubitecht.World.Pathfinding
         /// object is already moving, then the finish callback will be overwritten with the finish callback
         /// for the new destination.
         /// </param>
-        public void SetDestination(Vector3Int destinationSpace, bool includeAdjacent = false, 
+        public void SetDestination(VoxelTile destinationSpace, bool includeAdjacent = false, 
             MovementFinishCallback finishCallback = null)
         {
             // If our destination is already occupied, then we sould always include adjacent spaces.
-            if (GridObject.CheckOccupied(destinationSpace))
+            if (destinationSpace.ContainedObject == null)
             {
                 includeAdjacent = true;
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            Vector3Int tileToStart = gridObject.CurrentSpace;
+            VoxelTile tileToStart = gridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
             // Dont move if our current path is empty.
             if (currentPath.Count == 0)
@@ -77,7 +77,7 @@ namespace Grubitecht.World.Pathfinding
                 //movementRoutine = null;
                 // Instead of instantly stopping movement, we should finish snapping to whatever space we are
                 // currently at.
-                Vector3Int endingSpace = currentPath[0];
+                VoxelTile endingSpace = currentPath[0];
                 currentPath.Clear();
                 currentPath.Add(endingSpace);
             }
@@ -87,7 +87,7 @@ namespace Grubitecht.World.Pathfinding
         /// Continually moves this object along a given path.
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator MovementRoutine(Vector3Int destination, bool includeAdj, 
+        private IEnumerator MovementRoutine(VoxelTile destination, bool includeAdj, 
             MovementFinishCallback finishCallback)
         {
             void UpdateDirection()
@@ -95,7 +95,7 @@ namespace Grubitecht.World.Pathfinding
                 // Update direction here to ensure directions are updated for later code execution.
                 if (currentPath.Count > 0)
                 {
-                    Direction = (Vector2Int)(currentPath[0] - gridObject.CurrentSpace);
+                    Direction = (currentPath[0].GridPosition2 - gridObject.CurrentSpace.GridPosition2);
                 }
                 else
                 {
@@ -118,7 +118,7 @@ namespace Grubitecht.World.Pathfinding
             while (currentPath.Count > 0)
             {
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (GridObject.CheckOccupied(currentPath[0]))
+                if (currentPath[0].ContainsObject)
                 {
                     SetDestination(destination, includeAdj, finishCallback);
                     yield break;
@@ -156,7 +156,7 @@ namespace Grubitecht.World.Pathfinding
                 gridObject.SetCurrentSpace(currentPathSpace);
                 gridObject.SnapToSpace();
             }
-            currentPathSpace = Vector3Int.zero;
+            currentPathSpace = null;
             // Invoke the given finish callback.
             finishCallback?.Invoke();
             movementRoutine = null;
