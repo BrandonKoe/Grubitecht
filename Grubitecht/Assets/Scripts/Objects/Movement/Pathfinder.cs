@@ -15,13 +15,16 @@ namespace Grubitecht
 {
     public static class Pathfinder
     {
+        private readonly static List<PathNode> storedNodes = new();
+
         #region Nested Classes
         private class PathNode
         {
             internal Vector3Int space;
-            internal PathNode previousNode;
             internal int g;
             internal int h;
+
+            internal PathNode previousNode;
 
             internal int f
             {
@@ -31,11 +34,9 @@ namespace Grubitecht
                 }
             }
 
-            private PathNode(Vector3Int tile, Vector3Int start, Vector3Int end)
+            private PathNode(Vector3Int tile)
             {
                 this.space = tile;
-                g = MathHelpers.FindManhattenDistance((Vector2Int)start, (Vector2Int)tile);
-                h = MathHelpers.FindManhattenDistance((Vector2Int)tile, (Vector2Int)end);
             }
 
             /// <summary>
@@ -45,13 +46,24 @@ namespace Grubitecht
             /// <param name="start">The starting tile of the path.</param>
             /// <param name="end">The ending tile of the path.</param>
             /// <returns>A newly created path node for this tile.</returns>
-            internal static PathNode NewNode(Vector3Int tile, Vector3Int start, Vector3Int end)
+            internal static PathNode NewNode(Vector3Int tile)
             {
                 if (tile == null)
                 {
                     return null;
                 }
-                return new PathNode(tile, start, end);
+                return new PathNode(tile);
+            }
+
+            /// <summary>
+            /// Calculates the distance values for this node based on the given start and end points.
+            /// </summary>
+            /// <param name="start">The start point of the path.</param>
+            /// <param name="end">The end point of the path.</param>
+            internal void CalculateForPath(Vector3Int start, Vector3Int end)
+            {
+                g = MathHelpers.FindManhattenDistance((Vector2Int)start, (Vector2Int)space);
+                h = MathHelpers.FindManhattenDistance((Vector2Int)space, (Vector2Int)end);
             }
         }
         #endregion
@@ -81,24 +93,31 @@ namespace Grubitecht
         {
             Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
-            List<PathNode> openList = new List<PathNode>();
-            List<Vector3Int> closedList = new List<Vector3Int>();
+            List<PathNode> openList = new();
+            List<PathNode> closedList = new();
 
-            PathNode startNode = PathNode.NewNode(startingTile, startingTile, endingTile);
+            PathNode startNode = GetNode(startingTile, startingTile, endingTile);
             openList.Add(startNode);
 
+            int iterationNum = 0;
             // Continually loop through the nodes to check in the open list.
             while (openList.Count > 0)
             {
                 // Gets the node with the lowest f cost and mark it as evaluated.
                 PathNode current = openList.OrderBy(item => item.f).First();
                 openList.Remove(current);
-                closedList.Add(current.space);
+                closedList.Add(current);
+
+                iterationNum++;
+
+                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.space);
+                Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
 
                 // If this node corresponds to the ending node, then we finalize the path as we have reached our
                 // destination.
                 if (current.space == endingTile)
                 {
+                    Debug.Log(iterationNum);
                     return FinalizePath(startNode, current);
                 }
 
@@ -110,15 +129,8 @@ namespace Grubitecht
                     // here where the neighbor to our current tile is the ending tile.
                     if (includeAdjacent && neighbor == endingTile)
                     {
+                        Debug.Log(iterationNum);
                         return FinalizePath(startNode, current);
-                    }
-
-                    // Exclude any inaccessible tiles here.
-                    if ((GridObject.GetObjectAtSpace(neighbor) != null && !ignoreBlockedSpaces) || 
-                        closedList.Contains(neighbor) ||
-                        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
-                    {
-                        continue;
                     }
 
                     // Gets the node that represents this tile from the open list.  If none exists, then we create a 
@@ -126,8 +138,16 @@ namespace Grubitecht
                     PathNode neighborNode = openList.Find(item => item.space == neighbor);
                     if (neighborNode == null)
                     {
-                        neighborNode = PathNode.NewNode(neighbor, startingTile, endingTile);
+                        neighborNode = GetNode(neighbor, startingTile, endingTile);
                         openList.Add(neighborNode);
+                    }
+
+                    // Exclude any inaccessible tiles here.
+                    if ((!ignoreBlockedSpaces && GridObject.CheckOccupied(neighbor)) || 
+                        closedList.Contains(neighborNode) ||
+                        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
+                    {
+                        continue;
                     }
                     // Set the neighboring node's previous node to this current node.  This will be used during path
                     // finalization as we loop through previous nodes to create a path.
@@ -146,7 +166,7 @@ namespace Grubitecht
         /// <returns>A list of tiles that represents the path.</returns>
         private static List<Vector3Int> FinalizePath(PathNode startNode, PathNode endingNode)
         {
-            List<Vector3Int> result = new List<Vector3Int>();
+            List<Vector3Int> result = new();
             PathNode current = endingNode;
             while (current != startNode)
             {
@@ -164,7 +184,7 @@ namespace Grubitecht
         /// <returns>A list of all tiles adjacent to this tile.</returns>
         public static List<Vector3Int> GetAdjacentTiles(Vector3Int position)
         {
-            List<Vector3Int> adjSpaces = new List<Vector3Int>();
+            List<Vector3Int> adjSpaces = new();
             foreach (Vector2Int direction in CardinalDirections.CARDINAL_DIRECTIONS_2)
             {
                 adjSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)position + direction,
@@ -172,6 +192,35 @@ namespace Grubitecht
             }
             return adjSpaces;
         }
+
+        /// <summary>
+        /// Gets a node for a specific tile.
+        /// </summary>
+        /// <remarks>
+        /// Attempts to first get a node that is stored if one exists for the given tile.
+        /// </remarks>
+        /// <param name="tile">The tile to get a node for.</param>
+        /// <param name="startTile">The starting tile of the path.</param>
+        /// <param name="endingTile">The ending tile of the path.</param>
+        /// <returns>The path node at a given tile.</returns>
+        private static PathNode GetNode(Vector3Int tile, Vector3Int startTile, Vector3Int endingTile)
+        {
+            PathNode outNode = storedNodes.Find(item => item.space == tile);
+            if (outNode == null)
+            {
+                outNode = PathNode.NewNode(tile);
+            }
+            outNode.CalculateForPath(startTile, endingTile);
+            return outNode;
+        }
         #endregion
+
+        /// <summary>
+        /// Clears all stored nodes.
+        /// </summary>
+        public static void ClearNodes()
+        {
+            storedNodes.Clear();
+        }
     }
 }

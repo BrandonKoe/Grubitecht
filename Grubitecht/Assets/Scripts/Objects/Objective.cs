@@ -17,8 +17,11 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
-        public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
-        private static readonly List<Objective> currentObjectives = new();
+        [SerializeField, Tooltip("The order in which enemies will go after objectives.  Lower numbers will be " +
+            "attacked first.")] 
+        public int targetingOrder;
+        //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
+        private static List<Objective> currentObjectives = new();
 
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject {  get; private set; }
@@ -35,6 +38,20 @@ namespace Grubitecht.World.Objects
         }
         #endregion
 
+        #region Properties
+        public static Objective TargetObjective
+        {
+            get
+            {
+                if (currentObjectives.Count == 0)
+                {
+                    return null;
+                }
+                return currentObjectives[0];
+            }
+        }
+        #endregion
+
         /// <summary>
         /// Add this objective to the list of current objectives when it awakes & subscribe to the Attacker OnDeath
         /// event.
@@ -42,6 +59,7 @@ namespace Grubitecht.World.Objects
         private void Awake()
         {
             currentObjectives.Add(this);
+            currentObjectives = currentObjectives.OrderBy(item => item.targetingOrder).ToList();
             attackable.OnDeath += OnDeath;
             // Need to update the nav map whenever the objective changes spaces.  This may cause lag.
             //gridObject.OnChangeSpace += UpdateNavMap;
@@ -106,12 +124,12 @@ namespace Grubitecht.World.Objects
             //}
         }
 
-        /// <summary>
-        /// Updates the objective nav map.
-        /// </summary>
-        public static void UpdateNavMap()
-        {
-            NavMap.UpdateMap(GetObjectivePositions());
-        }
+        ///// <summary>
+        ///// Updates the objective nav map.
+        ///// </summary>
+        //public static void UpdateNavMap()
+        //{
+        //    NavMap.UpdateMap(GetObjectivePositions());
+        //}
     }
 }
