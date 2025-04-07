@@ -46,39 +46,42 @@ namespace Grubitecht.World.Pathfinding
         private IEnumerator MovementRoutine(NavigationMap navMap)
         {
             yield return null;
-            Vector3Int previousSpace = Vector3Int.zero;
+            VoxelTile previousSpace = null;
             while (isMoving)
             {
-                List<Vector3Int> possibleSpaces = new List<Vector3Int>();
+                List<VoxelTile> possibleSpaces = new List<VoxelTile>();
 
                 // Get the target space.
-                foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
+                foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
-                    possibleSpaces.AddRange(VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)gridObject.CurrentSpace + 
-                        dir, GridObject.VALID_GROUND_TYPE));
+                    VoxelTile adjTile = gridObject.CurrentTile.GetAdjacent(dir);
+                    if (adjTile != null)
+                    {
+                        possibleSpaces.Add(adjTile);
+                    }
                 }
                 // Exclude inaccessible spaces here.
-                possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && (GridObject.GetObjectAtSpace(item) != null));
-                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.z - item.z) > climbHeight);
+                Debug.Log(possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && item.ContainsObject));
+                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentTile.GridPosition.z - 
+                    item.GridPosition.z) > climbHeight);
                 if (ignorePreviousSpaces)
                 {
                     possibleSpaces.RemoveAll(item => item == previousSpace);
                 }
 
-                Vector3Int nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item)).FirstOrDefault();
+                VoxelTile nextSpace = possibleSpaces.OrderBy(item => navMap.GetDistanceValue(item)).FirstOrDefault();
 
                 //Debug.Log($"Moving to space {nextSpace} with distance value: {navMap.GetDistanceValue(nextSpace)}");
 
-                // If zero is returned, then that is the default and there must be no valid spaces to move to at the
-                // moment.
-                if (nextSpace == Vector3Int.zero)
+                // If there are no valid spaces, stop and return to this routine next frame.
+                if (nextSpace == null)
                 {
                     yield return null;
                     continue;
                 }
 
                 // Set out current space to the next space.
-                previousSpace = gridObject.CurrentSpace;
+                previousSpace = gridObject.CurrentTile;
                 gridObject.SetCurrentSpace(nextSpace);
 
                 Vector3 tilePos = gridObject.GetOccupyPosition(nextSpace);

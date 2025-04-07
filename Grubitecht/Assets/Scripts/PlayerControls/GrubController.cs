@@ -17,7 +17,7 @@ namespace Grubitecht.World
     public class GrubController : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed;
-        private Vector3Int targetSpace;
+        private VoxelTile targetSpace;
         private Coroutine followRoutine;
         private bool isFollowing;
         private float dampAngleSmoother;
@@ -45,7 +45,7 @@ namespace Grubitecht.World
                 StopCoroutine(followRoutine);
                 followRoutine = null;
             }
-            gridObject.SetCurrentSpace(follow.gridObject.CurrentSpace - (Vector3Int)follow.Direction);
+            gridObject.SetCurrentSpace(follow.gridObject.CurrentTile.GetAdjacent(follow.Direction));
             gridObject.SnapToSpace();
             isFollowing = true;
             followRoutine = StartCoroutine(FollowRoutine(follow));
@@ -76,9 +76,8 @@ namespace Grubitecht.World
             followedObject.NewSpaceEvent += UpdateTargetSpace;
 
             // Updates the grub to start standing on the spot adjacent to the object that he will be pushing.
-            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace - 
-                (Vector3Int)followedObject.Direction);
-            targetSpace = followedObject.gridObject.CurrentSpace;
+            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentTile.GetAdjacent(-followedObject.Direction));
+            targetSpace = followedObject.gridObject.CurrentTile;
             Vector3 eulers = transform.eulerAngles;
             eulers.y = MathHelpers.VectorToDegAngleWorld(followedObject.Direction);
             transform.eulerAngles = eulers;
@@ -100,7 +99,7 @@ namespace Grubitecht.World
         /// Updates the target space of this grub while it's following an object.
         /// </summary>
         /// <param name="tSpace">The spcae to follow.</param>
-        private void UpdateTargetSpace(Vector3Int tSpace)
+        private void UpdateTargetSpace(VoxelTile tSpace)
         {
             targetSpace = tSpace;
         }

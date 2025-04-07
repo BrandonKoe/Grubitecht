@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace Grubitecht.World.Pathfinding
 {
-    public delegate Vector3Int[] DestinationGetterFunc();
+    public delegate VoxelTile[] DestinationGetterFunc();
     public class BufferedNavigationMap : NavigationMap
     {
         #region CONSTS
@@ -36,7 +36,7 @@ namespace Grubitecht.World.Pathfinding
 
         private MonoBehaviour anchoredComponent;
 
-        protected static Dictionary<Vector3Int, int> mapBuffer;
+        protected static Dictionary<VoxelTile, int> mapBuffer;
 
         public BufferedNavigationMap(DestinationGetterFunc destinationGetter, int climbHeight, float minRefreshDelay)
         {
@@ -54,7 +54,7 @@ namespace Grubitecht.World.Pathfinding
         public override void CreateMap()
         {
             base.CreateMap();
-            mapBuffer = new Dictionary<Vector3Int, int>();
+            mapBuffer = new Dictionary<VoxelTile, int>();
             mapBuffer.AddRange(mapDict);
         }
 
@@ -126,7 +126,7 @@ namespace Grubitecht.World.Pathfinding
         /// </remarks>
         /// <param name="destinations">The destinations that objects following the path map should end up at.</param>
         /// <returns>Coroutine.</returns>
-        public IEnumerator UpdateNavigationMap(Vector3Int[] destinations, int climbHeight)
+        public IEnumerator UpdateNavigationMap(VoxelTile[] destinations, int climbHeight)
         {
             // Update the bool that tracks if we are going through an update currently.
             isPassThrough = true;
@@ -135,40 +135,38 @@ namespace Grubitecht.World.Pathfinding
             Debug.Log("Updating Navigation Map with " + mapBuffer.Count + " spaces and " + destinations.Length + 
                 " destinations");
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
-            List<Vector3Int> unvisited = new List<Vector3Int>();
-            List<Vector3Int> visited = new List<Vector3Int>();
+            List<VoxelTile> unvisited = new List<VoxelTile>();
+            List<VoxelTile> visited = new List<VoxelTile>();
             unvisited.AddRange(mapBuffer.Keys);
             int iterationCounter = 0;
 
             // Sets the distance to each destination to 0.
-            foreach (Vector3Int dest in destinations)
+            foreach (VoxelTile dest in destinations)
             {
                 mapBuffer[dest] = 0;
             }
 
-            Vector3Int currentNode;
+            VoxelTile currentNode;
             // Continually loop through all unvisited tiles.
             while (unvisited.Count > 0)
             {
                 // Gets the node with the shortest distance.
                 currentNode = unvisited.OrderBy(item => mapBuffer[item]).FirstOrDefault();
                 // Loop through each adjacent tile.
-                foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
+                foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
-                    foreach (Vector3Int target in VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)currentNode + dir,
-                        GridObject.VALID_GROUND_TYPE))
-                    {
-                        // Skips over already visited nodes, nodes that are out of climbing height, and nodes that
-                        // are occupied.  (This version can afford to update for occupied cells.
-                        if (visited.Contains(target) || 
-                            Mathf.Abs(currentNode.z - target.z) > climbHeight ||
-                           GridObject.CheckOccupied(target))
-                        { continue; }
+                    VoxelTile target = currentNode.GetAdjacent(dir);
+                    // Skips over already visited nodes, nodes that are out of climbing height, and nodes that
+                    // are occupied.  (This version can afford to update for occupied cells.
+                    if (target == null || 
+                        visited.Contains(target) ||
+                        Mathf.Abs(currentNode.GridPosition.z - target.GridPosition.z) > climbHeight ||
+                       target.ContainedObject != null)
+                    { continue; }
 
-                        // Sets the distance value of this target node to the lower of it's current value or the
-                        // distance of the current node + 1.
-                        mapBuffer[target] = Mathf.Min(mapBuffer[target], mapBuffer[currentNode] + 1);
-                    }
+                    // Sets the distance value of this target node to the lower of it's current value or the
+                    // distance of the current node + 1.
+                    mapBuffer[target] = Mathf.Min(mapBuffer[target], mapBuffer[currentNode] + 1);
                 }
                 // Mark this current node as visited.
                 visited.Add(currentNode);

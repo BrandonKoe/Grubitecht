@@ -181,11 +181,9 @@ namespace Grubitecht
                     {
                         VoxelTilemap3D tilemap = selectedChunk.Chunk.Tilemap;
                         Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
-                        List<Vector3Int> spaces = tilemap.GetCellsInColumn((Vector2Int)gridPos,
-                            GridObject.VALID_GROUND_TYPE);
+                        VoxelTile tile = tilemap.GetTile((Vector2Int)gridPos);
                         // Gets the closest space to location the player clicked.
-                        gridPos = spaces.OrderBy(item => Vector3.Distance(item, results.point)).FirstOrDefault();
-                        return new SpaceSelection(gridPos, tilemap.GridToWorldPos(gridPos));
+                        return new SpaceSelection(tile, tilemap.GridToWorldPos(tile.GridPosition));
                     }
                     return selectable;
                 }
