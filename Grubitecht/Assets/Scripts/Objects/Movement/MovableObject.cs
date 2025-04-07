@@ -61,7 +61,7 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Recalls a grub delegated to moving this object from the grub controller.
         /// </summary>
-        private void RecallGrub()
+        private void RecallGrub(bool reachedDestination)
         {
             GrubManager.ReturnGrub(this);
         }

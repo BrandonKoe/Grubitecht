@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Grubitecht.World.Pathfinding
 {
-    public delegate void MovementFinishCallback();
+    public delegate void MovementFinishCallback(bool reachedDestination);
     public class PathNavigator : GridNavigator, IInfoProvider
     {
         [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
@@ -46,24 +46,25 @@ namespace Grubitecht.World.Pathfinding
             MovementFinishCallback finishCallback = null)
         {
             // If our destination is already occupied, then we should always include adjacent spaces.
-            if (destinationSpace.ContainedObject == null)
+            if (destinationSpace.ContainsObject)
             {
                 includeAdjacent = true;
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentSpace;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
-            // Dont move if our current path is empty.
-            if (currentPath.Count == 0)
-            {
-                return;
-            }
+            //// Dont move if our current path is empty.
+            //if (currentPath.Count == 0)
+            //{
+            //    finishCallback?.Invoke(false);
+            //    return;
+            //}
             if (movementRoutine != null)
             {
                 StopCoroutine(movementRoutine);
                 movementRoutine = null;
             }
-            movementRoutine = StartCoroutine(MovementRoutine(currentPath[^1], includeAdjacent, finishCallback));
+            movementRoutine = StartCoroutine(MovementRoutine(includeAdjacent, finishCallback));
         }
 
         /// <summary>
@@ -87,9 +88,10 @@ namespace Grubitecht.World.Pathfinding
         /// Continually moves this object along a given path.
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator MovementRoutine(VoxelTile destination, bool includeAdj, 
+        private IEnumerator MovementRoutine(bool includeAdj, 
             MovementFinishCallback finishCallback)
         {
+            VoxelTile destination = null;
             void UpdateDirection()
             {
                 // Update direction here to ensure directions are updated for later code execution.
@@ -112,11 +114,13 @@ namespace Grubitecht.World.Pathfinding
             // Update our current space and direction at the beginning.
             if (currentPath.Count > 0)
             {
+                destination = currentPath[^1];
                 currentPathSpace = gridObject.CurrentSpace;
                 UpdateDirection();
             }
             while (currentPath.Count > 0)
             {
+                Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
                 if (currentPath[0].ContainsObject)
                 {
@@ -140,7 +144,6 @@ namespace Grubitecht.World.Pathfinding
                     UpdateDirection();
                     // Broadcast out that this object has reached a new space.
                     NewSpaceEvent?.Invoke(currentPathSpace);
-
                 }
 
                 yield return null;
@@ -149,16 +152,17 @@ namespace Grubitecht.World.Pathfinding
             // This yield will turn that loop into a buffered loop each frame so it will still continue to loop, but
             // wont cause the computer to crash and instead will refresh each frame.
             yield return null;
+            bool reachedDestination = destination == currentPathSpace;
             // Double check our current space is correct.  If we ended at a space other than our destination, then we
             // should set our current space to that space instead.
-            if (!updateSpaceDuringPath && destination != currentPathSpace)
+            if (!updateSpaceDuringPath && !reachedDestination)
             {
                 gridObject.SetCurrentSpace(currentPathSpace);
                 gridObject.SnapToSpace();
             }
             currentPathSpace = null;
             // Invoke the given finish callback.
-            finishCallback?.Invoke();
+            finishCallback?.Invoke(reachedDestination);
             movementRoutine = null;
         }
 
@@ -166,8 +170,7 @@ namespace Grubitecht.World.Pathfinding
         {
             return new InfoValueBase[]
             {
-                new NumValue(MoveSpeed, 90, "Movement Speed"),
-                new NumValue(climbHeight, 91, "Climb Height")
+                new NumValue(MoveSpeed, 90, "Movement Speed")
             };
         }
     }

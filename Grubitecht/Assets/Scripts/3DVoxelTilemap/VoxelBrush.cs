@@ -67,10 +67,12 @@ namespace Grubitecht.Tilemaps
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected virtual void AddTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
-            if (!tilemap.CheckCell(position))
-            {
-                tilemap.Paint(position, smoothAbove);
-            }
+            // Dont need to check, the tilemap checks for us.
+            tilemap.Paint(position, smoothAbove);
+            //if (!tilemap.CheckCell(position))
+            //{
+                
+            //}
             //Debug.Log(tilemap.GridToLocalCorner(position));
         }
 
@@ -103,10 +105,12 @@ namespace Grubitecht.Tilemaps
         /// <param name="refreshMesh">Whether this tile change should re-bake the tilemap mesh.</param>
         protected virtual void EraseTile(VoxelTilemap3D tilemap, Vector3Int position)
         {
-            if (tilemap.CheckCell(position))
-            {
-                tilemap.Erase(position);
-            }
+            // Dont need to check, the tilemap checks for us.
+            tilemap.Erase(position);
+            //if (tilemap.CheckCell(position))
+            //{
+                
+            //}
             //Debug.Log(tilemap.GridToLocalCorner(position));
         }
     }

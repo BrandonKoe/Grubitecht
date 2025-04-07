@@ -276,6 +276,17 @@ namespace Grubitecht.Tilemaps
             //}
             return tiles.Any(item => item.GridPosition == position);
         }
+        
+        /// <summary>
+        /// Checks if a tile exists at a particular position that should stop a face from rendering.
+        /// </summary>
+        /// <param name="position">The position to check for a face that prevents rendering.</param>
+        /// <returns>True if this face should spe skipped.</returns>
+        private bool CheckFace(Vector3Int position)
+        {
+            return tiles.Any(item => item.GridPosition2 == (Vector2Int)position && 
+            item.GridPosition.z >= position.z);
+        }
 
         ///// <summary>
         ///// Checks if a specific type of tile occupies a given cell.
@@ -502,26 +513,30 @@ namespace Grubitecht.Tilemaps
                     // If at least one position was evaluated, then were will return true.
                     // Only return false if this chunk is empty.
                     returnValue |= true;
-                    foreach (Vector3Int direction in CardinalDirections.OOTHOGONAL_3D)
+                    foreach (Vector3Int direction in CardinalDirections.ORTHOGONAL_3D)
                     {
-                        // If there is a voxel adjacent to this one, then we skip drawing a face.
-                        if (CheckCell(gridPos + direction))
-                        {
-                            continue;
-                        }
-                        // Special exception for downards facing faces.  They should always render at the bottom of
-                        // the tilemap
+                        // Top and bottom faces should always render.  Bottom faces need to go to the bottom of the
+                        // tilemap.
                         // Need to use back here instead of down because of how the Grid uses Z as the up/down axis.
                         if (direction == Vector3Int.back)
                         {
                             Vector3Int bottomedPos = new Vector3Int(gridPos.x, gridPos.y, 0);
                             AddFace(GridToRelativePos(bottomedPos), direction, TileType.Ground);
+                            continue;
                         }
-                        else
+                        else if (direction == Vector3Int.forward)
                         {
-                            // Turns the grid position into a position relative to the chunk we are in.
                             AddFace(GridToRelativePos(gridPos), direction, TileType.Ground);
+                            continue;
                         }
+
+                        // If there is a voxel adjacent to this one, then we skip drawing a face.
+                        if (CheckFace(gridPos + direction))
+                        {
+                            continue;
+                        }
+                        // Turns the grid position into a position relative to the chunk we are in.
+                        AddFace(GridToRelativePos(gridPos), direction, TileType.Ground);
 
                         // If this face is a horizontal face, then we should also add faces downward until we reach 
                         // a space where that face is occluded.

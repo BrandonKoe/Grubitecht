@@ -114,7 +114,7 @@ namespace Grubitecht.World.Objects
         /// <returns>The position of the tile plus the set offset of this object.</returns>
         public Vector3 GetOccupyPosition(VoxelTile space)
         {
-            Debug.Log(space);
+            //Debug.Log(space);
             return VoxelTilemap3D.Main_GridToWorldPos(space.GridPosition) + offset;
         }
 
