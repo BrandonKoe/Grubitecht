@@ -34,7 +34,7 @@ namespace Grubitecht
             {
                 this.space = tile;
                 g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
-                h = MathHelpers.FindManhattenDistance(start.GridPosition2, end.GridPosition2);
+                h = MathHelpers.FindManhattenDistance(tile.GridPosition2, end.GridPosition2);
             }
 
             /// <summary>
@@ -101,6 +101,9 @@ namespace Grubitecht
                     return FinalizePath(startNode, current);
                 }
 
+                Vector3 debugPos = VoxelTilemap3D.Main_GridToWorldPos(current.space.GridPosition);
+                Debug.DrawLine(debugPos, debugPos + Vector3.up, Color.red, 10);
+
                 // Check the neighboring tiles.
                 List<VoxelTile> neighbors = GetAdjacentTiles(current.space);
                 foreach (VoxelTile neighbor in neighbors)
@@ -113,7 +116,7 @@ namespace Grubitecht
                     }
 
                     // Exclude any inaccessible tiles here.
-                    if ((neighbor.ContainedObject != null && !ignoreBlockedSpaces) || 
+                    if ((neighbor.ContainsObject && !ignoreBlockedSpaces) || 
                         closedList.Contains(neighbor) ||
                         Mathf.Abs(current.space.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
                     {

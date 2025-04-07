@@ -61,7 +61,7 @@ namespace Grubitecht.World.Objects
         /// <returns>An array of spaces representing the spaces of all objectives.</returns>
         private static VoxelTile[] GetObjectivePositions()
         {
-            return currentObjectives.Select(item => item.gridObject.CurrentSpace).ToArray();
+            return currentObjectives.Select(item => item.gridObject.CurrentTile).ToArray();
         }
 
         /// <summary>

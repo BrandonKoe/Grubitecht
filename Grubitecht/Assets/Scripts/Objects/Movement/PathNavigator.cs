@@ -51,7 +51,7 @@ namespace Grubitecht.World.Pathfinding
                 includeAdjacent = true;
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
-            VoxelTile tileToStart = gridObject.CurrentSpace;
+            VoxelTile tileToStart = gridObject.CurrentTile;
             currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
             //// Dont move if our current path is empty.
             //if (currentPath.Count == 0)
@@ -97,7 +97,7 @@ namespace Grubitecht.World.Pathfinding
                 // Update direction here to ensure directions are updated for later code execution.
                 if (currentPath.Count > 0)
                 {
-                    Direction = (currentPath[0].GridPosition2 - gridObject.CurrentSpace.GridPosition2);
+                    Direction = (currentPath[0].GridPosition2 - gridObject.CurrentTile.GridPosition2);
                 }
                 else
                 {
@@ -115,12 +115,12 @@ namespace Grubitecht.World.Pathfinding
             if (currentPath.Count > 0)
             {
                 destination = currentPath[^1];
-                currentPathSpace = gridObject.CurrentSpace;
+                currentPathSpace = gridObject.CurrentTile;
                 UpdateDirection();
             }
             while (currentPath.Count > 0)
             {
-                Debug.Log(currentPath.Count);
+                //Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
                 if (currentPath[0].ContainsObject)
                 {

@@ -184,7 +184,7 @@ namespace Grubitecht.Waves
                     {
                         int y = i * yRange;
                         // Check the positive and negative cells that have a manhatten distance of range.
-                        Vector2Int checkPos = new Vector2Int(x, y) + gridObject.CurrentSpace.GridPosition2;
+                        Vector2Int checkPos = new Vector2Int(x, y) + gridObject.CurrentTile.GridPosition2;
                         VoxelTile checkCell = VoxelTilemap3D.Main_GetTile(checkPos);
                         // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
                         // tilemap and we should ignore it.

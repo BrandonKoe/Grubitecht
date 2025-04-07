@@ -45,7 +45,7 @@ namespace Grubitecht.World
                 StopCoroutine(followRoutine);
                 followRoutine = null;
             }
-            gridObject.SetCurrentSpace(follow.gridObject.CurrentSpace.GetAdjacent(follow.Direction));
+            gridObject.SetCurrentSpace(follow.gridObject.CurrentTile.GetAdjacent(follow.Direction));
             gridObject.SnapToSpace();
             isFollowing = true;
             followRoutine = StartCoroutine(FollowRoutine(follow));
@@ -76,8 +76,8 @@ namespace Grubitecht.World
             followedObject.NewSpaceEvent += UpdateTargetSpace;
 
             // Updates the grub to start standing on the spot adjacent to the object that he will be pushing.
-            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentSpace.GetAdjacent(-followedObject.Direction));
-            targetSpace = followedObject.gridObject.CurrentSpace;
+            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentTile.GetAdjacent(-followedObject.Direction));
+            targetSpace = followedObject.gridObject.CurrentTile;
             Vector3 eulers = transform.eulerAngles;
             eulers.y = MathHelpers.VectorToDegAngleWorld(followedObject.Direction);
             transform.eulerAngles = eulers;

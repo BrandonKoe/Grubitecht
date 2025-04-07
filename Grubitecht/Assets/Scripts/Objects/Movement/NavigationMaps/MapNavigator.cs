@@ -54,11 +54,15 @@ namespace Grubitecht.World.Pathfinding
                 // Get the target space.
                 foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
-                    possibleSpaces.Add(gridObject.CurrentSpace.GetAdjacent(dir));
+                    VoxelTile adjTile = gridObject.CurrentTile.GetAdjacent(dir);
+                    if (adjTile != null)
+                    {
+                        possibleSpaces.Add(adjTile);
+                    }
                 }
                 // Exclude inaccessible spaces here.
-                possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && item.ContainsObject);
-                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentSpace.GridPosition.z - 
+                Debug.Log(possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && item.ContainsObject));
+                possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentTile.GridPosition.z - 
                     item.GridPosition.z) > climbHeight);
                 if (ignorePreviousSpaces)
                 {
@@ -69,8 +73,7 @@ namespace Grubitecht.World.Pathfinding
 
                 //Debug.Log($"Moving to space {nextSpace} with distance value: {navMap.GetDistanceValue(nextSpace)}");
 
-                // If zero is returned, then that is the default and there must be no valid spaces to move to at the
-                // moment.
+                // If there are no valid spaces, stop and return to this routine next frame.
                 if (nextSpace == null)
                 {
                     yield return null;
@@ -78,7 +81,7 @@ namespace Grubitecht.World.Pathfinding
                 }
 
                 // Set out current space to the next space.
-                previousSpace = gridObject.CurrentSpace;
+                previousSpace = gridObject.CurrentTile;
                 gridObject.SetCurrentSpace(nextSpace);
 
                 Vector3 tilePos = gridObject.GetOccupyPosition(nextSpace);

@@ -28,7 +28,7 @@ namespace Grubitecht.World.Objects
         //    "Should only be true of other enemies.")]
         //public bool CauseAvoidance { get; private set; } = true;
         // Note: This is the position of the voxel we are standing on.
-        [field: SerializeField, ReadOnly] public VoxelTile CurrentSpace { get; set; }
+        [field: SerializeField, ReadOnly] public VoxelTile CurrentTile { get; set; }
 
         //private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
@@ -70,29 +70,33 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Moves this object to a new space.
         /// </summary>
-        /// <param name="newSpace">The space to move this object to.</param>
-        public void SetCurrentSpace(VoxelTile newSpace)
+        /// <param name="newTile">The space to move this object to.</param>
+        public void SetCurrentSpace(VoxelTile newTile)
         {
             //// Cant set our space to a space that doesnt exist.
             //if (!VoxelTilemap3D.Main_CheckCell(newSpace)) { Debug.Log("Invalid Space " + newSpace); return; }
-            VoxelTile oldSpace = CurrentSpace;
+            VoxelTile oldSpace = CurrentTile;
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
-                GridObject objInSpace = newSpace.ContainedObject;
+                GridObject objInSpace = newTile.ContainedObject;
                 //Debug.Log(objInSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
                 if (objInSpace != null && objInSpace != this)
                 {
                     return;
                 }
+                // Update the spaces' references to their contained object.  We have left our previous space and are
+                // now at the next space.
+                CurrentTile.ContainedObject = null;
+                newTile.ContainedObject = this;
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
                 // Switching this system to one where grid navigators only re-evaluate paths if they run into
                 // a problem, not each time the map changes.
                 //RefreshMap(this, oldSpace, CurrentSpace);
             }
-            CurrentSpace = newSpace;
+            CurrentTile = newTile;
             //Debug.Log(name + " changed space");
             OnChangeSpace?.Invoke();
         }
@@ -103,8 +107,8 @@ namespace Grubitecht.World.Objects
         public void SnapToSpace()
         {
             // Cant snap to a space if we dont have one.
-            if (CurrentSpace == null) { return; }
-            transform.position = GetOccupyPosition(CurrentSpace);
+            if (CurrentTile == null) { return; }
+            transform.position = GetOccupyPosition(CurrentTile);
         }
 
         /// <summary>
@@ -112,10 +116,10 @@ namespace Grubitecht.World.Objects
         /// </summary>
         /// <param name="tile">The tile to get the position for this object of.</param>
         /// <returns>The position of the tile plus the set offset of this object.</returns>
-        public Vector3 GetOccupyPosition(VoxelTile space)
+        public Vector3 GetOccupyPosition(VoxelTile tile)
         {
             //Debug.Log(space);
-            return VoxelTilemap3D.Main_GridToWorldPos(space.GridPosition) + offset;
+            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + offset;
         }
 
         ///// <summary>
