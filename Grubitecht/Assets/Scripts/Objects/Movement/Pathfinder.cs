@@ -37,7 +37,6 @@ namespace Grubitecht
             private PathNode(Vector3Int tile)
             {
                 this.space = tile;
-                
             }
 
             /// <summary>
@@ -95,7 +94,7 @@ namespace Grubitecht
             Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new();
-            List<Vector3Int> closedList = new();
+            List<PathNode> closedList = new();
 
             PathNode startNode = GetNode(startingTile, startingTile, endingTile);
             openList.Add(startNode);
@@ -107,7 +106,7 @@ namespace Grubitecht
                 // Gets the node with the lowest f cost and mark it as evaluated.
                 PathNode current = openList.OrderBy(item => item.f).First();
                 openList.Remove(current);
-                closedList.Add(current.space);
+                closedList.Add(current);
 
                 iterationNum++;
 
@@ -134,14 +133,6 @@ namespace Grubitecht
                         return FinalizePath(startNode, current);
                     }
 
-                    // Exclude any inaccessible tiles here.
-                    if ((!ignoreBlockedSpaces && GridObject.GetObjectAtSpace(neighbor) != null) || 
-                        closedList.Contains(neighbor) ||
-                        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
-                    {
-                        continue;
-                    }
-
                     // Gets the node that represents this tile from the open list.  If none exists, then we create a 
                     // new node to represent this tile and add it to the open list.
                     PathNode neighborNode = openList.Find(item => item.space == neighbor);
@@ -149,6 +140,14 @@ namespace Grubitecht
                     {
                         neighborNode = GetNode(neighbor, startingTile, endingTile);
                         openList.Add(neighborNode);
+                    }
+
+                    // Exclude any inaccessible tiles here.
+                    if ((!ignoreBlockedSpaces && GridObject.CheckOccupied(neighbor)) || 
+                        closedList.Contains(neighborNode) ||
+                        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
+                    {
+                        continue;
                     }
                     // Set the neighboring node's previous node to this current node.  This will be used during path
                     // finalization as we loop through previous nodes to create a path.

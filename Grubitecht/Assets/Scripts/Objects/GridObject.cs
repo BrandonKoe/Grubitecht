@@ -135,7 +135,7 @@ namespace Grubitecht.World.Objects
         /// <returns>True if the space is occupied.</returns>
         public static bool CheckOccupied(Vector3Int space)
         {
-            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) != null;
+            return allObjectList.Any(item => item.CurrentSpace == space && item.occupySpace);
         }
     }
 }
