@@ -135,17 +135,19 @@ namespace Grubitecht.Tilemaps
             VoxelTile existingTile = tiles.Find(item => item.GridPosition2 == (Vector2Int)position);
             if (existingTile != null)
             {
+                if (existingTile.GridPosition == position) { return; }
                 tiles.Remove(existingTile);
-            }
-            else if (existingTile.GridPosition == position)
-            {
-                return;
             }
             tiles.Add(new VoxelTile(position));
             //if (refreshMesh)
             //{
             //    BakeMesh(position);
             //}
+        }
+
+        private VoxelTile[] GetAdjacents(Vector3Int)
+        {
+            foreach(Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
         }
 
         /// <summary>
@@ -494,7 +496,8 @@ namespace Grubitecht.Tilemaps
                         }
                         // Special exception for downards facing faces.  They should always render at the bottom of
                         // the tilemap
-                        if (direction == Vector3Int.down)
+                        // Need to use back here instead of down because of how the Grid uses Z as the up/down axis.
+                        if (direction == Vector3Int.back)
                         {
                             Vector3Int bottomedPos = new Vector3Int(gridPos.x, gridPos.y, 0);
                             AddFace(GridToRelativePos(bottomedPos), direction, TileType.Ground);
@@ -511,7 +514,7 @@ namespace Grubitecht.Tilemaps
                         // Check if this face is is not up/down facing.
                         if (direction.z == 0)
                         {
-                            Vector3Int cascadePos = gridPos + Vector3Int.down;
+                            Vector3Int cascadePos = gridPos + Vector3Int.back;
                             while (cascadePos.z >= 0)
                             {
                                 // If there is a voxel that would now block this face, then we should stop cascading
@@ -523,7 +526,7 @@ namespace Grubitecht.Tilemaps
                                 // Turns the grid position into a position relative to the chunk we are in.
                                 AddFace(GridToRelativePos(cascadePos), direction, TileType.Wall);
 
-                                cascadePos = cascadePos + Vector3Int.down;
+                                cascadePos = cascadePos + Vector3Int.back;
                             }
                         }
                     }

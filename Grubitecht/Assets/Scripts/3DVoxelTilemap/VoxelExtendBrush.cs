@@ -6,12 +6,15 @@
 // Brief Description : Brush for painting positions on the 3D mesh tilemap that will extend wall tiles down to lower
 // layers.
 *****************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Tilemaps
 {
+    [Obsolete("The extend brush if obsolte.  No more need to add extended tiles when meshes always extend downward" +
+        " naturally now.")]
     [CreateAssetMenu(menuName = "Custom Brushes/Voxel Extend Brush")]
     [CustomGridBrush(false, true, false, "Voxel Extend Brush")]
     public class VoxelExtendBrush : VoxelBrush

@@ -8,9 +8,7 @@
 *****************************************************************************/
 using Grubitecht.World.Objects;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Grubitecht.Tilemaps
 {
@@ -30,9 +28,9 @@ namespace Grubitecht.Tilemaps
             {new Vector2Int(-1, -1), 7}
         };
         #endregion
-        [SerializeField] public Vector3Int GridPosition { get; private set; }
+        [field: SerializeField] public Vector3Int GridPosition { get; private set; }
 
-        [SerializeField] private readonly VoxelTile[] adjacentSpaces = new VoxelTile[8];
+        [field: SerializeField] private readonly VoxelTile[] adjacentSpaces = new VoxelTile[8];
         public GridObject ContainedObject { get; set; }
 
         #region Properties
