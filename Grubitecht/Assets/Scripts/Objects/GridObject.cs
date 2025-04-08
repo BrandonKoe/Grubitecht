@@ -28,7 +28,7 @@ namespace Grubitecht.World.Objects
         //    "Should only be true of other enemies.")]
         //public bool CauseAvoidance { get; private set; } = true;
         // Note: This is the position of the voxel we are standing on.
-        [field: SerializeField, ReadOnly] public VoxelTile CurrentTile { get; set; }
+        public VoxelTile CurrentTile { get; set; }
 
         //private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
@@ -88,7 +88,10 @@ namespace Grubitecht.World.Objects
                 }
                 // Update the spaces' references to their contained object.  We have left our previous space and are
                 // now at the next space.
-                CurrentTile.ContainedObject = null;
+                if (CurrentTile != null)
+                {
+                    CurrentTile.ContainedObject = null;
+                }
                 newTile.ContainedObject = this;
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.

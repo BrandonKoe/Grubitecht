@@ -382,12 +382,20 @@ namespace Grubitecht.Tilemaps
         public VoxelTile GetTile(Vector3Int position)
         {
             Chunk chunk = GetChunk(GetChunkPos(position));
+            if (chunk == null)
+            {
+                return null;
+            }
             return chunk.GetTile(position);
         }
 
         public VoxelTile GetTile(Vector2Int position)
         {
             Chunk chunk = GetChunk(GetChunkPos((Vector3Int)position));
+            if (chunk == null)
+            {
+                return null;
+            }
             return chunk.GetTile(position);
             //return tiles.Find(item => item.GridPosition2 == position);
         }
@@ -498,19 +506,23 @@ namespace Grubitecht.Tilemaps
             Vector3Int relativePos = GridToRelativePos(gridPos);
             if (relativePos.x == 0 || relativePos.x == chunkSize - 1)
             {
-                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.x) * Vector2Int.right);
+                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.x - (chunkSize / 2)) * 
+                    Vector2Int.right);
                 Chunk offsetChunk = GetChunk(offsetChunkPos);
                 if (offsetChunk != null)
                 {
+                    //Debug.Log(relativePos + "X");
                     BakeChunkMesh(offsetChunk);
                 }
             }
             if (relativePos.y == 0 || relativePos.y == chunkSize - 1)
             {
-                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.y) * Vector2Int.up);
+                Vector2Int offsetChunkPos = chunkPos + (MathHelpers.GetSign(relativePos.y - (chunkSize / 2)) * 
+                    Vector2Int.up);
                 Chunk offsetChunk = GetChunk(offsetChunkPos);
                 if (offsetChunk != null)
                 {
+                    //Debug.Log(relativePos + "Y");
                     BakeChunkMesh(offsetChunk);
                 }
             }
@@ -521,6 +533,9 @@ namespace Grubitecht.Tilemaps
         /// </summary>
         private void BakeChunkMesh(Chunk chunk)
         {
+            // If the chunk we're updating doesnt exist, return.  This can happen if the chunk is deleted by having
+            // no tiles in it earlier in an erase call.
+            if (chunk == null) { return; }
             // Define a dictionary to store indicies of our verticies.
             Dictionary<VertexSignature, int> vertexIndicies = new Dictionary<VertexSignature, int>();
             int vertexCount = 0;
