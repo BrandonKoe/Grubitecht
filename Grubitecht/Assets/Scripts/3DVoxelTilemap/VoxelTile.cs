@@ -65,6 +65,10 @@ namespace Grubitecht.Tilemaps
         #endregion
 
         #region Nested Classes
+        /// <summary>
+        /// Need to store references to adjacent tiles inside of a separate class because if it's stored in the 
+        /// base VoxelTile class, the array creates a serialization loop and breaks unity.
+        /// </summary>
         private class AdjTileInfo
         {
             internal readonly VoxelTile[] tiles = new VoxelTile[8];
