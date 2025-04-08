@@ -73,6 +73,17 @@ namespace Grubitecht.Tilemaps
         }
 
         /// <summary>
+        /// Has all tiles get and store references to the tiles adjacent to them.
+        /// </summary>
+        private void Awake()
+        {
+            foreach(VoxelTile tile in tiles)
+            {
+                tile.FindAdjacents();
+            }
+        }
+
+        /// <summary>
         /// Adds a tile to this chunk
         /// </summary>
         /// <param name="position">
