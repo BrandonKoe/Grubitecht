@@ -92,7 +92,7 @@ namespace Grubitecht.Waves
         /// <param name="waveIndex">The index of the wave to start.</param>
         public void StartWave(int waveIndex)
         {
-            if (waves.Length > waveIndex)
+            if (waves.Length > waveIndex && waves[waveIndex] != null)
             {
                 StartCoroutine(WaveCoroutine(waves[waveIndex]));
             }

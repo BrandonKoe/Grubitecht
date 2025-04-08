@@ -17,52 +17,54 @@ namespace Grubitecht.World.Pathfinding
         //private readonly static List<PathNode> storedNodes = new();
 
         #region Nested Classes
-        //private class PathNode
-        //{
-        //    internal VoxelTile tile;
-        //    internal int g;
-        //    internal int h;
+        public class PathNode
+        {
+            internal VoxelTile tile;
+            internal int g;
+            internal int h;
 
-        //    internal PathNode previousNode;
+            internal bool isClosed;
 
-        //    internal int f
-        //    {
-        //        get
-        //        {
-        //            return g + h;
-        //        }
-        //    }
+            internal PathNode previousNode;
 
-        //    private PathNode(VoxelTile tile)
-        //    {
-        //        this.tile = tile;
-        //    }
+            internal int F
+            {
+                get
+                {
+                    return g + h;
+                }
+            }
 
-        //    /// <summary>
-        //    /// Creates a new path node.
-        //    /// </summary>
-        //    /// <param name="tile">The tile that this node represents.</param>
-        //    /// <returns>A newly created path node for this tile.</returns>
-        //    internal static PathNode NewNode(VoxelTile tile)
-        //    {
-        //        if (tile == null)
-        //        {
-        //            return null;
-        //        }
-        //        return new PathNode(tile);
-        //    }
+            public PathNode(VoxelTile tile)
+            {
+                this.tile = tile;
+            }
 
-        //    /// <summary>
-        //    /// Calculates the distance values for this node based on the given start and end points.
-        //    /// </summary>
-        //    /// <param name="start">The start point of the path.</param>
-        //    /// <param name="end">The end point of the path.</param>
-        //    internal void CalculateForPath(VoxelTile start, VoxelTile end)
-        //    {
-        //        g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
-        //        h = MathHelpers.FindManhattenDistance(tile.GridPosition2, end.GridPosition2);
-        //    }
-        //}
+            ///// <summary>
+            ///// Creates a new path node.
+            ///// </summary>
+            ///// <param name="tile">The tile that this node represents.</param>
+            ///// <returns>A newly created path node for this tile.</returns>
+            //internal static PathNode NewNode(VoxelTile tile)
+            //{
+            //    if (tile == null)
+            //    {
+            //        return null;
+            //    }
+            //    return new PathNode(tile);
+            //}
+
+            /// <summary>
+            /// Calculates the distance values for this node based on the given start and end points.
+            /// </summary>
+            /// <param name="start">The start point of the path.</param>
+            /// <param name="end">The end point of the path.</param>
+            internal void CalculateForPath(VoxelTile start, VoxelTile end)
+            {
+                g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
+                h = MathHelpers.FindManhattenDistance(tile.GridPosition2, end.GridPosition2);
+            }
+        }
         #endregion
 
         #region A* Pathfinding
@@ -104,29 +106,29 @@ namespace Grubitecht.World.Pathfinding
                 // Gets the node with the lowest f cost and mark it as evaluated.
                 PathNode current = openList.OrderBy(item => item.F).First();
                 openList.Remove(current);
-                current.IsClosed = true;
+                current.isClosed = true;
                 closedList.Add(current);
 
                 iterationNum++;
 
-                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.Tile.GridPosition);
+                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.tile.GridPosition);
                 Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
 
                 // If this node corresponds to the ending node, then we finalize the path as we have reached our
                 // destination.
-                if (current.Tile == endingTile)
+                if (current.tile == endingTile)
                 {
                     Debug.Log(iterationNum);
                     // Unclose all of our nodes once we've finished with the path.
                     foreach (PathNode nod in closedList)
                     {
-                        nod.IsClosed = false;
+                        nod.isClosed = false;
                     }
                     return FinalizePath(startNode, current);
                 }
 
                 // Check the neighboring tiles.
-                List<VoxelTile> neighbors = GetAdjacentTiles(current.Tile);
+                List<VoxelTile> neighbors = GetAdjacentTiles(current.tile);
                 foreach (VoxelTile neighbor in neighbors)
                 {
                     // If this path is marked to end at a tile adjacent to the target tile, then we finalize the path
@@ -137,15 +139,15 @@ namespace Grubitecht.World.Pathfinding
                         // Unclose all of our nodes once we've finished with the path.
                         foreach(PathNode nod in closedList)
                         {
-                            nod.IsClosed = false;
+                            nod.isClosed = false;
                         }
                         return FinalizePath(startNode, current);
                     }
 
                     // Exclude any inaccessible tiles here.
                     if ((!ignoreBlockedSpaces && neighbor.ContainsObject) || 
-                        neighbor.Node.IsClosed ||
-                        Mathf.Abs(current.Tile.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
+                        neighbor.Node.isClosed ||
+                        Mathf.Abs(current.tile.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
                     {
                         continue;
                     }
@@ -166,7 +168,7 @@ namespace Grubitecht.World.Pathfinding
                     }
                     // Set the neighboring node's previous node to this current node.  This will be used during path
                     // finalization as we loop through previous nodes to create a path.
-                    neighbor.Node.PreviousNode = current;
+                    neighbor.Node.previousNode = current;
                 }    
             }
             // If all else fails, then we return null and let the caller handle the null ref.
@@ -185,8 +187,8 @@ namespace Grubitecht.World.Pathfinding
             PathNode current = endingNode;
             while (current != startNode)
             {
-                result.Add(current.Tile);
-                current = current.PreviousNode;
+                result.Add(current.tile);
+                current = current.previousNode;
             }
             // Reverse the results list so that the path is in the correct order.
             result.Reverse();

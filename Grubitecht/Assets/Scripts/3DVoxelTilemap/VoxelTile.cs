@@ -33,7 +33,7 @@ namespace Grubitecht.Tilemaps
 
         //[field: SerializeField, HideInInspector] private VoxelTile[] adjacentTiles = new VoxelTile[8];
         public GridObject ContainedObject { get; set; }
-        private PathNode node;
+        private Pathfinder.PathNode node;
 
         #region Properties
         public Vector2Int GridPosition2
@@ -50,13 +50,13 @@ namespace Grubitecht.Tilemaps
                 return ContainedObject != null;
             }
         }
-        public PathNode Node
+        public Pathfinder.PathNode Node
         {
             get
             {
                 if (node == null)
                 {
-                    node = new PathNode(this);
+                    node = new Pathfinder.PathNode(this);
                 }
                 return node;
             }
