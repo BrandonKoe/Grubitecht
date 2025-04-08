@@ -103,10 +103,24 @@ namespace Grubitecht.World
                 Objective target = Objective.TargetObjective;
                 if (target != null)
                 {
-                    pathNavigator.SetDestination(target.gridObject.CurrentSpace, true, PathToNearestObjective);
+                    pathNavigator.SetDestination(target.gridObject.CurrentTile, true, OnFinishedMoving);
                 }
                
             }
+        }
+
+        /// <summary>
+        /// Allows the enemy to re-pathfind towards the objective if they stop moving and dont reach it.
+        /// </summary>
+        /// <param name="reachedDestination">
+        /// True if the object reached it's destination after moving along a given path.
+        /// ]</param>
+        private void OnFinishedMoving(bool reachedDestination)
+        {
+            if (!reachedDestination)
+            {
+                PathToNearestObjective();
+            }    
         }
     }
 }
