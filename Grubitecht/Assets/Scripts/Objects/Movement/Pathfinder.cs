@@ -6,64 +6,63 @@
 // Brief Description : Uses an A* Pathfinding algorith to  find a path connecting two points on the grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
-using Grubitecht.World.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Grubitecht
+namespace Grubitecht.World.Pathfinding
 {
     public static class Pathfinder
     {
-        private readonly static List<PathNode> storedNodes = new();
+        //private readonly static List<PathNode> storedNodes = new();
 
         #region Nested Classes
-        private class PathNode
-        {
-            internal VoxelTile tile;
-            internal int g;
-            internal int h;
+        //private class PathNode
+        //{
+        //    internal VoxelTile tile;
+        //    internal int g;
+        //    internal int h;
 
-            internal PathNode previousNode;
+        //    internal PathNode previousNode;
 
-            internal int f
-            {
-                get
-                {
-                    return g + h;
-                }
-            }
+        //    internal int f
+        //    {
+        //        get
+        //        {
+        //            return g + h;
+        //        }
+        //    }
 
-            private PathNode(VoxelTile tile)
-            {
-                this.tile = tile;
-            }
+        //    private PathNode(VoxelTile tile)
+        //    {
+        //        this.tile = tile;
+        //    }
 
-            /// <summary>
-            /// Creates a new path node.
-            /// </summary>
-            /// <param name="tile">The tile that this node represents.</param>
-            /// <returns>A newly created path node for this tile.</returns>
-            internal static PathNode NewNode(VoxelTile tile)
-            {
-                if (tile == null)
-                {
-                    return null;
-                }
-                return new PathNode(tile);
-            }
+        //    /// <summary>
+        //    /// Creates a new path node.
+        //    /// </summary>
+        //    /// <param name="tile">The tile that this node represents.</param>
+        //    /// <returns>A newly created path node for this tile.</returns>
+        //    internal static PathNode NewNode(VoxelTile tile)
+        //    {
+        //        if (tile == null)
+        //        {
+        //            return null;
+        //        }
+        //        return new PathNode(tile);
+        //    }
 
-            /// <summary>
-            /// Calculates the distance values for this node based on the given start and end points.
-            /// </summary>
-            /// <param name="start">The start point of the path.</param>
-            /// <param name="end">The end point of the path.</param>
-            internal void CalculateForPath(VoxelTile start, VoxelTile end)
-            {
-                g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
-                h = MathHelpers.FindManhattenDistance(tile.GridPosition2, end.GridPosition2);
-            }
-        }
+        //    /// <summary>
+        //    /// Calculates the distance values for this node based on the given start and end points.
+        //    /// </summary>
+        //    /// <param name="start">The start point of the path.</param>
+        //    /// <param name="end">The end point of the path.</param>
+        //    internal void CalculateForPath(VoxelTile start, VoxelTile end)
+        //    {
+        //        g = MathHelpers.FindManhattenDistance(start.GridPosition2, tile.GridPosition2);
+        //        h = MathHelpers.FindManhattenDistance(tile.GridPosition2, end.GridPosition2);
+        //    }
+        //}
         #endregion
 
         #region A* Pathfinding
@@ -92,9 +91,10 @@ namespace Grubitecht
             Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new();
-            List<VoxelTile> closedList = new();
+            List<PathNode> closedList = new();
 
-            PathNode startNode = GetNode(startingTile, startingTile, endingTile);
+            PathNode startNode = startingTile.Node;
+            startNode.CalculateForPath(startingTile, endingTile);
             openList.Add(startNode);
 
             int iterationNum = 0;
@@ -102,25 +102,31 @@ namespace Grubitecht
             while (openList.Count > 0)
             {
                 // Gets the node with the lowest f cost and mark it as evaluated.
-                PathNode current = openList.OrderBy(item => item.f).First();
+                PathNode current = openList.OrderBy(item => item.F).First();
                 openList.Remove(current);
-                closedList.Add(current.tile);
+                current.IsClosed = true;
+                closedList.Add(current);
 
                 iterationNum++;
 
-                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.tile.GridPosition);
+                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.Tile.GridPosition);
                 Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
 
                 // If this node corresponds to the ending node, then we finalize the path as we have reached our
                 // destination.
-                if (current.tile == endingTile)
+                if (current.Tile == endingTile)
                 {
                     Debug.Log(iterationNum);
+                    // Unclose all of our nodes once we've finished with the path.
+                    foreach (PathNode nod in closedList)
+                    {
+                        nod.IsClosed = false;
+                    }
                     return FinalizePath(startNode, current);
                 }
 
                 // Check the neighboring tiles.
-                List<VoxelTile> neighbors = GetAdjacentTiles(current.tile);
+                List<VoxelTile> neighbors = GetAdjacentTiles(current.Tile);
                 foreach (VoxelTile neighbor in neighbors)
                 {
                     // If this path is marked to end at a tile adjacent to the target tile, then we finalize the path
@@ -128,29 +134,39 @@ namespace Grubitecht
                     if (includeAdjacent && neighbor == endingTile)
                     {
                         Debug.Log(iterationNum);
+                        // Unclose all of our nodes once we've finished with the path.
+                        foreach(PathNode nod in closedList)
+                        {
+                            nod.IsClosed = false;
+                        }
                         return FinalizePath(startNode, current);
                     }
 
                     // Exclude any inaccessible tiles here.
                     if ((!ignoreBlockedSpaces && neighbor.ContainsObject) || 
-                        closedList.Contains(neighbor) ||
-                        Mathf.Abs(current.tile.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
+                        neighbor.Node.IsClosed ||
+                        Mathf.Abs(current.Tile.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
                     {
                         continue;
                     }
 
-                    // Gets the node that represents this tile from the open list.  If none exists, then we create a 
-                    // new node to represent this tile and add it to the open list.
-                    PathNode neighborNode = openList.Find(item => item.tile == neighbor);
-                    if (neighborNode == null)
-                    {
-                        neighborNode = GetNode(neighbor, startingTile, endingTile);
-                        openList.Add(neighborNode);
-                    }
+                    //// Gets the node that represents this tile from the open list.  If none exists, then we create a 
+                    //// new node to represent this tile and add it to the open list.
+                    //PathNode neighborNode = openList.Find(item => item.Tile == neighbor);
+                    //if (neighborNode == null)
+                    //{
+                    //    neighborNode = GetNode(neighbor, startingTile, endingTile);
+                    //    openList.Add(neighborNode);
+                    //}
 
+                    if (!openList.Contains(neighbor.Node))
+                    {
+                        neighbor.Node.CalculateForPath(startingTile, endingTile);
+                        openList.Add(neighbor.Node);
+                    }
                     // Set the neighboring node's previous node to this current node.  This will be used during path
                     // finalization as we loop through previous nodes to create a path.
-                    neighborNode.previousNode = current;
+                    neighbor.Node.PreviousNode = current;
                 }    
             }
             // If all else fails, then we return null and let the caller handle the null ref.
@@ -169,8 +185,8 @@ namespace Grubitecht
             PathNode current = endingNode;
             while (current != startNode)
             {
-                result.Add(current.tile);
-                current = current.previousNode;
+                result.Add(current.Tile);
+                current = current.PreviousNode;
             }
             // Reverse the results list so that the path is in the correct order.
             result.Reverse();
@@ -207,22 +223,18 @@ namespace Grubitecht
         /// <returns>The path node at a given tile.</returns>
         private static PathNode GetNode(VoxelTile tile, VoxelTile startTile, VoxelTile endingTile)
         {
-            PathNode outNode = storedNodes.Find(item => item.tile == tile);
-            if (outNode == null)
-            {
-                outNode = PathNode.NewNode(tile);
-            }
+            PathNode outNode = tile.Node;
             outNode.CalculateForPath(startTile, endingTile);
             return outNode;
         }
         #endregion
 
-        /// <summary>
-        /// Clears all stored nodes.
-        /// </summary>
-        public static void ClearNodes()
-        {
-            storedNodes.Clear();
-        }
+        ///// <summary>
+        ///// Clears all stored nodes.
+        ///// </summary>
+        //public static void ClearNodes()
+        //{
+        //    storedNodes.Clear();
+        //}
     }
 }

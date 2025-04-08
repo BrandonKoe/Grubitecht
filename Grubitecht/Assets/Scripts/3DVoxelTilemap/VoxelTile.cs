@@ -7,6 +7,7 @@
 // I'm going insane.
 *****************************************************************************/
 using Grubitecht.World.Objects;
+using Grubitecht.World.Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Grubitecht.Tilemaps
 
         //[field: SerializeField, HideInInspector] private VoxelTile[] adjacentTiles = new VoxelTile[8];
         public GridObject ContainedObject { get; set; }
+        private PathNode node;
 
         #region Properties
         public Vector2Int GridPosition2
@@ -46,6 +48,17 @@ namespace Grubitecht.Tilemaps
             get
             {
                 return ContainedObject != null;
+            }
+        }
+        public PathNode Node
+        {
+            get
+            {
+                if (node == null)
+                {
+                    node = new PathNode(this);
+                }
+                return node;
             }
         }
         #endregion

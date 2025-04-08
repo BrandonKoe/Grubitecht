@@ -7,6 +7,7 @@
 *****************************************************************************/
 using Grubitecht.World.Objects;
 using UnityEngine;
+using Grubitecht.World.Pathfinding;
 
 namespace Grubitecht.World
 {
@@ -42,7 +43,7 @@ namespace Grubitecht.World
             //// Reset the navigation map when the level is unloaded & this object is destroyed.
             //Objective.NavMap.ResetMap();
             // Need to clear all the nodes the pathfinder has stored when the level ends.
-            Pathfinder.ClearNodes();
+            //Pathfinder.ClearNodes();
         }
 
         /// <summary>
