@@ -145,7 +145,15 @@ namespace Grubitecht.Tilemaps
             ////UpdateAdjacents(newTile);
             //tiles.Add(new VoxelTile(position));
 
-            Chunk chunk = GetChunk(GetChunkPos(position));
+            Vector2Int chunkPos = GetChunkPos(position);
+            // Ensures no null references exist when finding chunks.
+            chunks.RemoveAll(item => item == null);
+            Chunk chunk = GetChunk(chunkPos);
+            if (chunk == null)
+            {
+                // Create a new chunk if the chunk this position is at is null.
+                chunk = CreateNewChunk(chunkPos);
+            }
             chunk.AddTile(position, smoothAbove);
 
             //if (refreshMesh)
@@ -182,7 +190,17 @@ namespace Grubitecht.Tilemaps
             //}
 
             Chunk chunk = GetChunk(GetChunkPos(position));
-            chunk.RemoveTile(position);
+            // Ensures no null references exist when finding chunks.
+            chunks.RemoveAll(item => item == null);
+            if (chunk != null)
+            {
+                chunk.RemoveTile(position);
+                // If we removed the last tile from a chunk, then we should destroy that chunk.
+                if (chunk.Tiles.Count == 0)
+                {
+                    DestroyChunk(chunk);
+                }
+            }
             //foreach (SubTilemap submap in subTilemaps)
             //{
             //    if (submap.tiles.Contains(position))
@@ -282,6 +300,11 @@ namespace Grubitecht.Tilemaps
             //    returnVal |= submap.tiles.Contains(position);
             //}
             Chunk chunk = GetChunk(GetChunkPos(position));
+            // If the chunk doesnt exist, then there must not be a cell at that location.
+            if (chunk == null)
+            {
+                return false;
+            }
             return chunk.Tiles.Any(item => item.GridPosition == position);
         }
         
@@ -289,10 +312,16 @@ namespace Grubitecht.Tilemaps
         /// Checks if a tile exists at a particular position that should stop a face from rendering.
         /// </summary>
         /// <param name="position">The position to check for a face that prevents rendering.</param>
-        /// <returns>True if this face should spe skipped.</returns>
+        /// <returns>True if this face should be skipped.</returns>
         private bool CheckFace(Vector3Int position)
         {
             Chunk chunk = GetChunk(GetChunkPos(position));
+            // If the chunk is null, then there must be no tiles in there that may occlude a face so it should be
+            // rendered.
+            if (chunk == null)
+            {
+                return false;
+            }
             return chunk.Tiles.Any(item => item.GridPosition2 == (Vector2Int)position && 
             item.GridPosition.z >= position.z);
         }
@@ -455,16 +484,13 @@ namespace Grubitecht.Tilemaps
         public void BakeMesh(Vector3Int gridPos)
         {
             Vector2Int chunkPos = GetChunkPos(gridPos);
-
-            // Ensures no null references exist when finding chunks.
-            chunks.RemoveAll(item => item == null);
             // Get the chunk we are working with.
             Chunk chunk = GetChunk(chunkPos);
-            // Make a new chunk if we are working with a chunk that doesn't exist.
-            if (chunk == null)
-            {
-                chunk = CreateNewChunk(chunkPos);
-            }
+            //// Make a new chunk if we are working with a chunk that doesn't exist.
+            //if (chunk == null)
+            //{
+            //    chunk = CreateNewChunk(chunkPos);
+            //}
             BakeChunkMesh(chunk);
 
             // If we are painting on the edge where two chunks intersect, then we need to update both chunks to avoid
@@ -542,7 +568,7 @@ namespace Grubitecht.Tilemaps
                             continue;
                         }
 
-                        // If there is a voxel adjacent to this one, then we skip drawing a face.
+                        // If there is a voxel adjacent to this one that occludes this face, then skip it.
                         if (CheckFace(gridPos + direction))
                         {
                             continue;
@@ -620,14 +646,17 @@ namespace Grubitecht.Tilemaps
             }
             #endregion
 
+            AddVoxelFaces(chunk.Tiles, chunk.ChunkPos);
             bool notEmpty = AddVoxelFaces(chunk.Tiles, chunk.ChunkPos);
-            // If, after looping through all the submaps, our chunk contains no values then we should destroy this
-            // chunk.
-            if (!notEmpty)
-            {
-                DestroyChunk(chunk);
-                return;
-            }
+            // No longer need to create/destroy chunks when baking a mesh because that should now be handled by the
+            // paint and erase functions.
+            //// If, after looping through all the submaps, our chunk contains no values then we should destroy this
+            //// chunk.
+            //if (!notEmpty)
+            //{
+            //    DestroyChunk(chunk);
+            //    return;
+            //}
 
             // Mesh creation
             Vector3[] verticies = new Vector3[vertexCount];
@@ -764,7 +793,8 @@ namespace Grubitecht.Tilemaps
         /// <returns>The created chunk.</returns>
         private Chunk CreateNewChunk(Vector2Int chunkPos)
         {
-            Chunk chunk = PrefabUtility.InstantiatePrefab(chunkPrefab, transform) as Chunk;
+            //Chunk chunk = PrefabUtility.InstantiatePrefab(chunkPrefab, transform) as Chunk;
+            Chunk chunk = Instantiate(chunkPrefab, transform);
             chunk.transform.position = new Vector3(chunkPos.x, 0, chunkPos.y) * chunkSize;
             chunk.Initialize(this, chunkPos);
             chunks.Add(chunk);

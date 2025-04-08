@@ -20,7 +20,7 @@ namespace Grubitecht.Tilemaps
         [field: SerializeField, ReadOnly] public Vector2Int ChunkPos { get; set; }
         [field: SerializeField, ReadOnly] public string MeshPath { get; set; }
 
-        [field: SerializeField, ReadOnly] public List<VoxelTile> Tiles { get; set; }
+        [SerializeField] private List<VoxelTile> tiles;
 
         #region Properties
         public Mesh ChunkMesh
@@ -36,6 +36,13 @@ namespace Grubitecht.Tilemaps
                 {
                     meshCollider.sharedMesh = value;
                 }
+            }
+        }
+        public List<VoxelTile> Tiles
+        {
+            get
+            {
+                return tiles;
             }
         }
         #endregion
