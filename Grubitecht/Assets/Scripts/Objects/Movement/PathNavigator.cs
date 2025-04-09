@@ -56,7 +56,7 @@ namespace Grubitecht.World.Pathfinding
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentTile;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
+            currentPath = JPAPathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.

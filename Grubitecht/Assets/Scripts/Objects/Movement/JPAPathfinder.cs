@@ -246,11 +246,18 @@ namespace Grubitecht
                 // Returns true if the space is blocked.
                 bool CheckSpace(VoxelTile tile)
                 {
+                    // Spaces that dont exist always cound as blocked.
+                    if (tile == null) { return true; }
                     return ((!ignoreBlockedSpaces && tile.ContainsObject) ||
                         Mathf.Abs(current.tile.GridPosition.z - tile.GridPosition.z) > climbHeight);
                 }
 
                 VoxelTile evaluateTile = current.tile;
+                // If there are no pre-set directions, then we should evaluate every direction.
+                if (current.directions == null)
+                {
+                    current.directions = CardinalDirections.DIAGONAL_2D;
+                }
                 foreach (Vector2Int dir in current.directions)
                 {
                     List<Vector2Int> nextNodeDir = new List<Vector2Int>();
