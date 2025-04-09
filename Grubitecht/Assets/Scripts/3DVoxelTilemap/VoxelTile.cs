@@ -6,7 +6,6 @@
 // Brief Description : Represents a tile on the voxel tilemap.
 // I'm going insane.
 *****************************************************************************/
-using Grubitecht.OldTilemaps;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections.Generic;

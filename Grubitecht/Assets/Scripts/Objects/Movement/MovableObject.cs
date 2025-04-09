@@ -52,7 +52,7 @@ namespace Grubitecht.World.Objects
             {
                 if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
-                    GridNavigator.SetDestination(space.Tile, false, RecallGrub);
+                    GridNavigator.SetDestination(space.Tile, RecallGrub);
                     GrubManager.AssignGrub(this);
                 }
             }
@@ -61,7 +61,7 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Recalls a grub delegated to moving this object from the grub controller.
         /// </summary>
-        private void RecallGrub(bool reachedDestination)
+        private void RecallGrub(PathStatus endStatus)
         {
             GrubManager.ReturnGrub(this);
         }

@@ -3032,7 +3032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071180697793237669, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: targetingOrder
-      value: 5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_Name
@@ -3154,8 +3154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   occupySpace: 0
-  <CurrentTile>k__BackingField:
-    <GridPosition>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1001 &782374424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9607,8 +9605,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   occupySpace: 0
-  <CurrentTile>k__BackingField:
-    <GridPosition>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1916411055
 GameObject:
   m_ObjectHideFlags: 0

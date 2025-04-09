@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemySpriteIcon>k__BackingField: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
+  pathingType: 0
+  rePathFrequency: 0.5
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
   targeter: {fileID: 6308435001518308473}
   pathNavigator: {fileID: 3419658666011052324}
@@ -314,8 +316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 1, z: 0}
   occupySpace: 1
-  <CauseAvoidance>k__BackingField: 0
-  <CurrentSpace>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &3419658666011052324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +333,6 @@ MonoBehaviour:
   ignoreBlockedSpaces: 0
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
-  updateSpaceDuringPath: 1
 --- !u!1001 &4887689510105145310
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -51,6 +51,13 @@ namespace Grubitecht.World.Objects
                 return currentObjectives[0];
             }
         }
+        public static List<Objective > CurrentObjectives
+        {
+            get
+            {
+                return currentObjectives;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -105,6 +112,31 @@ namespace Grubitecht.World.Objects
                 }
             }
             return lowestDistObj;
+        }
+
+        /// <summary>
+        /// Gets the objective thats the furthest away from a given position.
+        /// </summary>
+        /// <param name="position">The position to get the furthest objective from.</param>
+        /// <returns>The objective that is furthest from that position.</returns>
+        public static Objective GetFurthestObjective(Vector3 position)
+        {
+            // Prevents Index out of range.
+            if (currentObjectives.Count == 0) { return null; }
+            // Loop through all current objectives and compare the distance between them and the given position
+            // to the currently stored lowest distance.
+            Objective highestDistObj = currentObjectives[0];
+            float highestDist = Vector3.Distance(position, highestDistObj.transform.position);
+            foreach (Objective obj in currentObjectives)
+            {
+                float dist = Vector3.Distance(position, obj.transform.position);
+                if (dist > highestDist)
+                {
+                    highestDist = dist;
+                    highestDistObj = obj;
+                }
+            }
+            return highestDistObj;
         }
 
         /// <summary>

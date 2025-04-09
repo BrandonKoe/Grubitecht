@@ -217,7 +217,7 @@ namespace Grubitecht.Waves
                     VoxelTile tile = FindPosition();
                     spawnedEnemy.gridObject.SetCurrentSpace(tile);
                     spawnedEnemy.gridObject.SnapToSpace();
-                    spawnedEnemy.PathToNearestObjective();
+                    spawnedEnemy.PathToTarget();
                     //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
                 }
             }

@@ -95,11 +95,17 @@ namespace Grubitecht.World.Pathfinding
             List<PathNode> openList = new();
             List<PathNode> closedList = new();
 
-            PathNode startNode = startingTile.Node;
-            startNode.CalculateForPath(startingTile, endingTile);
-            openList.Add(startNode);
+            void AddToOpenList(PathNode node)
+            {
+                node.CalculateForPath(startingTile, endingTile);
+                openList.Add(node);
+            }
 
-            int iterationNum = 0;
+            PathNode startNode = startingTile.Node;
+            AddToOpenList(startNode);
+
+
+            //int iterationNum = 0;
             // Continually loop through the nodes to check in the open list.
             while (openList.Count > 0)
             {
@@ -109,7 +115,7 @@ namespace Grubitecht.World.Pathfinding
                 current.isClosed = true;
                 closedList.Add(current);
 
-                iterationNum++;
+                //iterationNum++;
 
                 Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.tile.GridPosition);
                 Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
@@ -118,13 +124,8 @@ namespace Grubitecht.World.Pathfinding
                 // destination.
                 if (current.tile == endingTile)
                 {
-                    Debug.Log(iterationNum);
-                    // Unclose all of our nodes once we've finished with the path.
-                    foreach (PathNode nod in closedList)
-                    {
-                        nod.isClosed = false;
-                    }
-                    return FinalizePath(startNode, current);
+                    //Debug.Log(iterationNum);
+                    return FinalizePath(startNode, current, closedList);
                 }
 
                 // Check the neighboring tiles.
@@ -135,13 +136,8 @@ namespace Grubitecht.World.Pathfinding
                     // here where the neighbor to our current tile is the ending tile.
                     if (includeAdjacent && neighbor == endingTile)
                     {
-                        Debug.Log(iterationNum);
-                        // Unclose all of our nodes once we've finished with the path.
-                        foreach(PathNode nod in closedList)
-                        {
-                            nod.isClosed = false;
-                        }
-                        return FinalizePath(startNode, current);
+                        //Debug.Log(iterationNum);
+                        return FinalizePath(startNode, current, closedList);
                     }
 
                     // Exclude any inaccessible tiles here.
@@ -163,8 +159,7 @@ namespace Grubitecht.World.Pathfinding
 
                     if (!openList.Contains(neighbor.Node))
                     {
-                        neighbor.Node.CalculateForPath(startingTile, endingTile);
-                        openList.Add(neighbor.Node);
+                        AddToOpenList(neighbor.Node);
                     }
                     // Set the neighboring node's previous node to this current node.  This will be used during path
                     // finalization as we loop through previous nodes to create a path.
@@ -181,7 +176,7 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="startNode">The starting node of the path.</param>
         /// <param name="endingNode">The ending node of the path.</param>
         /// <returns>A list of tiles that represents the path.</returns>
-        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode)
+        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode, List<PathNode> closedList)
         {
             List<VoxelTile> result = new();
             PathNode current = endingNode;
@@ -192,6 +187,12 @@ namespace Grubitecht.World.Pathfinding
             }
             // Reverse the results list so that the path is in the correct order.
             result.Reverse();
+
+            // Unclose all of our nodes once we've finished with the path.
+            foreach (PathNode nod in closedList)
+            {
+                nod.isClosed = false;
+            }
             return result;
         }
 
