@@ -67,6 +67,8 @@ namespace Grubitecht.World.Pathfinding
                 return;
             }
 
+            Debug.Log(currentPath.Count);
+
             if (movementRoutine != null)
             {
                 StopCoroutine(movementRoutine);
