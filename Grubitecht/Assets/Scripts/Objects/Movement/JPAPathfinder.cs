@@ -7,17 +7,14 @@
 // be more efficient than the old A* Pathfinding.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
-using Grubitecht.World.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Grubitecht
+namespace Grubitecht.World.Pathfinding
 {
     public static class JPAPathfinder
     {
-        //private readonly static List<PathNode> storedNodes = new();
-
         #region Nested Classes
         public class PathNode
         {
@@ -41,22 +38,6 @@ namespace Grubitecht
             {
                 this.tile = tile;
             }
-
-            ///// <summary>
-            ///// Creates a new path node.
-            ///// </summary>
-            ///// <param name="tile">The tile that this node represents.</param>
-            ///// <param name="start">The starting tile of the path.</param>
-            ///// <param name="end">The ending tile of the path.</param>
-            ///// <returns>A newly created path node for this tile.</returns>
-            //internal static PathNode NewNode(Vector3Int tile)
-            //{
-            //    if (tile == null)
-            //    {
-            //        return null;
-            //    }
-            //    return new PathNode(tile);
-            //}
 
             /// <summary>
             /// Calculates the distance values for this node based on the given start and end points.
@@ -121,49 +102,14 @@ namespace Grubitecht
 
                 iterationNum++;
 
-                Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(current.tile.GridPosition);
-                Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
-
                 // If this node corresponds to the ending node, then we finalize the path as we have reached our
                 // destination.
                 if (current.tile == endingTile)
                 {
                     Debug.Log(iterationNum);
-                    return FinalizePath(startNode, current);
+                    return FinalizePath(startNode, current, closedList);
                 }
-
-                // Check the neighboring tiles.
-                //List<Vector3Int> neighbors = GetAdjacentTiles(current.space);
-                //foreach (Vector3Int neighbor in neighbors)
-                //{
-                //    // If this path is marked to end at a tile adjacent to the target tile, then we finalize the path
-                //    // here where the neighbor to our current tile is the ending tile.
-                //    if (includeAdjacent && neighbor == endingTile)
-                //    {
-                //        Debug.Log(iterationNum);
-                //        return FinalizePath(startNode, current);
-                //    }
-
-                //    // Gets the node that represents this tile from the open list.  If none exists, then we create a 
-                //    // new node to represent this tile and add it to the open list.
-                //    PathNode neighborNode = openList.Find(item => item.space == neighbor);
-                //    if (neighborNode == null)
-                //    {
-                //        neighborNode = GetNode(neighbor, startingTile, endingTile);
-                //        openList.Add(neighborNode);
-                //    }
-
-                //    // Exclude any inaccessible tiles here.
-                //    if ((!ignoreBlockedSpaces && GridObject.CheckOccupied(neighbor)) || 
-                //        closedList.Contains(neighborNode) ||
-                //        Mathf.Abs(current.space.z - neighbor.z) > climbHeight)
-                //    {
-                //        continue;
-                //    }
-                //    // Set the neighboring node's previous node to this current node.  This will be used during path
-                //    // finalization as we loop through previous nodes to create a path.
-                //    neighborNode.previousNode = current;
-                //}    
+                
                 bool EvaluateOrthogonal(ref VoxelTile evalTile, Vector2Int direction, 
                     out List<Vector2Int> forcedNeighborDirections)
                 {
@@ -171,6 +117,8 @@ namespace Grubitecht
                     // we'll use to evaluate for obstacles that create forced neighbors.
                     Vector2Int perpVector = (Vector2Int)Vector3Int.RoundToInt(Vector3.Cross((Vector3Int)direction,
                         VoxelTilemap3D.NORMAL));
+
+                    //Debug.Log(direction + " is perpendicular to " + perpVector);
 
                     forcedNeighborDirections = new List<Vector2Int>();
                     // If the space ahead of us is blocked, we discard this direction.
@@ -180,22 +128,50 @@ namespace Grubitecht
                     }
                     while (true)
                     {
+ 
                         evalTile = evalTile.GetAdjacent(direction);
+                        // Always return true if we find the ending tile.
+                        if (evalTile == endingTile)
+                        {
+                            return true;
+                        }
                         //evalSpace = evalSpace + direction;
-                        // If the space ahead of us is blocked, we discard this direction.
-                        if (CheckSpace(evalTile.GetAdjacent(direction)))
+                        VoxelTile nextTile = evalTile.GetAdjacent(direction);
+                        // If our next tile is the ending tile and we're set to include adjacent tiles, then we should
+                        // treat this tile as the ending tile.
+                        if (includeAdjacent && nextTile == endingTile)
+                        {
+                            endingTile = evalTile;
+                            return true;
+                        }
+                        // If the space ahead of us is blocked and we didnt find the goal, we discard this direction.
+                        else if (CheckSpace(nextTile))
                         {
                             return false;
                         }
+
+
+                        //if (checkSp)
+
                         // If the space we're evaluating is adjacent to a blocked space, then this space has a
                         // forced neighbor and we want to re-evaluate it.
                         if (CheckSpace(evalTile.GetAdjacent(perpVector)))
                         {
-                            forcedNeighborDirections.Add(direction + perpVector);
+                            // If there is a valid space to move that would only be accessible from this node, then
+                            // we say that our currently evaluated space is of interest and we return true.
+                            if (!CheckSpace(evalTile.GetAdjacent(direction + perpVector)))
+                            {
+                                forcedNeighborDirections.Add(direction + perpVector);
+                            }
                         }
                         if (CheckSpace(evalTile.GetAdjacent(-perpVector)))
                         {
-                            forcedNeighborDirections.Add(direction - perpVector);
+                            // If there is a valid space to move that would only be accessible from this node, then
+                            // we say that our currently evaluated space is of interest and we return true.
+                            if (!CheckSpace(evalTile.GetAdjacent(direction - perpVector)))
+                            {
+                                forcedNeighborDirections.Add(direction - perpVector);
+                            }
                         }
 
                         if (forcedNeighborDirections.Count > 0)
@@ -212,8 +188,22 @@ namespace Grubitecht
                     out List<Vector2Int> forcedNeighborDirections)
                 {
                     forcedNeighborDirections = new List<Vector2Int>();
-                    // If the space ahead of us is blocked, we discard this direction.
-                    if (CheckSpace(evalTile.GetAdjacent(direction)))
+                    // Always return true if we find the ending tile.
+                    if (evalTile == endingTile)
+                    {
+                        return true;
+                    }
+                    //evalSpace = evalSpace + direction;
+                    VoxelTile nextTile = evalTile.GetAdjacent(direction);
+                    // If our next tile is the ending tile and we're set to include adjacent tiles, then we should
+                    // treat this tile as the ending tile.
+                    if (includeAdjacent && nextTile == endingTile)
+                    {
+                        endingTile = evalTile;
+                        return true;
+                    }
+                    // If the space ahead of us is blocked and we didnt find the goal, we discard this direction.
+                    else if (CheckSpace(nextTile))
                     {
                         return false;
                     }
@@ -226,12 +216,32 @@ namespace Grubitecht
                             return false;
                         }
 
+                        // Break the diagonal direction up into it's horizontal and vertical components.
+                        Vector2Int hDir = new Vector2Int(direction.x, 0);
+                        Vector2Int vDir = new Vector2Int(0, direction.y);
+
+                        // Evaluate for forced neighbors caused by out diagonal.
+                        if (CheckSpace(evalTile.GetAdjacent(hDir)))
+                        {
+                            forcedNeighborDirections.Add(vDir - hDir);
+                            forcedNeighborDirections.Add(hDir);
+                            forcedNeighborDirections.Add(vDir);
+                            forcedNeighborDirections.Add(direction);
+                            return true;
+                        }
+                        if (CheckSpace(evalTile.GetAdjacent(vDir)))
+                        {
+                            forcedNeighborDirections.Add(hDir - vDir);
+                            forcedNeighborDirections.Add(hDir);
+                            forcedNeighborDirections.Add(vDir);
+                            forcedNeighborDirections.Add(direction);
+                            return true;
+                        }
+
                         // If any of our orthogonal directions yield a forced neighbor, then this node should be
                         // re-evaluated in the open list.
                         VoxelTile hEvalSpace = evalTile;
                         VoxelTile vEvalSpace = evalTile;
-                        Vector2Int hDir = new Vector2Int(direction.x, 0);
-                        Vector2Int vDir = new Vector2Int(0, direction.y);
                         if (EvaluateOrthogonal(ref hEvalSpace, hDir, out List<Vector2Int> dummyHList) ||
                             EvaluateOrthogonal(ref vEvalSpace, vDir, out List<Vector2Int> dummyVList))
                         {
@@ -248,6 +258,10 @@ namespace Grubitecht
                 {
                     // Spaces that dont exist always cound as blocked.
                     if (tile == null) { return true; }
+                    Debug.Log("Checking space " + tile.GridPosition2);
+                    Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition);
+                    Debug.DrawLine(wPos, wPos + Vector3.up / 2, Color.white, 10f);
+
                     return ((!ignoreBlockedSpaces && tile.ContainsObject) ||
                         Mathf.Abs(current.tile.GridPosition.z - tile.GridPosition.z) > climbHeight);
                 }
@@ -265,22 +279,44 @@ namespace Grubitecht
                     // Only diagonals will have a magnitude greater than 1.
                     if (dir.magnitude > 1)
                     {
+                        //Debug.Log("Evaluating Diagonal");
                         spaceOfInterestFound = EvaluateDiagonal(ref evaluateTile, dir, out nextNodeDir);
                     }
                     else
                     {
+                        //Debug.Log("Evaluating Orthogonal");
                         spaceOfInterestFound = EvaluateOrthogonal(ref evaluateTile, dir, out nextNodeDir);
                     }
+                    //
                     if (spaceOfInterestFound)
                     {
-                        PathNode neighborNode = openList.Find(item => item.tile == evaluateTile);
-                        if (neighborNode == null)
+                        //Debug.Log(evaluateTile.GridPosition);
+                        if (!openList.Contains(evaluateTile.JPANode))
                         {
-                            neighborNode = evaluateTile.JPANode;
-                            AddToOpenList(neighborNode);
+                            AddToOpenList(evaluateTile.JPANode);
                         }
-                        neighborNode.directions = nextNodeDir.ToArray();
-                        neighborNode.previousNode = current;
+                        //PathNode neighborNode = openList.Find(item => item.tile == evaluateTile);
+                        //if (neighborNode == null)
+                        //{
+                        //    neighborNode = evaluateTile.JPANode;
+                        //    AddToOpenList(neighborNode);
+                        //}
+                        evaluateTile.JPANode.directions = nextNodeDir.ToArray();
+                        evaluateTile.JPANode.previousNode = current;
+
+                        // Debug Code
+                        Vector3 wPos = VoxelTilemap3D.Main_GridToWorldPos(evaluateTile.GridPosition);
+                        Debug.DrawLine(wPos, wPos + Vector3.up, Color.red, 10f);
+
+                        if (evaluateTile.JPANode.directions == null)
+                        {
+                            evaluateTile.JPANode.directions = CardinalDirections.DIAGONAL_2D;
+                        }
+                        foreach (Vector2Int direction in evaluateTile.JPANode.directions)
+                        {
+                            Vector3Int d = new Vector3Int(direction.x, 0, direction.y);
+                            Debug.DrawLine(wPos + (Vector3.up / 2), wPos + (Vector3.up / 2) + d, Color.green, 10f);
+                        }
                     }
                 }
             }
@@ -294,7 +330,7 @@ namespace Grubitecht
         /// <param name="startNode">The starting node of the path.</param>
         /// <param name="endingNode">The ending node of the path.</param>
         /// <returns>A list of tiles that represents the path.</returns>
-        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode)
+        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode, List<PathNode> closedList)
         {
             List<VoxelTile> result = new();
             PathNode current = endingNode;
@@ -305,6 +341,12 @@ namespace Grubitecht
             }
             // Reverse the results list so that the path is in the correct order.
             result.Reverse();
+
+            // Unclose all nodes in the closed list.
+            foreach (PathNode node in closedList)
+            {
+                node.isClosed = false;
+            }
             return result;
         }
 
@@ -325,35 +367,6 @@ namespace Grubitecht
             }
             return adjSpaces;
         }
-
-        ///// <summary>
-        ///// Gets a node for a specific tile.
-        ///// </summary>
-        ///// <remarks>
-        ///// Attempts to first get a node that is stored if one exists for the given tile.
-        ///// </remarks>
-        ///// <param name="tile">The tile to get a node for.</param>
-        ///// <param name="startTile">The starting tile of the path.</param>
-        ///// <param name="endingTile">The ending tile of the path.</param>
-        ///// <returns>The path node at a given tile.</returns>
-        //private static PathNode GetNode(Vector3Int tile, Vector3Int startTile, Vector3Int endingTile)
-        //{
-        //    PathNode outNode = storedNodes.Find(item => item.space == tile);
-        //    if (outNode == null)
-        //    {
-        //        outNode = PathNode.NewNode(tile);
-        //    }
-        //    outNode.CalculateForPath(startTile, endingTile);
-        //    return outNode;
-        //}
         #endregion
-
-        ///// <summary>
-        ///// Clears all stored nodes.
-        ///// </summary>
-        //public static void ClearNodes()
-        //{
-        //    storedNodes.Clear();
-        //}
     }
 }

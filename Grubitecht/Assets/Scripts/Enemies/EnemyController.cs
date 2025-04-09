@@ -9,6 +9,7 @@ using Grubitecht.Combat;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
+using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
 
@@ -195,6 +196,7 @@ namespace Grubitecht.World
         /// <summary>
         /// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
         /// </summary>
+        [Button]
         public void PathToTarget()
         {
             if (!targeter.HasTarget)

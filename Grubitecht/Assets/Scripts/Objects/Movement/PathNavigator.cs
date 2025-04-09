@@ -62,7 +62,7 @@ namespace Grubitecht.World.Pathfinding
             // callback know that there is no valid path.
             if (currentPath.Count == 0)
             {
-                //Debug.Log("Invalid path");
+                Debug.Log("Invalid path");
                 finishCallback?.Invoke(PathStatus.Invalid);
                 return;
             }
