@@ -33,6 +33,8 @@ namespace Grubitecht.Tilemaps
         public GridObject ContainedObject { get; set; }
 
         private Pathfinder.PathNode node;
+        private JPAPathfinder.PathNode jpaNode;
+
         private AdjTileInfo adjTiles = new AdjTileInfo();
 
         #region Properties
@@ -59,6 +61,17 @@ namespace Grubitecht.Tilemaps
                     node = new Pathfinder.PathNode(this);
                 }
                 return node;
+            }
+        }
+        public JPAPathfinder.PathNode JPANode
+        {
+            get
+            {
+                if (jpaNode == null)
+                {
+                    jpaNode = new JPAPathfinder.PathNode(this);
+                }
+                return jpaNode;
             }
         }
         #endregion

@@ -214,22 +214,22 @@ namespace Grubitecht.World.Pathfinding
             return adjSpaces;
         }
 
-        /// <summary>
-        /// Gets a node for a specific tile.
-        /// </summary>
-        /// <remarks>
-        /// Attempts to first get a node that is stored if one exists for the given tile.
-        /// </remarks>
-        /// <param name="tile">The tile to get a node for.</param>
-        /// <param name="startTile">The starting tile of the path.</param>
-        /// <param name="endingTile">The ending tile of the path.</param>
-        /// <returns>The path node at a given tile.</returns>
-        private static PathNode GetNode(VoxelTile tile, VoxelTile startTile, VoxelTile endingTile)
-        {
-            PathNode outNode = tile.Node;
-            outNode.CalculateForPath(startTile, endingTile);
-            return outNode;
-        }
+        ///// <summary>
+        ///// Gets a node for a specific tile.
+        ///// </summary>
+        ///// <remarks>
+        ///// Attempts to first get a node that is stored if one exists for the given tile.
+        ///// </remarks>
+        ///// <param name="tile">The tile to get a node for.</param>
+        ///// <param name="startTile">The starting tile of the path.</param>
+        ///// <param name="endingTile">The ending tile of the path.</param>
+        ///// <returns>The path node at a given tile.</returns>
+        //private static PathNode GetNode(VoxelTile tile, VoxelTile startTile, VoxelTile endingTile)
+        //{
+        //    PathNode outNode = tile.Node;
+        //    outNode.CalculateForPath(startTile, endingTile);
+        //    return outNode;
+        //}
         #endregion
 
         ///// <summary>

@@ -28,6 +28,7 @@ namespace Grubitecht.Tilemaps
         private static readonly Vector3 GRID_CORNET_OFFSET = new Vector3(-0.5f, -0.5f, -0.5f);
         private const string ASSET_FOLDER = "Assets";
         private const string MESH_FILE_EXTENSION = ".mesh";
+        public static readonly Vector3Int NORMAL = Vector3Int.forward;
         #endregion
         [SerializeField,Tooltip("The file path where the chunk meshes for this tilemap are stored.")]
         private string meshFilePath;
