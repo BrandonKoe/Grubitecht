@@ -54,6 +54,7 @@ namespace Grubitecht.World
         // State Machine
         internal abstract class EnemyState
         {
+
             internal virtual void OnGainTarget(EnemyController thisEnemy) 
             {
                 // The enemy should always move to the attacking state if it has a target.
@@ -72,6 +73,11 @@ namespace Grubitecht.World
         /// </summary>
         internal class AttackingState : EnemyState
         {
+            // Explicitly DO NOT set the state again if a target is gained while in the attacking state.
+            internal override void OnGainTarget(EnemyController thisEnemy)
+            {
+                //base.OnGainTarget(thisEnemy);
+            }
             internal override void OnLoseTarget(EnemyController thisEnemy)
             {
                 thisEnemy.PathToTarget();
@@ -84,12 +90,12 @@ namespace Grubitecht.World
         internal class MovingState : EnemyState
         {
             /// <summary>
-            /// When the enemy stops moving, attempt to pathfind towards the target again.
+            /// When the enemy stops moving or has an invalid path, attempt to pathfind towards the target again.
             /// </summary>
             /// <param name="thisEnemy"></param>
             internal override void OnStopMoving(EnemyController thisEnemy)
             {
-                thisEnemy.PathToTarget();
+                thisEnemy.state = new WaitingState(thisEnemy);
             }
 
             internal override void OnInvalidPath(EnemyController thisEnemy)
@@ -105,9 +111,11 @@ namespace Grubitecht.World
         {
             private bool isRePathing;
             private Coroutine rePathRoutine;
+            private EnemyController thisEnemy;
 
             internal WaitingState(EnemyController thisEnemy)
             {
+                this.thisEnemy = thisEnemy;
                 rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
             }
 
@@ -139,6 +147,17 @@ namespace Grubitecht.World
                 rePathRoutine = null;
                 // Switch to the moving state.
                 thisEnemy.state = new MovingState();
+            }
+
+            // Make sure we stop the coroutine in the destructor so it doesnt try to reference a garbage collected
+            // class.
+            ~WaitingState()
+            {
+                if (rePathRoutine != null)
+                {
+                    thisEnemy.StopCoroutine(rePathRoutine);
+                    rePathRoutine = null;
+                }
             }
         }
         #endregion
@@ -196,7 +215,7 @@ namespace Grubitecht.World
         /// <summary>
         /// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
         /// </summary>
-        [Button]
+        //[Button]
         public void PathToTarget()
         {
             if (!targeter.HasTarget)
@@ -232,7 +251,7 @@ namespace Grubitecht.World
                     // Attempt to set our target objective as our pathfinding destination.  If pathfinding
                     // fails, then there isnt a valid path to that objective so we need to start updating our
                     // pathfinding.
-                    pathNavigator.SetDestination(target.gridObject.CurrentTile, OnFinishedMoving);
+                    pathNavigator.SetDestination(target.gridObject.CurrentTile, OnMovingCallback);
                     //Debug.Log(hasPath);
                     //if (hasPath)
                     //{
@@ -249,13 +268,21 @@ namespace Grubitecht.World
         }
 
         /// <summary>
+        /// Debug
+        /// </summary>
+        private void Start()
+        {
+            Invoke("PathToTarget", 5f);
+        }
+
+        /// <summary>
         /// If this enemy stops moving, if it doesnt have a target, then we need to attempt to find another
         /// path.
         /// </summary>
         /// <param name="reachedDestination">
         /// True if the object reached it's destination after moving along a given path.
         /// </param>
-        private void OnFinishedMoving(PathStatus endStatus)
+        private void OnMovingCallback(PathStatus endStatus)
         {
             switch (endStatus)
             {

@@ -488,10 +488,8 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -1, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: -2, y: 7, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: -2, y: 8, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: -2, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: -1, y: 9, z: 0}
@@ -551,6 +549,8 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -15, y: 1, z: 0}
   - <GridPosition>k__BackingField: {x: -1, y: 0, z: 2}
   - <GridPosition>k__BackingField: {x: -2, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: 7, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: 8, z: 2}
   meshFilter: {fileID: 624904607}
   meshCollider: {fileID: 624904606}
 --- !u!64 &624904606
@@ -957,25 +957,25 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: -0.0000000021055424
+      e00: 6.7e-44
       e01: 0
-      e02: -1.6602098e+20
-      e03: -1.6602098e+20
-      e10: 2.56e-43
+      e02: 4.878918e-19
+      e03: 4.878918e-19
+      e10: 0
       e11: 0
-      e12: 7.23e-43
-      e13: 7.23e-43
-      e20: 1.8454794e-16
-      e21: -7049040
-      e22: 5.1730924e-19
-      e23: -8.668791e+9
-      e30: 4.5905e-41
-      e31: 7.26e-43
-      e32: 7.24e-43
-      e33: 7.26e-43
+      e12: 7.29e-43
+      e13: 7.29e-43
+      e20: -1.832325e-24
+      e21: -5.456364e+36
+      e22: -1.8118658e-28
+      e23: -5.42897e-40
+      e30: 4.5904e-41
+      e31: 7.31e-43
+      e32: 7.29e-43
+      e33: 7.31e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 3.4466e-41, g: 3.4466e-41, b: 3.4466e-41, a: 3.4466e-41}
+    m_Data: {r: 3.4853e-41, g: 3.4853e-41, b: 3.4853e-41, a: 3.4853e-41}
   m_TileObjectToInstantiateArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -1091,9 +1091,6 @@ MonoBehaviour:
   <MeshPath>k__BackingField: Assets\Meshes/Testing\Chunk(Clone)(0, -1).mesh
   tiles:
   - <GridPosition>k__BackingField: {x: 14, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: 2, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: -6, z: 0}
@@ -1104,9 +1101,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 11, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: 12, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: 2, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: -5, z: 0}
@@ -1118,9 +1112,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -4, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -4, z: 0}
-  - <GridPosition>k__BackingField: {x: 2, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: -4, z: 0}
@@ -1132,8 +1123,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: -4, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -3, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: -3, z: 0}
@@ -1145,7 +1134,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: -3, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -2, z: 0}
@@ -1158,7 +1146,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: -2, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -1, z: 0}
@@ -1192,17 +1179,12 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 3, y: -10, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -10, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -10, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -9, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -9, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: -9, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -9, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -9, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -8, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: -8, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -8, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -8, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: -7, z: 0}
-  - <GridPosition>k__BackingField: {x: 1, y: -7, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: -7, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: -7, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: -7, z: 0}
@@ -1281,6 +1263,24 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 2, y: -9, z: 2}
   - <GridPosition>k__BackingField: {x: 2, y: -8, z: 2}
   - <GridPosition>k__BackingField: {x: 1, y: -8, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -7, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -9, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -9, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -8, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -7, z: 2}
   meshFilter: {fileID: 1098968757}
   meshCollider: {fileID: 1098968756}
 --- !u!64 &1098968756
@@ -1614,7 +1614,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: 1, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: 1, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: 1, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 2, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 2, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 2, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 2, z: 0}
@@ -1629,7 +1628,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: 2, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: 2, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: 2, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 3, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 3, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 3, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 3, z: 0}
@@ -1644,7 +1642,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 12, y: 3, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: 3, z: 0}
   - <GridPosition>k__BackingField: {x: 14, y: 3, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 4, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 4, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 4, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 4, z: 0}
@@ -1658,49 +1655,41 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 11, y: 4, z: 0}
   - <GridPosition>k__BackingField: {x: 12, y: 4, z: 0}
   - <GridPosition>k__BackingField: {x: 13, y: 4, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 5, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 5, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 5, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 5, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 5, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 5, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 6, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 6, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 7, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 7, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 8, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 8, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 9, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 9, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 10, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 11, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 11, z: 0}
   - <GridPosition>k__BackingField: {x: 2, y: 11, z: 0}
   - <GridPosition>k__BackingField: {x: 3, y: 11, z: 0}
   - <GridPosition>k__BackingField: {x: 4, y: 11, z: 0}
   - <GridPosition>k__BackingField: {x: 5, y: 11, z: 0}
-  - <GridPosition>k__BackingField: {x: 0, y: 12, z: 0}
   - <GridPosition>k__BackingField: {x: 1, y: 12, z: 0}
   - <GridPosition>k__BackingField: {x: 6, y: 10, z: 0}
   - <GridPosition>k__BackingField: {x: 7, y: 10, z: 0}
@@ -1737,6 +1726,17 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: 1, y: 0, z: 2}
   - <GridPosition>k__BackingField: {x: 0, y: 0, z: 2}
   - <GridPosition>k__BackingField: {x: 0, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 2, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 3, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 4, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 5, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 6, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 7, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 8, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 9, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 10, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 11, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 12, z: 2}
   meshFilter: {fileID: 1443987313}
   meshCollider: {fileID: 1443987312}
 --- !u!64 &1443987312
@@ -2573,9 +2573,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -8, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: -7, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: -6, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: -3, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: -2, y: -6, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -6, z: 0}
   - <GridPosition>k__BackingField: {x: -14, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: -13, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: -12, y: -5, z: 0}
@@ -2585,10 +2582,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -8, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: -7, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: -6, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: -4, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: -3, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: -2, y: -5, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -5, z: 0}
   - <GridPosition>k__BackingField: {x: -14, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: -13, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: -12, y: -4, z: 0}
@@ -2598,7 +2591,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -8, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: -7, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: -6, y: -4, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -4, z: 0}
   - <GridPosition>k__BackingField: {x: -14, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: -13, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: -12, y: -3, z: 0}
@@ -2611,7 +2603,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -5, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: -4, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: -3, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -3, z: 0}
   - <GridPosition>k__BackingField: {x: -14, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: -13, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: -12, y: -2, z: 0}
@@ -2624,7 +2615,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -5, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: -4, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: -2, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -2, z: 0}
   - <GridPosition>k__BackingField: {x: -14, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: -13, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: -12, y: -1, z: 0}
@@ -2637,7 +2627,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -5, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: -4, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: -1, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -1, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: -13, z: 0}
   - <GridPosition>k__BackingField: {x: -2, y: -13, z: 0}
   - <GridPosition>k__BackingField: {x: -1, y: -13, z: 0}
@@ -2651,9 +2640,6 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -2, y: -10, z: 0}
   - <GridPosition>k__BackingField: {x: -3, y: -9, z: 0}
   - <GridPosition>k__BackingField: {x: -2, y: -9, z: 0}
-  - <GridPosition>k__BackingField: {x: -3, y: -7, z: 0}
-  - <GridPosition>k__BackingField: {x: -2, y: -7, z: 0}
-  - <GridPosition>k__BackingField: {x: -1, y: -7, z: 0}
   - <GridPosition>k__BackingField: {x: -4, y: -12, z: 0}
   - <GridPosition>k__BackingField: {x: -5, y: -12, z: 0}
   - <GridPosition>k__BackingField: {x: -5, y: -11, z: 0}
@@ -2722,6 +2708,20 @@ MonoBehaviour:
   - <GridPosition>k__BackingField: {x: -1, y: -8, z: 2}
   - <GridPosition>k__BackingField: {x: -1, y: -9, z: 2}
   - <GridPosition>k__BackingField: {x: -1, y: -10, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -7, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: -2, y: -7, z: 2}
+  - <GridPosition>k__BackingField: {x: -3, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: -3, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: -2, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: -4, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: -2, y: -6, z: 2}
+  - <GridPosition>k__BackingField: {x: -3, y: -7, z: 2}
   meshFilter: {fileID: 2120487855}
   meshCollider: {fileID: 2120487854}
 --- !u!64 &2120487854

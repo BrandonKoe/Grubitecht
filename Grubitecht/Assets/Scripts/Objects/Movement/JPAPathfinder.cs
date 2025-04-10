@@ -107,7 +107,7 @@ namespace Grubitecht.World.Pathfinding
                 // destination.
                 if (current.tile == endingTile)
                 {
-                    Debug.Log(iterationNum);
+                    //Debug.Log(iterationNum);
                     return FinalizePath(startNode, current, closedList);
                 }
                 
@@ -356,10 +356,21 @@ namespace Grubitecht.World.Pathfinding
             while (current != startNode)
             {
                 result.Add(current.tile);
+                int iterationNum = 0;
                 PathNode interpolateNode = current;
                 while  (interpolateNode != current.previousNode)
                 {
-                    interpolateNode = current.tile.GetAdjacent(current.interpolateDirection).JPANode;
+                    Debug.Log(current.interpolateDirection);
+
+                    iterationNum++;
+                    if (iterationNum >= 100)
+                    {
+                        Debug.LogError("Interpolation iteration limit reached");
+                        return null;
+                    }
+
+                    interpolateNode = interpolateNode.tile.GetAdjacent(current.interpolateDirection).JPANode;
+                    Debug.Log(interpolateNode.tile.GridPosition);
                     // Skip adding the tile if we've reached the next node so that tiles are not added twice.
                     if (interpolateNode != current.previousNode)
                     {
