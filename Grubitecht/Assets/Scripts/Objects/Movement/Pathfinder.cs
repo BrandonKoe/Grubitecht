@@ -90,7 +90,7 @@ namespace Grubitecht.World.Pathfinding
         public static List<VoxelTile> FindPath(VoxelTile startingTile, VoxelTile endingTile, int climbHeight, 
             bool includeAdjacent = false, bool ignoreBlockedSpaces = false)
         {
-            Debug.Log("Finding Path");
+            //Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new();
             List<PathNode> closedList = new();

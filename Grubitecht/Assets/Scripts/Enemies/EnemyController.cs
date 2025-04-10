@@ -71,8 +71,14 @@ namespace Grubitecht.World
         /// </summary>
         internal class AttackingState : EnemyState
         {
+            internal override void OnGainTarget(EnemyController thisEnemy)
+            {
+                // Specifically DO NOT create a new attacking state when already in the attacking state.
+                //base.OnGainTarget(thisEnemy);
+            }
             internal override void OnLoseTarget(EnemyController thisEnemy)
             {
+                thisEnemy.state = new MovingState();
                 thisEnemy.PathToTarget();
             }
         }
@@ -88,7 +94,7 @@ namespace Grubitecht.World
             /// <param name="thisEnemy"></param>
             internal override void OnStopMoving(EnemyController thisEnemy)
             {
-                thisEnemy.PathToTarget();
+                thisEnemy.state = new WaitingState(thisEnemy);
             }
 
             internal override void OnInvalidPath(EnemyController thisEnemy)
@@ -104,9 +110,10 @@ namespace Grubitecht.World
         {
             private bool isRePathing;
             private Coroutine rePathRoutine;
-
+            private EnemyController thisEnemy;
             internal WaitingState(EnemyController thisEnemy)
             {
+                this.thisEnemy = thisEnemy;
                 rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
             }
 
@@ -138,6 +145,15 @@ namespace Grubitecht.World
                 rePathRoutine = null;
                 // Switch to the moving state.
                 thisEnemy.state = new MovingState();
+            }
+
+            ~WaitingState()
+            {
+                if (rePathRoutine != null)
+                {
+                    thisEnemy.StopCoroutine(rePathRoutine);
+                    rePathRoutine = null;
+                }
             }
         }
         #endregion
@@ -176,7 +192,7 @@ namespace Grubitecht.World
         private void HandleOnLoseTarget()
         {
             // Defer control to the current state.
-            state.OnGainTarget(this);
+            state.OnLoseTarget(this);
             //PathToTarget();
         }
 
