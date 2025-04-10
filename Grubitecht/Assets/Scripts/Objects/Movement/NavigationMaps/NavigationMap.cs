@@ -24,16 +24,16 @@ namespace Grubitecht.World.Pathfinding
         private const int BASE_CLIMB_HEIGHT = 1;
         #endregion
 
-        protected static Dictionary<Vector3Int, int> mapDict;
+        protected static Dictionary<VoxelTile, int> mapDict;
         /// <summary>
         /// Creates a new navigation map for the current level.
         /// </summary>
         public virtual void CreateMap()
         {
             Debug.Log("Creating Navigation Map");
-            mapDict = new Dictionary<Vector3Int, int>();
-            List<Vector3Int> tiles = VoxelTilemap3D.Main_GetTilemap(GridObject.VALID_GROUND_TYPE);
-            foreach (Vector3Int tile in tiles)
+            mapDict = new Dictionary<VoxelTile, int>();
+            List<VoxelTile> tiles = VoxelTilemap3D.Main_GetTilemap();
+            foreach (VoxelTile tile in tiles)
             {
                 // Really big number is defined above in CONSTS.  I just named it that because I though it would be
                 // funny since that's its main purpose, to be a big number.
@@ -57,7 +57,7 @@ namespace Grubitecht.World.Pathfinding
         /// The distance from that position to an objective.  
         /// Returns a really large number if that space doesnt exist in the map
         /// </returns>
-        public int GetDistanceValue(Vector3Int gridPos)
+        public int GetDistanceValue(VoxelTile gridPos)
         {
             if (mapDict.ContainsKey(gridPos))
             {
@@ -71,7 +71,7 @@ namespace Grubitecht.World.Pathfinding
         /// </summary>
         /// <param name="refMap"></param>
         /// <returns></returns>
-        protected static Dictionary<Vector3Int, int> ResetNavigationMap(Dictionary<Vector3Int, int> refMap)
+        protected static Dictionary<VoxelTile, int> ResetNavigationMap(Dictionary<VoxelTile, int> refMap)
         {
             return refMap.ToDictionary(item => item.Key, item => REALLY_BIG_NUMBER);
         }
@@ -80,7 +80,7 @@ namespace Grubitecht.World.Pathfinding
         /// Updates the objective navigation map to adapt to objectives being moved.
         /// </summary>
         /// <param name="positions">The positions of the objects to update the map with.</param>
-        public void UpdateMap(Vector3Int[] positions)
+        public void UpdateMap(VoxelTile[] positions)
         {
             if (mapDict == null) { return; }
             mapDict = UpdateNavigationMap(mapDict, positions);
@@ -95,42 +95,40 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="referenceMap">The map of grid tile positions to update.</param>
         /// <param name="destinations">The destinations that objects following the path map should end up at.</param>
         /// <returns>An update map of values.</returns>
-        public static Dictionary<Vector3Int, int> UpdateNavigationMap(Dictionary<Vector3Int, int> referenceMap,
-            Vector3Int[] destinations)
+        public static Dictionary<VoxelTile, int> UpdateNavigationMap(Dictionary<VoxelTile, int> referenceMap,
+            VoxelTile[] destinations)
         {
             referenceMap = ResetNavigationMap(referenceMap);
             Debug.Log("Updating Navigation Map with " + referenceMap.Count + " spaces and " + destinations.Length + " destinations");
             // Sets up lists of visited and unvisited nodes for this pass through of a pathfinding map.
-            List<Vector3Int> unvisited = new List<Vector3Int>();
-            List<Vector3Int> visited = new List<Vector3Int>();
+            List<VoxelTile> unvisited = new List<VoxelTile>();
+            List<VoxelTile> visited = new List<VoxelTile>();
             unvisited.AddRange(referenceMap.Keys);
 
             // Sets the distance to each destination to 0.
-            foreach (Vector3Int dest in destinations)
+            foreach (VoxelTile dest in destinations)
             {
                 referenceMap[dest] = 0;
             }
 
-            Vector3Int currentNode;
+            VoxelTile currentNode;
             // Continually loop through all unvisited tiles.
             while (unvisited.Count > 0)
             {
                 // Gets the node with the shortest distance.
                 currentNode = unvisited.OrderBy(item => referenceMap[item]).FirstOrDefault();
                 // Loop through each adjacent tile.
-                foreach (Vector2Int dir in CardinalDirections.CARDINAL_DIRECTIONS_2)
+                foreach (Vector2Int dir in CardinalDirections.ORTHOGONAL_2D)
                 {
-                    foreach (Vector3Int target in VoxelTilemap3D.Main_GetCellsInColumn((Vector2Int)currentNode + dir,
-                        GridObject.VALID_GROUND_TYPE))
-                    {
-                        // Skips over already visited nodes and nodes that are out of climbint height.
-                        if (visited.Contains(target) || Mathf.Abs(currentNode.z - target.z) > BASE_CLIMB_HEIGHT)
-                        { continue; }
+                    VoxelTile target = currentNode.GetAdjacent(dir);
+                    // Skips over already visited nodes and nodes that are out of climbint height.
+                    if (target == null ||
+                        visited.Contains(target) || 
+                        Mathf.Abs(currentNode.GridPosition.z - target.GridPosition.z) > BASE_CLIMB_HEIGHT)
+                    { continue; }
 
-                        // Sets the distance value of this target node to the lower of it's current value or the
-                        // distance of the current node + 1.
-                        referenceMap[target] = Mathf.Min(referenceMap[target], referenceMap[currentNode] + 1);
-                    }
+                    // Sets the distance value of this target node to the lower of it's current value or the
+                    // distance of the current node + 1.
                 }
                 // Mark this current node as visited.
                 visited.Add(currentNode);

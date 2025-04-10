@@ -408,6 +408,157 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &179986257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179986263}
+  - component: {fileID: 179986260}
+  - component: {fileID: 179986262}
+  - component: {fileID: 179986259}
+  - component: {fileID: 179986258}
+  - component: {fileID: 179986261}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &179986258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: -1, y: 1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(-1, 1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: -1, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 16, z: 0}
+  meshFilter: {fileID: 179986260}
+  meshCollider: {fileID: 179986259}
+--- !u!64 &179986259
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d62ba6de79c94fe488e6a1484d17bda3, type: 2}
+--- !u!33 &179986260
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  m_Mesh: {fileID: 4300000, guid: d62ba6de79c94fe488e6a1484d17bda3, type: 2}
+--- !u!114 &179986261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 179986258}
+--- !u!23 &179986262
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &179986263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179986257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &193396902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,7 +791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -690,6 +841,401 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
   m_PrefabInstance: {fileID: 290128364}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &333477734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333477735}
+  - component: {fileID: 333477740}
+  - component: {fileID: 333477739}
+  - component: {fileID: 333477738}
+  - component: {fileID: 333477737}
+  - component: {fileID: 333477736}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &333477735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &333477736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 333477737}
+--- !u!114 &333477737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 0, y: 0}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(0, 0).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 10, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 0, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 9, z: 1}
+  - <GridPosition>k__BackingField: {x: 10, y: 10, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 11, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 12, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 12, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 11, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 9, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 10, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 11, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 10, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 9, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 9, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 10, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 9, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 10, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 7, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 8, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 6, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 0, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: 0, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: 3, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: 3, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: 2, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 6, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: 2, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: 2, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: 2, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: 1, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: 0, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: 0, z: 2}
+  meshFilter: {fileID: 333477740}
+  meshCollider: {fileID: 333477738}
+--- !u!64 &333477738
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c620e7c16963a924dab1737ad4add454, type: 2}
+--- !u!23 &333477739
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &333477740
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333477734}
+  m_Mesh: {fileID: 4300000, guid: c620e7c16963a924dab1737ad4add454, type: 2}
 --- !u!1001 &382448903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,7 +1250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7474296903293473679, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7474296903293473679, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -712,7 +1258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7474296903293473679, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7474296903293473679, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -753,99 +1299,343 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7474296903293473679, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
   m_PrefabInstance: {fileID: 382448903}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &450144319
-PrefabInstance:
+--- !u!1 &384363299
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2105354135}
-    m_Modifications:
-    - target: {fileID: 468440042726157893, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 131660787d8d8044691341a065c3094a, type: 2}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274663019562479761, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Name
-      value: Chunk
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <Tilemap>k__BackingField
-      value: 
-      objectReference: {fileID: 2105354136}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <MeshPath>k__BackingField
-      value: Assets\Meshes/MainMenu\Chunk(-1, 0).mesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <ChunkPos>k__BackingField.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234905082186971504, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 131660787d8d8044691341a065c3094a, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
---- !u!4 &450144320 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 450144319}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &450144321 stripped
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384363305}
+  - component: {fileID: 384363302}
+  - component: {fileID: 384363304}
+  - component: {fileID: 384363301}
+  - component: {fileID: 384363300}
+  - component: {fileID: 384363303}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &384363300
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 450144319}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: -1, y: 0}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(-1, 0).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: -10, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: 5, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: 4, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: 0, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: 3, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: 2, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: 1, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: 0, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: 0, z: 1}
+  meshFilter: {fileID: 384363302}
+  meshCollider: {fileID: 384363301}
+--- !u!64 &384363301
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9a0ab24f3bd436841a6ebbabeb7e7be2, type: 2}
+--- !u!33 &384363302
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
+  m_Mesh: {fileID: 4300000, guid: 9a0ab24f3bd436841a6ebbabeb7e7be2, type: 2}
+--- !u!114 &384363303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 384363300}
+--- !u!23 &384363304
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &384363305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384363299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &546170303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -856,11 +1646,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4872739363988923000, guid: 6dfb226eba4585b458a19212249c0f48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4872739363988923000, guid: 6dfb226eba4585b458a19212249c0f48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4872739363988923000, guid: 6dfb226eba4585b458a19212249c0f48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -951,99 +1741,6 @@ Transform:
   - {fileID: 546170304}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &610977866
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2105354135}
-    m_Modifications:
-    - target: {fileID: 468440042726157893, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 6b13c050d3c293441bba3ad92caa31d2, type: 2}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274663019562479761, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Name
-      value: Chunk
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <Tilemap>k__BackingField
-      value: 
-      objectReference: {fileID: 2105354136}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <MeshPath>k__BackingField
-      value: Assets\Meshes/MainMenu\Chunk(0, -1).mesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <ChunkPos>k__BackingField.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234905082186971504, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 6b13c050d3c293441bba3ad92caa31d2, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
---- !u!114 &610977867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 610977866}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &610977868 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 610977866}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619133187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,15 +1833,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1295,6 +1992,673 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683303483}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &684042456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684042462}
+  - component: {fileID: 684042459}
+  - component: {fileID: 684042461}
+  - component: {fileID: 684042458}
+  - component: {fileID: 684042457}
+  - component: {fileID: 684042460}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &684042457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 1, y: -1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(1, -1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 16, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: -8, z: 0}
+  meshFilter: {fileID: 684042459}
+  meshCollider: {fileID: 684042458}
+--- !u!64 &684042458
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 338721d6828bc6046a541f74009116fe, type: 2}
+--- !u!33 &684042459
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  m_Mesh: {fileID: 4300000, guid: 338721d6828bc6046a541f74009116fe, type: 2}
+--- !u!114 &684042460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 684042457}
+--- !u!23 &684042461
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &684042462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684042456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16, y: 0, z: -16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &756542101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756542107}
+  - component: {fileID: 756542104}
+  - component: {fileID: 756542106}
+  - component: {fileID: 756542103}
+  - component: {fileID: 756542102}
+  - component: {fileID: 756542105}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &756542102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 0, y: -2}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(0, -2).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 0, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -17, z: 0}
+  meshFilter: {fileID: 756542104}
+  meshCollider: {fileID: 756542103}
+--- !u!64 &756542103
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: a5aa55556740c37429fdf864a2882fbc, type: 2}
+--- !u!33 &756542104
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  m_Mesh: {fileID: 4300000, guid: a5aa55556740c37429fdf864a2882fbc, type: 2}
+--- !u!114 &756542105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 756542102}
+--- !u!23 &756542106
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &756542107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756542101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &763311783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763311789}
+  - component: {fileID: 763311786}
+  - component: {fileID: 763311788}
+  - component: {fileID: 763311785}
+  - component: {fileID: 763311784}
+  - component: {fileID: 763311787}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &763311784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 0, y: 1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(0, 1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 10, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 19, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: 18, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: 17, z: 0}
+  meshFilter: {fileID: 763311786}
+  meshCollider: {fileID: 763311785}
+--- !u!64 &763311785
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e6e724001fe9d2141a9d70e346c4445a, type: 2}
+--- !u!33 &763311786
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  m_Mesh: {fileID: 4300000, guid: e6e724001fe9d2141a9d70e346c4445a, type: 2}
+--- !u!114 &763311787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 763311784}
+--- !u!23 &763311788
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &763311789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763311783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &817456014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1305,7 +2669,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5149293534809825052, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5149293534809825052, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1313,7 +2677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5149293534809825052, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.5
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 5149293534809825052, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1368,6 +2732,509 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5149293534809825052, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
   m_PrefabInstance: {fileID: 817456014}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &828333120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828333126}
+  - component: {fileID: 828333123}
+  - component: {fileID: 828333125}
+  - component: {fileID: 828333122}
+  - component: {fileID: 828333121}
+  - component: {fileID: 828333124}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &828333121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: -1, y: -1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(-1, -1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: -16, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -16, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: -15, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -7, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -6, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -8, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -14, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -9, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -13, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -12, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: -10, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -11, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -1, z: 1}
+  - <GridPosition>k__BackingField: {x: -4, y: -2, z: 1}
+  - <GridPosition>k__BackingField: {x: -4, y: -3, z: 1}
+  - <GridPosition>k__BackingField: {x: -4, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -1, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -2, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: -2, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: -3, z: 1}
+  - <GridPosition>k__BackingField: {x: -3, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -3, z: 1}
+  - <GridPosition>k__BackingField: {x: -2, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: -1, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: -1, y: -2, z: 2}
+  meshFilter: {fileID: 828333123}
+  meshCollider: {fileID: 828333122}
+--- !u!64 &828333122
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1cda93dbe2c985f4b867fd99ca3cf28e, type: 2}
+--- !u!33 &828333123
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  m_Mesh: {fileID: 4300000, guid: 1cda93dbe2c985f4b867fd99ca3cf28e, type: 2}
+--- !u!114 &828333124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 828333121}
+--- !u!23 &828333125
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &828333126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828333120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16, y: 0, z: -16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &886681963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 886681969}
+  - component: {fileID: 886681966}
+  - component: {fileID: 886681968}
+  - component: {fileID: 886681965}
+  - component: {fileID: 886681964}
+  - component: {fileID: 886681967}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &886681964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: -1, y: -2}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(-1, -2).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: -6, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: -5, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: -4, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: -3, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -17, z: 0}
+  - <GridPosition>k__BackingField: {x: -2, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -18, z: 0}
+  - <GridPosition>k__BackingField: {x: -1, y: -17, z: 0}
+  meshFilter: {fileID: 886681966}
+  meshCollider: {fileID: 886681965}
+--- !u!64 &886681965
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 48f07c7830826404bb7e6bf67aa4d12b, type: 2}
+--- !u!33 &886681966
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  m_Mesh: {fileID: 4300000, guid: 48f07c7830826404bb7e6bf67aa4d12b, type: 2}
+--- !u!114 &886681967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 886681964}
+--- !u!23 &886681968
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &886681969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886681963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16, y: 0, z: -32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060763699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,103 +3910,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1367100570
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2105354135}
-    m_Modifications:
-    - target: {fileID: 468440042726157893, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 271e56381b3cff540b502ecc6787801c, type: 2}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274663019562479761, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Name
-      value: Chunk
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <Tilemap>k__BackingField
-      value: 
-      objectReference: {fileID: 2105354136}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <MeshPath>k__BackingField
-      value: Assets\Meshes/MainMenu\Chunk(-1, -1).mesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <ChunkPos>k__BackingField.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <ChunkPos>k__BackingField.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234905082186971504, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 271e56381b3cff540b502ecc6787801c, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
---- !u!114 &1367100571 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 1367100570}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1367100572 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 1367100570}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1587850855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2154,15 +3924,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2208,95 +3978,152 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
   m_PrefabInstance: {fileID: 1587850855}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1598456403
-PrefabInstance:
+--- !u!1 &1612067174
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2105354135}
-    m_Modifications:
-    - target: {fileID: 468440042726157893, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 51d933fe947f0fb4abcf111425994b15, type: 2}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274663019562479761, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Name
-      value: Chunk
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <Tilemap>k__BackingField
-      value: 
-      objectReference: {fileID: 2105354136}
-    - target: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: <MeshPath>k__BackingField
-      value: Assets\Meshes/MainMenu\Chunk(0, 0).mesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234905082186971504, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 51d933fe947f0fb4abcf111425994b15, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
---- !u!114 &1598456404 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 1598456403}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612067180}
+  - component: {fileID: 1612067177}
+  - component: {fileID: 1612067179}
+  - component: {fileID: 1612067176}
+  - component: {fileID: 1612067175}
+  - component: {fileID: 1612067178}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1612067175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1598456405 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2815163425423893721, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
-  m_PrefabInstance: {fileID: 1598456403}
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 1, y: 1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(1, 1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 19, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 17, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 16, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 16, z: 0}
+  meshFilter: {fileID: 1612067177}
+  meshCollider: {fileID: 1612067176}
+--- !u!64 &1612067176
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 4a7ea9ca1bb3b8845b9cb5b45461e814, type: 2}
+--- !u!33 &1612067177
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
+  m_Mesh: {fileID: 4300000, guid: 4a7ea9ca1bb3b8845b9cb5b45461e814, type: 2}
+--- !u!114 &1612067178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 1612067175}
+--- !u!23 &1612067179
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1612067180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612067174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835843302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +4218,751 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1893544261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1893544267}
+  - component: {fileID: 1893544264}
+  - component: {fileID: 1893544266}
+  - component: {fileID: 1893544263}
+  - component: {fileID: 1893544262}
+  - component: {fileID: 1893544265}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1893544262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 1, y: 0}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(1, 0).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 30, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 31, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 30, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 0, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 1, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 2, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 3, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 4, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 5, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 24, y: 12, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 13, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 29, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 7, z: 0}
+  - <GridPosition>k__BackingField: {x: 25, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 26, y: 11, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 9, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 28, y: 8, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 10, z: 0}
+  - <GridPosition>k__BackingField: {x: 27, y: 6, z: 0}
+  - <GridPosition>k__BackingField: {x: 23, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 22, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 21, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 14, z: 0}
+  - <GridPosition>k__BackingField: {x: 16, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 17, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 18, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 19, y: 15, z: 0}
+  - <GridPosition>k__BackingField: {x: 20, y: 15, z: 0}
+  meshFilter: {fileID: 1893544264}
+  meshCollider: {fileID: 1893544263}
+--- !u!64 &1893544263
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1d1bf71edc6d9fd4b970c0ef00fbf2ad, type: 2}
+--- !u!33 &1893544264
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  m_Mesh: {fileID: 4300000, guid: 1d1bf71edc6d9fd4b970c0ef00fbf2ad, type: 2}
+--- !u!114 &1893544265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 1893544262}
+--- !u!23 &1893544266
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1893544267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893544261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2094754153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094754159}
+  - component: {fileID: 2094754156}
+  - component: {fileID: 2094754158}
+  - component: {fileID: 2094754155}
+  - component: {fileID: 2094754154}
+  - component: {fileID: 2094754157}
+  m_Layer: 3
+  m_Name: Chunk(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2094754154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002447a54ec486947bee3e276bee8782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Tilemap>k__BackingField: {fileID: 2105354136}
+  <ChunkPos>k__BackingField: {x: 0, y: -1}
+  <MeshPath>k__BackingField: Assets\Meshes/LevelSelect\Chunk(Clone)(0, -1).mesh
+  tiles:
+  - <GridPosition>k__BackingField: {x: 14, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -5, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -4, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -3, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -2, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -1, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 1, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 2, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 3, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 4, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 5, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 6, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 7, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 8, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 9, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 10, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 11, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -15, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -14, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -13, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -12, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -11, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -10, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -9, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -8, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -7, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 14, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 15, y: -6, z: 0}
+  - <GridPosition>k__BackingField: {x: 13, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 12, y: -16, z: 0}
+  - <GridPosition>k__BackingField: {x: 0, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: -9, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: -9, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: -9, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: -9, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: -3, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: -2, z: 1}
+  - <GridPosition>k__BackingField: {x: 9, y: -1, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: -8, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: -2, z: 1}
+  - <GridPosition>k__BackingField: {x: 8, y: -1, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: -3, z: 1}
+  - <GridPosition>k__BackingField: {x: 7, y: -4, z: 1}
+  - <GridPosition>k__BackingField: {x: 6, y: -5, z: 1}
+  - <GridPosition>k__BackingField: {x: 5, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: -7, z: 1}
+  - <GridPosition>k__BackingField: {x: 2, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 1, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 4, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 3, y: -6, z: 1}
+  - <GridPosition>k__BackingField: {x: 0, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: -5, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 6, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 6, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 7, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 7, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 0, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: -4, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 6, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 6, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 5, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 4, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: -1, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -2, z: 2}
+  - <GridPosition>k__BackingField: {x: 2, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 3, y: -3, z: 2}
+  - <GridPosition>k__BackingField: {x: 1, y: -4, z: 2}
+  meshFilter: {fileID: 2094754156}
+  meshCollider: {fileID: 2094754155}
+--- !u!64 &2094754155
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 2e8cfdf3c52d2804fb5b62f2a1069b73, type: 2}
+--- !u!33 &2094754156
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  m_Mesh: {fileID: 4300000, guid: 2e8cfdf3c52d2804fb5b62f2a1069b73, type: 2}
+--- !u!114 &2094754157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8da2be553e0c16469020265174e8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Chunk>k__BackingField: {fileID: 2094754154}
+--- !u!23 &2094754158
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbcb8bc920c10d74992799280739396b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &2094754159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094754153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105354135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105354134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,10 +4997,17 @@ Transform:
   - {fileID: 112015043}
   - {fileID: 1105358005}
   - {fileID: 1320933193}
-  - {fileID: 1367100572}
-  - {fileID: 610977868}
-  - {fileID: 1598456405}
-  - {fileID: 450144320}
+  - {fileID: 384363305}
+  - {fileID: 828333126}
+  - {fileID: 886681969}
+  - {fileID: 756542107}
+  - {fileID: 2094754159}
+  - {fileID: 684042462}
+  - {fileID: 1893544267}
+  - {fileID: 1612067180}
+  - {fileID: 763311789}
+  - {fileID: 179986263}
+  - {fileID: 333477735}
   m_Father: {fileID: 568117889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2105354136
@@ -2443,310 +5022,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6d09c53010db14f802af42052eceb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilePath: Meshes/MainMenu
+  meshFilePath: Meshes/LevelSelect
   chunkPrefab: {fileID: 6073547567372331550, guid: 634df8e31c8cf7c4babdd8895ba4d79d, type: 3}
   chunks:
-  - {fileID: 1367100571}
-  - {fileID: 610977867}
-  - {fileID: 1598456404}
-  - {fileID: 450144321}
+  - {fileID: 384363300}
+  - {fileID: 828333121}
+  - {fileID: 886681964}
+  - {fileID: 756542102}
+  - {fileID: 2094754154}
+  - {fileID: 684042457}
+  - {fileID: 1893544262}
+  - {fileID: 1612067175}
+  - {fileID: 763311784}
+  - {fileID: 179986258}
+  - {fileID: 333477737}
   chunkSize: 16
-  subTilemaps:
-  - tileType: 0
-    tiles:
-    - {x: -11, y: -1, z: 0}
-    - {x: -11, y: -2, z: 0}
-    - {x: -10, y: -2, z: 0}
-    - {x: -10, y: -3, z: 0}
-    - {x: -10, y: -4, z: 0}
-    - {x: -9, y: -4, z: 0}
-    - {x: -9, y: -5, z: 0}
-    - {x: -8, y: -5, z: 0}
-    - {x: -7, y: -5, z: 0}
-    - {x: -7, y: -6, z: 0}
-    - {x: -6, y: -6, z: 0}
-    - {x: -5, y: -6, z: 0}
-    - {x: -4, y: -6, z: 0}
-    - {x: -4, y: -7, z: 0}
-    - {x: -3, y: -7, z: 0}
-    - {x: -2, y: -7, z: 0}
-    - {x: -1, y: -7, z: 0}
-    - {x: 0, y: -7, z: 0}
-    - {x: 1, y: -7, z: 0}
-    - {x: 2, y: -7, z: 0}
-    - {x: 2, y: -6, z: 0}
-    - {x: 3, y: -6, z: 0}
-    - {x: 4, y: -6, z: 0}
-    - {x: 4, y: -5, z: 0}
-    - {x: 5, y: -5, z: 0}
-    - {x: 5, y: -4, z: 0}
-    - {x: 5, y: -3, z: 0}
-    - {x: 6, y: -3, z: 0}
-    - {x: 6, y: -2, z: 0}
-    - {x: 7, y: -2, z: 0}
-    - {x: 7, y: -1, z: 0}
-    - {x: 8, y: -1, z: 0}
-    - {x: 8, y: 0, z: 0}
-    - {x: 8, y: 1, z: 0}
-    - {x: 8, y: 2, z: 0}
-    - {x: 8, y: 3, z: 0}
-    - {x: 8, y: 4, z: 0}
-    - {x: 7, y: 4, z: 0}
-    - {x: 7, y: 5, z: 0}
-    - {x: 7, y: 6, z: 0}
-    - {x: 6, y: 6, z: 0}
-    - {x: 6, y: 7, z: 0}
-    - {x: 5, y: 8, z: 0}
-    - {x: 4, y: 8, z: 0}
-    - {x: 4, y: 9, z: 0}
-    - {x: 3, y: 9, z: 0}
-    - {x: 3, y: 10, z: 0}
-    - {x: 2, y: 10, z: 0}
-    - {x: 2, y: 11, z: 0}
-    - {x: 1, y: 11, z: 0}
-    - {x: 0, y: 11, z: 0}
-    - {x: -1, y: 11, z: 0}
-    - {x: -2, y: 11, z: 0}
-    - {x: -3, y: 11, z: 0}
-    - {x: -3, y: 10, z: 0}
-    - {x: -4, y: 10, z: 0}
-    - {x: -5, y: 10, z: 0}
-    - {x: -5, y: 9, z: 0}
-    - {x: -6, y: 9, z: 0}
-    - {x: -6, y: 8, z: 0}
-    - {x: -7, y: 8, z: 0}
-    - {x: -7, y: 7, z: 0}
-    - {x: -8, y: 7, z: 0}
-    - {x: -8, y: 6, z: 0}
-    - {x: -9, y: 6, z: 0}
-    - {x: -9, y: 5, z: 0}
-    - {x: -9, y: 4, z: 0}
-    - {x: -10, y: 4, z: 0}
-    - {x: -10, y: 3, z: 0}
-    - {x: -10, y: 2, z: 0}
-    - {x: -10, y: 1, z: 0}
-    - {x: -11, y: 1, z: 0}
-    - {x: -11, y: 0, z: 0}
-    - {x: 2, y: -3, z: 1}
-    - {x: 3, y: -3, z: 1}
-    - {x: 3, y: -2, z: 1}
-    - {x: 4, y: -2, z: 1}
-    - {x: 4, y: -1, z: 1}
-    - {x: 5, y: -1, z: 1}
-    - {x: 5, y: 0, z: 1}
-    - {x: 5, y: 1, z: 1}
-    - {x: 4, y: 2, z: 1}
-    - {x: 4, y: 3, z: 1}
-    - {x: 3, y: 3, z: 1}
-    - {x: 3, y: 4, z: 1}
-    - {x: 2, y: 4, z: 1}
-    - {x: 2, y: 5, z: 1}
-    - {x: 1, y: 5, z: 1}
-    - {x: 1, y: 6, z: 1}
-    - {x: 0, y: 6, z: 1}
-    - {x: -1, y: 6, z: 1}
-    - {x: -2, y: 6, z: 1}
-    - {x: -3, y: 6, z: 1}
-    - {x: -4, y: 6, z: 1}
-    - {x: -4, y: 5, z: 1}
-    - {x: -5, y: 5, z: 1}
-    - {x: -5, y: 4, z: 1}
-    - {x: -6, y: 4, z: 1}
-    - {x: -7, y: 4, z: 1}
-    - {x: -7, y: 3, z: 1}
-    - {x: -7, y: 2, z: 1}
-    - {x: -8, y: 2, z: 1}
-    - {x: -8, y: 1, z: 1}
-    - {x: -7, y: 1, z: 1}
-    - {x: -7, y: 0, z: 1}
-    - {x: -7, y: -1, z: 1}
-    - {x: -6, y: -1, z: 1}
-    - {x: -6, y: -2, z: 1}
-    - {x: -5, y: -2, z: 1}
-    - {x: -5, y: -3, z: 1}
-    - {x: -4, y: -3, z: 1}
-    - {x: -3, y: -3, z: 1}
-    - {x: -3, y: -4, z: 1}
-    - {x: -2, y: -4, z: 1}
-    - {x: -1, y: -4, z: 1}
-    - {x: 0, y: -4, z: 1}
-    - {x: 0, y: -3, z: 1}
-    - {x: 1, y: -3, z: 1}
-    - {x: -6, y: 3, z: 2}
-    - {x: -5, y: 3, z: 2}
-    - {x: -5, y: 2, z: 2}
-    - {x: -4, y: 2, z: 2}
-    - {x: -3, y: 2, z: 2}
-    - {x: -3, y: 1, z: 2}
-    - {x: -2, y: 1, z: 2}
-    - {x: -2, y: 0, z: 2}
-    - {x: -1, y: 0, z: 2}
-    - {x: 0, y: 0, z: 2}
-    - {x: 1, y: 0, z: 2}
-    - {x: 1, y: 1, z: 2}
-    - {x: 2, y: 1, z: 2}
-    - {x: 2, y: 2, z: 2}
-    - {x: 2, y: 3, z: 2}
-    - {x: 1, y: 3, z: 2}
-    - {x: 1, y: 4, z: 2}
-    - {x: 0, y: 4, z: 2}
-    - {x: -1, y: 4, z: 2}
-    - {x: -2, y: 4, z: 2}
-    - {x: -3, y: 4, z: 2}
-    - {x: -4, y: 4, z: 2}
-    - {x: -4, y: 3, z: 2}
-    - {x: -3, y: 3, z: 2}
-    - {x: -2, y: 3, z: 2}
-    - {x: -1, y: 3, z: 2}
-    - {x: 0, y: 3, z: 2}
-    - {x: 0, y: 2, z: 2}
-    - {x: 1, y: 2, z: 2}
-    - {x: 0, y: 1, z: 2}
-    - {x: -1, y: 1, z: 2}
-    - {x: -1, y: 2, z: 2}
-    - {x: -2, y: 2, z: 2}
-    - {x: -3, y: 5, z: 1}
-    - {x: -2, y: 5, z: 1}
-    - {x: -1, y: 5, z: 1}
-    - {x: 0, y: 5, z: 1}
-    - {x: 4, y: 0, z: 1}
-    - {x: 4, y: 1, z: 1}
-    - {x: 3, y: 2, z: 1}
-    - {x: 3, y: 1, z: 1}
-    - {x: 3, y: 0, z: 1}
-    - {x: 3, y: -1, z: 1}
-    - {x: 2, y: -2, z: 1}
-    - {x: 2, y: -1, z: 1}
-    - {x: 2, y: 0, z: 1}
-    - {x: -5, y: -1, z: 1}
-    - {x: -4, y: -1, z: 1}
-    - {x: -3, y: -1, z: 1}
-    - {x: -2, y: -1, z: 1}
-    - {x: -1, y: -1, z: 1}
-    - {x: 0, y: -1, z: 1}
-    - {x: 1, y: -1, z: 1}
-    - {x: -4, y: -2, z: 1}
-    - {x: -3, y: -2, z: 1}
-    - {x: -2, y: -2, z: 1}
-    - {x: -1, y: -2, z: 1}
-    - {x: 0, y: -2, z: 1}
-    - {x: 1, y: -2, z: 1}
-    - {x: -1, y: -3, z: 1}
-    - {x: -2, y: -3, z: 1}
-    - {x: -3, y: 0, z: 1}
-    - {x: -4, y: 0, z: 1}
-    - {x: -5, y: 0, z: 1}
-    - {x: -6, y: 0, z: 1}
-    - {x: -6, y: 1, z: 1}
-    - {x: -6, y: 2, z: 1}
-    - {x: -5, y: 1, z: 1}
-    - {x: -4, y: 1, z: 1}
-    - {x: -4, y: -5, z: 0}
-    - {x: -3, y: -5, z: 0}
-    - {x: -2, y: -5, z: 0}
-    - {x: -1, y: -5, z: 0}
-    - {x: 0, y: -5, z: 0}
-    - {x: -1, y: -6, z: 0}
-    - {x: -2, y: -6, z: 0}
-    - {x: -3, y: -6, z: 0}
-    - {x: 0, y: -6, z: 0}
-    - {x: 1, y: -6, z: 0}
-    - {x: 1, y: -4, z: 0}
-    - {x: 1, y: -5, z: 0}
-    - {x: 2, y: -5, z: 0}
-    - {x: 3, y: -5, z: 0}
-    - {x: 4, y: -4, z: 0}
-    - {x: 3, y: -4, z: 0}
-    - {x: 2, y: -4, z: 0}
-    - {x: -4, y: -4, z: 0}
-    - {x: -5, y: -4, z: 0}
-    - {x: -6, y: -4, z: 0}
-    - {x: -7, y: -4, z: 0}
-    - {x: -8, y: -4, z: 0}
-    - {x: -5, y: -5, z: 0}
-    - {x: -6, y: -5, z: 0}
-    - {x: -6, y: -3, z: 0}
-    - {x: -7, y: -3, z: 0}
-    - {x: -8, y: -3, z: 0}
-    - {x: -9, y: -3, z: 0}
-    - {x: -8, y: -2, z: 0}
-    - {x: -7, y: -2, z: 0}
-    - {x: -9, y: -2, z: 0}
-    - {x: -9, y: -1, z: 0}
-    - {x: -8, y: -1, z: 0}
-    - {x: -8, y: 0, z: 0}
-    - {x: -9, y: 0, z: 0}
-    - {x: -9, y: 1, z: 0}
-    - {x: -9, y: 2, z: 0}
-    - {x: -9, y: 3, z: 0}
-    - {x: -10, y: 0, z: 0}
-    - {x: -10, y: -1, z: 0}
-    - {x: -8, y: 3, z: 0}
-    - {x: -8, y: 4, z: 0}
-    - {x: -8, y: 5, z: 0}
-    - {x: -7, y: 5, z: 0}
-    - {x: -6, y: 5, z: 0}
-    - {x: -6, y: 6, z: 0}
-    - {x: -7, y: 6, z: 0}
-    - {x: -6, y: 7, z: 0}
-    - {x: -5, y: 6, z: 0}
-    - {x: -5, y: 7, z: 0}
-    - {x: -5, y: 8, z: 0}
-    - {x: -4, y: 8, z: 0}
-    - {x: -4, y: 9, z: 0}
-    - {x: -3, y: 8, z: 0}
-    - {x: -2, y: 8, z: 0}
-    - {x: -1, y: 8, z: 0}
-    - {x: 0, y: 8, z: 0}
-    - {x: 1, y: 8, z: 0}
-    - {x: 1, y: 7, z: 0}
-    - {x: 0, y: 7, z: 0}
-    - {x: -1, y: 7, z: 0}
-    - {x: -2, y: 7, z: 0}
-    - {x: -3, y: 7, z: 0}
-    - {x: -4, y: 7, z: 0}
-    - {x: 0, y: 9, z: 0}
-    - {x: 1, y: 9, z: 0}
-    - {x: 2, y: 9, z: 0}
-    - {x: -1, y: 9, z: 0}
-    - {x: -2, y: 9, z: 0}
-    - {x: -3, y: 9, z: 0}
-    - {x: -2, y: 10, z: 0}
-    - {x: -1, y: 10, z: 0}
-    - {x: 0, y: 10, z: 0}
-    - {x: 1, y: 10, z: 0}
-    - {x: 2, y: 6, z: 0}
-    - {x: 2, y: 7, z: 0}
-    - {x: 2, y: 8, z: 0}
-    - {x: 3, y: 5, z: 0}
-    - {x: 3, y: 6, z: 0}
-    - {x: 3, y: 7, z: 0}
-    - {x: 3, y: 8, z: 0}
-    - {x: 4, y: 4, z: 0}
-    - {x: 4, y: 5, z: 0}
-    - {x: 4, y: 6, z: 0}
-    - {x: 4, y: 7, z: 0}
-    - {x: 5, y: 2, z: 0}
-    - {x: 5, y: 3, z: 0}
-    - {x: 5, y: 4, z: 0}
-    - {x: 5, y: 5, z: 0}
-    - {x: 5, y: 6, z: 0}
-    - {x: 5, y: 7, z: 0}
-    - {x: 6, y: -1, z: 0}
-    - {x: 6, y: 0, z: 0}
-    - {x: 6, y: 1, z: 0}
-    - {x: 6, y: 2, z: 0}
-    - {x: 6, y: 3, z: 0}
-    - {x: 6, y: 4, z: 0}
-    - {x: 6, y: 5, z: 0}
-    - {x: 7, y: 0, z: 0}
-    - {x: 7, y: 1, z: 0}
-    - {x: 7, y: 2, z: 0}
-    - {x: 7, y: 3, z: 0}
-    - {x: 5, y: -2, z: 0}
-    - {x: 4, y: -3, z: 0}
-  - tileType: 1
-    tiles: []
   gridLayout: {fileID: 2105354137}
 --- !u!156049354 &2105354137
 Grid:

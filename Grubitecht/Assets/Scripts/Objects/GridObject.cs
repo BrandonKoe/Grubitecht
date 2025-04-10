@@ -8,8 +8,6 @@
 using Grubitecht.Tilemaps;
 using NaughtyAttributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -17,7 +15,7 @@ namespace Grubitecht.World.Objects
     public class GridObject : MonoBehaviour
     {
         #region CONSTS
-        public const TileType VALID_GROUND_TYPE = TileType.Ground;
+        //public const TileType VALID_GROUND_TYPE = TileType.Ground;
         #endregion
 
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
@@ -26,13 +24,13 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
         private bool occupySpace = true;
-        [field: SerializeField, Tooltip("Whether this object should be avoided by map navigators when run into.  " +
-            "Should only be true of other enemies.")]
-        public bool CauseAvoidance { get; private set; } = true;
+        //[field: SerializeField, Tooltip("Whether this object should be avoided by map navigators when run into.  " +
+        //    "Should only be true of other enemies.")]
+        //public bool CauseAvoidance { get; private set; } = true;
         // Note: This is the position of the voxel we are standing on.
-        [field: SerializeField, ReadOnly] public Vector3Int CurrentSpace { get; set; }
+        public VoxelTile CurrentTile { get; set; }
 
-        private readonly static List<GridObject> allObjectList = new List<GridObject>();
+        //private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
         public event Action OnChangeSpace;
 
@@ -42,7 +40,7 @@ namespace Grubitecht.World.Objects
         private void Awake()
         {
             //base.Awake();
-            allObjectList.Add(this);
+            //allObjectList.Add(this);
             SetCurrentSpace(GetApproximateSpace());
             SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
@@ -51,14 +49,14 @@ namespace Grubitecht.World.Objects
         private void OnDestroy()
         {
             //base.OnDestroy();
-            allObjectList.Remove(this);
+            //allObjectList.Remove(this);
         }
 
         /// <summary>
         /// Gets an approximation of the space that this object's transform is currently at.
         /// </summary>
         /// <returns>The space that this object's transform is physically at in world space.</returns>
-        public Vector3Int GetApproximateSpace()
+        public VoxelTile GetApproximateSpace()
         {
             Vector2Int approxSpace = new Vector2Int();
             approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
@@ -66,36 +64,42 @@ namespace Grubitecht.World.Objects
             //Debug.Log(approxSpace);
             // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
             // the one with the closest elevation.  This ensures that the object snaps from gravity.
-            List<Vector3Int> possibleSpaces = VoxelTilemap3D.Main_GetCellsInColumn(approxSpace, VALID_GROUND_TYPE);
-            return possibleSpaces.OrderBy(item => Vector3.Distance(transform.position, item)).First();
+            return VoxelTilemap3D.Main_GetTile(approxSpace);
         }
 
         /// <summary>
         /// Moves this object to a new space.
         /// </summary>
-        /// <param name="newSpace">The space to move this object to.</param>
-        public void SetCurrentSpace(Vector3Int newSpace)
+        /// <param name="newTile">The space to move this object to.</param>
+        public void SetCurrentSpace(VoxelTile newTile)
         {
-            // Cant set our space to a space that doesnt exist.
-            if (!VoxelTilemap3D.Main_CheckCell(newSpace, VALID_GROUND_TYPE)) { Debug.Log("Invalid Space " + newSpace); return; }
-            Vector3Int oldSpace = CurrentSpace;
+            //// Cant set our space to a space that doesnt exist.
+            //if (!VoxelTilemap3D.Main_CheckCell(newSpace)) { Debug.Log("Invalid Space " + newSpace); return; }
+            VoxelTile oldSpace = CurrentTile;
             // Only assign the space's contained object value if this object is set to occupy space.
             if (occupySpace)
             {
-                GridObject objInSpace = GetObjectAtSpace(newSpace);
+                GridObject objInSpace = newTile.ContainedObject;
                 //Debug.Log(objInSpace);
                 // Two objects that occupy space cannot exist on the same space at once.
                 if (objInSpace != null && objInSpace != this)
-                { 
+                {
                     return;
                 }
+                // Update the spaces' references to their contained object.  We have left our previous space and are
+                // now at the next space.
+                if (CurrentTile != null)
+                {
+                    CurrentTile.ContainedObject = null;
+                }
+                newTile.ContainedObject = this;
                 // Invokes the OnMapRefresh event so that paths can be updated based on changes to the map.
                 // Only need to refresh the map if it has changed due to the movement of an object that occupies space.
                 // Switching this system to one where grid navigators only re-evaluate paths if they run into
                 // a problem, not each time the map changes.
                 //RefreshMap(this, oldSpace, CurrentSpace);
             }
-            CurrentSpace = newSpace;
+            CurrentTile = newTile;
             //Debug.Log(name + " changed space");
             OnChangeSpace?.Invoke();
         }
@@ -105,7 +109,9 @@ namespace Grubitecht.World.Objects
         /// </summary>
         public void SnapToSpace()
         {
-            transform.position = GetOccupyPosition(CurrentSpace);
+            // Cant snap to a space if we dont have one.
+            if (CurrentTile == null) { return; }
+            transform.position = GetOccupyPosition(CurrentTile);
         }
 
         /// <summary>
@@ -113,29 +119,30 @@ namespace Grubitecht.World.Objects
         /// </summary>
         /// <param name="tile">The tile to get the position for this object of.</param>
         /// <returns>The position of the tile plus the set offset of this object.</returns>
-        public Vector3 GetOccupyPosition(Vector3Int space)
+        public Vector3 GetOccupyPosition(VoxelTile tile)
         {
-            return VoxelTilemap3D.Main_GridToWorldPos(space) + offset;
+            //Debug.Log(space);
+            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + offset;
         }
 
-        /// <summary>
-        /// Gets the object at a given space.
-        /// </summary>
-        /// <param name="space">The space to get the object from.</param>
-        /// <returns>The object at that space.</returns>
-        public static GridObject GetObjectAtSpace(Vector3Int space)
-        {
-            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
-        }
+        ///// <summary>
+        ///// Gets the object at a given space.
+        ///// </summary>
+        ///// <param name="space">The space to get the object from.</param>
+        ///// <returns>The object at that space.</returns>
+        //public static GridObject GetObjectAtSpace(Vector3Int space)
+        //{
+        //    return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace);
+        //}
 
-        /// <summary>
-        /// Checks if a given space is occupied.
-        /// </summary>
-        /// <param name="space">The space to check.</param>
-        /// <returns>True if the space is occupied.</returns>
-        public static bool CheckOccupied(Vector3Int space)
-        {
-            return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) != null;
-        }
+        ///// <summary>
+        ///// Checks if a given space is occupied.
+        ///// </summary>
+        ///// <param name="space">The space to check.</param>
+        ///// <returns>True if the space is occupied.</returns>
+        //public static bool CheckOccupied(Vector3Int space)
+        //{
+        //    return allObjectList.Find(item => item.CurrentSpace == space && item.occupySpace) != null;
+        //}
     }
 }

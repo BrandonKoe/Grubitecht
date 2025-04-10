@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Grubitecht.World.Pathfinding;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.World.Objects
 {
@@ -17,8 +18,11 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(Attackable))]
     public class Objective : MonoBehaviour
     {
-        public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
-        private static readonly List<Objective> currentObjectives = new();
+        [SerializeField, Tooltip("The order in which enemies will go after objectives.  Lower numbers will be " +
+            "attacked first.")] 
+        public int targetingOrder;
+        //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
+        private static List<Objective> currentObjectives = new();
 
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject {  get; private set; }
@@ -35,6 +39,27 @@ namespace Grubitecht.World.Objects
         }
         #endregion
 
+        #region Properties
+        public static Objective TargetObjective
+        {
+            get
+            {
+                if (currentObjectives.Count == 0)
+                {
+                    return null;
+                }
+                return currentObjectives[0];
+            }
+        }
+        public static List<Objective > CurrentObjectives
+        {
+            get
+            {
+                return currentObjectives;
+            }
+        }
+        #endregion
+
         /// <summary>
         /// Add this objective to the list of current objectives when it awakes & subscribe to the Attacker OnDeath
         /// event.
@@ -42,6 +67,7 @@ namespace Grubitecht.World.Objects
         private void Awake()
         {
             currentObjectives.Add(this);
+            currentObjectives = currentObjectives.OrderBy(item => item.targetingOrder).ToList();
             attackable.OnDeath += OnDeath;
             // Need to update the nav map whenever the objective changes spaces.  This may cause lag.
             //gridObject.OnChangeSpace += UpdateNavMap;
@@ -58,9 +84,9 @@ namespace Grubitecht.World.Objects
         /// Gets the current spaces of all objectives.
         /// </summary>
         /// <returns>An array of spaces representing the spaces of all objectives.</returns>
-        private static Vector3Int[] GetObjectivePositions()
+        private static VoxelTile[] GetObjectivePositions()
         {
-            return currentObjectives.Select(item => item.gridObject.CurrentSpace).ToArray();
+            return currentObjectives.Select(item => item.gridObject.CurrentTile).ToArray();
         }
 
         /// <summary>
@@ -89,6 +115,31 @@ namespace Grubitecht.World.Objects
         }
 
         /// <summary>
+        /// Gets the objective thats the furthest away from a given position.
+        /// </summary>
+        /// <param name="position">The position to get the furthest objective from.</param>
+        /// <returns>The objective that is furthest from that position.</returns>
+        public static Objective GetFurthestObjective(Vector3 position)
+        {
+            // Prevents Index out of range.
+            if (currentObjectives.Count == 0) { return null; }
+            // Loop through all current objectives and compare the distance between them and the given position
+            // to the currently stored lowest distance.
+            Objective highestDistObj = currentObjectives[0];
+            float highestDist = Vector3.Distance(position, highestDistObj.transform.position);
+            foreach (Objective obj in currentObjectives)
+            {
+                float dist = Vector3.Distance(position, obj.transform.position);
+                if (dist > highestDist)
+                {
+                    highestDist = dist;
+                    highestDistObj = obj;
+                }
+            }
+            return highestDistObj;
+        }
+
+        /// <summary>
         /// Handles behaviour that should happen when this objective dies.
         /// </summary>
         private void OnDeath()
@@ -106,12 +157,12 @@ namespace Grubitecht.World.Objects
             //}
         }
 
-        /// <summary>
-        /// Updates the objective nav map.
-        /// </summary>
-        public static void UpdateNavMap()
-        {
-            NavMap.UpdateMap(GetObjectivePositions());
-        }
+        ///// <summary>
+        ///// Updates the objective nav map.
+        ///// </summary>
+        //public static void UpdateNavMap()
+        //{
+        //    NavMap.UpdateMap(GetObjectivePositions());
+        //}
     }
 }
