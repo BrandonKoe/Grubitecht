@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078aac80f64de1248bea5c51843e4044, type: 3}
   m_Name: Voxel Brush
   m_EditorClassIdentifier: 
-  smoothAbove: 1
+  smoothAbove: 0
