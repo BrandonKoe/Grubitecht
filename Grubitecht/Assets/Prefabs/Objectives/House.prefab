@@ -179,10 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3521fcf41e3085f43b22409430828c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateModel: {fileID: 0}
+  rotationTime: 0
   <MoveSpeed>k__BackingField: 1
   climbHeight: 1
   ignoreBlockedSpaces: 0
-  restrictMovementAxes: 0
+  restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 706373850487136439}
 --- !u!114 &-2989757248865518933
 MonoBehaviour:

@@ -3309,8 +3309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
   waveTimerObject: {fileID: 1247007368}
-  delayBetweenWaves: 5
-  firstWaveDelay: 1
+  delayBetweenWaves: 25
+  firstWaveDelay: 20
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0
