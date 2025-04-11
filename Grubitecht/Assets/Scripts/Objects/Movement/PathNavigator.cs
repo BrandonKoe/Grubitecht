@@ -33,7 +33,6 @@ namespace Grubitecht.World.Pathfinding
         public event Action<VoxelTile> NewSpaceEvent;
 
         #region Propeties
-        public Vector2Int Direction { get; private set; }
         #endregion
 
         /// <summary>

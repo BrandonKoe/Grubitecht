@@ -5,6 +5,7 @@
 //
 // Brief Description : Base class for all components that control movement along the grid.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ namespace Grubitecht.World.Pathfinding
         #endregion
 
         [field: Header("Movement Settings")]
+        [SerializeField, Tooltip("The model to rotate to correspond to the direction this object is moving.")]
+        protected Transform rotateModel;
+        [SerializeField] private float rotationTime;
         [field: SerializeField] public float MoveSpeed { get; protected set; }
         [SerializeField, Tooltip("How large of an upward incline this object can move up.")]
         protected int climbHeight;
@@ -42,6 +46,9 @@ namespace Grubitecht.World.Pathfinding
         }
         #endregion
         protected Coroutine movementRoutine;
+        private float dampAngleSmoother;
+
+        public Vector2Int Direction { get; protected set; }
 
         #region Properties
         public virtual bool IsMoving
@@ -88,6 +95,28 @@ namespace Grubitecht.World.Pathfinding
                 //Debug.Log("Moving");
                 transform.position = Vector3.MoveTowards(transform.position, tilePos, step);
             }
+
+            // Rotates the model based on the direction the object is moving.
+            if (rotateModel != null)
+            {
+                RotateToward(rotateModel, Direction);
+            }
+        }
+
+        /// <summary>
+        /// Rotates the model of this object to point in the direction the object is facing.
+        /// </summary>
+        /// <param name="rotateTransform">The transform of the object to rotate.</param>
+        /// <param name="direction">The direction the object is moving in.</param>
+        protected void RotateToward(Transform rotateTransform, Vector2Int direction)
+        {
+            Vector3 eulers = transform.eulerAngles;
+            float angle = MathHelpers.VectorToDegAngleWorld(direction);
+            // Calculate the speed our angle should rotate at based on the time it takes the object we're following to
+            // reach it's next space based on it's speed.
+            eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, rotationTime);
+            //eulers.y = angle;
+            transform.eulerAngles = eulers;
         }
     }
 }
