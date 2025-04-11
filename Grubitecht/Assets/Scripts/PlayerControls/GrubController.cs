@@ -76,7 +76,8 @@ namespace Grubitecht.World
             followedObject.NewSpaceEvent += UpdateTargetSpace;
 
             // Updates the grub to start standing on the spot adjacent to the object that he will be pushing.
-            transform.position = gridObject.GetOccupyPosition(followedObject.gridObject.CurrentTile.GetAdjacent(-followedObject.Direction));
+            transform.position = gridObject.GetOccupyPosition(
+                followedObject.gridObject.CurrentTile.GetAdjacent(-followedObject.Direction));
             targetSpace = followedObject.gridObject.CurrentTile;
             Vector3 eulers = transform.eulerAngles;
             eulers.y = MathHelpers.VectorToDegAngleWorld(followedObject.Direction);
