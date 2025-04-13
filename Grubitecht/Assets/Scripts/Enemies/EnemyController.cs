@@ -6,6 +6,7 @@
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
 using Grubitecht.Combat;
+using Grubitecht.Tilemaps;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
@@ -18,9 +19,14 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Targeter))]
     public class EnemyController : MonoBehaviour
     {
+        #region CONSTS
+        private const string ENEMY_PARENT_TAG = "EnemyParent";
+        #endregion
         [field: SerializeField] public Sprite EnemySpriteIcon { get; private set; }
         [SerializeField] private PathingType pathingType;
         [SerializeField] private float rePathFrequency;
+
+        private static Transform enemyParent;
         #region Component References
         [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
@@ -34,6 +40,20 @@ namespace Grubitecht.World
             gridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
             pathNavigator = GetComponent<PathNavigator>();
+        }
+        #endregion
+
+        #region Properties
+        private static Transform EnemyParent
+        {
+            get
+            {
+                if (enemyParent == null)
+                {
+                    enemyParent = GameObject.FindGameObjectWithTag(ENEMY_PARENT_TAG).transform;
+                }
+                return enemyParent;
+            }
         }
         #endregion
 
@@ -113,6 +133,7 @@ namespace Grubitecht.World
             private EnemyController thisEnemy;
             internal WaitingState(EnemyController thisEnemy)
             {
+                Debug.Log(thisEnemy + " is now waiting.");
                 this.thisEnemy = thisEnemy;
                 rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
             }
@@ -246,7 +267,7 @@ namespace Grubitecht.World
                     // Attempt to set our target objective as our pathfinding destination.  If pathfinding
                     // fails, then there isnt a valid path to that objective so we need to start updating our
                     // pathfinding.
-                    pathNavigator.SetDestination(target.gridObject.CurrentTile, OnFinishedMoving);
+                    pathNavigator.SetDestination(target.gridObject.CurrentTile, OnMovingCallback);
                     //Debug.Log(hasPath);
                     //if (hasPath)
                     //{
@@ -269,7 +290,7 @@ namespace Grubitecht.World
         /// <param name="reachedDestination">
         /// True if the object reached it's destination after moving along a given path.
         /// </param>
-        private void OnFinishedMoving(PathStatus endStatus)
+        private void OnMovingCallback(PathStatus endStatus)
         {
             switch (endStatus)
             {
@@ -291,6 +312,23 @@ namespace Grubitecht.World
             //    PathToTarget();
             //}    
             // Defer control to the current state.
+        }
+
+        /// <summary>
+        /// Spawns an enemy at the nearest open space to a given tile.
+        /// </summary>
+        /// <param name="enemyPrefab">The enemy prefab to spawn.</param>
+        /// <param name="spawnOrigin">The tile that the enemy will spawn from.</param>
+        public static void SpawnEnemy(EnemyController enemyPrefab, VoxelTile spawnOrigin)
+        {
+            EnemyController spawnedEnemy = Instantiate(enemyPrefab, EnemyParent);
+
+            //spawnedEnemy.name = spawnedEnemy.name + i;
+            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin);
+            spawnedEnemy.gridObject.SetCurrentSpace(tile);
+            spawnedEnemy.gridObject.SnapToSpace();
+            spawnedEnemy.PathToTarget();
+            //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
         }
     }
 }

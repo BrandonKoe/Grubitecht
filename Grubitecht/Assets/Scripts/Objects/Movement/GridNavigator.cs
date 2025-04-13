@@ -110,13 +110,13 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="direction">The direction the object is moving in.</param>
         protected void RotateToward(Transform rotateTransform, Vector2Int direction)
         {
-            Vector3 eulers = transform.eulerAngles;
+            Vector3 eulers = rotateTransform.eulerAngles;
             float angle = MathHelpers.VectorToDegAngleWorld(direction);
             // Calculate the speed our angle should rotate at based on the time it takes the object we're following to
             // reach it's next space based on it's speed.
             eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, rotationTime);
             //eulers.y = angle;
-            transform.eulerAngles = eulers;
+            rotateTransform.eulerAngles = eulers;
         }
     }
 }

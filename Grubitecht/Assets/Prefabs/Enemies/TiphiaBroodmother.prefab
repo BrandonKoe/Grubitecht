@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1738745828458596117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3104606156766365696}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+      propertyPath: m_Name
+      value: TiphiaMother
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+--- !u!4 &2282196238328324350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4bdbff938e0c7943af0f9ce761295d7, type: 3}
+  m_PrefabInstance: {fileID: 1738745828458596117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7906774186711691085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377592230455766907, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: climbHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: rotationTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: ignoreBlockedSpaces
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <MoveSpeed>k__BackingField
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697995366346233101, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <EnemySpriteIcon>k__BackingField
+      value: 
+      objectReference: {fileID: 21300000, guid: 4069829d33335ea4a9a8fe33a7b3c1c7, type: 3}
+    - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839938847972710440, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <CombatTags>k__BackingField
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437131417601657913, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: applyToAttacked.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackStat>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackDelay>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: applyToAttacked.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 590a5704889dc5041a220bbaa1473e1b, type: 2}
+    - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: m_Name
+      value: TiphiaBroodmother
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectName
+      value: Tiphia Broodmother
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: objectDesription
+      value: These tiphia mothers will implant their eggs in any grub structure they
+        attack.  After a while, these eggs will hatch and produce more vicious tiphia
+        younglings.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: detectionRange
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2282196238328324350}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c49bd8c04679b404986746339f828842, type: 3}
+--- !u!4 &3104606156766365696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
+  m_PrefabInstance: {fileID: 7906774186711691085}
+  m_PrefabAsset: {fileID: 0}

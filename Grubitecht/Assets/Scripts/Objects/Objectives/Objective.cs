@@ -142,7 +142,7 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Handles behaviour that should happen when this objective dies.
         /// </summary>
-        private void OnDeath()
+        protected virtual void OnDeath()
         {
             currentObjectives.Remove(this);
             if (currentObjectives.Count == 0)

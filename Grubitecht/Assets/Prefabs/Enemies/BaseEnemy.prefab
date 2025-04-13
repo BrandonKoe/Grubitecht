@@ -62,10 +62,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!114 &4697995366346233101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
   attackable: {fileID: 4758113411827519971}
-  attackDelay: 2
+  <AttackDelay>k__BackingField: 1
   <AttackStat>k__BackingField: 5
+  applyToAttacked: []
+  applyToSelf: []
   targeter: {fileID: 6308435001518308473}
   selectableObject: {fileID: 6254574678074587637}
 --- !u!54 &4589588747310273762
@@ -202,7 +204,8 @@ MonoBehaviour:
   attackable: {fileID: 4758113411827519971}
   maxHealth: 20
   <Health>k__BackingField: 0
-  damageIndicatorColor: {r: 0.2627451, g: 0.24313726, b: 0.003921569, a: 1}
+  damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
+  destroyOnDeath: 1
   selectableObject: {fileID: 6254574678074587637}
 --- !u!114 &6254574678074587637
 MonoBehaviour:

@@ -16,10 +16,14 @@ namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackableTargeter))]
     [RequireComponent(typeof(Combatant))]
-    public class Attacker : CombatBehaviour, IInfoProvider
+    public class Attacker : ModifiableCombatBehaviour<Attacker>, IInfoProvider
     {
-        [SerializeField] private float attackDelay;
+        [field: Header("Stats")]
+        [field: SerializeField] public float AttackDelay { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
+        [Header("Modifiers")]
+        [SerializeField] private Modifier<Attackable>[] applyToAttacked;
+        [SerializeField] private Modifier<Attacker>[] applyToSelf;
         private bool isAttacking;
 
         public static event Action<Attacker> DeathBroadcast;
@@ -85,7 +89,7 @@ namespace Grubitecht.Combat
         {
             while (isAttacking && LevelManager.IsPlaying)
             {
-                yield return new WaitForSeconds(attackDelay);
+                yield return new WaitForSeconds(AttackDelay);
                 Attack();
             }
         }
@@ -104,6 +108,15 @@ namespace Grubitecht.Combat
             }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
+            // Apply modifiers to the target and to self.
+            foreach(var modifier in applyToAttacked)
+            {
+                target.ApplyModifier(modifier.NewInstance());
+            }
+            foreach (var modifier in applyToSelf)
+            {
+                ApplyModifier(modifier.NewInstance());
+            }
         }
 
         /// <summary>
@@ -123,7 +136,7 @@ namespace Grubitecht.Combat
             return new InfoValueBase[]
             {
                 new NumValue(AttackStat, 2, "Attack"),
-                new NumValue(attackDelay, 3, "Attack Delay")
+                new NumValue(AttackDelay, 3, "Attack Delay")
             };
         }
     }

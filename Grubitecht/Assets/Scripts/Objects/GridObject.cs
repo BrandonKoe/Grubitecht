@@ -41,30 +41,9 @@ namespace Grubitecht.World.Objects
         {
             //base.Awake();
             //allObjectList.Add(this);
-            SetCurrentSpace(GetApproximateSpace());
+            SetCurrentSpace(VoxelTilemap3D.Main_GetApproximateSpace(transform.position));
             SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
-        }
-
-        private void OnDestroy()
-        {
-            //base.OnDestroy();
-            //allObjectList.Remove(this);
-        }
-
-        /// <summary>
-        /// Gets an approximation of the space that this object's transform is currently at.
-        /// </summary>
-        /// <returns>The space that this object's transform is physically at in world space.</returns>
-        public VoxelTile GetApproximateSpace()
-        {
-            Vector2Int approxSpace = new Vector2Int();
-            approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
-            approxSpace.y = Mathf.RoundToInt(transform.position.z - VoxelTilemap3D.CELL_SIZE / 2);
-            //Debug.Log(approxSpace);
-            // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
-            // the one with the closest elevation.  This ensures that the object snaps from gravity.
-            return VoxelTilemap3D.Main_GetTile(approxSpace);
         }
 
         /// <summary>
