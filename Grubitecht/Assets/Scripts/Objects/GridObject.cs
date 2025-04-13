@@ -21,6 +21,8 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
             "tile.")] 
         private Vector3 offset = new Vector3(0, 0.5f, 0);
+        [SerializeField, Tooltip("The height of this object.")]
+        private float height = 1f;
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
         private bool occupySpace = true;
@@ -100,8 +102,15 @@ namespace Grubitecht.World.Objects
         /// <returns>The position of the tile plus the set offset of this object.</returns>
         public Vector3 GetOccupyPosition(VoxelTile tile)
         {
+            // Ensures that if the object we're passing through is higher than our base offset, then we move high
+            // enough to go over it.
+            Vector3 oSet = offset;
+            if (!occupySpace && tile.ContainsObject && tile.ContainedObject != this)
+            {
+                oSet.y = Mathf.Max(oSet.y, tile.ContainedObject.height);
+            }
             //Debug.Log(space);
-            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + offset;
+            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + oSet;
         }
 
         ///// <summary>

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: rotationTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
       value: 2.5
       objectReference: {fileID: 0}

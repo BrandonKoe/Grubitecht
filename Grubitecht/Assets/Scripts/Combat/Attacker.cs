@@ -21,11 +21,9 @@ namespace Grubitecht.Combat
         [field: Header("Stats")]
         [field: SerializeField] public float AttackDelay { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
-        [Header("Modifiers")]
-        [SerializeField] private Modifier<Attackable>[] applyToAttacked;
-        [SerializeField] private Modifier<Attacker>[] applyToSelf;
         private bool isAttacking;
 
+        public event Action<Attackable> OnAttack;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
         [SerializeReference, HideInInspector] private AttackableTargeter targeter;
@@ -108,15 +106,7 @@ namespace Grubitecht.Combat
             }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
-            // Apply modifiers to the target and to self.
-            foreach(var modifier in applyToAttacked)
-            {
-                target.ApplyModifier(modifier.NewInstance());
-            }
-            foreach (var modifier in applyToSelf)
-            {
-                ApplyModifier(modifier.NewInstance());
-            }
+            OnAttack?.Invoke(target);
         }
 
         /// <summary>

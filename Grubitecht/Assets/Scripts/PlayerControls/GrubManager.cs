@@ -19,8 +19,8 @@ namespace Grubitecht
     public class GrubManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text grubText;
-        [SerializeField] private int maxGrubCount;
         [SerializeField] private GrubController grubPrefab;
+        [SerializeField] private int maxGrubCount;
 
         public static int MaxGrubCount { get; private set; }
 

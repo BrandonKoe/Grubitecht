@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 1, z: 0}
+  height: 0
   occupySpace: 1
 --- !u!114 &3419658666011052324
 MonoBehaviour:

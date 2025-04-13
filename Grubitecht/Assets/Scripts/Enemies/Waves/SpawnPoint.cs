@@ -86,6 +86,20 @@ namespace Grubitecht.Waves
         }
 
         /// <summary>
+        /// Gets the enemy count of a given wave.
+        /// </summary>
+        /// <param name="waveIndex">The index of the wave to get.</param>
+        /// <returns>The number of enemies in that wave.</returns>
+        public int GetEnemyCount(int waveIndex)
+        {
+            if (waves.Length > waveIndex && waves[waveIndex] != null)
+            {
+                return waves[waveIndex].EnemyCount;
+            }
+            return 0;
+        }
+
+        /// <summary>
         /// Loops through and spawns the enemies in a given wave over time.
         /// </summary>
         /// <param name="wave">The wave that is currently happening.</param>

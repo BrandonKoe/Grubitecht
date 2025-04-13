@@ -71,6 +71,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 268430985258743202, guid: 2af4e7818f2c1664383a39a56f30a199, type: 3}
+      propertyPath: height
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 268430985258743202, guid: 2af4e7818f2c1664383a39a56f30a199, type: 3}
       propertyPath: offset.y
       value: 0
       objectReference: {fileID: 0}

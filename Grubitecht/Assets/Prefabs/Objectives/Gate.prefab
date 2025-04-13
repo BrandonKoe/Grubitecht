@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
+  height: 4
   occupySpace: 0
 --- !u!114 &5616972945258820724
 MonoBehaviour:
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
+  height: 0
   occupySpace: 1
 --- !u!1 &5257382917806650084
 GameObject:
@@ -260,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
+  height: 0
   occupySpace: 1
 --- !u!1 &8189722870466946523
 GameObject:

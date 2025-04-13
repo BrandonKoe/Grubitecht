@@ -16,8 +16,10 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public abstract class Targeter : ModifiableCombatBehaviour<Targeter>, IInfoProvider
     {
+        [Header("Targeting Stats")]
         [SerializeField] private Transform detectionVisual;
         [SerializeField, Min(0.1f)] private float detectionRange;
+        [Header("Targeting Filters")]
         [SerializeField, Tooltip("Controls what teams this component will target.")]
         protected TargetType targetingType;
         [SerializeField, Tooltip("Controls what tags this targeter can target.")]
