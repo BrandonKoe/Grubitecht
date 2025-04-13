@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd2a711810f7264dbf944ecfe1e1ada, type: 3}
+  m_Name: Injected
+  m_EditorClassIdentifier: 
+  tiphiaYounglingPrefab: {fileID: 899067995119679676, guid: 3272963cf82a43a47a5ea9e2b579c891, type: 3}
+  duration: 10
+  damageAmount: 5

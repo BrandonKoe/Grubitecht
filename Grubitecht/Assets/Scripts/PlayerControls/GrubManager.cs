@@ -11,6 +11,8 @@ using Grubitecht.World;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Linq;
+using UnityEditor.UIElements;
 
 namespace Grubitecht
 {
@@ -85,13 +87,27 @@ namespace Grubitecht
         /// <summary>
         /// Returns a delegated grub to the pool of ready grubs
         /// </summary>
-        /// <param name="obj">The moovable object that the grub was delegated to.</param>
+        /// <param name="obj">The movable object that the grub was delegated to.</param>
         public static void ReturnGrub(MovableObject obj)
         {
             if (dispatchedGrubs.ContainsKey(obj))
             {
                 dispatchedGrubs[obj].RecallGrub();
                 dispatchedGrubs.Remove(obj);
+                UpdateText();
+            }
+        }
+
+        /// <summary>
+        /// Returns a delegated grub to the pool of ready grubs
+        /// </summary>
+        /// <param name="grub">The grub that was managing a moving object.</param>
+        public static void ReturnGrub(GrubController grub)
+        {
+            if (dispatchedGrubs.ContainsValue(grub))
+            {
+                grub.RecallGrub();
+                dispatchedGrubs.Remove(dispatchedGrubs.First(item => item.Value == grub).Key);
                 UpdateText();
             }
         }

@@ -14,7 +14,7 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public abstract class Targeter : CombatBehaviour, IInfoProvider
+    public abstract class Targeter : ModifiableCombatBehaviour<Targeter>, IInfoProvider
     {
         [SerializeField] private Transform detectionVisual;
         [SerializeField, Min(0.1f)] private float detectionRange;
@@ -44,6 +44,18 @@ namespace Grubitecht.Combat
 
         #region Properties
         public abstract bool HasTarget { get; }
+        public float DetectionRange
+        {
+            get
+            {
+                return detectionRange;
+            }
+            set
+            {
+                detectionRange = value;
+                UpdateDetectionRange();
+            }
+        }
         #endregion
 
         #region Nested

@@ -124,8 +124,9 @@ namespace Grubitecht.World.Pathfinding
                 // destination.
                 if (current.tile == endingTile)
                 {
+                    UncloseNodes(closedList);
                     //Debug.Log(iterationNum);
-                    return FinalizePath(startNode, current, closedList);
+                    return FinalizePath(startNode, current);
                 }
 
                 // Check the neighboring tiles.
@@ -136,8 +137,9 @@ namespace Grubitecht.World.Pathfinding
                     // here where the neighbor to our current tile is the ending tile.
                     if (includeAdjacent && neighbor == endingTile)
                     {
+                        UncloseNodes(closedList);
                         //Debug.Log(iterationNum);
-                        return FinalizePath(startNode, current, closedList);
+                        return FinalizePath(startNode, current);
                     }
 
                     // Exclude any inaccessible tiles here.
@@ -166,6 +168,8 @@ namespace Grubitecht.World.Pathfinding
                     neighbor.Node.previousNode = current;
                 }    
             }
+            Debug.Log("Empty Path");
+            UncloseNodes(closedList);
             // If all else fails, then we return null and let the caller handle the null ref.
             return new();
         }
@@ -176,7 +180,7 @@ namespace Grubitecht.World.Pathfinding
         /// <param name="startNode">The starting node of the path.</param>
         /// <param name="endingNode">The ending node of the path.</param>
         /// <returns>A list of tiles that represents the path.</returns>
-        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode, List<PathNode> closedList)
+        private static List<VoxelTile> FinalizePath(PathNode startNode, PathNode endingNode)
         {
             List<VoxelTile> result = new();
             PathNode current = endingNode;
@@ -187,13 +191,20 @@ namespace Grubitecht.World.Pathfinding
             }
             // Reverse the results list so that the path is in the correct order.
             result.Reverse();
+            return result;
+        }
 
+        /// <summary>
+        /// Uncloses all the nodes in a given closed list
+        /// </summary>
+        /// <param name="closedList">The closed list to unclose.</param>
+        private static void UncloseNodes(List<PathNode> closedList)
+        {
             // Unclose all of our nodes once we've finished with the path.
             foreach (PathNode nod in closedList)
             {
                 nod.isClosed = false;
             }
-            return result;
         }
 
         /// <summary>

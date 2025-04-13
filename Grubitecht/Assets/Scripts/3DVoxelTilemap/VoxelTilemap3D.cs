@@ -9,6 +9,8 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Grubitecht.World.Objects;
+
 
 
 
@@ -284,6 +286,21 @@ namespace Grubitecht.Tilemaps
         {
             return Instance.GetTile(position);
         }
+
+        public static VoxelTile Main_FindEmptyTile(VoxelTile originTile, int maxRange = 100)
+        {
+            return Instance.FindEmptyTile(originTile, maxRange);
+        }
+
+
+        /// <summary>
+        /// Gets an approximation of the space that this object's transform is currently at.
+        /// </summary>
+        /// <returns>The space that this object's transform is physically at in world space.</returns>
+        public static VoxelTile Main_GetApproximateSpace(Vector3 pos)
+        {
+            return Instance.GetApproximateSpace(pos);
+        }
         #endregion
         #region Cell Checking
 
@@ -398,6 +415,66 @@ namespace Grubitecht.Tilemaps
             }
             return chunk.GetTile(position);
             //return tiles.Find(item => item.GridPosition2 == position);
+        }
+
+        /// <summary>
+        /// Finds the nearest empty tile from a given origin tile.
+        /// </summary>
+        /// <param name="originTile">The tile to start finding a tile from.</param>
+        /// <param name="maxRange">The max search range that to find a tile within.</param>
+        /// <returns>The closest unoccupied tile to the origin tile.</returns>
+        public VoxelTile FindEmptyTile(VoxelTile originTile, int maxRange = 100)
+        {
+            int range = 0;
+            while (range < maxRange)
+            {
+                for (int x = -range; x <= range; x++)
+                {
+                    // Find the possible variance in y positions for a given range.
+                    int yRange = range - Mathf.Abs(x);
+                    // Loops through both positive and negative values for y that yields a manhatten distance of
+                    // range from the spawn point.
+                    for (int i = -1; i < 2; i += 2)
+                    {
+                        int y = i * yRange;
+                        // Check the positive and negative cells that have a manhatten distance of range.
+                        Vector2Int checkPos = new Vector2Int(x, y) + originTile.GridPosition2;
+                        VoxelTile checkCell = GetTile(checkPos);
+                        // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
+                        // tilemap and we should ignore it.
+                        if (checkCell == null)
+                        {
+                            continue;
+                        }
+                        // If this position hasnt already been used and isnt occupied, then return it.
+                        if (!checkCell.ContainsObject)
+                        {
+                            return checkCell;
+                        }
+                    }
+                }
+                // If we were not able to find a cell through looping, then increment range and recursively call this
+                // function agian.
+                range++;
+            }
+            // If max range is exceeded, then we didnt find a valid adjacent tile.
+            return null;
+        }
+
+
+        /// <summary>
+        /// Gets an approximation of the space that this object's transform is currently at.
+        /// </summary>
+        /// <returns>The space that this object's transform is physically at in world space.</returns>
+        public VoxelTile GetApproximateSpace(Vector3 pos)
+        {
+            Vector2Int approxSpace = new Vector2Int();
+            approxSpace.x = Mathf.RoundToInt(pos.x - VoxelTilemap3D.CELL_SIZE / 2);
+            approxSpace.y = Mathf.RoundToInt(pos.z - VoxelTilemap3D.CELL_SIZE / 2);
+            //Debug.Log(approxSpace);
+            // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
+            // the one with the closest elevation.  This ensures that the object snaps from gravity.
+            return GetTile(approxSpace);
         }
         #endregion
 

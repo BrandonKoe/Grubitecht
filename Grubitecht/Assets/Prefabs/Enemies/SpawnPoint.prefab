@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 401068114100994138}
   - component: {fileID: 3034658912611702510}
   m_Layer: 0
-  m_Name: SpawnPoin
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   predictorPrefab: {fileID: 2692925594760101003, guid: 52c57030aa016b84c9eb1dcfc9e4d1c3, type: 3}
   subwavePredictionTime: 15
-  waves:
-  - {fileID: 11400000, guid: d7632a1803f270b4da27ac16205fecfa, type: 2}
-  - {fileID: 11400000, guid: ea6d991cada81054ca9a7b231371a1b5, type: 2}
-  - {fileID: 11400000, guid: d6bfffdf474631b4bb754cad726a3321, type: 2}
+  waves: []
   gridObject: {fileID: 3034658912611702510}
 --- !u!114 &3034658912611702510
 MonoBehaviour:

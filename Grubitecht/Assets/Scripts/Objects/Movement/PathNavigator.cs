@@ -55,7 +55,8 @@ namespace Grubitecht.World.Pathfinding
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentTile;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent);
+            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent, 
+                ignoreBlockedSpaces);
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.
@@ -71,7 +72,7 @@ namespace Grubitecht.World.Pathfinding
                 StopCoroutine(movementRoutine);
                 movementRoutine = null;
             }
-            movementRoutine = StartCoroutine(MovementRoutine(includeAdjacent, finishCallback));
+            movementRoutine = StartCoroutine(MovementRoutine(finishCallback));
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Grubitecht.World.Pathfinding
         /// Continually moves this object along a given path.
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator MovementRoutine(bool includeAdj, MovementFinishCallback finishCallback)
+        private IEnumerator MovementRoutine(MovementFinishCallback finishCallback)
         {
             VoxelTile destination = null;
             finishCallback?.Invoke(PathStatus.Started);
@@ -129,7 +130,7 @@ namespace Grubitecht.World.Pathfinding
             {
                 //Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (currentPath[0].ContainsObject)
+                if (!ignoreBlockedSpaces && currentPath[0].ContainsObject)
                 {
                     SetDestination(destination, finishCallback);
                     yield break;

@@ -21,14 +21,12 @@ namespace Grubitecht.Waves
     public class SpawnPoint : MonoBehaviour
     {
         #region CONST
-        private const string ENEMY_PARENT_TAG = "EnemyParent";
         private const string PREDICTOR_PARENT_TAG = "WavePredictors";
         #endregion
         [SerializeField] private WavePredictor predictorPrefab;
         [SerializeField] private float subwavePredictionTime = 15f;
         [SerializeField] private Wave[] waves;
 
-        private static Transform enemyParent;
         private static Transform predictorParent;
 
         #region Component Reference
@@ -48,17 +46,6 @@ namespace Grubitecht.Waves
             get
             {
                 return waves.Length;
-            }
-        }
-        private static Transform EnemyParent
-        {
-            get
-            {
-                if (enemyParent == null)
-                {
-                    enemyParent = GameObject.FindGameObjectWithTag(ENEMY_PARENT_TAG).transform;
-                }
-                return enemyParent;
             }
         }
         private static Transform PredictorParent
@@ -169,56 +156,12 @@ namespace Grubitecht.Waves
         /// <returns>Coroutine.</returns>
         private void SpawnSubwave(Wave.Subwave subwave)
         {
-            int range = 0;
-            List<VoxelTile> usedPositions = new List<VoxelTile>();
-            // Finds a new position to spawn an enemy at that projects outward from the spawn point's position.
-            VoxelTile FindPosition()
-            {
-                for (int x = -range; x <= range; x++)
-                {
-                    // Find the possible variance in y positions for a given range.
-                    int yRange = range - Mathf.Abs(x);
-                    // Loops through both positive and negative values for y that yields a manhatten distance of
-                    // range from the spawn point.
-                    for (int i = -1; i < 2; i += 2)
-                    {
-                        int y = i * yRange;
-                        // Check the positive and negative cells that have a manhatten distance of range.
-                        Vector2Int checkPos = new Vector2Int(x, y) + gridObject.CurrentTile.GridPosition2;
-                        VoxelTile checkCell = VoxelTilemap3D.Main_GetTile(checkPos);
-                        // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
-                        // tilemap and we should ignore it.
-                        if (checkCell == null)
-                        {
-                            continue;
-                        }
-                        // If this position hasnt already been used for this subwave, then return it.
-                        if (!usedPositions.Contains(checkCell))
-                        {
-                            usedPositions.Add(checkCell);
-                            return checkCell;
-                        }
-                    }
-                }
-                // If we were not able to find a cell through looping, then increment range and recursively call this
-                // function agian.
-                range++;
-                return FindPosition();
-            }
-
             // Spawns each enemy with the designated quantity.
             foreach (Wave.EnemyType enemy in subwave.Enemies)
             {
                 for (int i  = 0; i < enemy.Count; i++)
                 {
-                    EnemyController spawnedEnemy = Instantiate(enemy.EnemyPrefab, EnemyParent);
-
-                    //spawnedEnemy.name = spawnedEnemy.name + i;
-                    VoxelTile tile = FindPosition();
-                    spawnedEnemy.gridObject.SetCurrentSpace(tile);
-                    spawnedEnemy.gridObject.SnapToSpace();
-                    spawnedEnemy.PathToTarget();
-                    //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
+                    EnemyController.SpawnEnemy(enemy.EnemyPrefab, gridObject.CurrentTile);
                 }
             }
         }

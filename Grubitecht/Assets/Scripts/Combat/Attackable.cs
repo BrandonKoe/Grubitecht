@@ -10,16 +10,18 @@ using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public class Attackable : CombatBehaviour, IInfoProvider
+    public class Attackable : ModifiableCombatBehaviour<Attackable>, IInfoProvider
     {
         [SerializeField] private int maxHealth;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
         [SerializeField] private Color damageIndicatorColor;
+        [SerializeField] private bool destroyOnDeath;
 
         public event Action OnDeath;
 
@@ -83,8 +85,11 @@ namespace Grubitecht.Combat
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
-            // Destroy the game object when objects die for now.
-            Destroy(gameObject);
+            if (destroyOnDeath)
+            {
+                // Destroy the game object when objects die for now.
+                Destroy(gameObject);
+            }
         }
 
 

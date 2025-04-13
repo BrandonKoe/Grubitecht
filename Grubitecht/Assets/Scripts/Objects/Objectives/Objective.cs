@@ -6,11 +6,10 @@
 // Brief Description : Controls objectives that enemies must destroy to defeat the player.
 *****************************************************************************/
 using Grubitecht.Combat;
+using Grubitecht.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Grubitecht.World.Pathfinding;
-using Grubitecht.Tilemaps;
 
 namespace Grubitecht.World.Objects
 {
@@ -51,7 +50,7 @@ namespace Grubitecht.World.Objects
                 return currentObjectives[0];
             }
         }
-        public static List<Objective > CurrentObjectives
+        public static List<Objective> CurrentObjectives
         {
             get
             {
@@ -142,27 +141,14 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Handles behaviour that should happen when this objective dies.
         /// </summary>
-        private void OnDeath()
+        protected virtual void OnDeath()
         {
             currentObjectives.Remove(this);
             if (currentObjectives.Count == 0)
             {
                 LevelManager.LoseLevel();
             }
-            //else
-            //{
-            //    // Need to update the nav map when an objective is destroyed so that enemies dont funnel towards
-            //    // an emmpty space.
-            //    UpdateNavMap();
-            //}
         }
 
-        ///// <summary>
-        ///// Updates the objective nav map.
-        ///// </summary>
-        //public static void UpdateNavMap()
-        //{
-        //    NavMap.UpdateMap(GetObjectivePositions());
-        //}
     }
 }
