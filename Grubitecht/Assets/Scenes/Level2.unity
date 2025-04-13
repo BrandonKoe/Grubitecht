@@ -1292,8 +1292,8 @@ Transform:
   m_Children:
   - {fileID: 1380740783}
   - {fileID: 1605448189}
-  - {fileID: 1054890680}
   - {fileID: 1787333573}
+  - {fileID: 1054890680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139349237
@@ -5051,8 +5051,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
   waveTimerObject: {fileID: 1247007368}
-  delayBetweenWaves: 1
-  firstWaveDelay: 5
+  progressBar: {fileID: 1497450190}
+  delayBetweenWaves: 20
+  firstWaveDelay: 35
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0
@@ -6632,6 +6633,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 132979422}
     m_Modifications:
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d7e3da4bc0c87064fa9f5c2a1d6be525, type: 2}
     - target: {fileID: 1874011786632212993, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_Name
       value: SpawnPoin (3)
@@ -7539,7 +7552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8468,16 +8481,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: c260d342d59e0f84aa2b00e4e4112dd7, type: 2}
+      objectReference: {fileID: 11400000, guid: eaf019ea3ab6b96418ff180baf022efe, type: 2}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d6bfffdf474631b4bb754cad726a3321, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c939e38045d42794ca795943f9582eb2, type: 2}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d7e3da4bc0c87064fa9f5c2a1d6be525, type: 2}
     - target: {fileID: 1874011786632212993, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_Name
       value: SpawnPoin
@@ -9851,6 +9872,7 @@ GameObject:
   - component: {fileID: 1497450187}
   - component: {fileID: 1497450189}
   - component: {fileID: 1497450188}
+  - component: {fileID: 1497450190}
   m_Layer: 5
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -9916,6 +9938,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497450186}
   m_CullTransparentMesh: 1
+--- !u!114 &1497450190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497450186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f78fecc3bdb8459f30afa461964c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBarImage: {fileID: 1248798367}
 --- !u!1001 &1500008435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10520,12 +10555,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d6bfffdf474631b4bb754cad726a3321, type: 2}
+      objectReference: {fileID: 11400000, guid: 59ab4c83c7a639042b8fc396e5b67fc2, type: 2}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: eaf019ea3ab6b96418ff180baf022efe, type: 2}
     - target: {fileID: 1874011786632212993, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_Name
       value: SpawnPoin (1)
@@ -11764,6 +11803,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 132979422}
     m_Modifications:
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c939e38045d42794ca795943f9582eb2, type: 2}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59ab4c83c7a639042b8fc396e5b67fc2, type: 2}
+    - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
+      propertyPath: waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c939e38045d42794ca795943f9582eb2, type: 2}
     - target: {fileID: 1874011786632212993, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_Name
       value: SpawnPoin (2)

@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289ae2071b9d91f45843814831d7b088, type: 3}
-  m_Name: GroundWave
+  m_Name: L2_ScoutingWave
   m_EditorClassIdentifier: 
   <Subwaves>k__BackingField:
   - <Delay>k__BackingField: 0
     <Enemies>k__BackingField:
-    - <Count>k__BackingField: 5
-      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
-  - <Delay>k__BackingField: 30
-    <Enemies>k__BackingField:
-    - <Count>k__BackingField: 5
-      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
-    - <Count>k__BackingField: 2
-      <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
-  - <Delay>k__BackingField: 30
-    <Enemies>k__BackingField:
-    - <Count>k__BackingField: 3
-      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
     - <Count>k__BackingField: 4
       <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
+  - <Delay>k__BackingField: 30
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 4
+      <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
+    - <Count>k__BackingField: 2
+      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
+  - <Delay>k__BackingField: 30
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 4
+      <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
+    - <Count>k__BackingField: 2
+      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
+  enemyCount: 16

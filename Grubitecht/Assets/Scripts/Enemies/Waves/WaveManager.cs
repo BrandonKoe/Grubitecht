@@ -89,7 +89,12 @@ namespace Grubitecht.Waves
         public static void AddEnemy(EnemyController enemy)
         {
             enemies.Add(enemy);
-            currentLevel.progressBar.UpdateProgressBar(EnemyNumber);
+            // Prevent null refs.
+            if (currentLevel == null) { return; }
+            if (currentLevel.progressBar != null)
+            {
+                currentLevel.progressBar.UpdateProgressBar(1);
+            }
             if (currentLevel != null && currentLevel.allEnemiesDead)
             {
                 currentLevel.allEnemiesDead = false;
@@ -97,8 +102,14 @@ namespace Grubitecht.Waves
         }
         public static void RemoveEnemy(EnemyController enemy)
         {
+
             enemies.Remove(enemy);
-            currentLevel.progressBar.UpdateProgressBar(EnemyNumber);
+            // Prevents null refs.
+            if (currentLevel == null) { return; }
+            if (currentLevel.progressBar != null)
+            {
+                currentLevel.progressBar.UpdateProgressBar(-1);
+            }
             if (enemies.Count == 0 && currentLevel != null)
             {
                 // Advances the wave routine.
@@ -158,18 +169,23 @@ namespace Grubitecht.Waves
                     waveTimerObject.SetActive(false);
                 }
 
+                // Gets the total number of enemies in this wave and updates the progress bar to reflect that amount.
                 int enemyAmount = 0;
-                // Has each spawn point start the next wave.
                 foreach (SpawnPoint spawnPoint in spawnPoints)
                 {
                     enemyAmount += spawnPoint.GetEnemyCount(waveNum);
-                    spawnPoint.StartWave(waveNum);
                 }
-
                 if (progressBar != null)
                 {
                     progressBar.StartWave(enemyAmount);
                 }
+
+                // Has each spawn point start the next wave.
+                foreach (SpawnPoint spawnPoint in spawnPoints)
+                {
+                    spawnPoint.StartWave(waveNum);
+                }
+
                 // Wait until the wave is set as cleared when the last enemy is killed.
                 while (!allEnemiesDead || completedSpawnPoints < spawnPoints.Length)
                 {

@@ -15,7 +15,8 @@ namespace Grubitecht.UI
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private Image progressBarImage;
-        private int enemyNum;
+        private float currentEnemies;
+        private float enemyNum;
         /// <summary>
         /// Starts handling a given wave with a certain number of enemies.
         /// </summary>
@@ -24,6 +25,7 @@ namespace Grubitecht.UI
         {
             gameObject.SetActive(true);
             this.enemyNum = enemyNum;
+            this.currentEnemies = enemyNum;
             UpdateProgressBar(enemyNum);
         }
 
@@ -39,10 +41,12 @@ namespace Grubitecht.UI
         /// <summary>
         /// Updates this progress bar to accurately reflect the number of enemies left in a wave.
         /// </summary>
-        /// <param name="currentEnemies">The number of enemies left in the wave.</param>
-        public void UpdateProgressBar(int currentEnemies)
+        /// <param name="enemyChange">The change in the number of enemies.</param>
+        public void UpdateProgressBar(int enemyChange)
         {
+            currentEnemies += enemyChange;
             float normalizedProgress = currentEnemies / enemyNum;
+            Debug.Log(enemyNum);
             progressBarImage.fillAmount = normalizedProgress;
         }
     }

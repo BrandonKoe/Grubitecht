@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289ae2071b9d91f45843814831d7b088, type: 3}
-  m_Name: FastWave
+  m_Name: L1_FastWave
   m_EditorClassIdentifier: 
   <Subwaves>k__BackingField:
   - <Delay>k__BackingField: 0

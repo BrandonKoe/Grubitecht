@@ -83,6 +83,11 @@ namespace Grubitecht.Waves
             {
                 StartCoroutine(WaveCoroutine(waves[waveIndex]));
             }
+            else
+            {
+                // Automatically mark this wave as finished if there isnt a valid wave for the given wave index.
+                WaveManager.MarkFinishedWave();
+            }
         }
 
         /// <summary>
@@ -143,7 +148,7 @@ namespace Grubitecht.Waves
         public void DisplayPredictions(int waveIndex, float time)
         {
             // Return if we dont have a wave at WaveIndex.
-            if (waveIndex >= waves.Length) { return; }
+            if (waveIndex >= waves.Length || waves[waveIndex] == null) { return; }
             Wave.Subwave subwave = waves[waveIndex].Subwaves.FirstOrDefault();
             DisplayPredictions(subwave, time + subwave.Delay);
         }

@@ -26,6 +26,9 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
         private bool occupySpace = true;
+        [SerializeField, Tooltip("Whether this object should adjust their height to be above any other objects that" +
+            " are in the same space.  Only is relevant if OccupySpace is set to false.")]
+        private bool adjustHeight = false;
         //[field: SerializeField, Tooltip("Whether this object should be avoided by map navigators when run into.  " +
         //    "Should only be true of other enemies.")]
         //public bool CauseAvoidance { get; private set; } = true;
@@ -105,7 +108,7 @@ namespace Grubitecht.World.Objects
             // Ensures that if the object we're passing through is higher than our base offset, then we move high
             // enough to go over it.
             Vector3 oSet = offset;
-            if (!occupySpace && tile.ContainsObject && tile.ContainedObject != this)
+            if (adjustHeight && !occupySpace && tile.ContainsObject && tile.ContainedObject != this)
             {
                 oSet.y = Mathf.Max(oSet.y, tile.ContainedObject.height);
             }
