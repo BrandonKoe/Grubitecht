@@ -76,7 +76,7 @@ namespace Grubitecht.World
             internal virtual void OnGainTarget(EnemyController thisEnemy) 
             {
                 // The enemy should always move to the attacking state if it has a target.
-                thisEnemy.state = new AttackingState();
+                thisEnemy.state = new AttackingState(thisEnemy);
             }
 
             internal virtual void OnLoseTarget(EnemyController thisEnemy) { }
@@ -91,6 +91,11 @@ namespace Grubitecht.World
         /// </summary>
         internal class AttackingState : EnemyState
         {
+            public AttackingState(EnemyController thisEnemy)
+            {
+                //Debug.Log(thisEnemy + " is attacking");
+                thisEnemy.pathNavigator.StopMoving();
+            }
             internal override void OnGainTarget(EnemyController thisEnemy)
             {
                 // Specifically DO NOT create a new attacking state when already in the attacking state.
@@ -130,10 +135,10 @@ namespace Grubitecht.World
         {
             private bool isRePathing;
             private Coroutine rePathRoutine;
-            private EnemyController thisEnemy;
+            private readonly EnemyController thisEnemy;
             internal WaitingState(EnemyController thisEnemy)
             {
-                Debug.Log(thisEnemy + " is now waiting.");
+                //Debug.Log(thisEnemy + " is waiting");
                 this.thisEnemy = thisEnemy;
                 rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
             }
@@ -152,7 +157,6 @@ namespace Grubitecht.World
                 while (isRePathing)
                 {
                     thisEnemy.PathToTarget();
-
                     yield return new WaitForSeconds(1 / thisEnemy.rePathFrequency);
                 }
                 isRePathing = false;
@@ -264,10 +268,12 @@ namespace Grubitecht.World
                 }
                 if (target != null)
                 {
+                    //Debug.Log(target);
                     // Attempt to set our target objective as our pathfinding destination.  If pathfinding
                     // fails, then there isnt a valid path to that objective so we need to start updating our
                     // pathfinding.
                     pathNavigator.SetDestination(target.gridObject.CurrentTile, OnMovingCallback);
+                    //Debug.Log(target.gridObject.CurrentTile.ToString());
                     //Debug.Log(hasPath);
                     //if (hasPath)
                     //{
@@ -301,6 +307,7 @@ namespace Grubitecht.World
                     state.OnStopMoving(this);
                     break;
                 case PathStatus.Invalid:
+                    //Debug.Log("Invalid Path");
                     state.OnInvalidPath(this);
                     break;
                 default:

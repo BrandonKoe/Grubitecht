@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: offset.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: occupySpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: objectName
       value: Tiphia Broodmother
