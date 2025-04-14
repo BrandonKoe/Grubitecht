@@ -13,8 +13,6 @@ namespace Grubitecht.UI
     public class DamageIndicator : MonoBehaviour
     {
         [SerializeField] private DamageNumber damageNumberPrefab;
-        [SerializeField] private Color loseHealthColor;
-        [SerializeField] private Color gainHealthColor;
         [SerializeField] private bool useWorldSpaceCanvas;
         private static DamageIndicator instance;
 

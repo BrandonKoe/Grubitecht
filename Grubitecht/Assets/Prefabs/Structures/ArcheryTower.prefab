@@ -239,10 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
   attackable: {fileID: 0}
-  <AttackDelay>k__BackingField: 0
+  <AttackDelay>k__BackingField: 2
   <AttackStat>k__BackingField: 4
-  applyToAttacked: []
-  applyToSelf: []
   targeter: {fileID: 4729045751414896831}
   selectableObject: {fileID: 594484448342160686}
 --- !u!114 &5735124070260143926 stripped

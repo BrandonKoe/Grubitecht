@@ -52,7 +52,7 @@ namespace Grubitecht.UI
             this.basePosition = basePosition;
             // Subscribe to the camera pan event because this object's position should only ever be updated if
             // the camera moves and it needs to be.
-            CameraPanner.OnCameraPan += UpdatePosition;
+            CameraController.OnCameraUpdate += UpdatePosition;
             UpdatePosition();
             StartCoroutine(LifeCycle(duration));
         }
@@ -120,7 +120,7 @@ namespace Grubitecht.UI
         /// </summary>
         private void Unload()
         {
-            CameraPanner.OnCameraPan -= UpdatePosition;
+            CameraController.OnCameraUpdate -= UpdatePosition;
             Destroy(gameObject);
         }
     }

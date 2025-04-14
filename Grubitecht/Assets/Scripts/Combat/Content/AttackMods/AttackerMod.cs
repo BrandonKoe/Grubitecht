@@ -14,7 +14,7 @@ namespace Grubitecht.Combat
     public abstract class AttackerMod : CombatBehaviour
     {
         #region Component References
-        [SerializeReference, HideInInspector] private Attacker attacker;
+        [SerializeReference, HideInInspector] protected Attacker attacker;
 
         /// <summary>
         /// Assign component references on reset.
