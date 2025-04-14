@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2379678157832995898}
   - component: {fileID: 5616972945258820724}
   - component: {fileID: 2896105405509520429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +139,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   height: 4
   occupySpace: 0
+  adjustHeight: 0
 --- !u!114 &5616972945258820724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3352272859933592332}
   - component: {fileID: 507731176078740213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DummyBlockObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +218,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   height: 0
   occupySpace: 1
+  adjustHeight: 0
 --- !u!1 &5257382917806650084
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2281873622044172240}
   - component: {fileID: 5700248200137246684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DummyBlockObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +266,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   height: 0
   occupySpace: 1
+  adjustHeight: 0
 --- !u!1 &8189722870466946523
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441768046192347901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ModelRot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,6 +350,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ef22af9513457024584160110ddfc8b3, type: 3}
       propertyPath: m_Name
       value: WallGate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef22af9513457024584160110ddfc8b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ef22af9513457024584160110ddfc8b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

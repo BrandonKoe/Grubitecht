@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3668745979882885672}
   - component: {fileID: 592507500781887919}
   - component: {fileID: -2989757248865518933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,6 +154,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.5, z: 0}
   height: 1
   occupySpace: 1
+  adjustHeight: 0
 --- !u!114 &3668745979882885672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +254,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
       propertyPath: m_Name
       value: House2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

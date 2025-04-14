@@ -178,7 +178,7 @@ MonoBehaviour:
   combatant: {fileID: 3442883350765597410}
   attackable: {fileID: 0}
   targeter: {fileID: 5197117241284157715}
-  attackBoost: 3
+  attackBoost: 2
   selectableObject: {fileID: 7498736004895158522}
 --- !u!114 &3442883350765597410 stripped
 MonoBehaviour:

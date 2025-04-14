@@ -91,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 4127985937089640357}
     - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: rotationTime
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
@@ -165,8 +165,8 @@ MonoBehaviour:
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
   <AttackDelay>k__BackingField: 7
-  <AttackStat>k__BackingField: 10
-  targeter: {fileID: 4235892459804935470}
+  <AttackStat>k__BackingField: 8
+  <targeter>k__BackingField: {fileID: 0}
   selectableObject: {fileID: 5107409746993080114}
 --- !u!114 &8595298514244447147
 MonoBehaviour:
@@ -184,6 +184,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   attacker: {fileID: 6865782180614134294}
   aoeRange: 3
+  friendlyFire: 0
 --- !u!4 &3410031804182909830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 792690008691415358, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}

@@ -26,7 +26,7 @@ namespace Grubitecht.Combat
         public event Action<Attackable> OnAttack;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
-        [SerializeReference, HideInInspector] private AttackableTargeter targeter;
+        [field: SerializeReference, HideInInspector] public AttackableTargeter targeter { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectableObject;
 
         /// <summary>

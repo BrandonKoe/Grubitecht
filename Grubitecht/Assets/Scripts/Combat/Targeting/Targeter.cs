@@ -110,8 +110,8 @@ namespace Grubitecht.Combat
         /// Checks if this object should target another object based on it's team.
         /// </summary>
         /// <param name="otherTeam">The team of the object that is being checked for targeting.</param>
-        /// <returns>Whether this object can target it or not.</returns>
-        protected bool CheckTarget(Team otherTeam)
+        /// <returns>True if the targeter should target it, false if not.</returns>
+        public bool CheckTeam(Team otherTeam)
         {
             switch (targetingType)
             {
