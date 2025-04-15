@@ -21,9 +21,14 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("The offset from the tile's position that this object should be at while on that " +
             "tile.")] 
         private Vector3 offset = new Vector3(0, 0.5f, 0);
+        [SerializeField, Tooltip("The height of this object.")]
+        private float height = 1f;
         [SerializeField, Tooltip("Whether this object should occupy space in the world.  If true then other objects" +
             " that occupy space cannot be inside the same space as this object.")]
         private bool occupySpace = true;
+        [SerializeField, Tooltip("Whether this object should adjust their height to be above any other objects that" +
+            " are in the same space.  Only is relevant if OccupySpace is set to false.")]
+        private bool adjustHeight = false;
         //[field: SerializeField, Tooltip("Whether this object should be avoided by map navigators when run into.  " +
         //    "Should only be true of other enemies.")]
         //public bool CauseAvoidance { get; private set; } = true;
@@ -41,30 +46,9 @@ namespace Grubitecht.World.Objects
         {
             //base.Awake();
             //allObjectList.Add(this);
-            SetCurrentSpace(GetApproximateSpace());
+            SetCurrentSpace(VoxelTilemap3D.Main_GetApproximateSpace(transform.position));
             SnapToSpace();
             //Debug.Log(CurrentSpace.ToString());
-        }
-
-        private void OnDestroy()
-        {
-            //base.OnDestroy();
-            //allObjectList.Remove(this);
-        }
-
-        /// <summary>
-        /// Gets an approximation of the space that this object's transform is currently at.
-        /// </summary>
-        /// <returns>The space that this object's transform is physically at in world space.</returns>
-        public VoxelTile GetApproximateSpace()
-        {
-            Vector2Int approxSpace = new Vector2Int();
-            approxSpace.x = Mathf.RoundToInt(transform.position.x - VoxelTilemap3D.CELL_SIZE / 2);
-            approxSpace.y = Mathf.RoundToInt(transform.position.z - VoxelTilemap3D.CELL_SIZE / 2);
-            //Debug.Log(approxSpace);
-            // Gets a list of possible spaces this object could exist at based on it's 2D position and then finds
-            // the one with the closest elevation.  This ensures that the object snaps from gravity.
-            return VoxelTilemap3D.Main_GetTile(approxSpace);
         }
 
         /// <summary>
@@ -121,8 +105,15 @@ namespace Grubitecht.World.Objects
         /// <returns>The position of the tile plus the set offset of this object.</returns>
         public Vector3 GetOccupyPosition(VoxelTile tile)
         {
+            // Ensures that if the object we're passing through is higher than our base offset, then we move high
+            // enough to go over it.
+            Vector3 oSet = offset;
+            if (adjustHeight && !occupySpace && tile.ContainsObject && tile.ContainedObject != this)
+            {
+                oSet.y = Mathf.Max(oSet.y, tile.ContainedObject.height);
+            }
             //Debug.Log(space);
-            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + offset;
+            return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + oSet;
         }
 
         ///// <summary>

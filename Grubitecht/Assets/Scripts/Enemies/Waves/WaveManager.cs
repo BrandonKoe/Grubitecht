@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Grubitecht.UI;
 
 namespace Grubitecht.Waves
 {
@@ -18,6 +19,7 @@ namespace Grubitecht.Waves
     {
         [SerializeField] private TMP_Text waveTimerText;
         [SerializeField] private GameObject waveTimerObject;
+        [SerializeField] private ProgressBar progressBar;
         [SerializeField] private float delayBetweenWaves;
         [SerializeField] private float firstWaveDelay;
         private int totalWaves;
@@ -28,6 +30,16 @@ namespace Grubitecht.Waves
         //public static event Action<int> StartWaveEvent;
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
+
+        #region Properties
+        public static int EnemyNumber
+        {
+            get
+            {
+                return enemies.Count;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Assign and de-assign the wave manager for the current level when the object awakes and is destroyed.
@@ -77,6 +89,12 @@ namespace Grubitecht.Waves
         public static void AddEnemy(EnemyController enemy)
         {
             enemies.Add(enemy);
+            // Prevent null refs.
+            if (currentLevel == null) { return; }
+            if (currentLevel.progressBar != null)
+            {
+                currentLevel.progressBar.UpdateProgressBar(1);
+            }
             if (currentLevel != null && currentLevel.allEnemiesDead)
             {
                 currentLevel.allEnemiesDead = false;
@@ -84,7 +102,14 @@ namespace Grubitecht.Waves
         }
         public static void RemoveEnemy(EnemyController enemy)
         {
+
             enemies.Remove(enemy);
+            // Prevents null refs.
+            if (currentLevel == null) { return; }
+            if (currentLevel.progressBar != null)
+            {
+                currentLevel.progressBar.UpdateProgressBar(-1);
+            }
             if (enemies.Count == 0 && currentLevel != null)
             {
                 // Advances the wave routine.
@@ -144,6 +169,17 @@ namespace Grubitecht.Waves
                     waveTimerObject.SetActive(false);
                 }
 
+                // Gets the total number of enemies in this wave and updates the progress bar to reflect that amount.
+                int enemyAmount = 0;
+                foreach (SpawnPoint spawnPoint in spawnPoints)
+                {
+                    enemyAmount += spawnPoint.GetEnemyCount(waveNum);
+                }
+                if (progressBar != null)
+                {
+                    progressBar.StartWave(enemyAmount);
+                }
+
                 // Has each spawn point start the next wave.
                 foreach (SpawnPoint spawnPoint in spawnPoints)
                 {
@@ -154,6 +190,10 @@ namespace Grubitecht.Waves
                 while (!allEnemiesDead || completedSpawnPoints < spawnPoints.Length)
                 {
                     yield return null;
+                }
+                if (progressBar != null)
+                {
+                    progressBar.EndWave();
                 }
             }
 

@@ -6,6 +6,7 @@
 // Brief Description : Contains informatoion on a wave of enemies that spawns from a spawn point.
 *****************************************************************************/
 using Grubitecht.World;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Grubitecht.Waves
@@ -14,6 +15,18 @@ namespace Grubitecht.Waves
     public class Wave : ScriptableObject
     {
         [field: SerializeField] public Subwave[] Subwaves { get; private set; }
+        [SerializeField, ReadOnly] private int enemyCount;
+
+        #region Properties
+        public int EnemyCount
+        {
+            get
+            {
+                return enemyCount;
+            }
+        }
+        #endregion
+
         #region Nested Classes
         [System.Serializable]
         public class Subwave
@@ -29,5 +42,21 @@ namespace Grubitecht.Waves
             [field: SerializeField] public EnemyController EnemyPrefab { get; private set; }
         }
         #endregion
+
+        /// <summary>
+        /// Ensures the enemy count is always up to date based on changes to this wave.
+        /// </summary>
+        private void OnValidate()
+        {
+            int amount = 0;
+            foreach (Subwave subwave in Subwaves)
+            {
+                foreach (EnemyType enemyType in subwave.Enemies)
+                {
+                    amount += enemyType.Count;
+                }
+            }
+            enemyCount = amount;
+        }
     }
 }

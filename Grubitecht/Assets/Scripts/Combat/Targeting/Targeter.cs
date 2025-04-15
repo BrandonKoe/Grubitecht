@@ -14,10 +14,12 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public abstract class Targeter : CombatBehaviour, IInfoProvider
+    public abstract class Targeter : ModifiableCombatBehaviour<Targeter>, IInfoProvider
     {
+        [Header("Targeting Stats")]
         [SerializeField] private Transform detectionVisual;
         [SerializeField, Min(0.1f)] private float detectionRange;
+        [Header("Targeting Filters")]
         [SerializeField, Tooltip("Controls what teams this component will target.")]
         protected TargetType targetingType;
         [SerializeField, Tooltip("Controls what tags this targeter can target.")]
@@ -44,6 +46,18 @@ namespace Grubitecht.Combat
 
         #region Properties
         public abstract bool HasTarget { get; }
+        public float DetectionRange
+        {
+            get
+            {
+                return detectionRange;
+            }
+            set
+            {
+                detectionRange = value;
+                UpdateDetectionRange();
+            }
+        }
         #endregion
 
         #region Nested
@@ -96,8 +110,8 @@ namespace Grubitecht.Combat
         /// Checks if this object should target another object based on it's team.
         /// </summary>
         /// <param name="otherTeam">The team of the object that is being checked for targeting.</param>
-        /// <returns>Whether this object can target it or not.</returns>
-        protected bool CheckTarget(Team otherTeam)
+        /// <returns>True if the targeter should target it, false if not.</returns>
+        public bool CheckTeam(Team otherTeam)
         {
             switch (targetingType)
             {

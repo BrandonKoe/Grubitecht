@@ -16,15 +16,17 @@ namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackableTargeter))]
     [RequireComponent(typeof(Combatant))]
-    public class Attacker : CombatBehaviour, IInfoProvider
+    public class Attacker : ModifiableCombatBehaviour<Attacker>, IInfoProvider
     {
-        [SerializeField] private float attackDelay;
+        [field: Header("Stats")]
+        [field: SerializeField] public float AttackDelay { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
         private bool isAttacking;
 
+        public event Action<Attackable> OnAttack;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
-        [SerializeReference, HideInInspector] private AttackableTargeter targeter;
+        [field: SerializeReference, HideInInspector] public AttackableTargeter targeter { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectableObject;
 
         /// <summary>
@@ -85,7 +87,7 @@ namespace Grubitecht.Combat
         {
             while (isAttacking && LevelManager.IsPlaying)
             {
-                yield return new WaitForSeconds(attackDelay);
+                yield return new WaitForSeconds(AttackDelay);
                 Attack();
             }
         }
@@ -104,6 +106,7 @@ namespace Grubitecht.Combat
             }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
+            OnAttack?.Invoke(target);
         }
 
         /// <summary>
@@ -123,7 +126,7 @@ namespace Grubitecht.Combat
             return new InfoValueBase[]
             {
                 new NumValue(AttackStat, 2, "Attack"),
-                new NumValue(attackDelay, 3, "Attack Delay")
+                new NumValue(AttackDelay, 3, "Attack Delay")
             };
         }
     }

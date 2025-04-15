@@ -124,5 +124,20 @@ namespace Grubitecht
         {
             return Mathf.Abs(tile1.x - tile2.x) + Mathf.Abs(tile1.y - tile2.y);
         }
+
+        /// <summary>
+        /// Restricts an angle to values between 0 and 360 degrees.
+        /// </summary>
+        /// <param name="angle">The angle to convert</param>
+        /// <returns>The angle that corresponds to a given angle within 360 degrees.</returns>
+        public static float RestrictAngle(float angle)
+        {
+            angle = angle % 360;
+            if (angle < 0)
+            {
+                angle += 360;
+            }
+            return angle;
+        }
     }
 }

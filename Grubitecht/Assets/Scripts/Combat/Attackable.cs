@@ -15,11 +15,15 @@ using UnityEngine;
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(Combatant))]
-    public class Attackable : CombatBehaviour, IInfoProvider
+    public class Attackable : ModifiableCombatBehaviour<Attackable>, IInfoProvider
     {
         [SerializeField] private int maxHealth;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
         [SerializeField] private Color damageIndicatorColor;
+        [SerializeField] private bool destroyOnDeath;
+        [SerializeField] private bool hasHealthBar;
+
+        private HealthBar hpBar;
 
         public event Action OnDeath;
 
@@ -35,6 +39,20 @@ namespace Grubitecht.Combat
         {
             base.Reset();
             selectableObject = GetComponent<SelectableObject>();
+        }
+        #endregion
+
+        #region Nested Classes
+        private HealthBar HPBar
+        {
+            get
+            {
+                if (hpBar == null)
+                {
+                    hpBar = HealthBarManager.CreateHealthBar(this, maxHealth);
+                }
+                return hpBar;
+            }
         }
         #endregion
 
@@ -69,6 +87,10 @@ namespace Grubitecht.Combat
             // Show the change to the health value here.
             Health += value;
             DamageIndicator.DisplayHealthChange(value, this, damageIndicatorColor);
+            if (hasHealthBar)
+            {
+                HPBar.UpdateHealth(Health);
+            }
             if (Health <= 0)
             {
                 Die();
@@ -83,8 +105,15 @@ namespace Grubitecht.Combat
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
-            // Destroy the game object when objects die for now.
-            Destroy(gameObject);
+            if (hasHealthBar)
+            {
+                HPBar.DestroyHealthBar();
+            }
+            if (destroyOnDeath)
+            {
+                // Destroy the game object when objects die for now.
+                Destroy(gameObject);
+            }
         }
 
 

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3668745979882885672}
   - component: {fileID: 592507500781887919}
   - component: {fileID: -2989757248865518933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,6 +137,8 @@ MonoBehaviour:
   maxHealth: 50
   <Health>k__BackingField: 0
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
+  destroyOnDeath: 1
+  hasHealthBar: 1
   selectableObject: {fileID: 3668745979882885672}
 --- !u!114 &706373850487136439
 MonoBehaviour:
@@ -151,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0.5, z: 0}
+  height: 1
   occupySpace: 1
+  adjustHeight: 0
 --- !u!114 &3668745979882885672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,10 +183,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3521fcf41e3085f43b22409430828c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateModel: {fileID: 0}
+  rotationTime: 0
   <MoveSpeed>k__BackingField: 1
   climbHeight: 1
   ignoreBlockedSpaces: 0
-  restrictMovementAxes: 0
+  restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 706373850487136439}
 --- !u!114 &-2989757248865518933
 MonoBehaviour:
@@ -249,6 +255,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
       propertyPath: m_Name
       value: House2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b78d53d315459ad4fa260ef4b165b7f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

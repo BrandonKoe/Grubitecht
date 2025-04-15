@@ -85,6 +85,13 @@ namespace Grubitecht.World
 
             while (isFollowing)
             {
+                // If our followed object is null, then we're no longer following an object and we should return this
+                // grub.
+                if (followedObject == null)
+                {
+                    GrubManager.ReturnGrub(this);
+                    yield break;
+                }
                 // Moves this grub towards the space the followe object was most recently at.
                 float step = followedObject.MoveSpeed * Time.deltaTime;
                 Vector3 tilePos = gridObject.GetOccupyPosition(targetSpace);

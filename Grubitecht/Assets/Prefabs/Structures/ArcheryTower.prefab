@@ -70,6 +70,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 190323637729111221, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      propertyPath: height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 792690008691415358, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -235,9 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
   attackable: {fileID: 0}
-  attackDelay: 2
+  <AttackDelay>k__BackingField: 2
   <AttackStat>k__BackingField: 4
-  targeter: {fileID: 4729045751414896831}
+  <targeter>k__BackingField: {fileID: 4729045751414896831}
   selectableObject: {fileID: 594484448342160686}
 --- !u!114 &5735124070260143926 stripped
 MonoBehaviour:

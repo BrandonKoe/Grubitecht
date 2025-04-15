@@ -25,6 +25,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: ignoreBlockedSpaces
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: restrictMovementAxes
       value: 1
       objectReference: {fileID: 0}
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4069829d33335ea4a9a8fe33a7b3c1c7, type: 3}
     - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4839938847972710440, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <CombatTags>k__BackingField
@@ -120,6 +124,10 @@ PrefabInstance:
       propertyPath: <AttackStat>k__BackingField
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackDelay>k__BackingField
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Name
       value: TiphiaFlyer
@@ -131,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: occupySpace
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: adjustHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: objectName

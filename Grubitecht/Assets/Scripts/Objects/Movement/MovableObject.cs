@@ -63,7 +63,10 @@ namespace Grubitecht.World.Objects
         /// </summary>
         private void RecallGrub(PathStatus endStatus)
         {
-            GrubManager.ReturnGrub(this);
+            if (endStatus == PathStatus.Completed)
+            {
+                GrubManager.ReturnGrub(this);
+            }
         }
     }
 }

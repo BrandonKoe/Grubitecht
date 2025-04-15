@@ -24,25 +24,9 @@ PrefabInstance:
       propertyPath: <MoveSpeed>k__BackingField
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: m_Height
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: m_Radius
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: m_Center.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: m_Direction
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: maxHealth
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalPosition.x
