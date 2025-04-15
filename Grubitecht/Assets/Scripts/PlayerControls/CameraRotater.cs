@@ -30,6 +30,8 @@ namespace Grubitecht
         {
             Vector3 eulers = rotateObject.localEulerAngles;
             float newAngle = eulers.y + (rotateSpeed * delta.x);
+            // Ensures the new angle is always within 360 degrees.
+            newAngle = MathHelpers.RestrictAngle(newAngle);
             newAngle = Mathf.Clamp(newAngle, rotateBounds.x, rotateBounds.y);
             eulers.y = newAngle;
             rotateObject.localEulerAngles = eulers;

@@ -157,7 +157,7 @@ MonoBehaviour:
   attackable: {fileID: 4758113411827519971}
   <AttackDelay>k__BackingField: 1
   <AttackStat>k__BackingField: 5
-  targeter: {fileID: 6308435001518308473}
+  <targeter>k__BackingField: {fileID: 6308435001518308473}
   selectableObject: {fileID: 6254574678074587637}
 --- !u!54 &4589588747310273762
 Rigidbody:

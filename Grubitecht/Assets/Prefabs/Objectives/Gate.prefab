@@ -123,6 +123,7 @@ MonoBehaviour:
   <Health>k__BackingField: 0
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   destroyOnDeath: 1
+  hasHealthBar: 1
   selectableObject: {fileID: 5616972945258820724}
 --- !u!114 &2379678157832995898
 MonoBehaviour:

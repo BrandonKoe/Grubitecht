@@ -3153,7 +3153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
+  height: 1
   occupySpace: 0
+  adjustHeight: 0
 --- !u!1001 &782374424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3309,8 +3311,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTimerText: {fileID: 255723089}
   waveTimerObject: {fileID: 1247007368}
-  delayBetweenWaves: 25
-  firstWaveDelay: 20
+  progressBar: {fileID: 0}
+  delayBetweenWaves: 5
+  firstWaveDelay: 1
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0
@@ -8942,8 +8945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageNumberPrefab: {fileID: 7863251212522800853, guid: 077f584a45d4cbd4cbbc3f581392e9b8, type: 3}
-  loseHealthColor: {r: 0.6603774, g: 0.1218107, b: 0.043609735, a: 1}
-  gainHealthColor: {r: 0.16470589, g: 0.7411765, b: 0, a: 1}
   useWorldSpaceCanvas: 1
 --- !u!1001 &1820885004
 PrefabInstance:
@@ -9604,7 +9605,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
+  height: 1
   occupySpace: 0
+  adjustHeight: 0
 --- !u!1 &1916411055
 GameObject:
   m_ObjectHideFlags: 0
@@ -9881,8 +9884,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grubText: {fileID: 1279686866}
-  maxGrubCount: 2
   grubPrefab: {fileID: 6165878137460357161, guid: f4e2d3d5accf89f4e86469f1cd8bdbb2, type: 3}
+  maxGrubCount: 2
 --- !u!4 &1970082377
 Transform:
   m_ObjectHideFlags: 0

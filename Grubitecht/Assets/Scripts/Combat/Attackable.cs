@@ -10,7 +10,6 @@ using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using NaughtyAttributes;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -22,6 +21,9 @@ namespace Grubitecht.Combat
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
         [SerializeField] private Color damageIndicatorColor;
         [SerializeField] private bool destroyOnDeath;
+        [SerializeField] private bool hasHealthBar;
+
+        private HealthBar hpBar;
 
         public event Action OnDeath;
 
@@ -37,6 +39,20 @@ namespace Grubitecht.Combat
         {
             base.Reset();
             selectableObject = GetComponent<SelectableObject>();
+        }
+        #endregion
+
+        #region Nested Classes
+        private HealthBar HPBar
+        {
+            get
+            {
+                if (hpBar == null)
+                {
+                    hpBar = HealthBarManager.CreateHealthBar(this, maxHealth);
+                }
+                return hpBar;
+            }
         }
         #endregion
 
@@ -71,6 +87,10 @@ namespace Grubitecht.Combat
             // Show the change to the health value here.
             Health += value;
             DamageIndicator.DisplayHealthChange(value, this, damageIndicatorColor);
+            if (hasHealthBar)
+            {
+                HPBar.UpdateHealth(Health);
+            }
             if (Health <= 0)
             {
                 Die();
@@ -85,6 +105,10 @@ namespace Grubitecht.Combat
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
+            if (hasHealthBar)
+            {
+                HPBar.DestroyHealthBar();
+            }
             if (destroyOnDeath)
             {
                 // Destroy the game object when objects die for now.

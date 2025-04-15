@@ -166,7 +166,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   <AttackDelay>k__BackingField: 7
   <AttackStat>k__BackingField: 8
-  <targeter>k__BackingField: {fileID: 0}
+  <targeter>k__BackingField: {fileID: 4235892459804935470}
   selectableObject: {fileID: 5107409746993080114}
 --- !u!114 &8595298514244447147
 MonoBehaviour:
