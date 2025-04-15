@@ -40,6 +40,7 @@ namespace Grubitecht
                 deltaAction.performed += DeltaAction_Performed;
                 toggleAction.started += ToggleAction_Started;
                 toggleAction.canceled += ToggleAction_Canceled;
+                SubscribeInputs(playerInput);
             }
         }
         private void OnDestroy()
@@ -47,18 +48,27 @@ namespace Grubitecht
             deltaAction.performed -= DeltaAction_Performed;
             toggleAction.started -= ToggleAction_Started;
             toggleAction.canceled -= ToggleAction_Canceled;
+            UnsubscribeInputs();
         }
+
+        /// <summary>
+        /// Overwritable functions for child classes to subscribe custom inputs.
+        /// </summary>
+        /// <param name="playerInput">The PlayerInput component on this object.</param>
+        protected virtual void SubscribeInputs(PlayerInput playerInput) { }
+
+        protected virtual void UnsubscribeInputs() { }
 
 
         /// <summary>
         /// Toggles camera panning while the player holds down right click.
         /// </summary>
         /// <param name="obj"></param>
-        private void ToggleAction_Started(InputAction.CallbackContext obj)
+        protected virtual void ToggleAction_Started(InputAction.CallbackContext obj)
         {
             isControlling = true;
         }
-        private void ToggleAction_Canceled(InputAction.CallbackContext obj)
+        protected virtual void ToggleAction_Canceled(InputAction.CallbackContext obj)
         {
             isControlling = false;
         }
@@ -73,8 +83,16 @@ namespace Grubitecht
             {
                 Vector2 delta = obj.ReadValue<Vector2>();
                 OnProcessInput(delta);
-                OnCameraUpdate?.Invoke();
+                CallCameraUpdateEvent();
             }
+        }
+
+        /// <summary>
+        /// Allows children to call the camera update event manually.
+        /// </summary>
+        protected void CallCameraUpdateEvent()
+        {
+            OnCameraUpdate?.Invoke();
         }
 
         /// <summary>
