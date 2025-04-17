@@ -331,7 +331,7 @@ namespace Grubitecht.World
             EnemyController spawnedEnemy = Instantiate(enemyPrefab, EnemyParent);
 
             //spawnedEnemy.name = spawnedEnemy.name + i;
-            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin);
+            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin, spawnedEnemy.gridObject.Layer);
             spawnedEnemy.gridObject.SetCurrentSpace(tile);
             spawnedEnemy.gridObject.SnapToSpace();
             spawnedEnemy.PathToTarget();

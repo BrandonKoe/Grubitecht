@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Grubitecht.World.Objects;
+using Grubitecht.World;
+
 
 
 
@@ -287,9 +289,9 @@ namespace Grubitecht.Tilemaps
             return Instance.GetTile(position);
         }
 
-        public static VoxelTile Main_FindEmptyTile(VoxelTile originTile, int maxRange = 100)
+        public static VoxelTile Main_FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int maxRange = 100)
         {
-            return Instance.FindEmptyTile(originTile, maxRange);
+            return Instance.FindEmptyTile(originTile, layer, maxRange);
         }
 
 
@@ -423,7 +425,7 @@ namespace Grubitecht.Tilemaps
         /// <param name="originTile">The tile to start finding a tile from.</param>
         /// <param name="maxRange">The max search range that to find a tile within.</param>
         /// <returns>The closest unoccupied tile to the origin tile.</returns>
-        public VoxelTile FindEmptyTile(VoxelTile originTile, int maxRange = 100)
+        public VoxelTile FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int maxRange = 100)
         {
             int range = 0;
             while (range < maxRange)
@@ -447,7 +449,7 @@ namespace Grubitecht.Tilemaps
                             continue;
                         }
                         // If this position hasnt already been used and isnt occupied, then return it.
-                        if (!checkCell.ContainsObject)
+                        if (!checkCell.ContainsObjectOnLayer(layer))
                         {
                             return checkCell;
                         }

@@ -49,14 +49,14 @@ namespace Grubitecht.World.Pathfinding
             // By default, dont include adjacent spaces.
             bool includeAdjacent = false;
             // If our destination is already occupied, then we should include adjacent spaces.
-            if (destinationSpace.ContainsObject)
+            if (destinationSpace.ContainsObjectOnLayer(gridObject.Layer))
             {
                 includeAdjacent = true;
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentTile;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent, 
-                ignoreBlockedSpaces);
+            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, gridObject.Layer, 
+                includeAdjacent, ignoreBlockedSpaces);
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.
@@ -130,7 +130,7 @@ namespace Grubitecht.World.Pathfinding
             {
                 //Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (!ignoreBlockedSpaces && currentPath[0].ContainsObject)
+                if (!ignoreBlockedSpaces && currentPath[0].ContainsObjectOnLayer(gridObject.Layer))
                 {
                     SetDestination(destination, finishCallback);
                     yield break;
