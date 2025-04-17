@@ -60,15 +60,16 @@ namespace Grubitecht.World.Objects
         /// <param name="newTile">The space to move this object to.</param>
         public void SetCurrentSpace(VoxelTile newTile)
         {
+            //Debug.Log(name + " is Setting current Space");
             //// Cant set our space to a space that doesnt exist.
             //if (!VoxelTilemap3D.Main_CheckCell(newSpace)) { Debug.Log("Invalid Space " + newSpace); return; }
-            VoxelTile oldSpace = CurrentTile;
+            VoxelTile oldTile = CurrentTile;
             // Only change spaces if we're able to occupy the new space
             if (!newTile.ContainsObjectOnLayer(Layer))
             {
-                if (oldSpace != null)
+                if (oldTile != null)
                 {
-                    oldSpace.RemoveObject(this);
+                    oldTile.RemoveObject(this);
                 }
                 newTile.AddObject(this);
                 CurrentTile = newTile;

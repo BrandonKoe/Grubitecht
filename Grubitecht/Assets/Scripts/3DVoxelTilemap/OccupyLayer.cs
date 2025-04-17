@@ -10,6 +10,7 @@ namespace Grubitecht.World
     public enum OccupyLayer
     {
         Ground,
-        Air
+        Air,
+        Grub
     }
 }

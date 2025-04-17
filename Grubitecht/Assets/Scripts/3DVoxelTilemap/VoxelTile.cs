@@ -149,6 +149,7 @@ namespace Grubitecht.Tilemaps
         {
             // Prevent Null Argument Exception.
             if (ContainedObjects.Count == 0) { return false; }
+            Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
             return ContainedObjects.Any(item => item.Layer == layer);
         }
 
