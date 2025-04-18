@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4839938847972710440, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <CombatTags>k__BackingField
       value: -1
@@ -110,6 +114,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: adjustHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023088415999457275, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <Layer>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}

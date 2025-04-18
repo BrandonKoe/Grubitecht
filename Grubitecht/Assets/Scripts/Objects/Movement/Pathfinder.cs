@@ -88,9 +88,9 @@ namespace Grubitecht.World.Pathfinding
         /// </param>
         /// <returns>A list of tiles representing the path between the start and ending tiles.</returns>
         public static List<VoxelTile> FindPath(VoxelTile startingTile, VoxelTile endingTile, int climbHeight, 
-            bool includeAdjacent = false, bool ignoreBlockedSpaces = false)
+            OccupyLayer layer, bool includeAdjacent = false)
         {
-            //Debug.Log("Finding Path");
+            Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new();
             List<PathNode> closedList = new();
@@ -143,7 +143,7 @@ namespace Grubitecht.World.Pathfinding
                     }
 
                     // Exclude any inaccessible tiles here.
-                    if ((!ignoreBlockedSpaces && neighbor.ContainsObject) || 
+                    if (neighbor.ContainsObjectOnLayer(layer) || 
                         neighbor.Node.isClosed ||
                         Mathf.Abs(current.tile.GridPosition.z - neighbor.GridPosition.z) > climbHeight)
                     {

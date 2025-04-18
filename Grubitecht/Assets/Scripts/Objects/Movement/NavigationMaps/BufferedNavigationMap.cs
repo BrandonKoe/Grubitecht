@@ -10,15 +10,18 @@
 *****************************************************************************/
 using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using Unity.XR.Oculus.Input;
 using UnityEngine;
 
 namespace Grubitecht.World.Pathfinding
 {
     public delegate VoxelTile[] DestinationGetterFunc();
+    [Obsolete("Navigation Maps are obsolete.  Use Path Navigation instead.")]
     public class BufferedNavigationMap : NavigationMap
     {
         #region CONSTS
@@ -161,7 +164,7 @@ namespace Grubitecht.World.Pathfinding
                     if (target == null || 
                         visited.Contains(target) ||
                         Mathf.Abs(currentNode.GridPosition.z - target.GridPosition.z) > climbHeight ||
-                       target.ContainedObject != null)
+                       target.ContainsObjectOnLayer(OccupyLayer.Ground))
                     { continue; }
 
                     // Sets the distance value of this target node to the lower of it's current value or the

@@ -1996,6 +1996,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraParent
       objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsX.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsY.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsY.y
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7252271891691551757, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.7
@@ -2036,6 +2048,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7917805827299639527, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: selectionIndicators.Array.data[0]
+      value: 
+      objectReference: {fileID: 1294603387}
+    - target: {fileID: 7917805827299639527, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: selectionIndicators.Array.data[1]
+      value: 
+      objectReference: {fileID: 1318095194}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2936,9 +2956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  height: 1
-  occupySpace: 0
-  adjustHeight: 0
+  <Layer>k__BackingField: 0
 --- !u!1001 &782374424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9231,9 +9249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  height: 1
-  occupySpace: 0
-  adjustHeight: 0
+  <Layer>k__BackingField: 0
 --- !u!1 &1916411055
 GameObject:
   m_ObjectHideFlags: 0
