@@ -61,7 +61,7 @@ namespace Grubitecht.World.Pathfinding
                     }
                 }
                 // Exclude inaccessible spaces here.
-                Debug.Log(possibleSpaces.RemoveAll(item => !ignoreBlockedSpaces && item.
+                Debug.Log(possibleSpaces.RemoveAll(item => item.
                 ContainsObjectOnLayer(gridObject.Layer)));
                 possibleSpaces.RemoveAll(item => Mathf.Abs(gridObject.CurrentTile.GridPosition.z - 
                     item.GridPosition.z) > climbHeight);

@@ -46,7 +46,7 @@ namespace Grubitecht.UI
         {
             currentEnemies += enemyChange;
             float normalizedProgress = currentEnemies / enemyNum;
-            //Debug.Log(enemyNum);
+            Debug.Log(enemyNum);
             progressBarImage.fillAmount = normalizedProgress;
         }
     }

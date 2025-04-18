@@ -1996,6 +1996,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraParent
       objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsX.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsY.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893062342310525022, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      propertyPath: panBoundsY.y
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7252271891691551757, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.7

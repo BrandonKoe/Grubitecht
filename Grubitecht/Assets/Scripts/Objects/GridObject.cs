@@ -55,6 +55,16 @@ namespace Grubitecht.World.Objects
         }
 
         /// <summary>
+        /// Removes this object from the containe dobjects list of the tile it was on when it is destroyed.
+        /// This ensures that no matter what happens, if this object is destroyed a phantom reference to it wont
+        /// make spaces appear full.
+        /// </summary>
+        private void OnDestroy()
+        {
+            CurrentTile.RemoveObject(this);
+        }
+
+        /// <summary>
         /// Moves this object to a new space.
         /// </summary>
         /// <param name="newTile">The space to move this object to.</param>

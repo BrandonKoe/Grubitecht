@@ -149,7 +149,7 @@ namespace Grubitecht.Tilemaps
         {
             // Prevent Null Argument Exception.
             if (ContainedObjects.Count == 0) { return false; }
-            Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
+            //Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
             return ContainedObjects.Any(item => item.Layer == layer);
         }
 
@@ -178,6 +178,7 @@ namespace Grubitecht.Tilemaps
         public void RemoveObject(GridObject gridObj)
         {
             ContainedObjects.Remove(gridObj);
+            //Debug.Log($"Object {gridObj.name} was removed from tile at position {GridPosition2}.  This tile currently contains {containedObjects.Count}");
         }
     }
 }
