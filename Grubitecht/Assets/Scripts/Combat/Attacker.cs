@@ -98,6 +98,12 @@ namespace Grubitecht.Combat
         protected virtual void AttackAction()
         {
             Attackable target = targeter.ClosestTarget;
+            // Stop attacking if we attempt to attack a null target.
+            if (target == null)
+            {
+                isAttacking = false;
+                return;
+            }
             Attack(target);
             OnAttackAction?.Invoke(target);
         }
@@ -108,12 +114,8 @@ namespace Grubitecht.Combat
         /// <param name="target">The target to attack.</param>
         public virtual void Attack(Attackable target)
         {
-            // Stop attacking if we attempt to attack a null target.
-            if (target == null)
-            {
-                isAttacking = false;
-                return;
-            }
+            // Prevent attacks on null targets.
+            if (target == null) { return; }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
             OnAttack?.Invoke(target);

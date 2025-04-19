@@ -9,7 +9,6 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Grubitecht.World.Objects;
 using Grubitecht.World;
 
 
@@ -463,6 +462,42 @@ namespace Grubitecht.Tilemaps
             return null;
         }
 
+        /// <summary>
+        /// Gets all tiles within a certain radius of a given tile.
+        /// </summary>
+        /// <param name="centerTile">The tile that acts as the center of the check.</param>
+        /// <param name="radius">The radius to get all tiles within.</param>
+        /// <returns>All the tiles within that radius of the center tile.</returns>
+        public List<VoxelTile> GetTilesInRadius(VoxelTile centerTile, int radius)
+        {
+            List<VoxelTile> outputList = new List<VoxelTile>();
+            List<VoxelTile> currentList = new List<VoxelTile>() { centerTile };
+            // Loop through each radius of tiles.
+            for (int i = 0; i < radius; i++)
+            {
+                List<VoxelTile> bufferList = new List<VoxelTile>();
+                // loop through all items in our current list of tiles to evaluate.
+                foreach (VoxelTile tile in currentList)
+                {
+                    // Loop through all tiles adjacent to the current tile.
+                    foreach (Vector2Int direction in CardinalDirections.ORTHOGONAL_2D)
+                    {
+                        // If we haven't already seen this tile, then we added it to our output list and our buffer
+                        // list.
+                        VoxelTile adjTile = tile.GetAdjacent(direction);
+                        if (!outputList.Contains(adjTile))
+                        {
+                            outputList.Add(adjTile);
+                            bufferList.Add(adjTile);
+                        }
+                    }
+                }
+                // Once we've looped through all the items in our current list, our buffer list becomes our new
+                // current list and we continue on to the next radius.
+                currentList = bufferList;
+            }
+            return outputList;
+        }
 
         /// <summary>
         /// Gets an approximation of the space that this object's transform is currently at.

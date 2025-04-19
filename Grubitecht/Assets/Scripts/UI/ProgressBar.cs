@@ -26,7 +26,7 @@ namespace Grubitecht.UI
             gameObject.SetActive(true);
             this.enemyNum = enemyNum;
             this.currentEnemies = enemyNum;
-            UpdateProgressBar(enemyNum);
+            UpdateProgressBar();
         }
 
         /// <summary>
@@ -39,14 +39,22 @@ namespace Grubitecht.UI
         }
 
         /// <summary>
-        /// Updates this progress bar to accurately reflect the number of enemies left in a wave.
+        /// Updates this progress bar to reflect a change in enemy numbers.
         /// </summary>
         /// <param name="enemyChange">The change in the number of enemies.</param>
-        public void UpdateProgressBar(int enemyChange)
+        public void LogEnemyChange(int enemyChange)
         {
             currentEnemies += enemyChange;
+            UpdateProgressBar();
+        }
+
+        /// <summary>
+        /// Updates this progress bar to accurately reflect the number of enemies left in a wave.
+        /// </summary>
+        private void UpdateProgressBar()
+        {
             float normalizedProgress = currentEnemies / enemyNum;
-            Debug.Log(enemyNum);
+            Debug.Log(normalizedProgress);
             progressBarImage.fillAmount = normalizedProgress;
         }
     }

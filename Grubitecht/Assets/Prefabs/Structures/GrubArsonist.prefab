@@ -224,7 +224,6 @@ MonoBehaviour:
   <AttackDelay>k__BackingField: 2
   <AttackStat>k__BackingField: 6
   <targeter>k__BackingField: {fileID: 8835481776803538693}
-  selectableObject: {fileID: 762800510098488097}
 --- !u!114 &1418782753462666924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +256,8 @@ MonoBehaviour:
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
   attacker: {fileID: 6003213825037627836}
-  inflictedModifiers: []
+  inflictedModifiers:
+  - {fileID: 11400000, guid: 38d5d5a6106c9d7499972db688256847, type: 2}
 --- !u!114 &5566813652090124601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}

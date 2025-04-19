@@ -132,8 +132,8 @@ namespace Grubitecht.World.Pathfinding
             currentPathSpace = gridObject.CurrentTile;
             UpdateDirection();
 
-            Debug.Log(currentPathSpace.GridPosition);
-            Debug.Log(currentPath[0].GridPosition);
+            //Debug.Log(currentPathSpace.GridPosition);
+            //Debug.Log(currentPath[0].GridPosition);
 
             while (currentPath.Count > 0)
             {
@@ -153,7 +153,7 @@ namespace Grubitecht.World.Pathfinding
                     //Debug.Log("Updated space");
                     // Updates a var that keeps track of our current space in the path.
                     currentPathSpace = currentPath[0];
-                    Debug.Log(currentPathSpace.GridPosition);
+                    //Debug.Log(currentPathSpace.GridPosition);
                     gridObject.SetCurrentSpace(currentPathSpace);
                     gridObject.SnapToSpace();
                     //if (updateSpaceDuringPath)

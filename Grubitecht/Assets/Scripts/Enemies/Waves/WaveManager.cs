@@ -86,14 +86,15 @@ namespace Grubitecht.Waves
         /// Adds/removes enemies from the enemy list.
         /// </summary>
         /// <param name="enemy">The enemy to add/remove</param>
-        public static void AddEnemy(EnemyController enemy)
+        /// <param name="isSpawned">if this enemy was spawned outside of a normal wave.</param>
+        public static void AddEnemy(EnemyController enemy, bool isSpawned = true)
         {
             enemies.Add(enemy);
             // Prevent null refs.
             if (currentLevel == null) { return; }
-            if (currentLevel.progressBar != null)
+            if (isSpawned && currentLevel.progressBar != null)
             {
-                currentLevel.progressBar.UpdateProgressBar(1);
+                currentLevel.progressBar.LogEnemyChange(1);
             }
             if (currentLevel != null && currentLevel.allEnemiesDead)
             {
@@ -108,7 +109,7 @@ namespace Grubitecht.Waves
             if (currentLevel == null) { return; }
             if (currentLevel.progressBar != null)
             {
-                currentLevel.progressBar.UpdateProgressBar(-1);
+                currentLevel.progressBar.LogEnemyChange(-1);
             }
             if (enemies.Count == 0 && currentLevel != null)
             {

@@ -13,16 +13,20 @@ namespace Grubitecht.Combat
     public abstract class DurationModifier<T> : Modifier<T> where T : ModifiableCombatBehaviour<T>
     {
         [SerializeField] private float duration;
+        [SerializeField, Tooltip("The amount of time between ticks of this modifier.")] 
+        private float tickInterval;
 
         #region Nested Classes
         public class DurationModInstance : ModifierInstance<T>
         {
             private readonly DurationModifier<T> durMod;
             private readonly float duration;
-            public DurationModInstance(DurationModifier<T> mod, float duration) : base(mod)
+            private readonly float tickInterval;
+            public DurationModInstance(DurationModifier<T> mod, float duration, float tickInterval) : base(mod)
             {
                 durMod = mod;
                 this.duration = duration;
+                this.tickInterval = tickInterval;
             }
 
             public override void OnModifierAdded(T thisBehaviour)
@@ -37,7 +41,21 @@ namespace Grubitecht.Combat
             /// <returns>Corotuine.</returns>
             private IEnumerator EffectTimer()
             {
-                yield return new WaitForSeconds(duration);
+                float timer = duration;
+                float tickTimer = tickInterval;
+                while (timer > 0)
+                {
+                    tickTimer -= Time.deltaTime;
+                    if (tickTimer < 0)
+                    {
+                        durMod.OnModifierTick(appliedBehaviour);
+                        tickTimer = tickInterval;
+                    }
+
+                    timer -= Time.deltaTime;
+                    yield return null;
+                }
+                //yield return new WaitForSeconds(duration);
                 durMod.OnModifierExpired(appliedBehaviour);
                 // Remove this modifier once it has expired.
                 appliedBehaviour.RemoveModifier(this);
@@ -47,9 +65,10 @@ namespace Grubitecht.Combat
 
         public override ModifierInstance<T> NewInstance()
         {
-            return new DurationModInstance(this, duration);
+            return new DurationModInstance(this, duration, tickInterval);
         }
 
         protected virtual void OnModifierExpired(T appliedBehaviour) { }
+        protected virtual void OnModifierTick(T appliedBehaviour) { }
     }
 }
