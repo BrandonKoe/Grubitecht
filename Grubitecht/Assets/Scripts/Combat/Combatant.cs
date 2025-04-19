@@ -15,7 +15,7 @@ namespace Grubitecht.Combat
     public class Combatant : CombatBehaviour
     {
         [field: SerializeField] public Team CombatTeam { get; private set; }
-        [field: SerializeField] public CombatTags CombatTags { get; private set; }
+        [field: SerializeField] public CombatTags CombatTags { get; set; }
 
         /// <summary>
         /// Update rigidbody values on reset, as the rigidbody should always be kinematic and never use gravity.

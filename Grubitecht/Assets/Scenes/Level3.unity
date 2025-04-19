@@ -5970,8 +5970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -240}
-  m_SizeDelta: {x: -20, y: -520}
+  m_AnchoredPosition: {x: -10, y: -140}
+  m_SizeDelta: {x: -20, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &781585803
 MonoBehaviour:
@@ -15811,7 +15811,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 628cd409cd1483d4d92228b4fb995a48, type: 2}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
