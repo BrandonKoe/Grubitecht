@@ -12,6 +12,7 @@ namespace Grubitecht.Combat
 {
     public abstract class DurationModifier<T> : Modifier<T> where T : ModifiableCombatBehaviour<T>
     {
+        [Header("Duration Modifier Settings")]
         [SerializeField] private float duration;
         [SerializeField, Tooltip("The amount of time between ticks of this modifier.")] 
         private float tickInterval;

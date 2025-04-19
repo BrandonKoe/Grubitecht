@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4def859b85b87419a8714781a84877, type: 3}
   m_Name: OnFire
   m_EditorClassIdentifier: 
-  duration: 6
+  <AllowDuplicates>k__BackingField: 0
+  duration: 7
   tickInterval: 1
-  damageAmount: 2
+  damageAmount: 1
   panicSpeedBoost: 1
   panicRadius: 5

@@ -8,6 +8,7 @@
 using Grubitecht.Combat;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -23,6 +24,9 @@ namespace Grubitecht.Combat
         /// <param name="modifier">The modifier to add.</param>
         public void ApplyModifier(ModifierInstance<T> modifier)
         {
+            // Prevent duplicate modifiers from being added.
+            if (!modifier.Modifier.AllowDuplicates && modifiers.Any(item => item.Modifier == modifier.Modifier)) 
+            { return; }
             modifiers.Add(modifier);
             modifier.OnModifierAdded(this as T);
         }

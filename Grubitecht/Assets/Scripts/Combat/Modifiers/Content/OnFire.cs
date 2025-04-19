@@ -15,6 +15,7 @@ namespace Grubitecht.Combat
     [CreateAssetMenu(fileName = "OnFire", menuName = "Grubitecht/Modifiers/On Fire")]
     public class Onfire : DurationModifier<Attackable>
     {
+        [Header("On Fire Settings")]
         [SerializeField] private int damageAmount;
         [SerializeField] private float panicSpeedBoost;
         [SerializeField] private int panicRadius;

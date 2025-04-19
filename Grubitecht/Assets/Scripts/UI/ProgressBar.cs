@@ -15,6 +15,8 @@ namespace Grubitecht.UI
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private Image progressBarImage;
+        [SerializeField] private RectTransform progressBarCap;
+        [SerializeField] private float capOffset = -50f;
         private float currentEnemies;
         private float enemyNum;
         /// <summary>
@@ -54,8 +56,14 @@ namespace Grubitecht.UI
         private void UpdateProgressBar()
         {
             float normalizedProgress = currentEnemies / enemyNum;
-            Debug.Log(normalizedProgress);
+            //Debug.Log(normalizedProgress);
             progressBarImage.fillAmount = normalizedProgress;
+
+            // Moves the image that caps the progress bar.
+            RectTransform rectTrans = transform as RectTransform;
+            Vector2 anchorPos = progressBarCap.anchoredPosition;
+            anchorPos.x = (rectTrans.rect.width * normalizedProgress) + capOffset;
+            progressBarCap.anchoredPosition = anchorPos;
         }
     }
 }

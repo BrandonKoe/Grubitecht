@@ -13,6 +13,8 @@ namespace Grubitecht.Combat
 {
     public abstract class Modifier<T> : ScriptableObject where T : ModifiableCombatBehaviour<T>
     {
+        [field: Header("Base Modifier Settings")]
+        [field: SerializeField] public bool AllowDuplicates { get; private set; }
         /// <summary>
         /// Called whenever this modifier is added to/removed from a CombatBehaviour
         /// </summary>

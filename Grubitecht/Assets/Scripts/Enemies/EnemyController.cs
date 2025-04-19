@@ -199,11 +199,13 @@ namespace Grubitecht.World
 
             internal override void OnStopMoving(EnemyController thisEnemy)
             {
+                Debug.Log("Stopped Moving");
                 MoveRandomly(thisEnemy);
             }
 
             internal override void OnInvalidPath(EnemyController thisEnemy)
             {
+                Debug.Log("Invalid Path");
                 MoveRandomly(thisEnemy);
             }
 
@@ -233,7 +235,7 @@ namespace Grubitecht.World
                     Vector2Int destPos = thisEnemy.gridObject.CurrentTile.GridPosition2 - new Vector2Int(xRand, yRand);
                     destTile = VoxelTilemap3D.Main_GetTile(destPos);
                 }
-                thisEnemy.pathNavigator.SetDestination(destTile);
+                thisEnemy.pathNavigator.SetDestination(destTile, thisEnemy.OnMovingCallback);
             }
 
             ~PanicState()

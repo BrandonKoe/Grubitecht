@@ -18,6 +18,7 @@ namespace Grubitecht.Combat
     [CreateAssetMenu(fileName = "Injected", menuName = "Grubitecht/Modifiers/Injected")]
     public class Injected : DurationModifier<Attackable>
     {
+        [Header("Injected Settings")]
         [SerializeField] internal EnemyController tiphiaYounglingPrefab;
         [SerializeField] private int damageAmount;
 
