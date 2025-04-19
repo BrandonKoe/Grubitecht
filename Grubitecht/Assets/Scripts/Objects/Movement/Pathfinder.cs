@@ -171,7 +171,7 @@ namespace Grubitecht.World.Pathfinding
             Debug.Log("Empty Path");
             UncloseNodes(closedList);
             // If all else fails, then we return null and let the caller handle the null ref.
-            return new();
+            return null;
         }
 
         /// <summary>

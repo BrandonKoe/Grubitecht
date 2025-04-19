@@ -60,11 +60,17 @@ namespace Grubitecht.World.Pathfinding
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.
-            if (currentPath.Count == 0)
+            if (currentPath == null)
             {
                 //Debug.Log("Invalid path");
                 finishCallback?.Invoke(PathStatus.Invalid);
                 return;
+            }
+
+            // If our current path contains no elements, then we are already at our destination.
+            if (currentPath.Count == 0)
+            {
+                currentPath.Add(gridObject.CurrentTile);
             }
 
             if (movementRoutine != null)
@@ -133,7 +139,7 @@ namespace Grubitecht.World.Pathfinding
             {
                 //Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (currentPath[0].ContainsObjectOnLayer(gridObject.Layer))
+                if (currentPath[0].ContainsObjectOnLayer(gridObject.Layer, gridObject))
                 {
                     SetDestination(destination, finishCallback);
                     yield break;

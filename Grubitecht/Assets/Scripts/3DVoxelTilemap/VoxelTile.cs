@@ -154,6 +154,23 @@ namespace Grubitecht.Tilemaps
         }
 
         /// <summary>
+        /// Check if this tile contain an object on a given layer.
+        /// </summary>
+        /// <param name="layer">The layer to get the object at.</param>
+        /// <param name="excludeObject">
+        /// The object to exclude from this check.  Used for it an object needs to check if a different object 
+        /// occupies a space.
+        /// </param>
+        /// <returns>True if this object contains an object on that layer.</returns>
+        public bool ContainsObjectOnLayer(OccupyLayer layer, GridObject excludeObject)
+        {
+            // Prevent Null Argument Exception.
+            if (ContainedObjects.Count == 0) { return false; }
+            //Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
+            return ContainedObjects.Any(item => item.Layer == layer && item != excludeObject);
+        }
+
+        /// <summary>
         /// Attempts to add an object to this tile.
         /// </summary>
         /// <param name="gridObj">The object to add.</param>
