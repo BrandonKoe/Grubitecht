@@ -1505,7 +1505,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 86168634536b6f14ba7f21e33ff9a823, type: 2}
+      objectReference: {fileID: 11400000, guid: 262debeb0cf566b4b883cfd38c501a3b, type: 2}
     - target: {fileID: 1874011786632212993, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_Name
       value: SpawnPoint (2)
