@@ -21,11 +21,13 @@ namespace Grubitecht.Combat
         [field: Header("Stats")]
         [field: SerializeField] public float AttackDelay { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
-        private bool isAttacking;
+        protected bool isAttacking;
 
         public event Action<Attackable> OnAttack;
         // OnAttackAction is only called once ever.  Attack is called for every hit target.
         public event Action<Attackable> OnAttackAction;
+        // OnPerformAttack is called right before the attacker performs an attack.
+        public event Action<Attackable> OnPerformAttack;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
         [field: SerializeReference, HideInInspector] public AttackableTargeter targeter { get; private set; }
@@ -104,8 +106,23 @@ namespace Grubitecht.Combat
                 isAttacking = false;
                 return;
             }
+            CallOnPerformedAttackEvent(target);
             Attack(target);
+            CallAttackActionEvent(target);
+        }
+
+        /// <summary>
+        /// Allows children to call the attack action event.
+        /// </summary>
+        /// <param name="target">The target of the attack action.</param>
+        protected void CallAttackActionEvent(Attackable target)
+        {
             OnAttackAction?.Invoke(target);
+        }
+
+        protected void CallOnPerformedAttackEvent(Attackable target)
+        {
+            OnPerformAttack?.Invoke(target);
         }
 
         /// <summary>
