@@ -11,6 +11,7 @@ using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World
@@ -181,6 +182,67 @@ namespace Grubitecht.World
                 }
             }
         }
+
+        internal class PanicState : EnemyState
+        {
+            private readonly EnemyController thisEnemy;
+            private readonly float speedBoost;
+            private readonly int panicRadius;
+            internal PanicState(EnemyController thisEnemy, float speedBoost, int panicRadius)
+            {
+                this.thisEnemy = thisEnemy;
+                this.speedBoost = speedBoost;
+                this.panicRadius = panicRadius;
+                thisEnemy.pathNavigator.MoveSpeed += speedBoost;
+                MoveRandomly(thisEnemy);
+            }
+
+            internal override void OnStopMoving(EnemyController thisEnemy)
+            {
+                Debug.Log("Stopped Moving");
+                MoveRandomly(thisEnemy);
+            }
+
+            internal override void OnInvalidPath(EnemyController thisEnemy)
+            {
+                Debug.Log("Invalid Path");
+                MoveRandomly(thisEnemy);
+            }
+
+            /// <summary>
+            /// Causes this enemy to pathfind towards a random point nearby.
+            /// </summary>
+            /// <param name="thisEnemy">The enemy that should pathfind towards a random point.</param>
+            private void MoveRandomly(EnemyController thisEnemy)
+            {
+                VoxelTile destTile = null;
+                int iterationNum = 0;
+                // Continue getting a tile until a valid one is found.
+                while (destTile == null || destTile.ContainsObjectOnLayer(thisEnemy.gridObject.Layer))
+                {
+                    // Cap the random check to 100 iterations so it doesnt cause crashes if it tries to iterate too
+                    // many times.
+                    iterationNum++;
+                    if (iterationNum == 100)
+                    {
+                        Debug.LogError("Random movement iteration limit was hit.");
+                        return;
+                    }
+                    int xRand = Random.Range(-panicRadius, panicRadius);
+                    // The sum of the x and y randomness should never exceed panic radius.
+                    int yRand = Random.Range(Mathf.Abs(xRand) - panicRadius, panicRadius - Mathf.Abs(xRand));
+                    // Gets the tile offset from this enemy by (xRand, yRand) and set that as our destination.
+                    Vector2Int destPos = thisEnemy.gridObject.CurrentTile.GridPosition2 - new Vector2Int(xRand, yRand);
+                    destTile = VoxelTilemap3D.Main_GetTile(destPos);
+                }
+                thisEnemy.pathNavigator.SetDestination(destTile, thisEnemy.OnMovingCallback);
+            }
+
+            ~PanicState()
+            {
+                thisEnemy.pathNavigator.MoveSpeed -= speedBoost;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -188,8 +250,6 @@ namespace Grubitecht.World
         /// </summary>
         private void Awake()
         {
-            // Adds this enemy to the wave manager's enemy list.
-            WaveManager.AddEnemy(this);
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
         }
@@ -322,19 +382,38 @@ namespace Grubitecht.World
         }
 
         /// <summary>
+        /// Toggles this enemy's panic state.
+        /// </summary>
+        /// <param name="speedBoost">The boost in speed this enemy gets while panicing</param>
+        /// <param name="radius">The radius that the next space the enemy will pathfind towards will be.</param>
+        public void StartPanicking(float speedBoost, int radius)
+        {
+            state = new PanicState(this, speedBoost, radius);
+        }
+        public void StopPanicking()
+        {
+            if (state is PanicState)
+            {
+                state = new MovingState();
+            }
+        }
+
+        /// <summary>
         /// Spawns an enemy at the nearest open space to a given tile.
         /// </summary>
         /// <param name="enemyPrefab">The enemy prefab to spawn.</param>
         /// <param name="spawnOrigin">The tile that the enemy will spawn from.</param>
-        public static void SpawnEnemy(EnemyController enemyPrefab, VoxelTile spawnOrigin)
+        public static void SpawnEnemy(EnemyController enemyPrefab, VoxelTile spawnOrigin, bool isSpawned = true)
         {
             EnemyController spawnedEnemy = Instantiate(enemyPrefab, EnemyParent);
 
             //spawnedEnemy.name = spawnedEnemy.name + i;
-            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin);
+            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin, spawnedEnemy.gridObject.Layer);
             spawnedEnemy.gridObject.SetCurrentSpace(tile);
             spawnedEnemy.gridObject.SnapToSpace();
             spawnedEnemy.PathToTarget();
+            // Adds the spawned enemy to the wave manager's enemy list.
+            WaveManager.AddEnemy(spawnedEnemy, isSpawned);
             //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
         }
     }

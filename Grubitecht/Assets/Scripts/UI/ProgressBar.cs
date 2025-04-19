@@ -15,6 +15,8 @@ namespace Grubitecht.UI
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private Image progressBarImage;
+        [SerializeField] private RectTransform progressBarCap;
+        [SerializeField] private float capOffset = -50f;
         private float currentEnemies;
         private float enemyNum;
         /// <summary>
@@ -26,7 +28,7 @@ namespace Grubitecht.UI
             gameObject.SetActive(true);
             this.enemyNum = enemyNum;
             this.currentEnemies = enemyNum;
-            UpdateProgressBar(enemyNum);
+            UpdateProgressBar();
         }
 
         /// <summary>
@@ -39,15 +41,29 @@ namespace Grubitecht.UI
         }
 
         /// <summary>
-        /// Updates this progress bar to accurately reflect the number of enemies left in a wave.
+        /// Updates this progress bar to reflect a change in enemy numbers.
         /// </summary>
         /// <param name="enemyChange">The change in the number of enemies.</param>
-        public void UpdateProgressBar(int enemyChange)
+        public void LogEnemyChange(int enemyChange)
         {
             currentEnemies += enemyChange;
+            UpdateProgressBar();
+        }
+
+        /// <summary>
+        /// Updates this progress bar to accurately reflect the number of enemies left in a wave.
+        /// </summary>
+        private void UpdateProgressBar()
+        {
             float normalizedProgress = currentEnemies / enemyNum;
-            //Debug.Log(enemyNum);
+            //Debug.Log(normalizedProgress);
             progressBarImage.fillAmount = normalizedProgress;
+
+            // Moves the image that caps the progress bar.
+            RectTransform rectTrans = transform as RectTransform;
+            Vector2 anchorPos = progressBarCap.anchoredPosition;
+            anchorPos.x = (rectTrans.rect.width * normalizedProgress) + capOffset;
+            progressBarCap.anchoredPosition = anchorPos;
         }
     }
 }

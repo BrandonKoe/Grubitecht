@@ -236,7 +236,7 @@ MonoBehaviour:
   combatant: {fileID: 279858048249971797}
   attackable: {fileID: 0}
   <AttackDelay>k__BackingField: 1
-  <AttackStat>k__BackingField: 3
+  <AttackStat>k__BackingField: 5
   <targeter>k__BackingField: {fileID: 583686556751244212}
   selectableObject: {fileID: 4914845466961708621}
 --- !u!4 &3280588828935041785 stripped

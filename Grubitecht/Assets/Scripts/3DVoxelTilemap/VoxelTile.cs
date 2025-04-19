@@ -6,9 +6,11 @@
 // Brief Description : Represents a tile on the voxel tilemap.
 // I'm going insane.
 *****************************************************************************/
+using Grubitecht.World;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Grubitecht.Tilemaps
@@ -30,7 +32,9 @@ namespace Grubitecht.Tilemaps
         };
         #endregion
         [field: SerializeField] public Vector3Int GridPosition { get; private set; }
-        public GridObject ContainedObject { get; set; }
+        //public GridObject ContainedObject { get; set; }
+
+        private List<GridObject> containedObjects = new();
 
         private Pathfinder.PathNode node;
         private AdjTileInfo adjTiles = new AdjTileInfo();
@@ -43,13 +47,24 @@ namespace Grubitecht.Tilemaps
                 return (Vector2Int)GridPosition;
             }
         }
-        public bool ContainsObject
+        private List<GridObject> ContainedObjects
         {
             get
             {
-                return ContainedObject != null;
+                if (containedObjects == null)
+                {
+                    containedObjects = new List<GridObject>();
+                }
+                return containedObjects;
             }
         }
+        //public bool ContainsObject
+        //{
+        //    get
+        //    {
+        //        return ContainedObject != null;
+        //    }
+        //}
         public Pathfinder.PathNode Node
         {
             get
@@ -111,6 +126,76 @@ namespace Grubitecht.Tilemaps
         {
             return adjTiles.tiles[ADJACENT_INDEX_REFERENCE[direction]];
             //return VoxelTilemap3D.Main_GetTile(GridPosition2 + direction);
+        }
+
+        /// <summary>
+        /// Gets the object that this tile contains on a given layer.
+        /// </summary>
+        /// <param name="layer">The layer to get the object at.</param>
+        /// <returns>The object this tile contains at that layer.</returns>
+        public GridObject GetContainedObject(OccupyLayer layer)
+        {
+            // Prevent Null Argument Exception.
+            if (ContainedObjects.Count == 0) { return null; }
+            return ContainedObjects.Find(item => item.Layer == layer);
+        }
+
+        /// <summary>
+        /// Check if this tile contain an object on a given layer.
+        /// </summary>
+        /// <param name="layer">The layer to get the object at.</param>
+        /// <returns>True if this object contains an object on that layer.</returns>
+        public bool ContainsObjectOnLayer(OccupyLayer layer)
+        {
+            // Prevent Null Argument Exception.
+            if (ContainedObjects.Count == 0) { return false; }
+            //Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
+            return ContainedObjects.Any(item => item.Layer == layer);
+        }
+
+        /// <summary>
+        /// Check if this tile contain an object on a given layer.
+        /// </summary>
+        /// <param name="layer">The layer to get the object at.</param>
+        /// <param name="excludeObject">
+        /// The object to exclude from this check.  Used for it an object needs to check if a different object 
+        /// occupies a space.
+        /// </param>
+        /// <returns>True if this object contains an object on that layer.</returns>
+        public bool ContainsObjectOnLayer(OccupyLayer layer, GridObject excludeObject)
+        {
+            // Prevent Null Argument Exception.
+            if (ContainedObjects.Count == 0) { return false; }
+            //Debug.Log(ContainedObjects.Any(item => item.Layer == layer));
+            return ContainedObjects.Any(item => item.Layer == layer && item != excludeObject);
+        }
+
+        /// <summary>
+        /// Attempts to add an object to this tile.
+        /// </summary>
+        /// <param name="gridObj">The object to add.</param>
+        public void AddObject(GridObject gridObj)
+        {
+            // If this space already contains this object, then simply return true and act like we added the object.
+            if (ContainedObjects.Contains(gridObj))
+            {
+                return;
+            }
+            if (ContainsObjectOnLayer(gridObj.Layer))
+            {
+                return;
+            }
+            ContainedObjects.Add(gridObj);
+        }
+
+        /// <summary>
+        /// Removes an object from this tile.
+        /// </summary>
+        /// <param name="gridObj">The object to remove.</param>
+        public void RemoveObject(GridObject gridObj)
+        {
+            ContainedObjects.Remove(gridObj);
+            //Debug.Log($"Object {gridObj.name} was removed from tile at position {GridPosition2}.  This tile currently contains {containedObjects.Count}");
         }
     }
 }

@@ -49,22 +49,28 @@ namespace Grubitecht.World.Pathfinding
             // By default, dont include adjacent spaces.
             bool includeAdjacent = false;
             // If our destination is already occupied, then we should include adjacent spaces.
-            if (destinationSpace.ContainsObject)
+            if (destinationSpace.ContainsObjectOnLayer(gridObject.Layer))
             {
                 includeAdjacent = true;
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentTile;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, includeAdjacent, 
-                ignoreBlockedSpaces);
+            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, gridObject.Layer, 
+                includeAdjacent);
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.
-            if (currentPath.Count == 0)
+            if (currentPath == null)
             {
                 //Debug.Log("Invalid path");
                 finishCallback?.Invoke(PathStatus.Invalid);
                 return;
+            }
+
+            // If our current path contains no elements, then we are already at our destination.
+            if (currentPath.Count == 0)
+            {
+                currentPath.Add(gridObject.CurrentTile);
             }
 
             if (movementRoutine != null)
@@ -126,11 +132,14 @@ namespace Grubitecht.World.Pathfinding
             currentPathSpace = gridObject.CurrentTile;
             UpdateDirection();
 
+            //Debug.Log(currentPathSpace.GridPosition);
+            //Debug.Log(currentPath[0].GridPosition);
+
             while (currentPath.Count > 0)
             {
                 //Debug.Log(currentPath.Count);
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
-                if (!ignoreBlockedSpaces && currentPath[0].ContainsObject)
+                if (currentPath[0].ContainsObjectOnLayer(gridObject.Layer, gridObject))
                 {
                     SetDestination(destination, finishCallback);
                     yield break;
@@ -141,8 +150,10 @@ namespace Grubitecht.World.Pathfinding
 
                 if (Vector3.Distance(transform.position, tilePos) < SPACE_CLAMP)
                 {
+                    //Debug.Log("Updated space");
                     // Updates a var that keeps track of our current space in the path.
                     currentPathSpace = currentPath[0];
+                    //Debug.Log(currentPathSpace.GridPosition);
                     gridObject.SetCurrentSpace(currentPathSpace);
                     gridObject.SnapToSpace();
                     //if (updateSpaceDuringPath)

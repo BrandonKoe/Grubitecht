@@ -26,7 +26,6 @@ namespace Grubitecht.Combat
         }
         #endregion
 
-
         /// <summary>
         /// Subscribe/unsubscribe the OnAttack function from the attackers OnAttack event to call that function when 
         /// an attack happens
@@ -35,18 +34,26 @@ namespace Grubitecht.Combat
         {
             base.Awake();
             attacker.OnAttack += OnAttack;
+            attacker.OnAttackAction += OnAttackAction;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             attacker.OnAttack -= OnAttack;
+            attacker.OnAttackAction -= OnAttackAction;
         }
 
         /// <summary>
         /// Abstract function that allows mod to perform special behaviour when an attack happens.
         /// </summary>
         /// <param name="target">The target of the attack.</param>
-        protected abstract void OnAttack(Attackable target);
+        protected virtual void OnAttack(Attackable target) { }
+
+        /// <summary>
+        /// Abstract function that allows mod to perform special behaviour when an attack happens.
+        /// </summary>
+        /// <param name="target">The target of the attack.</param>
+        protected virtual void OnAttackAction(Attackable target) { }
     }
 }

@@ -180,7 +180,7 @@ namespace Grubitecht.Waves
             {
                 for (int i  = 0; i < enemy.Count; i++)
                 {
-                    EnemyController.SpawnEnemy(enemy.EnemyPrefab, gridObject.CurrentTile);
+                    EnemyController.SpawnEnemy(enemy.EnemyPrefab, gridObject.CurrentTile, false);
                 }
             }
         }

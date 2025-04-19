@@ -12,6 +12,16 @@ namespace Grubitecht.Combat
         internal T appliedBehaviour;
         protected readonly Modifier<T> mod;
 
+        #region Properties
+        public Modifier<T> Modifier
+        {
+            get
+            {
+                return mod;
+            }
+        }
+        #endregion
+
         public ModifierInstance(Modifier<T> mod)
         {
             this.mod = mod;

@@ -20,16 +20,17 @@ namespace Grubitecht.World.Pathfinding
         protected const float SPACE_CLAMP = 0.001f;
         #endregion
 
-        [field: Header("Movement Settings")]
+        [Header("Model Rotation")]
         [SerializeField, Tooltip("The model to rotate to correspond to the direction this object is moving.")]
         protected Transform rotateModel;
         [SerializeField] private float rotationTime;
-        [field: SerializeField] public float MoveSpeed { get; protected set; }
+        [field: Header("Movement Settings")]
+        [field: SerializeField] public float MoveSpeed { get; set; }
         [SerializeField, Tooltip("How large of an upward incline this object can move up.")]
         protected int climbHeight;
-        [SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
-            "world")]
-        protected bool ignoreBlockedSpaces;
+        //[SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
+        //    "world")]
+        //protected bool ignoreBlockedSpaces;
         [SerializeField, Tooltip("If checked, then this object is only able to move in one cardinal direction " +
             "while moving along a path.")]
         protected bool restrictMovementAxes;

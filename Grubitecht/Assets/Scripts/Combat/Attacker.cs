@@ -24,10 +24,11 @@ namespace Grubitecht.Combat
         private bool isAttacking;
 
         public event Action<Attackable> OnAttack;
+        // OnAttackAction is only called once ever.  Attack is called for every hit target.
+        public event Action<Attackable> OnAttackAction;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
         [field: SerializeReference, HideInInspector] public AttackableTargeter targeter { get; private set; }
-        [SerializeReference, HideInInspector] private SelectableObject selectableObject;
 
         /// <summary>
         /// Assign component references on reset.
@@ -36,7 +37,6 @@ namespace Grubitecht.Combat
         {
             base.Reset();
             targeter = GetComponent<AttackableTargeter>();
-            selectableObject = GetComponent<SelectableObject>();
         }
         #endregion
 
@@ -88,14 +88,14 @@ namespace Grubitecht.Combat
             while (isAttacking && LevelManager.IsPlaying)
             {
                 yield return new WaitForSeconds(AttackDelay);
-                Attack();
+                AttackAction();
             }
         }
 
         /// <summary>
-        /// Causes this object to attack it's target.
+        /// Causes this object to perform an attack.
         /// </summary>
-        protected virtual void Attack()
+        protected virtual void AttackAction()
         {
             Attackable target = targeter.ClosestTarget;
             // Stop attacking if we attempt to attack a null target.
@@ -104,6 +104,18 @@ namespace Grubitecht.Combat
                 isAttacking = false;
                 return;
             }
+            Attack(target);
+            OnAttackAction?.Invoke(target);
+        }
+
+        /// <summary>
+        /// Causes this object to attack a perticular target.
+        /// </summary>
+        /// <param name="target">The target to attack.</param>
+        public virtual void Attack(Attackable target)
+        {
+            // Prevent attacks on null targets.
+            if (target == null) { return; }
             // Attack the closest target.
             target.TakeDamage(AttackStat);
             OnAttack?.Invoke(target);

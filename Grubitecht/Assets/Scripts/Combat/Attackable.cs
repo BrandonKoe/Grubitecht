@@ -17,7 +17,7 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public class Attackable : ModifiableCombatBehaviour<Attackable>, IInfoProvider
     {
-        [SerializeField] private int maxHealth;
+        [field: SerializeField] public int MaxHealth { get; private set; }
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
         [SerializeField] private Color damageIndicatorColor;
         [SerializeField] private bool destroyOnDeath;
@@ -49,7 +49,7 @@ namespace Grubitecht.Combat
             {
                 if (hpBar == null)
                 {
-                    hpBar = HealthBarManager.CreateHealthBar(this, maxHealth);
+                    hpBar = HealthBarManager.CreateHealthBar(this, MaxHealth);
                 }
                 return hpBar;
             }
@@ -62,7 +62,7 @@ namespace Grubitecht.Combat
         protected override void Awake()
         {
             base.Awake();
-            Health = maxHealth;
+            Health = MaxHealth;
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(maxHealth, 1, "Max Health")
+                new NumValue(MaxHealth, 1, "Max Health")
             };
         }
     }

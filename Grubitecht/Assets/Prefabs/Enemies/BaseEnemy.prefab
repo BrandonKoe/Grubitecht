@@ -158,7 +158,6 @@ MonoBehaviour:
   <AttackDelay>k__BackingField: 1
   <AttackStat>k__BackingField: 5
   <targeter>k__BackingField: {fileID: 6308435001518308473}
-  selectableObject: {fileID: 6254574678074587637}
 --- !u!54 &4589588747310273762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,10 +199,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
   attackable: {fileID: 4758113411827519971}
-  maxHealth: 20
+  <MaxHealth>k__BackingField: 20
   <Health>k__BackingField: 0
   damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
   destroyOnDeath: 1
+  hasHealthBar: 0
   selectableObject: {fileID: 6254574678074587637}
 --- !u!114 &6254574678074587637
 MonoBehaviour:
@@ -232,9 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 1, z: 0}
-  height: 0
-  occupySpace: 1
-  adjustHeight: 0
+  <Layer>k__BackingField: 0
 --- !u!114 &3419658666011052324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +249,6 @@ MonoBehaviour:
   rotationTime: 0.2
   <MoveSpeed>k__BackingField: 2
   climbHeight: 1
-  ignoreBlockedSpaces: 0
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
 --- !u!1001 &4887689510105145310
