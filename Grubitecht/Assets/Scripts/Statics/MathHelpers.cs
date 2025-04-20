@@ -84,6 +84,17 @@ namespace Grubitecht
         }
 
         /// <summary>
+        /// Gets the sign of a given number
+        /// </summary>
+        /// <param name="x">The number to get the sign of.</param>
+        /// <returns>-1, 0, or 1, depending ont the sign of the number.</returns>
+        public static int GetSign(float x)
+        {
+            if (x == 0) { return 0; }
+            return (int)(Mathf.Abs(x) / x);
+        }
+
+        /// <summary>
         /// Converts an angle in degrees to a unit vector pointing in that direction.
         /// </summary>
         /// <param name="angle">The angle to convert to a vector.</param>

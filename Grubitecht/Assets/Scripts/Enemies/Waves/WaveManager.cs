@@ -27,6 +27,7 @@ namespace Grubitecht.Waves
         private bool allEnemiesDead;
         
         private static WaveManager currentLevel;
+        public static bool IsPaused { get; set; }
         //public static event Action<int> StartWaveEvent;
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
@@ -157,6 +158,12 @@ namespace Grubitecht.Waves
                 }
                 while (waveDelayTimer > 0)
                 {
+                    // Continually loop here while the wave manager is paused.
+                    if (IsPaused) 
+                    { 
+                        yield return null;
+                        continue; 
+                    }
                     // Update the UI here.
                     if (waveTimerText != null)
                     {
