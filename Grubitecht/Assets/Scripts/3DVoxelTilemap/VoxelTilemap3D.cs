@@ -288,9 +288,17 @@ namespace Grubitecht.Tilemaps
             return Instance.GetTile(position);
         }
 
-        public static VoxelTile Main_FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int maxRange = 100)
+        /// <summary>
+        /// Finds the empty tile nearest to this one.
+        /// </summary>
+        /// <param name="originTile">The tile to originate the check from.</param>
+        /// <param name="layer">The layer we're checking for vacancy at.</param>
+        /// <param name="startingRange">The initial starting range of the check.</param>
+        /// <param name="maxRange">The maximum range that can be checked.</param>
+        /// <returns>The tile closest to the origin tile that doesnt contain an object on a given layer.</returns>
+        public static VoxelTile Main_FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int startingRange = 0, int maxRange = 100)
         {
-            return Instance.FindEmptyTile(originTile, layer, maxRange);
+            return Instance.FindEmptyTile(originTile, layer, startingRange, maxRange);
         }
 
 
@@ -422,11 +430,14 @@ namespace Grubitecht.Tilemaps
         /// Finds the nearest empty tile from a given origin tile.
         /// </summary>
         /// <param name="originTile">The tile to start finding a tile from.</param>
+        /// <param name="layer">The layer to get an empty space of.</param>
+        /// <param name="startingRange">The initial starting range to use when finding a space.</param>
         /// <param name="maxRange">The max search range that to find a tile within.</param>
         /// <returns>The closest unoccupied tile to the origin tile.</returns>
-        public VoxelTile FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int maxRange = 100)
+        public VoxelTile FindEmptyTile(VoxelTile originTile, OccupyLayer layer, int startingRange = 0, 
+            int maxRange = 100)
         {
-            int range = 0;
+            int range = startingRange;
             while (range < maxRange)
             {
                 for (int x = -range; x <= range; x++)
@@ -441,13 +452,13 @@ namespace Grubitecht.Tilemaps
                         // Check the positive and negative cells that have a manhatten distance of range.
                         Vector2Int checkPos = new Vector2Int(x, y) + originTile.GridPosition2;
                         VoxelTile checkCell = GetTile(checkPos);
-                        // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
+                        // If checkCell is returned as null, then the cell we're trying to get does not exist on the
                         // tilemap and we should ignore it.
                         if (checkCell == null)
                         {
                             continue;
                         }
-                        // If this position hasnt already been used and isnt occupied, then return it.
+                        // If this position hasn't already been used and isnt occupied, then return it.
                         if (!checkCell.ContainsObjectOnLayer(layer))
                         {
                             return checkCell;

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289ae2071b9d91f45843814831d7b088, type: 3}
-  m_Name: L3_FlyingSwarm
+  m_Name: BossWave
   m_EditorClassIdentifier: 
   <Subwaves>k__BackingField:
   - <Delay>k__BackingField: 0
     <Enemies>k__BackingField:
-    - <Count>k__BackingField: 6
-      <EnemyPrefab>k__BackingField: {fileID: 8120261642772918698, guid: 382b9496a386aad43956d477b8ac9df7, type: 3}
-  - <Delay>k__BackingField: 25
-    <Enemies>k__BackingField:
-    - <Count>k__BackingField: 5
-      <EnemyPrefab>k__BackingField: {fileID: 8120261642772918698, guid: 382b9496a386aad43956d477b8ac9df7, type: 3}
+    - <Count>k__BackingField: 3
+      <EnemyPrefab>k__BackingField: {fileID: 411903346327987601, guid: cfddadef9cea95a4fbd51574f6d5f5c8, type: 3}
     - <Count>k__BackingField: 2
       <EnemyPrefab>k__BackingField: {fileID: 7524383864519132468, guid: 03c930a0a8d163e44b4c1612a801a361, type: 3}
-  enemyCount: 13
+  - <Delay>k__BackingField: 60
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 1
+      <EnemyPrefab>k__BackingField: {fileID: 4703223873964624555, guid: 167532a0e2db1b44e97c757e1c64e718, type: 3}
+  enemyCount: 6

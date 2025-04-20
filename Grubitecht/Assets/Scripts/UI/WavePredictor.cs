@@ -123,5 +123,13 @@ namespace Grubitecht.UI
             CameraController.OnCameraUpdate -= UpdatePosition;
             Destroy(gameObject);
         }
+
+        /// <summary>
+        /// Unsubscribe events on destroy.
+        /// </summary>
+        private void OnDestroy()
+        {
+            CameraController.OnCameraUpdate -= UpdatePosition;
+        }
     }
 }

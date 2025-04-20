@@ -35,6 +35,7 @@ namespace Grubitecht.Combat
             base.Awake();
             attacker.OnAttack += OnAttack;
             attacker.OnAttackAction += OnAttackAction;
+            attacker.OnPerformAttack += OnAttackPerformed;
         }
 
         protected override void OnDestroy()
@@ -42,18 +43,18 @@ namespace Grubitecht.Combat
             base.OnDestroy();
             attacker.OnAttack -= OnAttack;
             attacker.OnAttackAction -= OnAttackAction;
+            attacker.OnPerformAttack -= OnAttackPerformed;
         }
 
         /// <summary>
-        /// Abstract function that allows mod to perform special behaviour when an attack happens.
+        /// Abstract functions that allows mod to perform special behaviour when an attack happens.
         /// </summary>
         /// <param name="target">The target of the attack.</param>
+        // Called when an attack happens and damage is dealt to a target.
         protected virtual void OnAttack(Attackable target) { }
-
-        /// <summary>
-        /// Abstract function that allows mod to perform special behaviour when an attack happens.
-        /// </summary>
-        /// <param name="target">The target of the attack.</param>
+        // Called when the attack is going to happen as an entire action
         protected virtual void OnAttackAction(Attackable target) { }
+        // Called when the attacker uses the attack.
+        protected virtual void OnAttackPerformed(Attackable target) { }
     }
 }

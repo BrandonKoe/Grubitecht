@@ -28,7 +28,7 @@ namespace Grubitecht.World.Objects
         //private bool occupySpace = true;
         [field: SerializeField, Tooltip("The layer that this oblect occupies.  No two objects on the same layer can exist " +
             "on the same space")]
-        public OccupyLayer Layer { get; private set; }
+        public OccupyLayer Layer { get; set; }
         //[SerializeField, Tooltip("Whether this object should adjust their height to be above any other objects that" +
         //    " are in the same space.  Only is relevant if OccupySpace is set to false.")]
         //private bool adjustHeight = false;
@@ -41,6 +41,20 @@ namespace Grubitecht.World.Objects
         //private readonly static List<GridObject> allObjectList = new List<GridObject>();
 
         public event Action OnChangeSpace;
+
+        #region Properties
+        public Vector3 Offset
+        {
+            get
+            {
+                return offset;  
+            }
+            set
+            {
+                offset = value;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Assigns this object a space when it is created.
@@ -61,7 +75,10 @@ namespace Grubitecht.World.Objects
         /// </summary>
         private void OnDestroy()
         {
-            CurrentTile.RemoveObject(this);
+            if (CurrentTile != null)
+            {
+                CurrentTile.RemoveObject(this);
+            }
         }
 
         /// <summary>

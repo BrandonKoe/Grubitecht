@@ -59,6 +59,17 @@ namespace Grubitecht.World.Pathfinding
                 return movementRoutine != null;
             }
         }
+        public int ClimbHeight
+        {
+            get
+            {
+                return climbHeight;
+            }
+            set
+            {
+                climbHeight = value;
+            }
+        }
         #endregion
 
         public abstract void StopMoving();

@@ -21,11 +21,13 @@ namespace Grubitecht.Combat
         [field: Header("Stats")]
         [field: SerializeField] public float AttackDelay { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
-        private bool isAttacking;
+        protected bool isAttacking;
 
         public event Action<Attackable> OnAttack;
         // OnAttackAction is only called once ever.  Attack is called for every hit target.
         public event Action<Attackable> OnAttackAction;
+        // OnPerformAttack is called right before the attacker performs an attack.
+        public event Action<Attackable> OnPerformAttack;
         public static event Action<Attacker> DeathBroadcast;
         #region Component References
         [field: SerializeReference, HideInInspector] public AttackableTargeter targeter { get; private set; }
@@ -59,7 +61,7 @@ namespace Grubitecht.Combat
         /// <summary>
         /// When a new target is found, start the attack routine if it isnt already running.
         /// </summary>
-        private void HandleOnGainTarget()
+        protected virtual void HandleOnGainTarget()
         {
             if (!isAttacking)
             {
@@ -71,7 +73,7 @@ namespace Grubitecht.Combat
         /// <summary>
         /// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
         /// </summary>
-        private void HandleOnLoseTarget()
+        protected virtual void HandleOnLoseTarget()
         {
             if (!targeter.HasTarget && isAttacking)
             {
@@ -83,12 +85,12 @@ namespace Grubitecht.Combat
         /// Continually calls the attack function with a given delay in between,
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator AttackRoutine()
+        protected IEnumerator AttackRoutine()
         {
             while (isAttacking && LevelManager.IsPlaying)
             {
-                yield return new WaitForSeconds(AttackDelay);
                 AttackAction();
+                yield return new WaitForSeconds(AttackDelay);
             }
         }
 
@@ -101,11 +103,26 @@ namespace Grubitecht.Combat
             // Stop attacking if we attempt to attack a null target.
             if (target == null)
             {
-                isAttacking = false;
+                HandleOnLoseTarget();
                 return;
             }
+            CallOnPerformedAttackEvent(target);
             Attack(target);
+            CallAttackActionEvent(target);
+        }
+
+        /// <summary>
+        /// Allows children to call the attack action event.
+        /// </summary>
+        /// <param name="target">The target of the attack action.</param>
+        protected void CallAttackActionEvent(Attackable target)
+        {
             OnAttackAction?.Invoke(target);
+        }
+
+        protected void CallOnPerformedAttackEvent(Attackable target)
+        {
+            OnPerformAttack?.Invoke(target);
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace Grubitecht.Combat
         /// Applies all of the listed modifiers to the target when this attacker attacks.
         /// </summary>
         /// <param name="target">The target of the attack.</param>
-        protected override void OnAttack(Attackable target)
+        protected override void OnAttackPerformed(Attackable target)
         {
             // Get the angle that each object should be facing at to point towards the target
             // Definitely a better way to do this with quaternion math.
