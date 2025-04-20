@@ -89,8 +89,8 @@ namespace Grubitecht.Combat
         {
             while (isAttacking && LevelManager.IsPlaying)
             {
-                yield return new WaitForSeconds(AttackDelay);
                 AttackAction();
+                yield return new WaitForSeconds(AttackDelay);
             }
         }
 

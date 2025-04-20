@@ -452,13 +452,13 @@ namespace Grubitecht.Tilemaps
                         // Check the positive and negative cells that have a manhatten distance of range.
                         Vector2Int checkPos = new Vector2Int(x, y) + originTile.GridPosition2;
                         VoxelTile checkCell = GetTile(checkPos);
-                        // If checkCell is returned as zero, then the cell we're trying to get does not exist on the
+                        // If checkCell is returned as null, then the cell we're trying to get does not exist on the
                         // tilemap and we should ignore it.
                         if (checkCell == null)
                         {
                             continue;
                         }
-                        // If this position hasnt already been used and isnt occupied, then return it.
+                        // If this position hasn't already been used and isnt occupied, then return it.
                         if (!checkCell.ContainsObjectOnLayer(layer))
                         {
                             return checkCell;

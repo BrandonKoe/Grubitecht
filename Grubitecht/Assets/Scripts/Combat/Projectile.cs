@@ -16,8 +16,19 @@ namespace Grubitecht.Combat
         private const float IMPACT_DIST = 0.1f;
         #endregion
         [SerializeField] private float speed;
+        [SerializeField] private ParticleSystem projectileParticles;
         public void Launch(Attackable target, ProjectileAttackAction attackActionCallback)
         {
+            // Updates the particle effects of this projectile so they are in line with the time this projectile will
+            // take to reach it's target.
+            if (projectileParticles != null)
+            {
+                // Estimates the travel time based on the current distance between the projectile and the target.
+                float travelTime = Vector3.Distance(target.transform.position, transform.position) / speed;
+                var mainModule = projectileParticles.main;
+                mainModule.startLifetime = travelTime;
+                projectileParticles.Play();
+            }
             StartCoroutine(MovementRoutine(target, attackActionCallback));
         }
 
