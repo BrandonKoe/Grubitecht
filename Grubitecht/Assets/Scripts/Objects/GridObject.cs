@@ -75,7 +75,10 @@ namespace Grubitecht.World.Objects
         /// </summary>
         private void OnDestroy()
         {
-            CurrentTile.RemoveObject(this);
+            if (CurrentTile != null)
+            {
+                CurrentTile.RemoveObject(this);
+            }
         }
 
         /// <summary>

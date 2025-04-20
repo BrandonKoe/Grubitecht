@@ -29,6 +29,8 @@ namespace Grubitecht.World
         private int groundedClimbHeight;
         private Vector3 groundedOffset;
 
+        int iterationLimit;
+
         #region Component References
         [SerializeReference, HideInInspector] private PathNavigator pathNavigator;
         [SerializeReference, HideInInspector] private GridObject gridObject;
@@ -86,6 +88,13 @@ namespace Grubitecht.World
         /// </param>
         private void MoveToFlying(PathStatus pathStatus)
         {
+            // Prevent potential infinite loops temporarily until I can further diagonse the problem.
+            iterationLimit++;
+            if (iterationLimit > 100)
+            {
+                iterationLimit = 0;
+                return;
+            }
             // If our current space has something in it on the ground layer already, we cant switch states here so we
             // need to move to a valid position first.
             if (gridObject.CurrentTile.ContainsObjectOnLayer(OccupyLayer.Air))
@@ -111,6 +120,8 @@ namespace Grubitecht.World
             gridObject.Layer = OccupyLayer.Air;
             gridObject.Offset = flyingOffset;
             combatant.CombatTags |= CombatTags.Flying;
+
+            iterationLimit = 0;
         }
 
         /// <summary>
@@ -132,6 +143,13 @@ namespace Grubitecht.World
         /// </param>
         private void MoveToGrounded(PathStatus pathStatus)
         {
+            // Prevent potential infinite loops temporarily until I can further diagonse the problem.
+            iterationLimit++;
+            if (iterationLimit > 100)
+            {
+                iterationLimit = 0;
+                return;
+            }
             // If our current space has something in it on the ground layer already, we cant switch states here so we
             // need to move to a valid position first.
             if (gridObject.CurrentTile.ContainsObjectOnLayer(OccupyLayer.Ground))
@@ -157,6 +175,8 @@ namespace Grubitecht.World
             gridObject.Layer = OccupyLayer.Ground;
             gridObject.Offset = groundedOffset;
             combatant.CombatTags &= ~CombatTags.Flying;
+
+            iterationLimit = 0;
         }
     }
 }

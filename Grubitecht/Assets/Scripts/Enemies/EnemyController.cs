@@ -188,6 +188,8 @@ namespace Grubitecht.World
             private readonly EnemyController thisEnemy;
             private readonly float speedBoost;
             private readonly int panicRadius;
+            private Coroutine rePathRoutine;
+            private bool isRePathing;
             internal PanicState(EnemyController thisEnemy, float speedBoost, int panicRadius)
             {
                 this.thisEnemy = thisEnemy;
@@ -206,7 +208,41 @@ namespace Grubitecht.World
             internal override void OnInvalidPath(EnemyController thisEnemy)
             {
                 Debug.Log("Invalid Path");
-                MoveRandomly(thisEnemy);
+                //MoveRandomly(thisEnemy);
+                if (!isRePathing)
+                {
+                    rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
+                }
+            }
+
+            /// <summary>
+            /// Continually re-attempts to pathfinding towards a target objective
+            /// </summary>
+            /// <returns>Coroutine.</returns>
+            private IEnumerator RePathRoutine(EnemyController thisEnemy)
+            {
+                //Debug.Log("Is now re-pathing");
+                isRePathing = true;
+                // Wait a frame before re-pathing starts as we need to ensure the new state has been set before we
+                // start running any new pathfinding operations.
+                yield return null;
+                while (isRePathing)
+                {
+                    MoveRandomly(thisEnemy);
+                    yield return new WaitForSeconds(1 / thisEnemy.rePathFrequency);
+                }
+                isRePathing = false;
+            }
+
+            // Once we've started moving, we should stop re-pathing.
+            internal override void OnStartedMoving(EnemyController thisEnemy)
+            {
+                if (isRePathing)
+                {
+                    isRePathing = false;
+                    thisEnemy.StopCoroutine(rePathRoutine);
+                    rePathRoutine = null;
+                }
             }
 
             /// <summary>
@@ -225,7 +261,11 @@ namespace Grubitecht.World
                     iterationNum++;
                     if (iterationNum == 100)
                     {
-                        Debug.LogError("Random movement iteration limit was hit.");
+                        Debug.Log("Random movement iteration limit was hit.");
+                        if (!isRePathing)
+                        {
+                            rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));
+                        }
                         return;
                     }
                     int xRand = Random.Range(-panicRadius, panicRadius);
@@ -238,9 +278,17 @@ namespace Grubitecht.World
                 thisEnemy.pathNavigator.SetDestination(destTile, thisEnemy.OnMovingCallback);
             }
 
+            /// <summary>
+            /// Stops the coroutine once this object is destroyed.
+            /// </summary>
             ~PanicState()
             {
                 thisEnemy.pathNavigator.MoveSpeed -= speedBoost;
+                if (rePathRoutine != null)
+                {
+                    thisEnemy.StopCoroutine(rePathRoutine);
+                    rePathRoutine = null;
+                }
             }
         }
         #endregion

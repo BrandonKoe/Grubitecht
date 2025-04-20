@@ -64,6 +64,7 @@ namespace Grubitecht
             size += scrollDelta * zoomSpeed;
             size = Mathf.Clamp(size, zoomBounds.x, zoomBounds.y);
             cam.orthographicSize = size;
+            CallCameraUpdateEvent();
         }
     }
 }
