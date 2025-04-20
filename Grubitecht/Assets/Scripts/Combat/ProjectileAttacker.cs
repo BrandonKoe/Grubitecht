@@ -17,10 +17,10 @@ namespace Grubitecht.Combat
     public class ProjectileAttacker : Attacker
     {
         [Header("Projectile")]
-        [SerializeField] private Projectile projectilePrefab;
-        [SerializeField] private Vector3 projectileOffset;
+        [SerializeField] protected Projectile projectilePrefab;
+        [SerializeField] protected Vector3 projectileOffset;
         /// <summary>
-        /// Instead of the default attack action, projectiles spawn a projectile that will call the special 
+        /// Instead of the default attack action, projectile attackers spawn a projectile that will call the special 
         /// ProjectileAttackAction when they hit.
         /// </summary>
         protected override void AttackAction()
@@ -46,7 +46,7 @@ namespace Grubitecht.Combat
         /// Performs an attack action on the attackable hit with the projectile.
         /// </summary>
         /// <param name="target">The target of the projectile.</param>
-        private void ProjectileAttackAction(Attackable target)
+        protected void ProjectileAttackAction(Attackable target)
         {
             // Prevent null target.
             if (target == null) { return; }

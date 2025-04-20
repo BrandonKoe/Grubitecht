@@ -61,7 +61,7 @@ namespace Grubitecht.Combat
         /// <summary>
         /// When a new target is found, start the attack routine if it isnt already running.
         /// </summary>
-        private void HandleOnGainTarget()
+        protected virtual void HandleOnGainTarget()
         {
             if (!isAttacking)
             {
@@ -73,7 +73,7 @@ namespace Grubitecht.Combat
         /// <summary>
         /// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
         /// </summary>
-        private void HandleOnLoseTarget()
+        protected virtual void HandleOnLoseTarget()
         {
             if (!targeter.HasTarget && isAttacking)
             {
@@ -85,7 +85,7 @@ namespace Grubitecht.Combat
         /// Continually calls the attack function with a given delay in between,
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator AttackRoutine()
+        protected IEnumerator AttackRoutine()
         {
             while (isAttacking && LevelManager.IsPlaying)
             {

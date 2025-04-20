@@ -27,6 +27,14 @@ namespace Grubitecht.World.Objects
         [field: SerializeReference, HideInInspector] public GridObject gridObject {  get; private set; }
         [SerializeReference, HideInInspector] private Attackable attackable;
 
+        public Attackable Attackable
+        {
+            get
+            {
+                return attackable;
+            }
+        }
+
 
         /// <summary>
         /// Assign compomnent references on reset.

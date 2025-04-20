@@ -142,7 +142,10 @@ namespace Grubitecht.Combat
         public void UpdateDetectionRange()
         {
             detectionArea.radius = detectionRange;
-            detectionVisual.localScale = Vector3.one * detectionRange * 2;
+            if (detectionVisual != null)
+            {
+                detectionVisual.localScale = Vector3.one * detectionRange * 2;
+            }
         }
 
         /// <summary>

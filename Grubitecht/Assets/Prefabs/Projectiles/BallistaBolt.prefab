@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8514c9743a2c29547956f1675e818a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  projectileParticles: {fileID: 0}
+  initialSpeed: 20
+  acceleration: 0
 --- !u!1001 &8542212648598035347
 PrefabInstance:
   m_ObjectHideFlags: 0
