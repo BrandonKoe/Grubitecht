@@ -154,8 +154,10 @@ namespace Grubitecht.Tilemaps
             Chunk chunk = GetChunk(chunkPos);
             if (chunk == null)
             {
+#if UNITY_EDITOR
                 // Create a new chunk if the chunk this position is at is null.
                 chunk = CreateNewChunk(chunkPos);
+#endif
             }
             chunk.AddTile(position, smoothAbove);
 
@@ -201,7 +203,9 @@ namespace Grubitecht.Tilemaps
                 // If we removed the last tile from a chunk, then we should destroy that chunk.
                 if (chunk.Tiles.Count == 0)
                 {
+#if UNITY_EDITOR
                     DestroyChunk(chunk);
+#endif
                 }
             }
             //foreach (SubTilemap submap in subTilemaps)
@@ -586,8 +590,55 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
+        #region Chunking
+        /// <summary>
+        /// Gets the chunk at a given chunk position.
+        /// </summary>
+        /// <param name="chunkPos">The chunk position to check.</param>
+        /// <returns>The chunk at the given chunk position.</returns>
+        private Chunk GetChunk(Vector2Int chunkPos)
+        {
+            return chunks.Find(item => item.ChunkPos == chunkPos);
+        }
+
+        /// <summary>
+        /// Gets the chunk position of a certain space on the grid.
+        /// </summary>
+        /// <param name="gridPos">The grid position to get the chunk of.</param>
+        /// <returns>The position of the chunk this grid lies on.</returns>
+        private Vector2Int GetChunkPos(Vector3Int gridPos)
+        {
+            gridPos.x = GetChunkPos(gridPos.x);
+            gridPos.y = GetChunkPos(gridPos.y);
+            return (Vector2Int)gridPos;
+        }
+
+        /// <summary>
+        /// Converts a component of a grid position into a chunk position.
+        /// </summary>
+        /// <param name="gridPos">The position on the grid.</param>
+        /// <returns>The chunk position the grid is within.</returns>
+        private int GetChunkPos(int gridPos)
+        {
+            int skew = MathHelpers.GetSign(gridPos) < 0 ? -(chunkSize - 1) : 0;
+            return (gridPos + skew) / chunkSize;
+        }
+
+        /// <summary>
+        /// Converts a grid position into a relative position within it's chunk.
+        /// </summary>
+        /// <param name="gridPos"></param>
+        /// <returns></returns>
+        private Vector3Int GridToRelativePos(Vector3Int gridPos)
+        {
+            gridPos.x = MathHelpers.Mod(gridPos.x, chunkSize);
+            gridPos.y = MathHelpers.Mod(gridPos.y, chunkSize);
+            return gridPos;
+        }
+        #endregion
+
         #region EditorOnly
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         #region Mesh Construction
         /// <summary>
         /// Creates and assigns a mesh asset for a given chunk of the tilemap.
@@ -880,51 +931,7 @@ namespace Grubitecht.Tilemaps
         }
         #endregion
 
-        #region Chunking
-        /// <summary>
-        /// Gets the chunk at a given chunk position.
-        /// </summary>
-        /// <param name="chunkPos">The chunk position to check.</param>
-        /// <returns>The chunk at the given chunk position.</returns>
-        private Chunk GetChunk(Vector2Int chunkPos)
-        {
-            return chunks.Find(item => item.ChunkPos == chunkPos);
-        }
-
-        /// <summary>
-        /// Gets the chunk position of a certain space on the grid.
-        /// </summary>
-        /// <param name="gridPos">The grid position to get the chunk of.</param>
-        /// <returns>The position of the chunk this grid lies on.</returns>
-        private Vector2Int GetChunkPos(Vector3Int gridPos)
-        {
-            gridPos.x = GetChunkPos(gridPos.x);
-            gridPos.y = GetChunkPos(gridPos.y);
-            return (Vector2Int)gridPos;
-        }
-
-        /// <summary>
-        /// Converts a component of a grid position into a chunk position.
-        /// </summary>
-        /// <param name="gridPos">The position on the grid.</param>
-        /// <returns>The chunk position the grid is within.</returns>
-        private int GetChunkPos(int gridPos)
-        {
-            int skew = MathHelpers.GetSign(gridPos) < 0 ? -(chunkSize - 1): 0;
-            return (gridPos + skew) / chunkSize;
-        }
-
-        /// <summary>
-        /// Converts a grid position into a relative position within it's chunk.
-        /// </summary>
-        /// <param name="gridPos"></param>
-        /// <returns></returns>
-        private Vector3Int GridToRelativePos(Vector3Int gridPos)
-        {
-            gridPos.x = MathHelpers.Mod(gridPos.x, chunkSize);
-            gridPos.y = MathHelpers.Mod(gridPos.y, chunkSize);
-            return gridPos;
-        }
+        #region Chunk Creation
 
         /// <summary>
         /// Creates a new chunk at a given chunk position.

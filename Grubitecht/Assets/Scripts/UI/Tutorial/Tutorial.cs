@@ -7,22 +7,41 @@
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 namespace Grubitecht.UI.Tutorial
 {
-    public class TutorializedObject : MonoBehaviour
+    [System.Serializable]
+    public class Tutorial
     {
-        [field: SerializeField] public TutorialType Type { get; private set; }
-        [field: SerializeField] public string TutorialText { get; private set; }
-        [field: SerializeField] public TutorialUIObject TutorialPrefab { get; private set; }
-        [field: SerializeField] public bool OverridePosition { get; private set; }
-        [field: SerializeField] public Vector3 TargetPosition { get; private set; }
+        [SerializeField] private GameObject targetObject;
+        [SerializeField] private TutorialType type;
+        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting] 
+        private string tutorialText;
+        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting]
+        private Vector2 tutorialDimensions;
+        [SerializeField, ShowIf("type", TutorialType.GameObject), AllowNesting] 
+        private TutorialUIObject tutorialPrefab;
+        [SerializeField] private bool overridePosition;
+        [SerializeField, ShowIf("overridePosition"), AllowNesting] 
+        private Vector3 targetPosition;
+
         [SerializeField] private TutorialEvent finishEvent;
 
         [Header("Events")]
         [SerializeField] private UnityEvent OnTutorialShownEvent;
         [SerializeField] private UnityEvent OnTutorialFinishedEvent;
 
+
+        #region Properties
+        public GameObject TargetObject => targetObject;
+        public TutorialType Type => type;
+        public string TutorialText => tutorialText;
+        public Vector2 TutorialDimensions => tutorialDimensions;
+        public TutorialUIObject TutorialPrefab => tutorialPrefab;
+        public bool OverridePosition => overridePosition;
+        public Vector3 TargetPosition => targetPosition;
+        #endregion
         #region Nested
         public enum TutorialType
         {
@@ -37,10 +56,12 @@ namespace Grubitecht.UI.Tutorial
         public virtual void OnTutorialShown()
         {
             finishEvent.Initialize(this);
+            OnTutorialShownEvent?.Invoke();
         }
         public virtual void OnTutorialFinished()
         {
             finishEvent.Deinitialize(this);
+            OnTutorialFinishedEvent?.Invoke();
         }
 
         /// <summary>

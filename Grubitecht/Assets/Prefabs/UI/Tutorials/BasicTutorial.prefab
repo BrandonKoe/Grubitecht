@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -169,11 +169,11 @@ RectTransform:
   - {fileID: 132324104989151538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 400}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &7769413107654449556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,10 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81209602ebc7e847947fcdb2d7c66e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 132324104989151538}
+  <Arrow>k__BackingField: {fileID: 132324104989151538}
   <TextObject>k__BackingField: {fileID: 25915970137705168}
   worldOffset: {x: 0, y: 1, z: 0}
-  UIOffset: {x: 0, y: 300}
+  <UIOffset>k__BackingField: {x: -100, y: 300}
   padding: 0
 --- !u!222 &1024639877325287065
 CanvasRenderer:

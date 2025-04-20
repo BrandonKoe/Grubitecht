@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ae2071b9d91f45843814831d7b088, type: 3}
+  m_Name: Tutorial_FlyingWave
+  m_EditorClassIdentifier: 
+  <Subwaves>k__BackingField:
+  - <Delay>k__BackingField: 0
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 2
+      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
+    - <Count>k__BackingField: 3
+      <EnemyPrefab>k__BackingField: {fileID: 8120261642772918698, guid: 382b9496a386aad43956d477b8ac9df7, type: 3}
+  - <Delay>k__BackingField: 20
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 2
+      <EnemyPrefab>k__BackingField: {fileID: 8120261642772918698, guid: 382b9496a386aad43956d477b8ac9df7, type: 3}
+    - <Count>k__BackingField: 1
+      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
+  enemyCount: 8

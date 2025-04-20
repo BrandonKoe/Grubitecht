@@ -7,16 +7,17 @@
 *****************************************************************************/
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 namespace Grubitecht.UI.Tutorial
 {
     public class TutorialManager : MonoBehaviour
     {
-        [SerializeField] private TutorializedObject[] tutorialProgression;
         [SerializeField] private TutorialUIObject defaultTutorialObject;
+        [SerializeField] private Tutorial[] tutorialProgression;
 
-        private static List<TutorializedObject> tutorialList;
+        private static List<Tutorial> tutorialList;
         private static TutorialUIObject currentTutorial;
 
         private static TutorialManager instance;
@@ -50,14 +51,15 @@ namespace Grubitecht.UI.Tutorial
         /// 
         /// </summary>
         /// <param name="finishedTutorial"></param>
-        public static void LogCompleted(TutorializedObject finishedTutorial)
+        public static void LogCompleted(Tutorial finishedTutorial)
         {
             if (finishedTutorial != null && finishedTutorial == tutorialList[0])
             {
                 tutorialList.Remove(finishedTutorial);
                 finishedTutorial.OnTutorialFinished();
+                //Debug.Log(currentTutorial);
                 // Destroys the current tutorial UI object.
-                Destroy(currentTutorial);
+                Destroy(currentTutorial.gameObject);
                 currentTutorial = null;
 
                 ShowNextTutorial();
@@ -69,12 +71,14 @@ namespace Grubitecht.UI.Tutorial
         /// </summary>
         private static void ShowNextTutorial()
         {
+            // If there are no more tutorials to show, then we return.
+            if (tutorialList.Count == 0) { return; }
             switch(tutorialList[0].Type)
             {
-                case TutorializedObject.TutorialType.Text:
+                case Tutorial.TutorialType.Text:
                     ShowTutorial(tutorialList[0], tutorialList[0].TutorialText);
                     break;
-                case TutorializedObject.TutorialType.GameObject:
+                case Tutorial.TutorialType.GameObject:
                     ShowTutorial(tutorialList[0], tutorialList[0].TutorialPrefab);
                     break;
                 default:
@@ -85,10 +89,15 @@ namespace Grubitecht.UI.Tutorial
         /// <summary>
         /// Shows a given tutorial for a certain object.
         /// </summary>
-        private static void ShowTutorial(TutorializedObject tutorialObj, string text)
+        private static void ShowTutorial(Tutorial tutorialObj, string text)
         {
             TutorialUIObject tObj = Instantiate(instance.defaultTutorialObject, instance.transform);
             tObj.TextObject.text = text;
+            // Set the dimensions of the tutorial.
+            RectTransform trTrans = tObj.transform as RectTransform;
+            trTrans.sizeDelta = tutorialObj.TutorialDimensions;
+            // Auto-Set the offset of the tutorial 
+            tObj.UIOffset = (tutorialObj.TutorialDimensions / 2);
             if (tutorialObj.OverridePosition)
             {
                 tObj.Initialize(tutorialObj.TargetPosition);
@@ -100,7 +109,7 @@ namespace Grubitecht.UI.Tutorial
             currentTutorial = tObj;
             tutorialObj.OnTutorialShown();
         }
-        private static void ShowTutorial(TutorializedObject tutorialObj, TutorialUIObject prefabObject)
+        private static void ShowTutorial(Tutorial tutorialObj, TutorialUIObject prefabObject)
         {
             TutorialUIObject tObj = Instantiate(prefabObject, instance.transform);
             if (tutorialObj.OverridePosition)

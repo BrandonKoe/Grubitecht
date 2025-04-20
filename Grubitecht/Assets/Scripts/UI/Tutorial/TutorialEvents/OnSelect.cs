@@ -13,15 +13,15 @@ namespace Grubitecht.UI.Tutorial
     [CreateAssetMenu(fileName = "OnSelect", menuName = "Grubitecht/TutorialEvents/On Select")]
     public class OnSelect : TutorialEvent
     {
-        public override void Initialize(TutorializedObject obj)
+        public override void Initialize(Tutorial obj)
         {
-            SelectableObject selComp = obj.GetComponent<SelectableObject>();
+            SelectableObject selComp = obj.TargetObject.GetComponent<SelectableObject>();
             selComp.OnSelectEvent += obj.CompleteTutorial;
         }
 
-        public override void Deinitialize(TutorializedObject obj)
+        public override void Deinitialize(Tutorial obj)
         {
-            SelectableObject selComp = obj.GetComponent<SelectableObject>();
+            SelectableObject selComp = obj.TargetObject.GetComponent<SelectableObject>();
             selComp.OnSelectEvent -= obj.CompleteTutorial;
         }
     }

@@ -11,8 +11,8 @@ namespace Grubitecht.UI.Tutorial
 {
     public abstract class TutorialEvent : ScriptableObject
     {
-        public abstract void Initialize(TutorializedObject obj);
+        public abstract void Initialize(Tutorial obj);
 
-        public abstract void Deinitialize(TutorializedObject obj);
+        public abstract void Deinitialize(Tutorial obj);
     }
 }

@@ -339,10 +339,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 392901949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &80692808
 MonoBehaviour:
@@ -356,9 +356,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88753a461651b9d40809c0604b99438b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgression:
-  - {fileID: 1855537442}
   defaultTutorialObject: {fileID: 7769413107654449556, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
+  tutorialProgression:
+  - targetObject: {fileID: 1855537440}
+    type: 1
+    tutorialText: 
+    tutorialDimensions: {x: 0, y: 0}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    overridePosition: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476528020}
+          m_TargetAssemblyTypeName: Grubitecht.Waves.WaveManager, Assembly-CSharp
+          m_MethodName: set_IsPaused
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1613366364}
+    type: 0
+    tutorialText: In Grubitech, it's your job to reorganize the town to keep these
+      houses safe from incoming enemies.
+    tutorialDimensions: {x: 300, y: 300}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    overridePosition: 0
+    targetPosition: {x: 0, y: 0, z: 0}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &135535177
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,11 +849,11 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 0079d456af49fd14684da307881f10c4, type: 2}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 7812cb92c451fce4e84a745f315c4b2a, type: 2}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[2]
       value: 
@@ -1284,8 +1324,8 @@ MonoBehaviour:
   waveTimerText: {fileID: 897941860}
   waveTimerObject: {fileID: 1627909897}
   progressBar: {fileID: 1728474837}
-  delayBetweenWaves: 30
-  firstWaveDelay: 55
+  delayBetweenWaves: 15
+  firstWaveDelay: 15
 --- !u!4 &476528021
 Transform:
   m_ObjectHideFlags: 0
@@ -5225,6 +5265,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1095994656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1613366364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1677708571776409698, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+  m_PrefabInstance: {fileID: 991120785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1627747064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6282,7 +6327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1855537441}
-  - component: {fileID: 1855537442}
   m_Layer: 5
   m_Name: CameraTutorialDummyObject
   m_TagString: Untagged
@@ -6304,47 +6348,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 392901949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 200}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 760, y: -340}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &1855537442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855537440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d47f90f83a8ec4eadcf50d70b4355d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
-  <TutorialText>k__BackingField: 
-  <TutorialPrefab>k__BackingField: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-  <OverridePosition>k__BackingField: 0
-  <TargetPosition>k__BackingField: {x: 0, y: 0, z: 0}
-  finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
-  OnTutorialShownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 476528020}
-        m_TargetAssemblyTypeName: Grubitecht.Waves.WaveManager, Assembly-CSharp
-        m_MethodName: set_IsPaused
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnTutorialFinishedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2013175655
 GameObject:
   m_ObjectHideFlags: 0

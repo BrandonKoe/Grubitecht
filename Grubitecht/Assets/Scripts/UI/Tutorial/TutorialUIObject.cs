@@ -5,7 +5,6 @@
 //
 // Brief Description : Controls tutorial text objects that are shown during the tutorial.
 *****************************************************************************/
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -13,14 +12,14 @@ namespace Grubitecht.UI.Tutorial
 {
     public class TutorialUIObject : MonoBehaviour
     {
-        [SerializeField] private RectTransform arrow;
+        [field: SerializeField] public RectTransform Arrow { get; private set; }
         [field: SerializeField] public TMP_Text TextObject { get; private set; }
 
         [SerializeField] private Vector3 worldOffset = new Vector3(0, 1, 0);
-        [SerializeField] private Vector2 UIOffset;
+        [field: SerializeField] public Vector2 UIOffset { get; set; }
         [SerializeField] private float padding;
 
-        private TutorializedObject target;
+        private GameObject target;
         private Vector3 targetPositionOverride;
 
         #region Properties
@@ -54,10 +53,10 @@ namespace Grubitecht.UI.Tutorial
         /// <summary>
         /// initializes the tutorial with a target object.
         /// </summary>
-        /// <param name="target"></param>
-        public void Initialize(TutorializedObject target)
+        /// <param name="tutorial"></param>
+        public void Initialize(Tutorial tutorial)
         {
-            this.target = target;
+            this.target = tutorial.TargetObject;
             UpdatePosition();
         }
 
@@ -105,15 +104,17 @@ namespace Grubitecht.UI.Tutorial
         {
             // The position in screen space that represents the position of the spawn point this
             // predictor represents.
+            Debug.Log(TargetPosition);
             Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
-                TargetPosition + worldOffset) + UIOffset;
-
+                TargetPosition + worldOffset);
+            Vector2 offsetOriginPos = realOriginPos + UIOffset;
+            Debug.Log(realOriginPos);
             Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
             // The actual base position that this object will be located at after it has been clamped to
             // be within the bounds of the canvas.
             Vector2 displayOriginPos = new Vector2(
-                Mathf.Clamp(realOriginPos.x, margins.x, Screen.width - margins.x),
-                Mathf.Clamp(realOriginPos.y, margins.y, Screen.height - margins.y));
+                Mathf.Clamp(offsetOriginPos.x, margins.x, Screen.width - margins.x),
+                Mathf.Clamp(offsetOriginPos.y, margins.y, Screen.height - margins.y));
 
             rectTransform.anchoredPosition = displayOriginPos;
 
@@ -142,26 +143,26 @@ namespace Grubitecht.UI.Tutorial
 
             // Updates the rotation of the arrow to face the dominant direction.
             float angle = MathHelpers.VectorToDegAngle(dominantDirection);
-            arrow.eulerAngles = new Vector3(arrow.eulerAngles.x, arrow.eulerAngles.y, angle);
+            Arrow.eulerAngles = new Vector3(Arrow.eulerAngles.x, Arrow.eulerAngles.y, angle);
 
-            Vector2 boundingBox = new Vector2((rectTransform.rect.width + arrow.rect.width) / 2,
-                (rectTransform.rect.height + arrow.rect.height) / 2);
+            Vector2 boundingBox = new Vector2((rectTransform.rect.width + Arrow.rect.width) / 2,
+                (rectTransform.rect.height + Arrow.rect.height) / 2);
             // Updates the arrow's position to move along the edge of the tutorial object.
             // If horizontal is our dominant direction...
             if (dominantDirection.x > dominantDirection.y)
             {
-                Vector2 pos = arrow.anchoredPosition;
+                Vector2 pos = Arrow.anchoredPosition;
                 pos.x = boundingBox.x * dominantDirection.x;
                 pos.y = Mathf.Clamp(realOriginPos.y, -boundingBox.y, boundingBox.y);
-                arrow.anchoredPosition = pos;
+                Arrow.anchoredPosition = pos;
             }
             // If vertical is our dominant direction...
             else
             {
-                Vector2 pos = arrow.anchoredPosition;
+                Vector2 pos = Arrow.anchoredPosition;
                 pos.y = boundingBox.y * dominantDirection.y;
                 pos.x = Mathf.Clamp(realOriginPos.x, -boundingBox.x, boundingBox.x);
-                arrow.anchoredPosition = pos;
+                Arrow.anchoredPosition = pos;
             }
         }
     }

@@ -12,20 +12,27 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Camera Controls
 
-
         - Rotate
 
         - Pan
 
-        - Zoom'
+        - Zoom
+
+
+        Press
+        Space to Continue'
+      objectReference: {fileID: 0}
+    - target: {fileID: 25915970137705168, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 25915970137705168, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2743728525423081404, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -50
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 2743728525423081404, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -33,7 +40,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2743728525423081404, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2743728525423081404, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -47,6 +54,14 @@ PrefabInstance:
       propertyPath: UIOffset.x
       value: -100
       objectReference: {fileID: 0}
+    - target: {fileID: 7769413107654449556, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
+      propertyPath: <UIOffset>k__BackingField.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769413107654449556, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
+      propertyPath: <UIOffset>k__BackingField.y
+      value: 237.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -57,27 +72,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 260
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 8798873612990987223, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
       propertyPath: m_LocalPosition.x

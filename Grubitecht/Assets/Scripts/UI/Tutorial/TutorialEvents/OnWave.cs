@@ -5,21 +5,25 @@
 //
 // Brief Description : Controls the events that trigger a tutorial as finished.
 *****************************************************************************/
+using Grubitecht.Waves;
+using Grubitecht.World.Objects;
 using UnityEngine;
 
 namespace Grubitecht.UI.Tutorial
 {
-    [CreateAssetMenu(fileName = "DefaultInput", menuName = "Grubitecht/TutorialEvents/Basic Input")]
-    public class DefaultInput : TutorialEvent
+    [CreateAssetMenu(fileName = "OnWave", menuName = "Grubitecht/TutorialEvents/On Wave")]
+    public class OnWave : TutorialEvent
     {
         public override void Initialize(Tutorial obj)
         {
-            TutorialInputController.OnConfirmTutorialEvent += obj.CompleteTutorial;
+            SpawnPoint sPoint = obj.TargetObject.GetComponent<SpawnPoint>();
+            sPoint.OnSpawnWave += obj.CompleteTutorial;
         }
 
         public override void Deinitialize(Tutorial obj)
         {
-            TutorialInputController.OnConfirmTutorialEvent -= obj.CompleteTutorial;
+            SpawnPoint sPoint = obj.TargetObject.GetComponent<SpawnPoint>();
+            sPoint.OnSpawnWave -= obj.CompleteTutorial;
         }
     }
 }

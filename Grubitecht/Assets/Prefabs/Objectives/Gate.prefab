@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  <Layer>k__BackingField: 0
+  <Layer>k__BackingField: 3
 --- !u!114 &5616972945258820724
 MonoBehaviour:
   m_ObjectHideFlags: 0
