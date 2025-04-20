@@ -38,7 +38,7 @@ namespace Grubitecht.Combat
             CallOnPerformedAttackEvent(target);
             // Create a new projectile and launch it at the target.
             Projectile proj = Instantiate(projectilePrefab, transform.position + projectileOffset, 
-                Quaternion.identity, transform);
+                Quaternion.identity);
             proj.Launch(target, ProjectileAttackAction);
         }
 

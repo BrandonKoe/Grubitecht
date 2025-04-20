@@ -405,10 +405,12 @@ namespace Grubitecht.World
         /// <param name="spawnOrigin">The tile that the enemy will spawn from.</param>
         public static void SpawnEnemy(EnemyController enemyPrefab, VoxelTile spawnOrigin, bool isSpawned = true)
         {
-            EnemyController spawnedEnemy = Instantiate(enemyPrefab, EnemyParent);
+            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin, enemyPrefab.gridObject.Layer);
+
+            EnemyController spawnedEnemy = Instantiate(enemyPrefab, 
+                VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition), Quaternion.identity, EnemyParent);
 
             //spawnedEnemy.name = spawnedEnemy.name + i;
-            VoxelTile tile = VoxelTilemap3D.Main_FindEmptyTile(spawnOrigin, spawnedEnemy.gridObject.Layer);
             spawnedEnemy.gridObject.SetCurrentSpace(tile);
             spawnedEnemy.gridObject.SnapToSpace();
             spawnedEnemy.PathToTarget();

@@ -4845,4 +4845,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileParticles: {fileID: 5541096451232030229}
   initialSpeed: 5
-  acceleration: 0

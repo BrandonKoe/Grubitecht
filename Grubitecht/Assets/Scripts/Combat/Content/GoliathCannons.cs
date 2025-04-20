@@ -6,6 +6,7 @@
 // Brief Description : Controls the cannon attack of the tiphia goliath boss.
 *****************************************************************************/
 using Grubitecht.World.Objects;
+using System.Collections;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -55,7 +56,7 @@ namespace Grubitecht.Combat
                 CallOnPerformedAttackEvent(target);
                 // Create a new projectile and launch it at the target.
                 Projectile proj = Instantiate(projectilePrefab, transform.position + projectileOffset,
-                    Quaternion.identity, transform);
+                    Quaternion.identity);
                 proj.Launch(target, ProjectileAttackAction);
             }
         }

@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 0
   m_Name: GoliathCannonBlast
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7492375246098123718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,7 +107,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1504,8 +1504,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.053384088
-          outSlope: -0.053384088
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -1513,8 +1513,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: -0.9822235
-          inSlope: 0.6367948
-          outSlope: 0.6367948
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.16750258
@@ -1528,8 +1528,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: -0.9822235
-          inSlope: 0.35098338
-          outSlope: 0.35098338
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -1537,8 +1537,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0.04639663
-          outSlope: 0.04639663
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.19157475
@@ -1557,20 +1557,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0.05608595
-          outSlope: 0.05608595
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0.15847541
         - serializedVersion: 3
           time: 1
-          value: -1
-          inSlope: -0.6688475
-          outSlope: -0.6688475
+          value: -0.9822217
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.15947843
+          inWeight: 0.1266039
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1581,20 +1581,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.14936382
-          outSlope: -0.14936382
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0.17853561
         - serializedVersion: 3
           time: 1
-          value: -1
-          inSlope: -0.69507676
-          outSlope: -0.69507676
+          value: -0.9822217
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.15346038
+          inWeight: 0.20762289
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -2078,12 +2078,12 @@ ParticleSystem:
         m_RotationOrder: 4
     inWorldSpace: 0
   InheritVelocityModule:
-    enabled: 0
-    m_Mode: 0
+    enabled: 1
+    m_Mode: 1
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4854,4 +4854,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileParticles: {fileID: 839703177819789022}
-  initialSpeed: 15
+  initialSpeed: 20
