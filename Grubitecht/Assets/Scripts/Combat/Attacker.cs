@@ -103,7 +103,7 @@ namespace Grubitecht.Combat
             // Stop attacking if we attempt to attack a null target.
             if (target == null)
             {
-                isAttacking = false;
+                HandleOnLoseTarget();
                 return;
             }
             CallOnPerformedAttackEvent(target);

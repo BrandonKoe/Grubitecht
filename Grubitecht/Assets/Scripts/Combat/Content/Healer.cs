@@ -76,6 +76,7 @@ namespace Grubitecht.Combat
         {
             if (!targeter.HasTarget && isHealing)
             {
+                //Debug.Log("Healing has stopped");
                 isHealing = false;
             }
         }
@@ -96,14 +97,12 @@ namespace Grubitecht.Combat
         /// Gets the closest target that has the lowest health.
         /// </summary>
         /// <returns>The closest attackable target with the lowest health.</returns>
-        private Attackable GetClosestUnhealedTarget()
+        private Attackable GetUnhealedTarget()
         {
             List<Attackable> targets = new List<Attackable>(); 
             targets.AddRange(targeter.TargetsInRange);
-            // Sorts the targets by their current health, then biases it by distance.
-            // Lower health targets are prioritized.
-            targets.OrderBy(item => item.Health + Vector3.Distance(item.transform.position, transform.position));
-            return targets.FirstOrDefault();
+            // Low health targets are always healed first.
+            return targets.OrderBy(item => item.Health).FirstOrDefault();
         }
 
         /// <summary>
@@ -111,7 +110,14 @@ namespace Grubitecht.Combat
         /// </summary>
         private void HealAction()
         {
-            Attackable target = GetClosestUnhealedTarget();
+            Attackable target = GetUnhealedTarget();
+            // Stop healing if we attempt to heal a null target.
+            if (target == null)
+            {
+                HandleOnLoseTarget();
+                return;
+            }
+            Debug.Log("Healing target " + target + " who has " + target.Health + " HP");
             Heal(target);
             OnHealAction?.Invoke(target);
         }
@@ -122,18 +128,13 @@ namespace Grubitecht.Combat
         /// <param name="target">The target to heal</param>
         public void Heal(Attackable target)
         {
-            // Stop healing if we attempt to attack a null target.
-            if (target == null)
-            {
-                isHealing = false;
-                return;
-            }
+            if (target == null) { return; }
             // Dont heal a target that has max health.
             if (target.Health >= target.MaxHealth)
             {
                 return;
             }
-            // Attack the closest target.
+            // Heals the target.
             target.ChangeHealth(HealingStrength);
             OnHeal?.Invoke(target);
         }

@@ -86,6 +86,7 @@ namespace Grubitecht.Combat
         {
             // Show the change to the health value here.
             Health += value;
+            Health = Mathf.Clamp(Health, 0, MaxHealth);
             DamageIndicator.DisplayHealthChange(value, this, damageIndicatorColor);
             if (hasHealthBar)
             {
