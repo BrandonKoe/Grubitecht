@@ -25,6 +25,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4697995366346233101, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: pathingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697995366346233101, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <EnemySpriteIcon>k__BackingField
       value: 
       objectReference: {fileID: 21300000, guid: 4069829d33335ea4a9a8fe33a7b3c1c7, type: 3}

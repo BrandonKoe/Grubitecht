@@ -86,7 +86,7 @@ namespace Grubitecht.World.Pathfinding
         /// </summary>
         public override void StopMoving()
         {
-            if (movementRoutine != null)
+            if (movementRoutine != null && currentPath.Count > 0)
             {
                 //StopCoroutine(movementRoutine);
                 //movementRoutine = null;

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemySpriteIcon>k__BackingField: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
-  pathingType: 1
+  pathingType: 0
   rePathFrequency: 0.5
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
   targeter: {fileID: 6308435001518308473}
