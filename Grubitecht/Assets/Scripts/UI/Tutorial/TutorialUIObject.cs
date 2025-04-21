@@ -83,9 +83,9 @@ namespace Grubitecht.UI.Tutorial
         /// </summary>
         private void UpdateUIPosition(RectTransform target)
         {
-            Vector2 realOriginPos = target.anchoredPosition + UIOffset;
+            Vector2 realOriginPos = (Vector2)target.position + UIOffset;
 
-            rectTransform.anchoredPosition = realOriginPos;
+            rectTransform.position = realOriginPos;
 
             //UpdateArrow(realOriginPos);
         }
@@ -98,9 +98,10 @@ namespace Grubitecht.UI.Tutorial
             // The position in screen space that represents the position of the spawn point this
             // predictor represents.
             //Debug.Log(TargetPosition);
-            Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
-                target.transform.position + worldOffset) + UIOffset;
-            Vector2 offsetOriginPos = realOriginPos;
+            //Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
+            //    target.transform.position + worldOffset) + UIOffset;
+            Vector2 realOriginPos = (Vector2)Camera.main.WorldToScreenPoint(target.transform.position + worldOffset);
+            Vector2 offsetOriginPos = realOriginPos + UIOffset;
             //Debug.Log(realOriginPos);
             Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
             // The actual base position that this object will be located at after it has been clamped to
@@ -109,7 +110,7 @@ namespace Grubitecht.UI.Tutorial
                 Mathf.Clamp(offsetOriginPos.x, margins.x, Screen.width - margins.x),
                 Mathf.Clamp(offsetOriginPos.y, margins.y, Screen.height - margins.y));
 
-            rectTransform.anchoredPosition = displayOriginPos;
+            rectTransform.position = displayOriginPos;
 
             //UpdateArrow(realOriginPos);
         }
