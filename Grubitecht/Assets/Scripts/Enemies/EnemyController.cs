@@ -261,7 +261,7 @@ namespace Grubitecht.World
                     iterationNum++;
                     if (iterationNum == 100)
                     {
-                        Debug.Log("Random movement iteration limit was hit.");
+                        Debug.LogError("Random movement iteration limit was hit.");
                         if (!isRePathing)
                         {
                             rePathRoutine = thisEnemy.StartCoroutine(RePathRoutine(thisEnemy));

@@ -72,7 +72,7 @@ namespace Grubitecht
         {
             if (!CheckGrub())
             {
-                Debug.LogError("There are no more grubs left to assign.");
+                Debug.Log("There are no more grubs left to assign.");
                 return;
             }
             if (dispatchedGrubs.ContainsKey(obj)) { return; }

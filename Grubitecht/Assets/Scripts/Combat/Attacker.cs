@@ -110,6 +110,7 @@ namespace Grubitecht.Combat
         protected virtual void AttackAction()
         {
             Attackable target = targeter.ClosestTarget;
+            //Debug.Log(name + " Attacked " + target);
             // Stop the attack if we attempt to attack a null target.
             if (target == null)
             {

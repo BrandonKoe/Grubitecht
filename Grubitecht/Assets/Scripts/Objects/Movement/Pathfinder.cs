@@ -168,7 +168,7 @@ namespace Grubitecht.World.Pathfinding
                     neighbor.Node.previousNode = current;
                 }    
             }
-            Debug.Log("Empty Path");
+            Debug.Log("Empty Path from " + startingTile + " to " + endingTile);
             UncloseNodes(closedList);
             // If all else fails, then we return null and let the caller handle the null ref.
             return null;
