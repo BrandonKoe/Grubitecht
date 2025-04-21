@@ -96,8 +96,9 @@ namespace Grubitecht.UI.Tutorial
             // Set the dimensions of the tutorial.
             RectTransform trTrans = tObj.transform as RectTransform;
             trTrans.sizeDelta = tutorialObj.TutorialDimensions;
-            // Auto-Set the offset of the tutorial 
-            tObj.UIOffset = (tutorialObj.TutorialDimensions / 2);
+            // Auto-Set the offset of the tutorial based on it's size because tutorials have to have a bottom left
+            // aligned rect.
+            tObj.UIOffset = tutorialObj.TutorialOffset + (-tutorialObj.TutorialDimensions / 2);
             if (tutorialObj.OverridePosition)
             {
                 tObj.Initialize(tutorialObj.TargetPosition);

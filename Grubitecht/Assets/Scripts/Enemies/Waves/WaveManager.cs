@@ -32,6 +32,8 @@ namespace Grubitecht.Waves
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
 
+        public event Action OnFinishWave;
+
         #region Properties
         public static int EnemyNumber
         {
@@ -203,6 +205,7 @@ namespace Grubitecht.Waves
                 {
                     progressBar.EndWave();
                 }
+                OnFinishWave?.Invoke();
             }
 
             // Win the level once all waves are detfeated.

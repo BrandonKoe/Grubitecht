@@ -20,6 +20,8 @@ namespace Grubitecht.UI.Tutorial
         private string tutorialText;
         [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting]
         private Vector2 tutorialDimensions;
+        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting]
+        private Vector2 tutorialOffset;
         [SerializeField, ShowIf("type", TutorialType.GameObject), AllowNesting] 
         private TutorialUIObject tutorialPrefab;
         [SerializeField] private bool overridePosition;
@@ -38,6 +40,7 @@ namespace Grubitecht.UI.Tutorial
         public TutorialType Type => type;
         public string TutorialText => tutorialText;
         public Vector2 TutorialDimensions => tutorialDimensions;
+        public Vector2 TutorialOffset => tutorialOffset;
         public TutorialUIObject TutorialPrefab => tutorialPrefab;
         public bool OverridePosition => overridePosition;
         public Vector3 TargetPosition => targetPosition;
