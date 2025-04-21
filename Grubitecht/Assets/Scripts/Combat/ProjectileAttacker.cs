@@ -6,9 +6,6 @@
 // Brief Description : Special attacker type that launches projectiles at their target periodically.
 // Main difference with projectile attackers is that their attacks are delayed until the projectile actually hits.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -27,10 +24,9 @@ namespace Grubitecht.Combat
         {
             //base.AttackAction();
             Attackable target = targeter.ClosestTarget;
-            // Stop attacking if we attempt to attack a null target.
+            // Prevent the attack if we attempt to attack a null target.
             if (target == null)
             {
-                isAttacking = false;
                 return;
             }
             // Call the OnPerformedAttack event here to denote the attack has been used, it just hasnt triggered as
@@ -40,6 +36,8 @@ namespace Grubitecht.Combat
             Projectile proj = Instantiate(projectilePrefab, transform.position + projectileOffset, 
                 Quaternion.identity);
             proj.Launch(target, ProjectileAttackAction);
+            // Forces this attacker to cool down.
+            StartCoroutine(Cooldown());
         }
 
         /// <summary>

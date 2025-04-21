@@ -14,28 +14,17 @@ namespace Grubitecht.UI.Tutorial
     {
         //[field: SerializeField] public RectTransform Arrow { get; private set; }
         [field: SerializeField] public TMP_Text TextObject { get; private set; }
+        [field: SerializeField] public GameObject SpaceToContinueObject { get; private set; }
+        [SerializeField] private TutorialEvent defaultEvent;
 
         [SerializeField] private Vector3 worldOffset = new Vector3(0, 1, 0);
         [field: SerializeField] public Vector2 UIOffset { get; set; }
         [SerializeField] private float padding;
 
         private GameObject target;
-        private Vector3 targetPositionOverride;
 
         #region Properties
         private RectTransform rectTransform => (RectTransform)transform;
-
-        private Vector3 TargetPosition
-        {
-            get
-            {
-                if (target != null)
-                {
-                    return target.transform.position;
-                }
-                return targetPositionOverride;
-            }
-        }
         #endregion
 
         /// <summary>
@@ -57,18 +46,22 @@ namespace Grubitecht.UI.Tutorial
         public void Initialize(Tutorial tutorial)
         {
             this.target = tutorial.TargetObject;
+            if (tutorial.FinishEvent == defaultEvent)
+            {
+                SpaceToContinueObject.SetActive(true);
+            }
             UpdatePosition();
         }
 
-        /// <summary>
-        /// initializes the tutorial with a target object.
-        /// </summary>
-        /// <param name="target"></param>
-        public void Initialize(Vector3 targetPosition)
-        {
-            this.targetPositionOverride = targetPosition;
-            UpdatePosition();
-        }
+        ///// <summary>
+        ///// initializes the tutorial with a target object.
+        ///// </summary>
+        ///// <param name="target"></param>
+        //public void Initialize(Vector3 targetPosition)
+        //{
+        //    this.targetPositionOverride = targetPosition;
+        //    UpdatePosition();
+        //}
 
         /// <summary>
         /// Updates the position of the tutorial so it's near the object it's talking about.
@@ -90,9 +83,9 @@ namespace Grubitecht.UI.Tutorial
         /// </summary>
         private void UpdateUIPosition(RectTransform target)
         {
-            Vector2 realOriginPos = target.anchoredPosition + UIOffset;
+            Vector2 realOriginPos = (Vector2)target.position + UIOffset;
 
-            rectTransform.anchoredPosition = realOriginPos;
+            rectTransform.position = realOriginPos;
 
             //UpdateArrow(realOriginPos);
         }
@@ -105,9 +98,10 @@ namespace Grubitecht.UI.Tutorial
             // The position in screen space that represents the position of the spawn point this
             // predictor represents.
             //Debug.Log(TargetPosition);
-            Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
-                TargetPosition + worldOffset) + UIOffset;
-            Vector2 offsetOriginPos = realOriginPos;
+            //Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
+            //    target.transform.position + worldOffset) + UIOffset;
+            Vector2 realOriginPos = (Vector2)Camera.main.WorldToScreenPoint(target.transform.position + worldOffset);
+            Vector2 offsetOriginPos = realOriginPos + UIOffset;
             //Debug.Log(realOriginPos);
             Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
             // The actual base position that this object will be located at after it has been clamped to
@@ -116,7 +110,7 @@ namespace Grubitecht.UI.Tutorial
                 Mathf.Clamp(offsetOriginPos.x, margins.x, Screen.width - margins.x),
                 Mathf.Clamp(offsetOriginPos.y, margins.y, Screen.height - margins.y));
 
-            rectTransform.anchoredPosition = displayOriginPos;
+            rectTransform.position = displayOriginPos;
 
             //UpdateArrow(realOriginPos);
         }

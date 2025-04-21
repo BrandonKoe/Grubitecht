@@ -55,12 +55,13 @@ namespace Grubitecht.World.Pathfinding
             }
             //Debug.Log("Set destination of object" + gameObject.name + " to " + destination);
             VoxelTile tileToStart = gridObject.CurrentTile;
-            currentPath = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, gridObject.Layer, 
-                includeAdjacent);
+            // Use a buffer here so we can check that our path is valid before we use it as our current path.
+            List<VoxelTile> pathBuffer = Pathfinder.FindPath(tileToStart, destinationSpace, climbHeight, 
+                gridObject.Layer, includeAdjacent);
 
             // If the current path is empty, then there isnt a valid path to the given destination we should let the
             // callback know that there is no valid path.
-            if (currentPath == null)
+            if (pathBuffer == null)
             {
                 //Debug.Log("Invalid path");
                 finishCallback?.Invoke(PathStatus.Invalid);
@@ -68,9 +69,9 @@ namespace Grubitecht.World.Pathfinding
             }
 
             // If our current path contains no elements, then we are already at our destination.
-            if (currentPath.Count == 0)
+            if (pathBuffer.Count == 0)
             {
-                currentPath.Add(gridObject.CurrentTile);
+                pathBuffer.Add(gridObject.CurrentTile);
             }
 
             if (movementRoutine != null)
@@ -78,6 +79,7 @@ namespace Grubitecht.World.Pathfinding
                 StopCoroutine(movementRoutine);
                 movementRoutine = null;
             }
+            currentPath = pathBuffer;
             movementRoutine = StartCoroutine(MovementRoutine(finishCallback));
         }
 
@@ -86,7 +88,7 @@ namespace Grubitecht.World.Pathfinding
         /// </summary>
         public override void StopMoving()
         {
-            if (movementRoutine != null)
+            if (movementRoutine != null && currentPath.Count > 0)
             {
                 //StopCoroutine(movementRoutine);
                 //movementRoutine = null;
@@ -167,6 +169,14 @@ namespace Grubitecht.World.Pathfinding
                 }
 
                 yield return null;
+                // After the yield, check to make sure our path is still valid.  It should be, but an extra check
+                // to prevent errors is good
+                if (currentPath == null)
+                {
+                    //Debug.Log("Invalid path");
+                    finishCallback?.Invoke(PathStatus.Invalid);
+                    yield break;
+                }
             }
             //// Yield an extra time here to prevent an infinite loop where the finish callback re-calls set destination.
             //// This yield will turn that loop into a buffered loop each frame so it will still continue to loop, but

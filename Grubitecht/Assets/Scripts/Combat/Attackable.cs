@@ -126,7 +126,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(MaxHealth, 1, "Max Health")
+                new NumValue(MaxHealth, 01, "Max Health")
             };
         }
     }

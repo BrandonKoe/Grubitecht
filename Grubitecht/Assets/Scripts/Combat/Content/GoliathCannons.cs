@@ -19,20 +19,29 @@ namespace Grubitecht.Combat
         protected override void Awake()
         {
             base.Awake();
-            isAttacking = true;
-            StartCoroutine(AttackRoutine());
+            // The goliath cannons immediately start on cooldown and will attack once the cooldown is finished.
+            StartCoroutine(Cooldown());
         }
-        /// <summary>
-        /// Goliath cannons don't care about targeting being toggled since they target all objectives regardless of 
-        /// range
-        /// </summary>
-        protected override void HandleOnGainTarget()
+        ///// <summary>
+        ///// Goliath cannons don't care about targeting being toggled since they target all objectives regardless of 
+        ///// range
+        ///// </summary>
+        //protected override void HandleOnGainTarget()
+        //{
+        //    //base.HandleOnGainTarget();
+        //}
+        //protected override void HandleOnLoseTarget()
+        //{
+        //    //base.HandleOnLoseTarget();
+        //}
+
+        protected override IEnumerator Cooldown()
         {
-            //base.HandleOnGainTarget();
-        }
-        protected override void HandleOnLoseTarget()
-        {
-            //base.HandleOnLoseTarget();
+            onCooldown = true;
+            yield return new WaitForSeconds(AttackCooldown);
+            onCooldown = false;
+            // Dont perform a HasTarget check here because we should always have a target.
+            AttackAction();
         }
 
         /// <summary>
@@ -43,7 +52,6 @@ namespace Grubitecht.Combat
             // Stop attacking once there are no more current objectives.
             if (Objective.CurrentObjectives.Count == 0)
             {
-                isAttacking = false;
                 return;
             }
             foreach (Objective objective in Objective.CurrentObjectives)
@@ -59,6 +67,8 @@ namespace Grubitecht.Combat
                     Quaternion.identity);
                 proj.Launch(target, ProjectileAttackAction);
             }
+            // Forces this attacker to cool down.
+            StartCoroutine(Cooldown());
         }
     }
 }

@@ -15,10 +15,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Select",
-                    "type": "Button",
-                    "id": "d1c670b6-0534-41b5-9c4d-69814184d8a7",
-                    "expectedControlType": "Button",
+                    "name": "Delta",
+                    "type": "PassThrough",
+                    "id": "5feba3b2-ad1e-454e-9226-8be9536c392f",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -33,25 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Delta",
-                    "type": "PassThrough",
-                    "id": "5feba3b2-ad1e-454e-9226-8be9536c392f",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "245c1c3f-cbc6-4f80-8c8f-54aa9fd6778b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Deselect",
+                    "name": "Rotate",
                     "type": "Button",
                     "id": "efacca23-363f-4df7-afc3-96dfe53bb2b2",
                     "expectedControlType": "Button",
@@ -64,6 +46,33 @@
                     "type": "PassThrough",
                     "id": "a849b710-69b6-4a04-8007-cccb19c00457",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "d1c670b6-0534-41b5-9c4d-69814184d8a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Deselect",
+                    "type": "Button",
+                    "id": "ab6b20b9-a308-426b-9e7d-31deae4b4a29",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "245c1c3f-cbc6-4f80-8c8f-54aa9fd6778b",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -92,34 +101,12 @@
                 },
                 {
                     "name": "",
-                    "id": "8c59d541-54fc-49f6-8512-e71542693665",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c32b4f01-cd51-4f1b-92dd-5d5a61efb598",
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Pan",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a9902ea0-1db6-4dd6-b8df-2f2806689f82",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Delta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,12 +134,34 @@
                 },
                 {
                     "name": "",
+                    "id": "52b6c9d8-f649-47ed-a3cf-2ae1fee3331b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9902ea0-1db6-4dd6-b8df-2f2806689f82",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "72a61f7a-2aa6-447a-af85-6ea81a71b63a",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Deselect",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -169,12 +178,23 @@
                 },
                 {
                     "name": "",
-                    "id": "52b6c9d8-f649-47ed-a3cf-2ae1fee3331b",
-                    "path": "<Keyboard>/space",
+                    "id": "8c59d541-54fc-49f6-8512-e71542693665",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Confirm",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5deec0ef-ad90-49ba-9faa-aff00cb78fd4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deselect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

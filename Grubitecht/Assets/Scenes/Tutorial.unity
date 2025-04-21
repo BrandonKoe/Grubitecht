@@ -364,8 +364,6 @@ MonoBehaviour:
     tutorialDimensions: {x: 0, y: 0}
     tutorialOffset: {x: 0, y: 0}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -390,10 +388,8 @@ MonoBehaviour:
     tutorialText: In Grubitech, it's your job to reorganize the town to keep these
       houses safe from incoming enemies.
     tutorialDimensions: {x: 320, y: 300}
-    tutorialOffset: {x: 0, y: 200}
+    tutorialOffset: {x: 0, y: 250}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -405,10 +401,8 @@ MonoBehaviour:
     type: 0
     tutorialText: These Indicators show what enemies will spawn.
     tutorialDimensions: {x: 320, y: 200}
-    tutorialOffset: {x: 200, y: 200}
+    tutorialOffset: {x: 250, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -420,10 +414,8 @@ MonoBehaviour:
     type: 0
     tutorialText: Military structures like this will attack the enemies for you.
     tutorialDimensions: {x: 300, y: 275}
-    tutorialOffset: {x: 0, y: 200}
+    tutorialOffset: {x: 0, y: 250}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -436,10 +428,8 @@ MonoBehaviour:
     tutorialText: This house is too close to the spawn point, it's going to get slaughtered! 
       We should move it back to where the other structures are.
     tutorialDimensions: {x: 400, y: 300}
-    tutorialOffset: {x: 0, y: 200}
+    tutorialOffset: {x: 0, y: 250}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -451,10 +441,8 @@ MonoBehaviour:
     type: 0
     tutorialText: Click on the house to select it.
     tutorialDimensions: {x: 300, y: 150}
-    tutorialOffset: {x: 0, y: 200}
+    tutorialOffset: {x: 0, y: 100}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -468,8 +456,6 @@ MonoBehaviour:
     tutorialDimensions: {x: 350, y: 250}
     tutorialOffset: {x: 0, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: 8ca2c063c9591f144994a8864fe1e77c, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -506,10 +492,8 @@ MonoBehaviour:
     tutorialText: Congratulations!  You assigned a Grubitecht!  You can see the number
       of Grubitechts you have available to you up here.
     tutorialDimensions: {x: 350, y: 300}
-    tutorialOffset: {x: 150, y: -300}
+    tutorialOffset: {x: 0, y: -300}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -521,10 +505,8 @@ MonoBehaviour:
     type: 0
     tutorialText: 'The enemies are on their way!  '
     tutorialDimensions: {x: 200, y: 200}
-    tutorialOffset: {x: 150, y: 200}
+    tutorialOffset: {x: 150, y: 150}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: 49a20b20e73ddd243a7735a34f4bc4a4, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -550,8 +532,6 @@ MonoBehaviour:
     tutorialDimensions: {x: 200, y: 150}
     tutorialOffset: {x: 200, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: ba52873f75ad7e44fba68dbe692c51fa, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -564,10 +544,8 @@ MonoBehaviour:
     tutorialText: 'There are flying enemies on the way next wave. Only certain structures
       can hit flying enemies. '
     tutorialDimensions: {x: 300, y: 300}
-    tutorialOffset: {x: 200, y: 200}
+    tutorialOffset: {x: 250, y: 300}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -591,10 +569,8 @@ MonoBehaviour:
     type: 0
     tutorialText: Click on the Archery Tower.
     tutorialDimensions: {x: 200, y: 200}
-    tutorialOffset: {x: 100, y: 200}
+    tutorialOffset: {x: 0, y: 150}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -602,15 +578,13 @@ MonoBehaviour:
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
-  - targetObject: {fileID: 211342981}
+  - targetObject: {fileID: 781585801}
     type: 0
     tutorialText: While an object is selected, you can view this panel to see informatin
       about it, including enemies.
     tutorialDimensions: {x: 350, y: 300}
-    tutorialOffset: {x: -600, y: -200}
+    tutorialOffset: {x: -400, y: 0}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -623,10 +597,8 @@ MonoBehaviour:
     tutorialText: We should move the archery tower up front so it can attack the
       flying enemies.
     tutorialDimensions: {x: 350, y: 250}
-    tutorialOffset: {x: 200, y: 200}
+    tutorialOffset: {x: 250, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: 8ca2c063c9591f144994a8864fe1e77c, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -663,10 +635,8 @@ MonoBehaviour:
     tutorialText: The enemies are on their way again!  It's up to you, arrange your
       defenses!
     tutorialDimensions: {x: 350, y: 250}
-    tutorialOffset: {x: 200, y: 200}
+    tutorialOffset: {x: 250, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    overridePosition: 0
-    targetPosition: {x: 0, y: 0, z: 0}
     finishEvent: {fileID: 11400000, guid: 49a20b20e73ddd243a7735a34f4bc4a4, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
@@ -852,11 +822,11 @@ RectTransform:
   - {fileID: 781585802}
   m_Father: {fileID: 392901949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1920, y: 540}
-  m_SizeDelta: {x: 400, y: 1080}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -200, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211342983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,11 +1161,11 @@ RectTransform:
   - {fileID: 135535178}
   m_Father: {fileID: 392901949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 1030}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 250, y: -100}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &338615315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1478,7 +1448,6 @@ RectTransform:
   - {fileID: 1830920593}
   - {fileID: 855666527}
   - {fileID: 1629559652}
-  - {fileID: 80692807}
   - {fileID: 1855537441}
   - {fileID: 293803193}
   - {fileID: 1627909898}
@@ -1486,6 +1455,7 @@ RectTransform:
   - {fileID: 929058951}
   - {fileID: 1354504498}
   - {fileID: 211342982}
+  - {fileID: 80692807}
   - {fileID: 1245512253}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -167,8 +167,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(detectionRange, 4, "Range"),
-                new StringValue($"Targets {targetingType.ToString()}", 5)
+                new NumValue(detectionRange, 40, "Range"),
+                new StringValue($"Targets {targetingType.ToString()}", 41)
             };
         }
     }

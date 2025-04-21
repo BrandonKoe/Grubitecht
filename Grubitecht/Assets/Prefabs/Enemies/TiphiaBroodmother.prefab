@@ -84,7 +84,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5313937129125306824, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_Name
-      value: TiphiaBroodmaster
+      value: TiphiaBroodmother
       objectReference: {fileID: 0}
     - target: {fileID: 5700895998332386554, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: objectName
@@ -103,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <AttackDelay>k__BackingField
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
+      propertyPath: <AttackCooldown>k__BackingField
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6618363788783883500, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <MaxHealth>k__BackingField

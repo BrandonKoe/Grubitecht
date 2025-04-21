@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: <AttackDelay>k__BackingField
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackCooldown>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Name
       value: TiphiaOgre

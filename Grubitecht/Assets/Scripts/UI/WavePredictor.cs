@@ -90,9 +90,11 @@ namespace Grubitecht.UI
         {
             // The position in screen space that represents the position of the spawn point this
             // predictor represents.
-            Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
-                basePosition + baseOffset);
-            Vector2 margins = rectTransform.sizeDelta + (2 * offset * Vector2.one);
+            //Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
+            //    basePosition + baseOffset);
+
+            Vector2 realOriginPos = Camera.main.WorldToScreenPoint(basePosition + baseOffset);
+            Vector2 margins = rectTransform.sizeDelta + (2 * offset * Vector2.one) + (Vector2.one * padding);
             // The actual base position that this predictor will be centered around after it has been clamped to
             // be within the bounds of the canvas.
             Vector2 displayOriginPos = new Vector2(
@@ -102,8 +104,9 @@ namespace Grubitecht.UI
             float angle = angularOffset * typeNumber;
             Vector2 offsetAngle = MathHelpers.DegAngleToUnitVector(90 - angle);
             //Debug.Log(offsetAngle);
-            rectTransform.anchoredPosition = displayOriginPos + offsetAngle * offset;
+            rectTransform.position = displayOriginPos + offsetAngle * offset;
             //transform.localPosition += (Vector3)offsetAngle * offset;
+
 
             UpdatePointerRotation(realOriginPos);
         }
@@ -115,7 +118,7 @@ namespace Grubitecht.UI
         /// <param name="realOriginPos">The screen position that the pointer should point toward.</param>
         private void UpdatePointerRotation(Vector2 realOriginPos)
         {
-            Vector2 pointingVector = realOriginPos - rectTransform.anchoredPosition;
+            Vector2 pointingVector = realOriginPos - (Vector2)rectTransform.position;
             float angle = MathHelpers.VectorToDegAngle(pointingVector);
             Vector3 eulers = backImageTransform.eulerAngles;
             eulers.z = angle;

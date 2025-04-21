@@ -20,7 +20,7 @@ namespace Grubitecht
         private Vector2 rotateBounds = new Vector2(0, 180);
         [SerializeField] private float rotateSpeed;
 
-        protected override string ToggleActionName => "Deselect";
+        protected override string ToggleActionName => "Rotate";
 
         /// <summary>
         /// Rotates the camera when the player holds down right click and moves the mouse.

@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
-  <AttackDelay>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 3
   <AttackStat>k__BackingField: 6
   <targeter>k__BackingField: {fileID: 8835481776803538693}
 --- !u!114 &1418782753462666924

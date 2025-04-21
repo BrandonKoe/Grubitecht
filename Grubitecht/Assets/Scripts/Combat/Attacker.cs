@@ -5,11 +5,9 @@
 //
 // Brief Description : Base class for components that let an object attack and deal damage to attackable objects.
 *****************************************************************************/
-using Grubitecht.World;
-using Grubitecht.World.Objects;
+using Grubitecht.UI.InfoPanel;
 using System;
 using System.Collections;
-using Grubitecht.UI.InfoPanel;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -19,9 +17,9 @@ namespace Grubitecht.Combat
     public class Attacker : ModifiableCombatBehaviour<Attacker>, IInfoProvider
     {
         [field: Header("Stats")]
-        [field: SerializeField] public float AttackDelay { get; set; }
+        [field: SerializeField] public float AttackCooldown { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
-        protected bool isAttacking;
+        protected bool onCooldown;
 
         public event Action<Attackable> OnAttack;
         // OnAttackAction is only called once ever.  Attack is called for every hit target.
@@ -49,48 +47,60 @@ namespace Grubitecht.Combat
         {
             base.Awake();
             targeter.OnGainTarget += HandleOnGainTarget;
-            targeter.OnLoseTarget += HandleOnLoseTarget;
+            //targeter.OnLoseTarget += HandleOnLoseTarget;
         }
         protected override void OnDestroy()
         {
             base.OnDestroy();
             targeter.OnGainTarget -= HandleOnGainTarget;
-            targeter.OnLoseTarget -= HandleOnLoseTarget;
+            //targeter.OnLoseTarget -= HandleOnLoseTarget;
         }
 
         /// <summary>
-        /// When a new target is found, start the attack routine if it isnt already running.
+        /// When a new target is found, perform an attack immediately if the attack is not already on cooldown.
         /// </summary>
         protected virtual void HandleOnGainTarget()
         {
-            if (!isAttacking)
+            if (!onCooldown)
             {
-                isAttacking = true;
-                StartCoroutine(AttackRoutine());
+                AttackAction();
             }
+            //if (!onCooldown)
+            //{
+            //    onCooldown = true;
+            //    StartCoroutine(AttackRoutine());
+            //}
         }
 
-        /// <summary>
-        /// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
-        /// </summary>
-        protected virtual void HandleOnLoseTarget()
-        {
-            if (!targeter.HasTarget && isAttacking)
-            {
-                isAttacking = false;
-            }
-        }
+        ///// <summary>
+        ///// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
+        ///// </summary>
+        //protected virtual void HandleOnLoseTarget()
+        //{
+        //    //if (!targeter.HasTarget && onCooldown)
+        //    //{
+        //    //    onCooldown = false;
+        //    //}
+        //}
 
         /// <summary>
         /// Continually calls the attack function with a given delay in between,
         /// </summary>
         /// <returns>Coroutine.</returns>
-        protected IEnumerator AttackRoutine()
+        protected virtual IEnumerator Cooldown()
         {
-            while (isAttacking && LevelManager.IsPlaying)
+            //while (onCooldown && LevelManager.IsPlaying)
+            //{
+            //    AttackAction();
+            //    yield return new WaitForSeconds(AttackCooldown);
+            //}
+            onCooldown = true;
+            yield return new WaitForSeconds(AttackCooldown);
+            onCooldown = false;
+            // Immediately attack once our attack comes off cooldown if we have a valid target.
+            if (targeter.HasTarget)
             {
                 AttackAction();
-                yield return new WaitForSeconds(AttackDelay);
             }
         }
 
@@ -100,15 +110,18 @@ namespace Grubitecht.Combat
         protected virtual void AttackAction()
         {
             Attackable target = targeter.ClosestTarget;
-            // Stop attacking if we attempt to attack a null target.
+            //Debug.Log(name + " Attacked " + target);
+            // Stop the attack if we attempt to attack a null target.
             if (target == null)
             {
-                HandleOnLoseTarget();
+                //HandleOnLoseTarget();
                 return;
             }
             CallOnPerformedAttackEvent(target);
             Attack(target);
             CallAttackActionEvent(target);
+            // Forces this attacker to cool down.
+            StartCoroutine(Cooldown());
         }
 
         /// <summary>
@@ -154,8 +167,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(AttackStat, 2, "Attack"),
-                new NumValue(AttackDelay, 3, "Attack Delay")
+                new NumValue(AttackStat, 10, "Attack"),
+                new NumValue(AttackCooldown, 10, "Attack Cooldown")
             };
         }
     }

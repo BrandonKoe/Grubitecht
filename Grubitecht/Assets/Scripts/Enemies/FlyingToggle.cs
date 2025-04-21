@@ -147,6 +147,7 @@ namespace Grubitecht.World
             iterationLimit++;
             if (iterationLimit > 100)
             {
+                Debug.LogError("MoveToGrounded iteration limit was hit");
                 iterationLimit = 0;
                 return;
             }

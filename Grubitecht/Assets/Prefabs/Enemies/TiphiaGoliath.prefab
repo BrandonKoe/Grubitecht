@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4496811172796087783}
   attackable: {fileID: 0}
-  <AttackDelay>k__BackingField: 15
+  <AttackCooldown>k__BackingField: 15
   <AttackStat>k__BackingField: 3
   <targeter>k__BackingField: {fileID: 2579683083371204425}
   projectilePrefab: {fileID: 477935802266998269, guid: 45298b2b8dafe7945a70d9a06e7da121, type: 3}
@@ -273,6 +273,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <AttackDelay>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackCooldown>k__BackingField
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5796121273222309063, guid: c49bd8c04679b404986746339f828842, type: 3}

@@ -5,8 +5,6 @@
 //
 // Brief Description : Core class that contains universal information about the object when it takes part in combat.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat

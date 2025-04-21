@@ -90,7 +90,7 @@ namespace Grubitecht.World.Pathfinding
         public static List<VoxelTile> FindPath(VoxelTile startingTile, VoxelTile endingTile, int climbHeight, 
             OccupyLayer layer, bool includeAdjacent = false)
         {
-            Debug.Log("Finding Path");
+            //Debug.Log("Finding Path");
             // Create two lists to manage what tiles need to be evaluated and what tiles have already been evaluated.
             List<PathNode> openList = new();
             List<PathNode> closedList = new();
@@ -168,7 +168,7 @@ namespace Grubitecht.World.Pathfinding
                     neighbor.Node.previousNode = current;
                 }    
             }
-            Debug.Log("Empty Path");
+            Debug.Log("Empty Path from " + startingTile + " to " + endingTile);
             UncloseNodes(closedList);
             // If all else fails, then we return null and let the caller handle the null ref.
             return null;

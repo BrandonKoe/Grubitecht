@@ -67,14 +67,17 @@ namespace Grubitecht.Combat
         /// <param name="other">The object that entered this targeter's range.</param>
         private void OnTriggerEnter(Collider other)
         {
+            //Debug.Log("OnTriggerEnter called for " + name + " by " + other);
             // This targeter should never interact with itself or other triggers.
             if (other.gameObject == gameObject || other.isTrigger) { return; }
             //Debug.Log("New Target");
             if (other.TryGetComponent(out T tar) && CheckTeam(tar.Team) && CheckTags(tar.Tags))
             {
+                //Debug.Log("Adding " + other + " as a target of " + name);
                 AddTarget(tar);
             }
         }
+
         /// <summary>
         /// When an attackable object leaves this targeter's collider, it is no longer in range.
         /// </summary>
