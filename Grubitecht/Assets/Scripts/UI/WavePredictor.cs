@@ -5,6 +5,7 @@
 //
 // Brief Description : Controller for UI objects that displays the next upcoming enemies in a wave.
 *****************************************************************************/
+using Grubitecht.Waves;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -67,6 +68,12 @@ namespace Grubitecht.UI
             float timer = duration;
             while (timer > 0)
             {
+                // Continually delay here while the wave is paused.
+                if (WaveManager.IsPaused)
+                {
+                    yield return null;
+                    continue;
+                }
                 // Updates the fill amount of the timer image so that it runs out as the timer ticks down.
                 float normalizedTime = timer / duration;
                 timerImage.fillAmount = normalizedTime;

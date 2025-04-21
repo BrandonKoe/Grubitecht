@@ -11,6 +11,7 @@ namespace Grubitecht.World
     {
         Ground,
         Air,
-        Grub
+        Grub,
+        Gate
     }
 }

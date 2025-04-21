@@ -9,6 +9,7 @@ using Grubitecht.Tilemaps;
 using Grubitecht.UI;
 using Grubitecht.World;
 using Grubitecht.World.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace Grubitecht.Waves
         [SerializeField] private Wave[] waves;
 
         private static Transform predictorParent;
+
+        public event Action OnSpawnWave;
 
         #region Component Reference
         [SerializeReference, HideInInspector] private GridObject gridObject;
@@ -183,6 +186,7 @@ namespace Grubitecht.Waves
                     EnemyController.SpawnEnemy(enemy.EnemyPrefab, gridObject.CurrentTile, false);
                 }
             }
+            OnSpawnWave?.Invoke();
         }
     }
 }
