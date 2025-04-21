@@ -403,9 +403,8 @@ MonoBehaviour:
         m_Calls: []
   - targetObject: {fileID: 1425347652}
     type: 0
-    tutorialText: These Indicators show where enemies will spawn, what types of enemies
-      to expect, and the number of each enemy type.
-    tutorialDimensions: {x: 320, y: 350}
+    tutorialText: These Indicators show what enemies will spawn.
+    tutorialDimensions: {x: 320, y: 200}
     tutorialOffset: {x: 200, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     overridePosition: 0
@@ -419,8 +418,7 @@ MonoBehaviour:
         m_Calls: []
   - targetObject: {fileID: 1164384557}
     type: 0
-    tutorialText: Structures like this that are run by the grub Militia will attack
-      the enemies for you.
+    tutorialText: Military structures like this will attack the enemies for you.
     tutorialDimensions: {x: 300, y: 275}
     tutorialOffset: {x: 0, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
@@ -466,9 +464,8 @@ MonoBehaviour:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
     type: 0
-    tutorialText: Once you've selected a structure, click a space in the world to
-      move it there.  Click the highlighted square to move the house to that position.
-    tutorialDimensions: {x: 450, y: 300}
+    tutorialText: Now, click on the highlighted space to move the house there.
+    tutorialDimensions: {x: 350, y: 250}
     tutorialOffset: {x: 0, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     overridePosition: 0
@@ -607,8 +604,8 @@ MonoBehaviour:
         m_Calls: []
   - targetObject: {fileID: 211342981}
     type: 0
-    tutorialText: While selected, you can view this panel to see informatin about
-      the currenty selected object, including enemies.
+    tutorialText: While an object is selected, you can view this panel to see informatin
+      about it, including enemies.
     tutorialDimensions: {x: 350, y: 300}
     tutorialOffset: {x: -600, y: -200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
@@ -1480,13 +1477,13 @@ RectTransform:
   m_Children:
   - {fileID: 1830920593}
   - {fileID: 855666527}
+  - {fileID: 1629559652}
   - {fileID: 80692807}
   - {fileID: 1855537441}
   - {fileID: 293803193}
   - {fileID: 1627909898}
   - {fileID: 1171204144}
   - {fileID: 929058951}
-  - {fileID: 1629559652}
   - {fileID: 1354504498}
   - {fileID: 211342982}
   - {fileID: 1245512253}
@@ -2932,7 +2929,7 @@ Transform:
   m_GameObject: {fileID: 950091559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: 2.5, z: -1.5}
+  m_LocalPosition: {x: 7.5, y: 2.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4280,7 +4277,7 @@ Transform:
   m_GameObject: {fileID: 1314463166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: 2.5, z: -7.5}
+  m_LocalPosition: {x: 8.5, y: 2.5, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5890,15 +5887,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.5
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 7058266196777697690, guid: 25149f6eab7b6ef488a79f39651adbd3, type: 3}
       propertyPath: m_LocalRotation.w
