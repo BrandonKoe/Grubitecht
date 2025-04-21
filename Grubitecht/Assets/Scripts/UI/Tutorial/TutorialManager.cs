@@ -99,28 +99,14 @@ namespace Grubitecht.UI.Tutorial
             // Auto-Set the offset of the tutorial based on it's size because tutorials have to have a bottom left
             // aligned rect.
             tObj.UIOffset = tutorialObj.TutorialOffset + (-tutorialObj.TutorialDimensions / 2);
-            if (tutorialObj.OverridePosition)
-            {
-                tObj.Initialize(tutorialObj.TargetPosition);
-            }
-            else
-            {
-                tObj.Initialize(tutorialObj);
-            }
+            tObj.Initialize(tutorialObj);
             currentTutorial = tObj;
             tutorialObj.OnTutorialShown();
         }
         private static void ShowTutorial(Tutorial tutorialObj, TutorialUIObject prefabObject)
         {
             TutorialUIObject tObj = Instantiate(prefabObject, instance.transform);
-            if (tutorialObj.OverridePosition)
-            {
-                tObj.Initialize(tutorialObj.TargetPosition);
-            }
-            else
-            {
-                tObj.Initialize(tutorialObj);
-            }
+            tObj.Initialize(tutorialObj);
             currentTutorial = tObj;
             tutorialObj.OnTutorialShown();
         }

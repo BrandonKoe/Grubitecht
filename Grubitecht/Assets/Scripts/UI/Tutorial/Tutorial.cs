@@ -24,9 +24,6 @@ namespace Grubitecht.UI.Tutorial
         private Vector2 tutorialOffset;
         [SerializeField, ShowIf("type", TutorialType.GameObject), AllowNesting] 
         private TutorialUIObject tutorialPrefab;
-        [SerializeField] private bool overridePosition;
-        [SerializeField, ShowIf("overridePosition"), AllowNesting] 
-        private Vector3 targetPosition;
 
         [SerializeField] private TutorialEvent finishEvent;
 
@@ -42,8 +39,7 @@ namespace Grubitecht.UI.Tutorial
         public Vector2 TutorialDimensions => tutorialDimensions;
         public Vector2 TutorialOffset => tutorialOffset;
         public TutorialUIObject TutorialPrefab => tutorialPrefab;
-        public bool OverridePosition => overridePosition;
-        public Vector3 TargetPosition => targetPosition;
+        public TutorialEvent FinishEvent => finishEvent;
         #endregion
         #region Nested
         public enum TutorialType

@@ -157,20 +157,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hold Right Click to pan the camera around the map.
+  m_text: 'Camera Controls:
 
-    Click on objects
-    to select them.
+    Pan - Middle Click
 
-    You can move structures and terrain by selecting them and
-    then clicking a space.
+    Rotate - Right Click
 
-    Structures automatically attack enemies.  The banner
-    structure will buff nearby structures instead.  The archery tower structure is
-    the only one that can hit the thin flying enemies.
+    Zoom
+    - Scroll Wheel
 
-    Defend your objectives
-    from the waves of enemies.'
+
+    Select objects with left click, deselect objects with Shift.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

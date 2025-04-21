@@ -14,28 +14,17 @@ namespace Grubitecht.UI.Tutorial
     {
         //[field: SerializeField] public RectTransform Arrow { get; private set; }
         [field: SerializeField] public TMP_Text TextObject { get; private set; }
+        [field: SerializeField] public GameObject SpaceToContinueObject { get; private set; }
+        [SerializeField] private TutorialEvent defaultEvent;
 
         [SerializeField] private Vector3 worldOffset = new Vector3(0, 1, 0);
         [field: SerializeField] public Vector2 UIOffset { get; set; }
         [SerializeField] private float padding;
 
         private GameObject target;
-        private Vector3 targetPositionOverride;
 
         #region Properties
         private RectTransform rectTransform => (RectTransform)transform;
-
-        private Vector3 TargetPosition
-        {
-            get
-            {
-                if (target != null)
-                {
-                    return target.transform.position;
-                }
-                return targetPositionOverride;
-            }
-        }
         #endregion
 
         /// <summary>
@@ -57,18 +46,22 @@ namespace Grubitecht.UI.Tutorial
         public void Initialize(Tutorial tutorial)
         {
             this.target = tutorial.TargetObject;
+            if (tutorial.FinishEvent == defaultEvent)
+            {
+                SpaceToContinueObject.SetActive(true);
+            }
             UpdatePosition();
         }
 
-        /// <summary>
-        /// initializes the tutorial with a target object.
-        /// </summary>
-        /// <param name="target"></param>
-        public void Initialize(Vector3 targetPosition)
-        {
-            this.targetPositionOverride = targetPosition;
-            UpdatePosition();
-        }
+        ///// <summary>
+        ///// initializes the tutorial with a target object.
+        ///// </summary>
+        ///// <param name="target"></param>
+        //public void Initialize(Vector3 targetPosition)
+        //{
+        //    this.targetPositionOverride = targetPosition;
+        //    UpdatePosition();
+        //}
 
         /// <summary>
         /// Updates the position of the tutorial so it's near the object it's talking about.
@@ -106,7 +99,7 @@ namespace Grubitecht.UI.Tutorial
             // predictor represents.
             //Debug.Log(TargetPosition);
             Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
-                TargetPosition + worldOffset) + UIOffset;
+                target.transform.position + worldOffset) + UIOffset;
             Vector2 offsetOriginPos = realOriginPos;
             //Debug.Log(realOriginPos);
             Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
