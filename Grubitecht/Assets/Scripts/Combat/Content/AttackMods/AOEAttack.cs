@@ -21,7 +21,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             { 
-                new NumValue(aoeRange, 50, "AOE Range")
+                new NumValue(aoeRange, 20, "AOE Range")
             };
         }
 

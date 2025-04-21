@@ -143,8 +143,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(HealingStrength, 2, "Healing Potency"),
-                new NumValue(HealDelay, 3, "Heal Delay")
+                new NumValue(HealingStrength, 10, "Healing Potency"),
+                new NumValue(HealDelay, 11, "Heal Delay")
             };
         }
     }

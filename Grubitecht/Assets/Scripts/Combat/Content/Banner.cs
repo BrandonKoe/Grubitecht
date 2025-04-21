@@ -67,7 +67,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(attackBoost, 2, "Attack Boost"),
+                new NumValue(attackBoost, 10, "Attack Boost"),
             };
         }
     }

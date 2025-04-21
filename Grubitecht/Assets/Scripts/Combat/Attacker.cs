@@ -166,8 +166,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(AttackStat, 2, "Attack"),
-                new NumValue(AttackCooldown, 3, "Attack Cooldown")
+                new NumValue(AttackStat, 10, "Attack"),
+                new NumValue(AttackCooldown, 10, "Attack Cooldown")
             };
         }
     }
