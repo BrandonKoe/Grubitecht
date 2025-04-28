@@ -47,5 +47,7 @@ namespace Grubitecht.Combat
         {
             appliedBehaviour.ChangeHealth(-damageAmount);
         }
+
+
     }
 }

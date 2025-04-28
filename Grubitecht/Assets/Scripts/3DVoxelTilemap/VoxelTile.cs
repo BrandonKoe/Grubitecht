@@ -124,6 +124,8 @@ namespace Grubitecht.Tilemaps
         /// <returns>The tile adjacent to this one in the given direction.</returns>
         public VoxelTile GetAdjacent(Vector2Int direction)
         {
+            // If the specified direction is 0,0, then return this tile.
+            if (direction == Vector2Int.zero) { return this; }
             return adjTiles.tiles[ADJACENT_INDEX_REFERENCE[direction]];
             //return VoxelTilemap3D.Main_GetTile(GridPosition2 + direction);
         }

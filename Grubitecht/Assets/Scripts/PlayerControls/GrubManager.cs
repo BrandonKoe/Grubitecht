@@ -56,6 +56,18 @@ namespace Grubitecht
         }
 
         /// <summary>
+        /// Clears the dispatchedGrubs list when this scene is unloaded.
+        /// </summary>
+        private void OnDestroy()
+        {
+            if (instance == this)
+            {
+                instance = null;
+            }
+            dispatchedGrubs.Clear();
+        }
+
+        /// <summary>
         /// Checks if there is a grub available to move an object.
         /// </summary>
         /// <returns>True if there is a free grub, false if all grubs are in use.</returns>

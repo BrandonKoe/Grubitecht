@@ -23,7 +23,7 @@ namespace Grubitecht.Combat
         {
             foreach (var modifier in inflictedModifiers)
             {
-                target.ApplyModifier(modifier.NewInstance());
+                target.ApplyModifier(modifier);
             }
         }
     }

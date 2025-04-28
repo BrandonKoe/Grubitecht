@@ -26,6 +26,7 @@ namespace Grubitecht.World
         [field: SerializeField] public Sprite EnemySpriteIcon { get; private set; }
         [SerializeField] private PathingType pathingType;
         [SerializeField] private float rePathFrequency;
+        [SerializeField] private bool canPanic;
 
         private static Transform enemyParent;
         #region Component References
@@ -436,7 +437,10 @@ namespace Grubitecht.World
         /// <param name="radius">The radius that the next space the enemy will pathfind towards will be.</param>
         public void StartPanicking(float speedBoost, int radius)
         {
-            state = new PanicState(this, speedBoost, radius);
+            if (canPanic)
+            {
+                state = new PanicState(this, speedBoost, radius);
+            }
         }
         public void StopPanicking()
         {

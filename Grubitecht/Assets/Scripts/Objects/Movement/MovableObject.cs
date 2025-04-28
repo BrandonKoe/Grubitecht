@@ -7,6 +7,7 @@
 *****************************************************************************/
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Pathfinding;
+using System.Collections;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -38,6 +39,8 @@ namespace Grubitecht.World.Objects
         private void OnDestroy()
         {
             selectable.OnDeselectEvent -= MoveObject;
+            // Ensures any grubs are returned if this object is destroyed.
+            GrubManager.ReturnGrub(this);
         }
 
         /// <summary>
@@ -52,7 +55,7 @@ namespace Grubitecht.World.Objects
             {
                 if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
-                    GridNavigator.SetDestination(space.Tile, RecallGrub);
+                    GridNavigator.SetDestination(space.Tile, HandleMovementCallback);
                     GrubManager.AssignGrub(this);
                 }
             }
@@ -61,11 +64,32 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Recalls a grub delegated to moving this object from the grub controller.
         /// </summary>
-        private void RecallGrub(PathStatus endStatus)
+        private void HandleMovementCallback(PathStatus pathStatus)
         {
-            if (endStatus == PathStatus.Completed)
+            StartCoroutine(DelayedMovementCallback(pathStatus));   
+        }
+
+        /// <summary>
+        /// Need to delay a frame before we handle the movement callback to ensure that grubs have been assigned
+        /// before we handle returning them.
+        /// </summary>
+        /// <param name="pathStatus"></param>
+        /// <returns></returns>
+        private IEnumerator DelayedMovementCallback(PathStatus pathStatus)
+        {
+            yield return null;
+
+            switch (pathStatus)
             {
-                GrubManager.ReturnGrub(this);
+                case PathStatus.Started:
+                    break;
+                case PathStatus.Completed:
+                case PathStatus.Invalid:
+                    // Return the grub if the path status is completed or the path is invalid.
+                    GrubManager.ReturnGrub(this);
+                    break;
+                default:
+                    break;
             }
         }
     }
