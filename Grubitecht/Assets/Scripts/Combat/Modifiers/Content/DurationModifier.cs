@@ -14,6 +14,7 @@ namespace Grubitecht.Combat
     {
         [Header("Duration Modifier Settings")]
         [SerializeField] private float duration;
+        [field: SerializeField] public bool ExtendDuration { get; private set; }
         [SerializeField, Tooltip("The amount of time between ticks of this modifier.")] 
         private float tickInterval;
 
