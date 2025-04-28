@@ -39,6 +39,8 @@ namespace Grubitecht.World.Objects
         private void OnDestroy()
         {
             selectable.OnDeselectEvent -= MoveObject;
+            // Ensures any grubs are returned if this object is destroyed.
+            GrubManager.ReturnGrub(this);
         }
 
         /// <summary>
