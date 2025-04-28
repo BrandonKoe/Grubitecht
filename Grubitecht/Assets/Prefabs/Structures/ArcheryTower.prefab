@@ -177,7 +177,7 @@ PrefabInstance:
       addedObject: {fileID: 4729045751414896831}
     - targetCorrespondingSourceObject: {fileID: 3296841208733248185, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1005915541958408702}
+      addedObject: {fileID: 3947815855503206929}
   m_SourcePrefab: {fileID: 100100000, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
 --- !u!135 &554199331391295432 stripped
 SphereCollider:
@@ -225,7 +225,7 @@ MonoBehaviour:
   canTargetTags: -1
   detectionArea: {fileID: 554199331391295432}
   selectableObject: {fileID: 594484448342160686}
---- !u!114 &1005915541958408702
+--- !u!114 &3947815855503206929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5130575749118603805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3404be6a9fec1d94eb5f368910f69758, type: 3}
+  m_Script: {fileID: 11500000, guid: a31c3ee328201f646bb8b8f99c83d674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
@@ -242,6 +242,8 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 1.5
   <AttackStat>k__BackingField: 4
   <targeter>k__BackingField: {fileID: 4729045751414896831}
+  projectilePrefab: {fileID: 3841403755064951916, guid: 5b52480c6b8efdf4bb2cbec57b7ea5ec, type: 3}
+  projectileOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &5735124070260143926 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
