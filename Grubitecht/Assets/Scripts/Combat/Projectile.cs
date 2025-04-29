@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name : Projectil.cs
+// File Name : Projectile.cs
 // Author : Brandon Koederitz
 // Creation Date : April 19, 2025
 //
@@ -13,9 +13,10 @@ namespace Grubitecht.Combat
     public class Projectile : MonoBehaviour
     {
         #region CONSTS
-        private const float IMPACT_DIST = 0.1f;
+        private const float IMPACT_DIST = 0.3f;
         #endregion
         [SerializeField] private ParticleSystem projectileParticles;
+        [SerializeField] private ProjectileAnimator projectileAnimator;
         [SerializeField] private float initialSpeed;
         //[SerializeField] private float acceleration;
         public void Launch(Attackable target, ProjectileAttackAction attackActionCallback)
@@ -31,6 +32,10 @@ namespace Grubitecht.Combat
                 var mainModule = projectileParticles.main;
                 mainModule.startLifetime = travelTime;
                 projectileParticles.Play();
+            }
+            if (projectileAnimator != null)
+            {
+                projectileAnimator.StartAnimating(target);
             }
             StartCoroutine(MovementRoutine(target, attackActionCallback));
         }
