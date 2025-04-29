@@ -152,13 +152,6 @@ namespace Grubitecht.World.Pathfinding
 
                     //// Gets the node that represents this tile from the open list.  If none exists, then we create a 
                     //// new node to represent this tile and add it to the open list.
-                    //PathNode neighborNode = openList.Find(item => item.Tile == neighbor);
-                    //if (neighborNode == null)
-                    //{
-                    //    neighborNode = GetNode(neighbor, startingTile, endingTile);
-                    //    openList.Add(neighborNode);
-                    //}
-
                     if (!openList.Contains(neighbor.Node))
                     {
                         AddToOpenList(neighbor.Node);
