@@ -241,6 +241,36 @@ namespace Grubitecht.World.Pathfinding
             outNode.CalculateForPath(startTile, endingTile);
             return outNode;
         }
+
+        /// <summary>
+        /// Checks if a path exists between two tiles.
+        /// </summary>
+        /// <param name="startingTile">
+        /// The tile to begin the path from.  This is usually the tile that the object is already on.
+        /// </param>
+        /// <param name="endingTile">
+        /// The ending tile of the path.  This is the tile that the object should end up at.
+        /// </param>
+        /// <param name="climbHeight">
+        /// The height that this object can move vertically at once.  Determines how well the object can handle slopes.
+        /// </param>
+        /// <param name="includeAdjacent">
+        /// Whether to stop the path at a tile adjacent to the ending tile or if the path must include the ending tile.
+        /// </param>
+        /// <returns>True if a valid path exists between the starting and ending tile.</returns>
+        public static bool CheckPath(VoxelTile startingTile, VoxelTile endingTile, int climbHeight,
+            OccupyLayer layer, bool includeAdjacent = false)
+        {
+            List<VoxelTile> path = FindPath(startingTile, endingTile, climbHeight, layer, includeAdjacent);
+            if (path == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         #endregion
 
         ///// <summary>

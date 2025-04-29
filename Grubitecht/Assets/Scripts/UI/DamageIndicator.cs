@@ -46,17 +46,19 @@ namespace Grubitecht.UI
         /// <param name="target">The attackable whose health changed.</param>
         public static void DisplayHealthChange(int healthChange, Attackable target, Color damageIndicatorColor)
         {
-            DamageNumber num = Instantiate(instance.damageNumberPrefab, instance.transform);
+            DamageNumber num;
             if (instance.useWorldSpaceCanvas)
             {
-                num.transform.position = target.transform.position;
-                Vector3 pos = num.transform.localPosition;
-                pos.z = 0;
-                num.transform.localPosition = pos;
+                //num.transform.position = target.transform.position;
+                //Vector3 pos = num.transform.localPosition;
+                //pos.z = 0;
+                //num.transform.localPosition = pos;
+                num = WorldSpaceCanvasManager.SpawnUIObject(instance.damageNumberPrefab, target.transform.position);
             }
             else
             {
-                num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+                //num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+                num = CanvasManager.SpawnUIObject(instance.damageNumberPrefab, target.transform.position);
             }
             //Color numColor = healthChange > 0 ? instance.gainHealthColor : instance.loseHealthColor;
             num.Initialize(healthChange, damageIndicatorColor);

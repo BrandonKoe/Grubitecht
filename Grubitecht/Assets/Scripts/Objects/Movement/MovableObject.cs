@@ -5,9 +5,12 @@
 //
 // Brief Description : Allows an object to be selected and moved along the world grid by the player.
 *****************************************************************************/
-using Grubitecht.UI.InfoPanel;
+using Grubitecht.Tilemaps;
+using Grubitecht.UI;
+using Grubitecht.Waves;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
+using System.Net.Sockets;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -16,6 +19,7 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(SelectableObject))]
     public class MovableObject : MonoBehaviour
     {
+        [SerializeField] private TweenedObject invalidSpacePrefab;
         #region Component References
         [field: SerializeReference, HideInInspector] public PathNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
@@ -55,10 +59,57 @@ namespace Grubitecht.World.Objects
             {
                 if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
-                    GridNavigator.SetDestination(space.Tile, HandleMovementCallback);
-                    GrubManager.AssignGrub(this);
+                    // Check for invalid paths here.
+                    if (CheckValidSpace(space.Tile))
+                    {
+                        GridNavigator.SetDestination(space.Tile, HandleMovementCallback);
+                        GrubManager.AssignGrub(this);
+                    }
+                    else
+                    {
+                        // Invalid space.
+                        Debug.Log("Invalid Space");
+                        if (invalidSpacePrefab != null)
+                        {
+                            // Spawns a UI object to communicate that the space is invalid.
+                            WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
+                                VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
+                        }
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// Checks if the space this object is going to occupy results in a null path from the spawn point to the
+        /// objective.
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckValidSpace(VoxelTile targetTile)
+        {
+            // Spawns a dummy grid object to take up space during the pathfind.
+            GameObject go = new GameObject();
+            GridObject tempGridObj = go.AddComponent<GridObject>();
+            tempGridObj.Layer = GridNavigator.gridObject.Layer;
+            tempGridObj.SetCurrentSpace(targetTile);
+            tempGridObj.SnapToSpace();
+
+            SpawnPoint[] spawnPoints = WaveManager.SpawnPoints;
+            VoxelTile objectiveTile = Objective.TargetObjective.gridObject.CurrentTile;
+            foreach(var spawnPoint in spawnPoints)
+            {
+                Debug.Log(spawnPoint.gridObject);
+                // If a spawn point doesnt have a valid path to the target objective, then this space is not valid.
+                if (!Pathfinder.CheckPath(spawnPoint.gridObject.CurrentTile, objectiveTile, 1, 
+                    GridNavigator.gridObject.Layer, true))
+                {
+                    // Call OnDestroy here manuallt
+                    tempGridObj.DestroyImmediate();
+                    return false;
+                }
+            }
+            tempGridObj.DestroyImmediate();
+            return true;
         }
 
         /// <summary>

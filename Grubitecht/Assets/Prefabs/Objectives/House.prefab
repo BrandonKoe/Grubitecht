@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 706373850487136439}
   - component: {fileID: 3668745979882885672}
   - component: {fileID: 592507500781887919}
-  - component: {fileID: -2989757248865518933}
   m_Layer: 6
   m_Name: House
   m_TagString: Untagged
@@ -187,20 +186,6 @@ MonoBehaviour:
   climbHeight: 1
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 706373850487136439}
---- !u!114 &-2989757248865518933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677708571776409698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d6436082c10e94790bae559f5c6ab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <GridNavigator>k__BackingField: {fileID: 592507500781887919}
-  selectable: {fileID: 3668745979882885672}
 --- !u!1001 &3762515544010651300
 PrefabInstance:
   m_ObjectHideFlags: 0

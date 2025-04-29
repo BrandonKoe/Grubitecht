@@ -5,16 +5,13 @@
 //
 // Brief Description : Spawns waves of enemies.
 *****************************************************************************/
-using Grubitecht.Tilemaps;
 using Grubitecht.UI;
 using Grubitecht.World;
 using Grubitecht.World.Objects;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Grubitecht.Waves
 {
@@ -33,7 +30,7 @@ namespace Grubitecht.Waves
         public event Action OnSpawnWave;
 
         #region Component Reference
-        [SerializeReference, HideInInspector] private GridObject gridObject;
+        [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         /// <summary>
         /// Assign component references on restart.
         /// </summary>

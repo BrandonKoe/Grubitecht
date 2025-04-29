@@ -48,7 +48,7 @@ MonoBehaviour:
   predictorPrefab: {fileID: 2692925594760101003, guid: 52c57030aa016b84c9eb1dcfc9e4d1c3, type: 3}
   subwavePredictionTime: 15
   waves: []
-  gridObject: {fileID: 3034658912611702510}
+  <gridObject>k__BackingField: {fileID: 3034658912611702510}
 --- !u!114 &3034658912611702510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,4 +62,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  occupySpace: 0
+  <Layer>k__BackingField: 0
