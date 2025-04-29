@@ -9,15 +9,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grubitecht
+namespace Grubitecht.Credits
 {
-    public class ObjectTweener : MonoBehaviour
+    public class CameraTweener : MonoBehaviour
     {
         #region CONSTS
         private const float END_PROXIMITY = 0.1f;
         #endregion
         [SerializeField] private Transform targetTransform;
         [SerializeField] private float tweenTime;
+
+        #region Properties
+        public float Speed
+        {
+            get
+            {
+                return Vector3.Distance(targetTransform.position, transform.position) / tweenTime;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Start tweening on awake.
