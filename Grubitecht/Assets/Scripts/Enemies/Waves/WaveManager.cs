@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Grubitecht.UI;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.Waves
 {
@@ -40,6 +41,13 @@ namespace Grubitecht.Waves
             get
             {
                 return enemies.Count;
+            }
+        }
+        public static SpawnPoint[] SpawnPoints
+        {
+            get
+            {
+                return currentLevel.spawnPoints;
             }
         }
         #endregion

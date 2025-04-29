@@ -135,6 +135,11 @@ namespace Grubitecht.World.Objects
             //OnChangeSpace?.Invoke();
         }
 
+        public void RemoveFromSpace()
+        {
+            CurrentTile.RemoveObject(this);
+        }
+
         /// <summary>
         /// Snaps this object to the position it should occupy for it's current space.
         /// </summary>
