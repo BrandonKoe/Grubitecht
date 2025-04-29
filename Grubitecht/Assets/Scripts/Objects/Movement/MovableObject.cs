@@ -95,12 +95,12 @@ namespace Grubitecht.World.Objects
                 if (!Pathfinder.CheckPath(spawnPoint.gridObject.CurrentTile, objectiveTile, 1, 
                     GridNavigator.gridObject.Layer, true))
                 {
-                    
-                    Destroy(go);
+                    // Call OnDestroy here manuallt
+                    tempGridObj.DestroyImmediate();
                     return false;
                 }
             }
-            Destroy(go);
+            tempGridObj.DestroyImmediate();
             return true;
         }
 

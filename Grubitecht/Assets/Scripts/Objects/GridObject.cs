@@ -168,6 +168,19 @@ namespace Grubitecht.World.Objects
             return VoxelTilemap3D.Main_GridToWorldPos(tile.GridPosition) + oSet;
         }
 
+        /// <summary>
+        /// Custom function to destroy this game object so that it can remove itself from the current space
+        /// without waiting for the OnDestroy callback.
+        /// </summary>
+        public void DestroyImmediate()
+        {
+            if (CurrentTile != null)
+            {
+                CurrentTile.RemoveObject(this);
+            }
+            Destroy(gameObject);
+        }
+
         ///// <summary>
         ///// Gets the object at a given space.
         ///// </summary>
