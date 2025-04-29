@@ -72,7 +72,7 @@ namespace Grubitecht.World.Objects
                         if (invalidSpacePrefab != null)
                         {
                             // Spawns a UI object to communicate that the space is invalid.
-                            CanvasManager.SpawnUIObject(invalidSpacePrefab,
+                            WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
                                 VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
                         }
                     }

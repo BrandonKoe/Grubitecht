@@ -264,7 +264,29 @@ MonoBehaviour:
   - {fileID: 8457667606213348752}
   fadeText:
   - {fileID: 3548872691533537951}
-  animationTime: 1
-  tweenOffset: {x: 0, y: 5, z: 0}
-  startingAlpha: 1
-  targetAlpha: 0
+  animationTime: 0.5
+  tweenOffset: {x: 0, y: 8, z: 0}
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -0.006086365
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.25833333
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.3640432
+      outSlope: -1
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.047222137
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

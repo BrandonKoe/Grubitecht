@@ -14,8 +14,7 @@ namespace Grubitecht.UI
         [Header("Settings")]
         [SerializeField] private float animationTime;
         [SerializeField] private Vector3 tweenOffset;
-        [SerializeField] private float startingAlpha;
-        [SerializeField] private float targetAlpha;
+        [SerializeField] private AnimationCurve alphaCurve;
 
         /// <summary>
         /// Animates the object based on given parameters.
@@ -28,19 +27,25 @@ namespace Grubitecht.UI
             float timer = animationTime;
             while (timer > 0)
             {
-                float normalizedTime = timer / animationTime;
+                float normalizedProgress = 1 - (timer / animationTime);
 
-                aniamtedObject.localPosition = Vector3.Lerp(startingPos, endingPos, normalizedTime);
+                aniamtedObject.localPosition = Vector3.Lerp(startingPos, endingPos, normalizedProgress);
 
                 // Animates the alpha values of the object.
-                float currentAlpha = Mathf.Lerp(startingAlpha, targetAlpha, normalizedTime);
+                //float currentAlpha = Mathf.Lerp(startingAlpha, endingAlpha, normalizedProgress);
+                float currentAlpha = alphaCurve.Evaluate(normalizedProgress);
+                Color col;
                 foreach(var image in fadeImages)
                 {
-                    image.color.SetAlpha(currentAlpha);
+                    col = image.color;
+                    col.a = currentAlpha;
+                    image.color = col;
                 }
                 foreach(var text in fadeText)
                 {
-                    text.color.SetAlpha(currentAlpha);
+                    col = text.color;
+                    col.a = currentAlpha;
+                    text.color = col;
                 }
 
                 timer -= Time.deltaTime;
