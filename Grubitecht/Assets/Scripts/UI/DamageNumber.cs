@@ -12,7 +12,7 @@ using UnityEngine;
 namespace Grubitecht.UI
 {
     [RequireComponent(typeof(Animator))]
-    public class DamageNumber : MonoBehaviour
+    public class DamageNumber : UIObject
     {
         [SerializeField] private TMP_Text text;
         #region Component References
@@ -36,14 +36,13 @@ namespace Grubitecht.UI
             string indicString = healthChange > 0 ? "+" : "";
             text.text = indicString + healthChange.ToString();
             // Destroy this text once it's animation has finished.
-            StartCoroutine(DeathRoutine());
         }
 
         /// <summary>
         /// Destroys this object after it's animation is finished.
         /// </summary>
         /// <returns>Coroutine.</returns>
-        private IEnumerator DeathRoutine()
+        protected override IEnumerator LifeCycle()
         {
             yield return new WaitForSeconds(animator.GetAnimationDuration() - 0.02f);
             Destroy(gameObject);
