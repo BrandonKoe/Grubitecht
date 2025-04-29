@@ -13,7 +13,7 @@ namespace Grubitecht.Combat
     public class Projectile : MonoBehaviour
     {
         #region CONSTS
-        private const float IMPACT_DIST = 0.5f;
+        private const float IMPACT_DIST = 0.3f;
         #endregion
         [SerializeField] private ParticleSystem projectileParticles;
         [SerializeField] private ProjectileAnimator projectileAnimator;
