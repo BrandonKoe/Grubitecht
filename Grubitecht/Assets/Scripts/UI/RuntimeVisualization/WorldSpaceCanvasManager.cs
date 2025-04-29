@@ -43,7 +43,7 @@ namespace Grubitecht.UI
         /// <param name="prefab">The prefab of the UI object to spawn.</param>
         /// <param name="position">The position on the world to display this object over.</param>
         /// <returns>The created instance of the object.</returns>
-        public static T ShowUIObject<T>(T prefab, Vector3 position) where T : UIObject
+        public static T SpawnUIObject<T>(T prefab, Vector3 position) where T : UIObject
         {
             T inst = Instantiate(prefab, instance.transform);
             inst.transform.position = position;

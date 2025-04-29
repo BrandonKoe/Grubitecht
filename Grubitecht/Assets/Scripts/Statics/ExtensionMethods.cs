@@ -37,6 +37,16 @@ namespace Grubitecht
             float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
             return animationDuration;
         }
+
+        /// <summary>
+        /// Changes the alpha value of this color.
+        /// </summary>
+        /// <param name="color">The color to change the alpha of.</param>
+        /// <param name="alpha">The alpha to set.</param>
+        public static void SetAlpha(this Color color, float alpha)
+        {
+            color.a = alpha;
+        }
     }
 
 }

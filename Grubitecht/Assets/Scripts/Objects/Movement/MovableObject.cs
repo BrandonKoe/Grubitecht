@@ -6,9 +6,11 @@
 // Brief Description : Allows an object to be selected and moved along the world grid by the player.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
+using Grubitecht.UI;
 using Grubitecht.Waves;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
+using System.Net.Sockets;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -17,7 +19,7 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(SelectableObject))]
     public class MovableObject : MonoBehaviour
     {
-        [SerializeField] private GridObject placeholderGridObjectPrefab;
+        [SerializeField] private TweenedObject invalidSpacePrefab;
         #region Component References
         [field: SerializeReference, HideInInspector] public PathNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
@@ -67,6 +69,9 @@ namespace Grubitecht.World.Objects
                     {
                         // Invalid space.
                         Debug.Log("Invalid Space");
+                        // Spawns a UI object to communicate that the space is invalid.
+                        CanvasManager.SpawnUIObject(invalidSpacePrefab, 
+                            VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
                     }
                 }
             }

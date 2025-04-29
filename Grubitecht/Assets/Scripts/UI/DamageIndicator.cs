@@ -53,12 +53,12 @@ namespace Grubitecht.UI
                 //Vector3 pos = num.transform.localPosition;
                 //pos.z = 0;
                 //num.transform.localPosition = pos;
-                num = WorldSpaceCanvasManager.ShowUIObject(instance.damageNumberPrefab, target.transform.position);
+                num = WorldSpaceCanvasManager.SpawnUIObject(instance.damageNumberPrefab, target.transform.position);
             }
             else
             {
                 //num.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
-                num = CanvasManager.ShowUIObject(instance.damageNumberPrefab, target.transform.position);
+                num = CanvasManager.SpawnUIObject(instance.damageNumberPrefab, target.transform.position);
             }
             //Color numColor = healthChange > 0 ? instance.gainHealthColor : instance.loseHealthColor;
             num.Initialize(healthChange, damageIndicatorColor);
