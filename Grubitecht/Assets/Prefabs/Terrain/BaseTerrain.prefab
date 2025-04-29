@@ -51,7 +51,6 @@ MonoBehaviour:
   rotationTime: 0
   <MoveSpeed>k__BackingField: 3
   climbHeight: 1
-  ignoreBlockedSpaces: 1
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 268430985258743202}
 --- !u!114 &4383107722421398176
@@ -66,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d6436082c10e94790bae559f5c6ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invalidSpacePrefab: {fileID: 7121491701815625478, guid: 23c29ef3353287240af872c758025db0, type: 3}
   <GridNavigator>k__BackingField: {fileID: 2122973274948460703}
   selectable: {fileID: 983212686841175952}
 --- !u!114 &983212686841175952
@@ -95,5 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0.4, z: 0}
-  height: 1
-  occupySpace: 1
+  <Layer>k__BackingField: 0
