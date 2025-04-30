@@ -24,10 +24,11 @@ namespace Grubitecht.Credits
         /// <summary>
         /// Initializes this credits object with text and begins scrolling.
         /// </summary>
-        public void Initialize(string header, string body, Vector3 velocity)
+        public void Initialize(string header, string body, Vector3 velocity, float fontSize)
         {
             headerText.text = header;
             bodyText.text = body;
+            bodyText.fontSize = fontSize;
             StartCoroutine(ScrollRoutine(velocity));
         }
 

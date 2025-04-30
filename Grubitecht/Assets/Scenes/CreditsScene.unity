@@ -12297,12 +12297,14 @@ MonoBehaviour:
   creditsSpacing: 15
   credits:
   - header: Created By
+    fontSize: 20
     body: Brandon Koederitz
     creditsPrefab: {fileID: 2819808026991938127, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
     OnCreditSpawnEvent:
       m_PersistentCalls:
         m_Calls: []
   - header: Playtesters
+    fontSize: 7
     body: 'Gabriel Flores-Martinez
 
       Nicholas

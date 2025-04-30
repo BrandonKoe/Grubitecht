@@ -34,6 +34,7 @@ namespace Grubitecht.Credits
         private class CreditsData
         {
             [SerializeField] internal string header;
+            [SerializeField] internal float fontSize;
             [SerializeField, TextArea] internal string body;
             [SerializeField] internal CreditsObject creditsPrefab;
             [SerializeField] internal UnityEvent OnCreditSpawnEvent;
@@ -75,7 +76,7 @@ namespace Grubitecht.Credits
                 CreditsData current = currentCredits[0];
                 CreditsObject credObj = Instantiate(current.creditsPrefab, spawnPoint.position, Quaternion.identity, 
                     transform);
-                credObj.Initialize(current.header, current.body, creditVelocity * Vector3.forward);
+                credObj.Initialize(current.header, current.body, creditVelocity * Vector3.forward, current.fontSize);
 
                 current.OnCreditSpawnEvent?.Invoke();
 

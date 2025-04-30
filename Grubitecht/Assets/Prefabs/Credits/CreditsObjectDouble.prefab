@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -1556633343869356191, guid: c507e4e54aa597c4e9a63f50be2b7b1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,10 +107,14 @@ MonoBehaviour:
 
 
 
+
+
+
+
     blah blah blah.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c507e4e54aa597c4e9a63f50be2b7b1a, type: 2}
+  m_sharedMaterial: {fileID: -1556633343869356191, guid: c507e4e54aa597c4e9a63f50be2b7b1a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -134,8 +138,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -238,6 +242,30 @@ PrefabInstance:
     - target: {fileID: 7147596793172810636, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863338754140822643, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
+      propertyPath: m_text
+      value: 'This is some sample text
+
+
+
+
+
+
+
+
+
+
+
+        blah blah blah.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863338754140822643, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
+      propertyPath: m_fontSize
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863338754140822643, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7863338754140822643, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
       propertyPath: m_overflowMode
