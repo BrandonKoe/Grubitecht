@@ -115,6 +115,11 @@ namespace Grubitecht.Combat
                 // Destroy the game object when objects die for now.
                 Destroy(gameObject);
             }
+            else
+            {
+                // Only destroy the attackable component if destroyOnDeath is set to false.
+                Destroy(this);
+            }
         }
 
 

@@ -47,6 +47,29 @@ namespace Grubitecht
         {
             color.a = alpha;
         }
+
+        /// <summary>
+        /// Checks if a given renderer is within the planes of a camera.
+        /// </summary>
+        /// <param name="cam">The camera to check if the object is within.</param>
+        /// <param name="renderer">The renderer to check if it's in the camera's view.</param>
+        /// <returns>True if the object is within the camera's view.</returns>
+        public static bool CheckObjectInBounds(this Camera cam, Renderer renderer)
+        {
+            return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(cam), renderer.bounds);
+        }
+
+        /// <summary>
+        /// Checks if a given point in spaec is within the planes of a camera.
+        /// </summary>
+        /// <param name="cam">The camera to check if the object is within.</param>
+        /// <param name="point">The point in space to check for.</param>
+        /// <returns>True if the object is within the camera's view.</returns>
+        public static bool CheckObjectInBounds(this Camera cam, Vector3 point)
+        {
+            return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(cam), 
+                new Bounds(point, Vector3.zero));
+        }
     }
 
 }
