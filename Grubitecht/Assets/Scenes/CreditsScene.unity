@@ -12299,9 +12299,51 @@ MonoBehaviour:
   - header: Created By
     body: Brandon Koederitz
     creditsPrefab: {fileID: 2819808026991938127, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
+    OnCreditSpawnEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - header: Playtesters
-    body: Brandon Koederitz
+    body: 'Gabriel Flores-Martinez
+
+      Nicholas
+
+      Lucas Fehlberg
+
+      Thomas
+      Santini
+
+      Josh Bond
+
+      Edward Parra
+
+      Brandon Migala
+
+      Micah
+      Cosby
+
+      Cristian
+
+      Keely Hansen
+
+      Noah Lipowski
+
+      Marlow
+      Greenan
+
+      Brody Blanchard
+
+      Eve Krainik
+
+      Andrew Higgins
+
+      Elodie
+      Spangler
+
+      Josephine Qualls'
     creditsPrefab: {fileID: 1598325344196905900, guid: f731e929a2b00fb4d95ab69c701c2ee6, type: 3}
+    OnCreditSpawnEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1490087304
 GameObject:
   m_ObjectHideFlags: 0

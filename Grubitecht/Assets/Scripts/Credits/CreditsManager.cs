@@ -34,7 +34,7 @@ namespace Grubitecht.Credits
         private class CreditsData
         {
             [SerializeField] internal string header;
-            [SerializeField] internal string body;
+            [SerializeField, TextArea] internal string body;
             [SerializeField] internal CreditsObject creditsPrefab;
             [SerializeField] internal UnityEvent OnCreditSpawnEvent;
         }
