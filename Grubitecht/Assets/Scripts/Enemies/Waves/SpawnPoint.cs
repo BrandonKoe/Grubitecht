@@ -30,7 +30,7 @@ namespace Grubitecht.Waves
         public event Action OnSpawnWave;
 
         #region Component Reference
-        [field: SerializeReference] public GridObject gridObject { get; private set; }
+        [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         /// <summary>
         /// Assign component references on restart.
         /// </summary>
