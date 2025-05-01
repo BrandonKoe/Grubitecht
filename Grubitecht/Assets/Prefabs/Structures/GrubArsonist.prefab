@@ -153,13 +153,13 @@ PrefabInstance:
       addedObject: {fileID: 8835481776803538693}
     - targetCorrespondingSourceObject: {fileID: 3296841208733248185, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6003213825037627836}
-    - targetCorrespondingSourceObject: {fileID: 3296841208733248185, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1418782753462666924}
     - targetCorrespondingSourceObject: {fileID: 3296841208733248185, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2928615776038778580}
+    - targetCorrespondingSourceObject: {fileID: 3296841208733248185, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8988062717168933357}
   m_SourcePrefab: {fileID: 100100000, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
 --- !u!135 &389247088020668871 stripped
 SphereCollider:
@@ -207,23 +207,6 @@ MonoBehaviour:
   canTargetTags: 0
   detectionArea: {fileID: 389247088020668871}
   selectableObject: {fileID: 762800510098488097}
---- !u!114 &6003213825037627836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5036568119107599378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3404be6a9fec1d94eb5f368910f69758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combatant: {fileID: 5566813652090124601}
-  attackable: {fileID: 0}
-  <AttackCooldown>k__BackingField: 3
-  <AttackStat>k__BackingField: 6
-  <targeter>k__BackingField: {fileID: 8835481776803538693}
 --- !u!114 &1418782753462666924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
-  attacker: {fileID: 6003213825037627836}
+  attacker: {fileID: 8988062717168933357}
   aoeRange: 2
   friendlyFire: 1
 --- !u!114 &2928615776038778580
@@ -255,9 +238,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
-  attacker: {fileID: 6003213825037627836}
+  attacker: {fileID: 8988062717168933357}
   inflictedModifiers:
   - {fileID: 11400000, guid: 38d5d5a6106c9d7499972db688256847, type: 2}
+--- !u!114 &8988062717168933357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036568119107599378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31c3ee328201f646bb8b8f99c83d674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatant: {fileID: 5566813652090124601}
+  attackable: {fileID: 0}
+  <AttackCooldown>k__BackingField: 3
+  <AttackStat>k__BackingField: 6
+  <targeter>k__BackingField: {fileID: 8835481776803538693}
+  projectilePrefab: {fileID: 5410392710843124268, guid: d69e6752010da904da2b136d0d1a2c95, type: 3}
+  projectileOffset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &5566813652090124601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
