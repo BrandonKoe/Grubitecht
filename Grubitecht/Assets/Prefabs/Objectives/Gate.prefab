@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 2418109710962796121}
   attackable: {fileID: 143026113051891342}
-  <MaxHealth>k__BackingField: 200
+  <MaxHealth>k__BackingField: 180
   <Health>k__BackingField: 0
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   destroyOnDeath: 0
