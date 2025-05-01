@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateModel: {fileID: 0}
   rotationTime: 0
-  <MoveSpeed>k__BackingField: 3
+  <MoveSpeed>k__BackingField: 4
   climbHeight: 1
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 268430985258743202}

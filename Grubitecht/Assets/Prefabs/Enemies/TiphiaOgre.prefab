@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4589500127795811804, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_Height
