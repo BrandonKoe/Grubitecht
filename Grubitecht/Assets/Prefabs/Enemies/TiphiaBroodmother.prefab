@@ -80,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3937273404073774123, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5313937129125306824, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_Name

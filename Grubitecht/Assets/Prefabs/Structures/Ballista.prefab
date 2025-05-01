@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4388331790138761451}
   attackable: {fileID: 0}
-  <AttackCooldown>k__BackingField: 7
+  <AttackCooldown>k__BackingField: 6
   <AttackStat>k__BackingField: 15
   <targeter>k__BackingField: {fileID: 2245593280625145446}
   projectilePrefab: {fileID: 3185272158356184528, guid: 4d132dece0a810d44a51b44615e9360a, type: 3}
