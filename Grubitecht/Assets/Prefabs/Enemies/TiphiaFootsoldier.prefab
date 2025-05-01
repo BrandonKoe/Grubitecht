@@ -20,10 +20,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 3419658666011052324, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: <MoveSpeed>k__BackingField
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
