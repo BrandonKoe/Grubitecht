@@ -26,16 +26,5 @@ namespace Grubitecht.UI
         {
             SceneManager.LoadScene(playScene);
         }
-
-        /// <summary>
-        /// Quits the game.
-        /// </summary>
-        public void Quit()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
-            Application.Quit();
-        }
     }
 }

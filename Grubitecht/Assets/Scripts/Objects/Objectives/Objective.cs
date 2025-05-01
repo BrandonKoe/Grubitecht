@@ -84,6 +84,7 @@ namespace Grubitecht.World.Objects
         {
             attackable.OnDeath -= OnDeath;
             currentObjectives.Remove(this);
+            GrubManager.UpdateText();
             //gridObject.OnChangeSpace -= UpdateNavMap;
         }
 

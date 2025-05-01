@@ -13,9 +13,6 @@ namespace Grubitecht.UI
 {
     public class BaseMenu : MonoBehaviour
     {
-        #region CONSTS
-        protected const string MAIN_MENU_NAME = "MainMenu";
-        #endregion
         private readonly List<SubMenu> subMenuHierarchy = new List<SubMenu>();
 
         /// <summary>
@@ -51,15 +48,6 @@ namespace Grubitecht.UI
             if (subMenuHierarchy.Count == 0) { return; }
 
             subMenuHierarchy[^1].UnloadMenu();
-        }
-
-        /// <summary>
-        /// Returns to the main menu.
-        /// </summary>
-        public void ReturnToMainMenu()
-        {
-            // Update this with proper transitions later.
-            SceneManager.LoadScene(MAIN_MENU_NAME);
         }
     }
 }
