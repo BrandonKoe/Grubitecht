@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 5514773250029526235}
   - component: {fileID: 2720870394411022053}
   - component: {fileID: 3886941547829776927}
+  - component: {fileID: 351924422678925184}
   m_Layer: 5
   m_Name: WorldSpaceCanvas
   m_TagString: Untagged
@@ -437,3 +438,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &351924422678925184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499793551065882321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69574f34e74d73499038a05b57afdfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

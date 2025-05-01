@@ -89,16 +89,5 @@ namespace Grubitecht.UI
             pauseMenuObject.SetActive(val);
         }
         #endregion
-
-        #region Button Functions
-        /// <summary>
-        /// Restarts the current level.
-        /// </summary>
-        public void RestartLevel()
-        {
-            // Update this with proper transitions later.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        #endregion
     }
 }

@@ -8,6 +8,7 @@
 using Grubitecht.World.Objects;
 using UnityEngine;
 using Grubitecht.World.Pathfinding;
+using NaughtyAttributes;
 
 namespace Grubitecht.World
 {
@@ -62,6 +63,7 @@ namespace Grubitecht.World
         /// <summary>
         /// Handles behaviour that should happen when you win a level.
         /// </summary>
+        [Button]
         public static void WinLevel()
         {
             current.winLevelDisplay.SetActive(true);
@@ -71,6 +73,7 @@ namespace Grubitecht.World
         /// <summary>
         /// Handles behaviour that should happen when you lose a level.
         /// </summary>
+        [Button]
         public static void LoseLevel()
         {
             current.loseLevelDisplay.SetActive(true);

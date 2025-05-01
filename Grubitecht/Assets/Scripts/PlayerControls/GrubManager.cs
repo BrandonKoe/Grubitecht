@@ -21,7 +21,8 @@ namespace Grubitecht
         [SerializeField] private GrubController grubPrefab;
         [SerializeField] private int maxGrubCount;
 
-        public static int MaxGrubCount { get; private set; }
+        //public static int MaxGrubCount { get; private set; }
+        private static int mgCount;
 
         private static GrubManager instance;
 
@@ -33,6 +34,18 @@ namespace Grubitecht
             get
             {
                 return MaxGrubCount - dispatchedGrubs.Count;
+            }
+        }
+        public static int MaxGrubCount
+        {
+            get
+            {
+                return Objective.CurrentObjectives.Count;
+                //return mgCount;
+            }
+            private set
+            {
+                mgCount = value;
             }
         }
         #endregion
@@ -126,10 +139,10 @@ namespace Grubitecht
         /// <summary>
         /// Updates the text that displays the number of available grubs.
         /// </summary>
-        private static void UpdateText()
+        public static void UpdateText()
         {
             if (instance == null || instance.grubText == null) { return; }
-            instance.grubText.text = $"{AvailableGrubs}/{MaxGrubCount}";
+            instance.grubText.text = $"{Mathf.Max(AvailableGrubs, 0)}/{MaxGrubCount}";
         }
     }
 }
