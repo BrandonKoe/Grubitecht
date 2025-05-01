@@ -48,6 +48,8 @@ namespace Grubitecht.World.Objects
         {
             if (other.CompareTag(DESTRUCTIBLE_TAG))
             {
+                // Spawn effects when the object is destroyed.
+
                 Destroy(other.gameObject);
             }
         }

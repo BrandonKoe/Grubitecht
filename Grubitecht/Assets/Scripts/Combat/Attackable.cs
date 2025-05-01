@@ -17,9 +17,12 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public class Attackable : ModifiableCombatBehaviour<Attackable>, IInfoProvider
     {
+        [Header("Visuals")]
+        [SerializeField] private GameObject deathEffects;
+        [SerializeField] private Color damageIndicatorColor;
+        [field: Header("Settings")]
         [field: SerializeField] public int MaxHealth { get; private set; }
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
-        [SerializeField] private Color damageIndicatorColor;
         [SerializeField] private bool destroyOnDeath;
         [SerializeField] private bool hasHealthBar;
 
@@ -103,9 +106,12 @@ namespace Grubitecht.Combat
         /// </summary>
         private void Die()
         {
+            // Broadcast to other component on this game object that this object has died.
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
+            // Spawn effects when this object dies.
+            Instantiate(deathEffects, transform.position, Quaternion.identity);
             if (hasHealthBar)
             {
                 HPBar.DestroyHealthBar();
