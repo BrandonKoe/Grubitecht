@@ -104,6 +104,7 @@ namespace Grubitecht.Combat
         /// <summary>
         /// Handles behaviour that should happen when this object dies.
         /// </summary>
+        [Button]
         private void Die()
         {
             // Broadcast to other component on this game object that this object has died.
@@ -111,7 +112,11 @@ namespace Grubitecht.Combat
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
             // Spawn effects when this object dies.
-            Instantiate(deathEffects, transform.position, Quaternion.identity);
+            if (deathEffects != null)
+            {
+                Instantiate(deathEffects, transform.position, Quaternion.identity);
+            }
+            // Destroy the health bar associated with this object.
             if (hasHealthBar)
             {
                 HPBar.DestroyHealthBar();

@@ -18,6 +18,7 @@ namespace Grubitecht.World.Objects
         private const string DESTRUCTIBLE_TAG = "DestructibleTerrain";
         #endregion
         [SerializeField, Min(0.1f)] private float detectionRange;
+        [SerializeField] private DestructibleTag[] destructibleTags;
 
         #region Component References
         [SerializeReference, HideInInspector] private SphereCollider detectionArea;
@@ -29,6 +30,15 @@ namespace Grubitecht.World.Objects
         {
             detectionArea = GetComponent<SphereCollider>();
             detectionArea.isTrigger = true;
+        }
+        #endregion
+
+        #region Nested Classes
+        [System.Serializable]
+        private struct DestructibleTag
+        {
+            [SerializeField] internal string tag;
+            [SerializeField] internal GameObject destroyEffect;
         }
         #endregion
 
@@ -46,12 +56,16 @@ namespace Grubitecht.World.Objects
         /// <param name="other">The object that has entered this object's range.</param>
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(DESTRUCTIBLE_TAG))
+            foreach (var tag in destructibleTags)
             {
-                // Spawn effects when the object is destroyed.
-
-                Destroy(other.gameObject);
+                if (other.CompareTag(tag.tag))
+                {
+                    // Spawn effects when the object is destroyed.
+                    Instantiate(tag.destroyEffect, other.transform.position, Quaternion.identity);
+                    Destroy(other.gameObject);
+                }
             }
+
         }
     }
 }

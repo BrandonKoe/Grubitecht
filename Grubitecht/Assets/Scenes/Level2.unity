@@ -4535,8 +4535,8 @@ MonoBehaviour:
   waveTimerText: {fileID: 255723089}
   waveTimerObject: {fileID: 1247007368}
   progressBar: {fileID: 1434987360}
-  delayBetweenWaves: 20
-  firstWaveDelay: 35
+  delayBetweenWaves: 2
+  firstWaveDelay: 3
 --- !u!4 &818700403
 Transform:
   m_ObjectHideFlags: 0

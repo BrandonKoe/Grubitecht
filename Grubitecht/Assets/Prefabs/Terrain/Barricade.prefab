@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barricade
       objectReference: {fileID: 0}
+    - target: {fileID: 2371548894496269515, guid: 2af4e7818f2c1664383a39a56f30a199, type: 3}
+      propertyPath: m_TagString
+      value: Barricade
+      objectReference: {fileID: 0}
     - target: {fileID: 3737562052447210376, guid: 2af4e7818f2c1664383a39a56f30a199, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
