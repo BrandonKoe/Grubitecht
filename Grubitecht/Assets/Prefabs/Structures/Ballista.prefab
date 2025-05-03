@@ -232,7 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4388331790138761451}
   attackable: {fileID: 0}
-  <AttackCooldown>k__BackingField: 6
+  attackEffects: {fileID: 0}
+  <AttackCooldown>k__BackingField: 8
   <AttackStat>k__BackingField: 15
   <targeter>k__BackingField: {fileID: 2245593280625145446}
   projectilePrefab: {fileID: 3185272158356184528, guid: 4d132dece0a810d44a51b44615e9360a, type: 3}

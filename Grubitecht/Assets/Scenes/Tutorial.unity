@@ -1015,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3005171665070718761, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3005171665070718761, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1383,8 +1383,8 @@ MonoBehaviour:
   waveTimerText: {fileID: 897941860}
   waveTimerObject: {fileID: 1627909897}
   progressBar: {fileID: 1354504499}
-  delayBetweenWaves: 0
-  firstWaveDelay: 15
+  delayBetweenWaves: 15
+  firstWaveDelay: 0
 --- !u!4 &476528021
 Transform:
   m_ObjectHideFlags: 0
@@ -4781,7 +4781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4789,7 +4789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4821,11 +4821,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4309292541319290903, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4309292541319290903, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309292541319290903, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309292541319290903, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
