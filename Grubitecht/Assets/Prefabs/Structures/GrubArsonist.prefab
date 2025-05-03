@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
+  attackEffects: {fileID: 6293503289599466285, guid: c69c43740045b9f4f85500ef0b2d337f, type: 3}
   <AttackCooldown>k__BackingField: 3
   <AttackStat>k__BackingField: 6
   <targeter>k__BackingField: {fileID: 8835481776803538693}
