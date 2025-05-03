@@ -42,7 +42,7 @@ namespace Grubitecht.UI
         public void NextScene()
         {
             int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            if (nextIndex < SceneManager.sceneCount)
+            if (nextIndex < SceneManager.sceneCountInBuildSettings)
             {
                 SceneManager.LoadScene(nextIndex);
             }

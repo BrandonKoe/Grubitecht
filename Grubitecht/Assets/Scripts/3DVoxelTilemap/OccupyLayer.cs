@@ -12,6 +12,7 @@ namespace Grubitecht.World
         Ground,
         Air,
         Grub,
-        Gate
+        Gate,
+        Selection
     }
 }

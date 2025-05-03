@@ -118,7 +118,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 90
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4845,9 +4845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8514c9743a2c29547956f1675e818a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileParticles: {fileID: 2501710188260786181}
+  projectileAnimator: {fileID: 0}
   initialSpeed: 25
-  acceleration: 0
 --- !u!96 &531006375335596978
 TrailRenderer:
   serializedVersion: 3

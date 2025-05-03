@@ -123,9 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 2418109710962796121}
   attackable: {fileID: 143026113051891342}
+  deathEffects: {fileID: 6507874470279212131, guid: 1d6159614e7dbdd4e8b4fc4d3194b4c6, type: 3}
+  damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   <MaxHealth>k__BackingField: 180
   <Health>k__BackingField: 0
-  damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   destroyOnDeath: 0
   hasHealthBar: 1
   selectableObject: {fileID: 5616972945258820724}

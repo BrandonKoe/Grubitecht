@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd2a711810f7264dbf944ecfe1e1ada, type: 3}
   m_Name: Injected
   m_EditorClassIdentifier: 
+  <VisualEffects>k__BackingField: {fileID: 5826414713555392044, guid: 33e6de11f1828334a8263525bea26b48, type: 3}
   <AllowDuplicates>k__BackingField: 1
   duration: 10
+  <ExtendDuration>k__BackingField: 0
   tickInterval: 0
   tiphiaYounglingPrefab: {fileID: 899067995119679676, guid: 3272963cf82a43a47a5ea9e2b579c891, type: 3}
   damageAmount: 5

@@ -33,6 +33,7 @@ namespace Grubitecht.World.Objects
                 Destroy(obj.gameObject);
             }
             base.OnDeath();
+            Destroy(this);
         }
     }
 }

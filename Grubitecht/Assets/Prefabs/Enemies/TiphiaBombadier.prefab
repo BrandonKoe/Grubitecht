@@ -95,6 +95,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6618363788783883500, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
+      propertyPath: deathEffects
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618363788783883500, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <MaxHealth>k__BackingField
       value: 15
       objectReference: {fileID: 0}
@@ -216,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 7670668218089949201}
   attackable: {fileID: 7733081156092412378}
+  attackEffects: {fileID: 8852274700824418778, guid: f242c45c3aa8e5c4a9a80c3c963b832c, type: 3}
   <AttackCooldown>k__BackingField: 4
   <AttackStat>k__BackingField: 7
   <targeter>k__BackingField: {fileID: 9139293012344712256}

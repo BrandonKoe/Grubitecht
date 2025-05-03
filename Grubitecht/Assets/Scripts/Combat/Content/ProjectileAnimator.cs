@@ -52,7 +52,7 @@ namespace Grubitecht.Combat
             while (target != null)
             {
                 float currentDistance = Vector2.Distance(transform.position, target.transform.position);
-                float distanceProgress = 1 - (currentDistance / baseDistance);
+                float distanceProgress = Mathf.Clamp01(1 - (currentDistance / baseDistance));
 
                 float x = xCurve.Evaluate(distanceProgress) * xVal;
                 float y = yCurve.Evaluate(distanceProgress) * yVal;

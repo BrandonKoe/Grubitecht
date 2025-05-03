@@ -26,6 +26,7 @@ namespace Grubitecht.Combat
         /// <param name="appliedBehaviour">The component this modifier is affecting.</param>
         public override void OnModifierAdded(Attackable appliedBehaviour)
         {
+            base.OnModifierAdded(appliedBehaviour);
             if (appliedBehaviour.TryGetComponent(out EnemyController enemy))
             {
                 enemy.StartPanicking(panicSpeedBoost, panicRadius);
@@ -33,6 +34,7 @@ namespace Grubitecht.Combat
         }
         public override void OnModifierRemoved(Attackable appliedBehaviour)
         {
+            base.OnModifierRemoved(appliedBehaviour);
             if (appliedBehaviour.TryGetComponent(out EnemyController enemy))
             {
                 enemy.StopPanicking();

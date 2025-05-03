@@ -39,18 +39,19 @@ namespace Grubitecht.Combat
                     return;
                 }
             }
-            modifiers.Add(modifier.NewInstance());
-            modifier.OnModifierAdded(this as T);
+            inst = modifier.NewInstance();
+            modifiers.Add(inst);
+            inst.OnModifierAdded(this as T);
         }
 
         /// <summary>
         /// Removes an attackable modifier from this attackable.
         /// </summary>
-        /// <param name="modifier">The modifier to remove.</param>
-        public void RemoveModifier(ModifierInstance<T> modifier)
+        /// <param name="inst">The modifier to remove.</param>
+        public void RemoveModifier(ModifierInstance<T> inst)
         {
-            modifiers.Remove(modifier);
-            modifier.OnModifierRemoved(this as T);
+            modifiers.Remove(inst);
+            inst.OnModifierRemoved(this as T);
         }
 
         /// <summary>

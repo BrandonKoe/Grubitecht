@@ -50,6 +50,12 @@ namespace Grubitecht.Combat
             if (target == null) { return; }
             Attack(target);
             CallAttackActionEvent(target);
+
+            // Play effects at the target of the attack.
+            if (attackEffects != null)
+            {
+                Instantiate(attackEffects, target.transform.position, Quaternion.identity);
+            }
         }
     }
 

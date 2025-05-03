@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8514c9743a2c29547956f1675e818a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileParticles: {fileID: 6514310366557868395}
   projectileAnimator: {fileID: 6936752770016093850}
   initialSpeed: 5
 --- !u!114 &6936752770016093850
@@ -339,7 +338,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 90
       minScalar: 5
       maxCurve:
         serializedVersion: 2

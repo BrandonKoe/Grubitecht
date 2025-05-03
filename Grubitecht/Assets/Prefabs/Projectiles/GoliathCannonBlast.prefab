@@ -191,7 +191,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 90
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4886,7 +4886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8514c9743a2c29547956f1675e818a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileParticles: {fileID: 3392676966614360064}
   projectileAnimator: {fileID: 266207600838147549}
   initialSpeed: 20
 --- !u!114 &266207600838147549

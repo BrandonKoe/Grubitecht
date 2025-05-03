@@ -7,13 +7,17 @@
 *****************************************************************************/
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
     public class Banner : Effector, IInfoProvider
     {
+        [SerializeField] private GameObject buffEffect;
         [SerializeField] private int attackBoost;
+
+        private readonly Dictionary<Attacker, GameObject> buffEffects = new Dictionary<Attacker, GameObject>();
 
         #region Component References
         [SerializeReference, HideInInspector] private SelectableObject selectableObject;
@@ -48,6 +52,13 @@ namespace Grubitecht.Combat
         protected override void ApplyBuff(Attacker buffedAttacker)
         {
             buffedAttacker.AttackStat += attackBoost;
+            if (buffEffect != null)
+            {
+                // Displays an effect at the position of buffed attackers to show their attack is increased.
+                GameObject bEff = Instantiate(buffEffect, buffedAttacker.transform.position, Quaternion.identity,
+                    buffedAttacker.transform);
+                buffEffects.Add(buffedAttacker, bEff);
+            }
         }
 
         /// <summary>
@@ -57,6 +68,12 @@ namespace Grubitecht.Combat
         protected override void RemoveBuff(Attacker buffedAttacker)
         {
             buffedAttacker.AttackStat -= attackBoost;
+            // Destroys effects when a structure is no longer being buffed.
+            if (buffEffects.ContainsKey(buffedAttacker))
+            {
+                Destroy(buffEffects[buffedAttacker]);
+                buffEffects.Remove(buffedAttacker);
+            }    
         }
 
         /// <summary>

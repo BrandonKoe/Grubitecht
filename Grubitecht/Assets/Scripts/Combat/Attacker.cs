@@ -16,6 +16,7 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public class Attacker : ModifiableCombatBehaviour<Attacker>, IInfoProvider
     {
+        [SerializeField] protected GameObject attackEffects;
         [field: Header("Stats")]
         [field: SerializeField] public float AttackCooldown { get; set; }
         [field: SerializeField] public int AttackStat { get; set; }
@@ -120,6 +121,11 @@ namespace Grubitecht.Combat
             CallOnPerformedAttackEvent(target);
             Attack(target);
             CallAttackActionEvent(target);
+            // Play effects at the target of the attack.
+            if (attackEffects != null)
+            { 
+                Instantiate(attackEffects, target.transform.position, Quaternion.identity);
+            }
             // Forces this attacker to cool down.
             StartCoroutine(Cooldown());
         }
@@ -168,7 +174,7 @@ namespace Grubitecht.Combat
             return new InfoValueBase[]
             {
                 new NumValue(AttackStat, 10, "Attack"),
-                new NumValue(AttackCooldown, 10, "Attack Cooldown")
+                new NumValue(AttackCooldown, 11, "Attack Cooldown")
             };
         }
     }

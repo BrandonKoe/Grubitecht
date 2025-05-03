@@ -92,7 +92,7 @@ namespace Grubitecht.UI.InfoPanel
         private void LoadInfo(List<InfoValueBase> info)
         {
             // Items with the lowest priority will be displayed first.
-            info.OrderBy(item => item.Priority);
+            info = info.OrderBy(item => item.Priority).ToList();
             // Loop through each value to display and load a displayer for that value.
             foreach(InfoValueBase value in info)
             {
