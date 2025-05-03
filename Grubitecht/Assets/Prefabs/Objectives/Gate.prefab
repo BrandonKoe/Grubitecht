@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Front Gate
   objectDesription: The front gate of grub town.  It keeps the invaders of the glade
-    at bay.
+    at bay.  (Counts as an Objective)
 --- !u!114 &2896105405509520429
 MonoBehaviour:
   m_ObjectHideFlags: 0
