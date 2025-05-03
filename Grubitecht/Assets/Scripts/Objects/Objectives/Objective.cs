@@ -20,7 +20,7 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("The order in which enemies will go after objectives.  Lower numbers will be " +
             "attacked first.")] 
         public int targetingOrder;
-        [SerializeField] private int moraleBuff;
+        [SerializeField] private float moraleBuff;
         //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
         private static List<Objective> currentObjectives = new();
 
@@ -80,9 +80,9 @@ namespace Grubitecht.World.Objects
             // Need to update the nav map whenever the objective changes spaces.  This may cause lag.
             //gridObject.OnChangeSpace += UpdateNavMap;
             // Increases the attack speed of all structures 
-            foreach(var item in FindObjectsOfType<Attacker>())
+            foreach(var item in FindObjectsOfType<Targeter>())
             {
-                item.AttackStat += moraleBuff;
+                item.DetectionRange += moraleBuff;
             }
         }
 
@@ -159,9 +159,9 @@ namespace Grubitecht.World.Objects
         {
             currentObjectives.Remove(this);
             // Removes the buff to attack speed on all structures.
-            foreach (var item in FindObjectsOfType<Attacker>())
+            foreach (var item in FindObjectsOfType<Targeter>())
             {
-                item.AttackStat -= moraleBuff;
+                item.DetectionRange -= moraleBuff;
             }
             GrubManager.UpdateText();
             if (currentObjectives.Count == 0)

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingOrder: 0
-  moraleBuff: 1
+  moraleBuff: 0.5
   <gridObject>k__BackingField: {fileID: 706373850487136439}
   attackable: {fileID: 3340188535086003367}
 --- !u!114 &510308414473040261
