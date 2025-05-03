@@ -96,7 +96,7 @@ namespace Grubitecht.Combat
             //    yield return new WaitForSeconds(AttackCooldown);
             //}
             onCooldown = true;
-            yield return new WaitForSeconds(AttackCooldown);
+            yield return new WaitForSeconds(Mathf.Max(AttackCooldown, 0.25f));
             onCooldown = false;
             // Immediately attack once our attack comes off cooldown if we have a valid target.
             if (targeter.HasTarget)
