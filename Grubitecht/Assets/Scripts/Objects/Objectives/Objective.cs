@@ -20,6 +20,7 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("The order in which enemies will go after objectives.  Lower numbers will be " +
             "attacked first.")] 
         public int targetingOrder;
+        [SerializeField] private Modifier<Attacker> onDeathModifier;
         //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
         private static List<Objective> currentObjectives = new();
 
@@ -84,7 +85,6 @@ namespace Grubitecht.World.Objects
         {
             attackable.OnDeath -= OnDeath;
             currentObjectives.Remove(this);
-            GrubManager.UpdateText();
             //gridObject.OnChangeSpace -= UpdateNavMap;
         }
 
@@ -153,6 +153,15 @@ namespace Grubitecht.World.Objects
         protected virtual void OnDeath()
         {
             currentObjectives.Remove(this);
+            // Grants all enemies on the field a buff when an objective is destroyed.
+            foreach(EnemyController enemy in FindObjectsOfType<EnemyController>())
+            {
+                if (enemy.TryGetComponent(out Attacker atk))
+                {
+                    atk.ApplyModifier(onDeathModifier);
+                }
+            }
+            GrubManager.UpdateText();
             if (currentObjectives.Count == 0)
             {
                 LevelManager.LoseLevel();
