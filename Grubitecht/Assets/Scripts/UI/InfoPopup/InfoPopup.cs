@@ -45,7 +45,7 @@ namespace Grubitecht.UI
         /// <param name="eventData">Unused.</param>
         public void OnPointerEnter(PointerEventData eventData)
         {
-            
+            Debug.Log("Pointer Entered");
             SpawnPopup();
         }
         public void OnPointerExit(PointerEventData eventData)
@@ -66,7 +66,7 @@ namespace Grubitecht.UI
         /// </summary>
         private void SpawnPopup()
         {
-            popupObj = Instantiate(popupDisplayerPrefab, popupParent);
+            popupObj = Instantiate(popupDisplayerPrefab, PopupParent);
             popupObj.Initialize(TitleText, BodyText);
         }
         private void DestroyPopup()

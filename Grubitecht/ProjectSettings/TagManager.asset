@@ -9,6 +9,7 @@ TagManager:
   - DestructibleTerrain
   - Barricade
   - Stone
+  - PopupParent
   layers:
   - Default
   - TransparentFX

@@ -93,7 +93,7 @@ MonoBehaviour:
   titleText: {fileID: 212727170390541344}
   contentText: {fileID: 7026727201127075418}
   inputActions: {fileID: -944628639613478452, guid: 8dd34ff089727ae45bc6999d9bacd38c, type: 3}
-  offset: {x: 100, y: 20}
+  offset: {x: 200, y: 100}
 --- !u!1 &5367337849870116184
 GameObject:
   m_ObjectHideFlags: 0

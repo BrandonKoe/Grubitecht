@@ -29,8 +29,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8663199330662283888}
-  - {fileID: 2093520754599958517}
   - {fileID: 7368305011753186499}
+  - {fileID: 2093520754599958517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 2093520754599958517}
   - component: {fileID: 4888444688033651223}
   - component: {fileID: 6839151705477595434}
+  - component: {fileID: 7745104561801305565}
   m_Layer: 5
   m_Name: GrubsIndicator
   m_TagString: Untagged
@@ -63,7 +64,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3063663521918763652}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -72,7 +73,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4888444688033651223
@@ -113,6 +114,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7745104561801305565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063663521918763652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba54051a8b12ab4485482348d7b3ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDisplayerPrefab: {fileID: 4341121449038888939, guid: f4f66c1cb0ae4e74298ba812a4f0fa69, type: 3}
+  <TitleText>k__BackingField: Grubitechts
+  <BodyText>k__BackingField: Shows the number of grubitechts available to move objects.
 --- !u!1 &6537504510144003123
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +274,7 @@ GameObject:
   - component: {fileID: 7368305011753186499}
   - component: {fileID: 6762031885759049394}
   - component: {fileID: 3744317265872086886}
+  - component: {fileID: 1175531384613539407}
   m_Layer: 5
   m_Name: HouseIndicator
   m_TagString: Untagged
@@ -322,3 +339,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1175531384613539407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969179241427550605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba54051a8b12ab4485482348d7b3ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDisplayerPrefab: {fileID: 4341121449038888939, guid: f4f66c1cb0ae4e74298ba812a4f0fa69, type: 3}
+  <TitleText>k__BackingField: Objectives
+  <BodyText>k__BackingField: Shows the number of objectives you have left to defend.

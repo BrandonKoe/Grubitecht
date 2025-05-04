@@ -30,6 +30,7 @@ namespace Grubitecht.UI
         /// <param name="eventData"></param>
         public void OnPointerEnter(PointerEventData eventData)
         {
+            Debug.Log("Pointer Entered");
             AnimateTo(targetSelectedValue);
         }
         public void OnPointerExit(PointerEventData eventData)
