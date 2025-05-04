@@ -15,6 +15,7 @@ namespace Grubitecht.UI.InfoPanel
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text text;
+        [SerializeField]
 
         /// <summary>
         /// initializes this int to display the proper name, icon, and font size.

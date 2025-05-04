@@ -60,7 +60,7 @@ namespace Grubitecht
         }
 
         /// <summary>
-        /// Checks if a given point in spaec is within the planes of a camera.
+        /// Checks if a given point in space is within the planes of a camera.
         /// </summary>
         /// <param name="cam">The camera to check if the object is within.</param>
         /// <param name="point">The point in space to check for.</param>
@@ -70,6 +70,38 @@ namespace Grubitecht
             return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(cam), 
                 new Bounds(point, Vector3.zero));
         }
-    }
 
+        /// <summary>
+        /// Checks for the number
+        /// </summary>
+        /// <returns></returns>
+        private static int CheckCornersInCanvas(this RectTransform rectTrans)
+        {
+            Rect canvasRect = new Rect(0f, 0f, Screen.width, Screen.height);
+
+            Vector3[] rectCorners = new Vector3[4];
+            rectTrans.GetWorldCorners(rectCorners);
+
+            int cornersOnScreen = 0;
+            foreach (var corner in rectCorners)
+            {
+                Vector2 cornerOnScreen = Camera.main.WorldToScreenPoint(corner);
+                if (canvasRect.Contains(cornerOnScreen))
+                {
+                    cornersOnScreen++;
+                }
+            }
+            return cornersOnScreen;
+        }
+
+        /// <summary>
+        /// Checks if all of a rect transform's corners are within the bounds of the canvas.
+        /// </summary>
+        /// <param name="rectTrans">The rect transform to check.</param>
+        /// <returns>True if all 4 corners are within the canvas.</returns>
+        public static bool IsFullyOnScreen(this RectTransform rectTrans)
+        {
+            return rectTrans.CheckCornersInCanvas() == 4;
+        }
+    }
 }
