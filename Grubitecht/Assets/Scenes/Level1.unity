@@ -6805,7 +6805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1660205535
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9271,7 +9271,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 210603597154878386, guid: e8eae434479166f4bb8a09a6d616fe07, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 384695159757937440, guid: e8eae434479166f4bb8a09a6d616fe07, type: 3}
       propertyPath: m_Pivot.x
@@ -9372,10 +9372,6 @@ PrefabInstance:
     - target: {fileID: 8141441427308135045, guid: e8eae434479166f4bb8a09a6d616fe07, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 8141441427308135045, guid: e8eae434479166f4bb8a09a6d616fe07, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

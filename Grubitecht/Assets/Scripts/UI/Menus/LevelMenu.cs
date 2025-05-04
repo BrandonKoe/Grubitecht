@@ -1,24 +1,23 @@
 /*****************************************************************************
-// File Name : PauseMenu.cs
+// File Name : LevelMenu.cs
 // Author : Brandon Koederitz
 // Creation Date : March 29, 2025
 //
-// Brief Description : Controls opening the pause menu and pausing the game.
+// Brief Description : Controls opening the menu that allows for navigation within a level.  Basically a pause menu.
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace Grubitecht.UI
 {
     [RequireComponent(typeof(PlayerInput))]
-    public class PauseMenu : BaseMenu
+    public class LevelMenu : BaseMenu
     {
-        [SerializeField,Tooltip("The GameObjec that contains all of the pause menu content")] 
-        private GameObject pauseMenuObject;
-        public static bool IsPaused { get; private set; }
+        [SerializeField,Tooltip("The GameObject that contains all of the level menu content")] 
+        private GameObject levelMenuObject;
+        public static bool IsOpen { get; private set; }
 
-        private InputAction pauseAction;
+        private InputAction levelMenuAction;
 
         #region Setup
         /// <summary>
@@ -28,9 +27,9 @@ namespace Grubitecht.UI
         {
             if (TryGetComponent(out PlayerInput input))
             {
-                pauseAction = input.currentActionMap.FindAction("Pause");
+                levelMenuAction = input.currentActionMap.FindAction("LevelMenu");
 
-                pauseAction.performed += PauseAction_Performed;
+                levelMenuAction.performed += OpenLevelMenuAction_Performed;
             }
         }
 
@@ -39,54 +38,56 @@ namespace Grubitecht.UI
         /// </summary>
         private void OnDestroy()
         {
-            IsPaused = false;
-            pauseAction.performed -= PauseAction_Performed;
+            IsOpen = false;
+            levelMenuAction.performed -= OpenLevelMenuAction_Performed;
         }
         #endregion
 
-        #region Pause Toggling
+        #region Menu Toggling
         /// <summary>
-        /// Handles the payler pressing the pause button.
+        /// Handles the player pressing the level menu button.
         /// </summary>
         /// <param name="obj"></param>
-        private void PauseAction_Performed(InputAction.CallbackContext obj)
+        private void OpenLevelMenuAction_Performed(InputAction.CallbackContext obj)
         {
-            if (IsPaused)
+            if (IsOpen)
             {
-                Unpause();
+                CloseLevelMenu();
             }
             else
             {
-                Pause();
+                OpenLevelMenu();
             }
         }
 
         /// <summary>
         /// Pauses the game and opens the pause menu.
         /// </summary>
-        public void Pause()
+        public void OpenLevelMenu()
         {
             // Note: Pausing the game only stops time if pause mode is on. (Not implemented yet).
-            TogglePause(true);
+            ToggleMenu(true);
         }
 
         /// <summary>
         /// Unpauses the game.
         /// </summary>
-        public void Unpause()
+        public void CloseLevelMenu()
         {
             CloseAllSubMenus();
-            TogglePause(false);
+            ToggleMenu(false);
         }
 
         /// <summary>
         /// Toggles the state of the pause menu.
         /// </summary>
         /// <param name="val">Whether to have the pause menu enabled or disabled.</param>
-        private void TogglePause(bool val)
+        private void ToggleMenu(bool val)
         {
-            IsPaused = val;
-            pauseMenuObject.SetActive(val);
+            IsOpen = val;
+            levelMenuObject.SetActive(val);
+            // Always check for a change in pause state when the level menu is changed.
+            PauseModeController.CheckPauseState();
         }
         #endregion
     }
