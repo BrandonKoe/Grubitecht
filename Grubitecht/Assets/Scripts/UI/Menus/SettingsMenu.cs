@@ -96,13 +96,27 @@ namespace Grubitecht.UI
 
             List<string> resNames = new List<string>();
 
-            foreach (var resolution in resolutions)
+            int currentResolution = 0;
+            for (int i = 0; i < resolutions.Length; i++)
             {
+                Resolution resolution = resolutions[i];
                 string resName = $"{resolution.width} x {resolution.height}";
                 resNames.Add(resName);
+
+                // Checks if any of the resoultions match the current resolution of the screen, and set that as the
+                // current active resolution.
+                if (resolution.width == Screen.currentResolution.width && 
+                    resolution.height == Screen.currentResolution.height)
+                {
+                    currentResolution = i;
+                }
             }
 
             resolutionDropdown.AddOptions(resNames);
+
+            // Set our current resolution after we've added all the options.
+            resolutionDropdown.value = currentResolution;
+            resolutionDropdown.RefreshShownValue();
         }
 
         /// <summary>
@@ -111,7 +125,7 @@ namespace Grubitecht.UI
         /// <param name="resIndex">The index of the item on the resolution dropdown the player selected.</param>
         public void SetResolution(int resIndex)
         {
-            if (resolutions.Length < resIndex)
+            if (resIndex < resolutions.Length)
             {
                 GameSettings.ResolutionIndex = resIndex;
                 Resolution res = resolutions[resIndex];

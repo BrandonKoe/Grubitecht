@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e389144b271e549bd368a6f3f55750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelMenuObject: {fileID: 0}
+  levelMenuObject: {fileID: 210603597154878386}
 --- !u!114 &2658574070085179072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,11 +864,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Unpause
+      value: CloseLevelMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Grubitecht.UI.PauseMenu, Assembly-CSharp
+      value: Grubitecht.UI.LevelMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

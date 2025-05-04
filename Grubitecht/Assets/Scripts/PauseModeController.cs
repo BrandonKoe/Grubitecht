@@ -67,8 +67,12 @@ namespace Grubitecht
         /// <param name="obj">Unused.</param>
         private void PauseAction_Performed(InputAction.CallbackContext obj)
         {
-            isPausedByInput = !isPausedByInput;
-            CheckPauseState();
+            // Only toggle isPausedByInput if we're already in pause mode so the game doesn't have to do extra work.
+            if (GameSettings.PauseMode)
+            {
+                isPausedByInput = !isPausedByInput;
+                CheckPauseState();
+            }
         }
 
         /// <summary>

@@ -37,6 +37,14 @@ namespace Grubitecht.UI
             AnimateTo(targetDeselectedValue);   
         }
 
+        /// <summary>
+        /// Reset the image's fill when this object is enabled to ensure it always starts as unselected.
+        /// </summary>
+        private void OnEnable()
+        {
+            targetImage.fillAmount = targetDeselectedValue;
+        }
+
 
         /// <summary>
         /// Animates the fill of the target image based on an animation curve.
@@ -61,7 +69,7 @@ namespace Grubitecht.UI
                 float normalizedProgress = 1 - (timer / animationTime);
                 targetImage.fillAmount = Mathf.Lerp(initial, target, animationCurve.Evaluate(normalizedProgress));
 
-                timer -= Time.deltaTime;
+                timer -= Time.unscaledDeltaTime;
                 yield return null;
             }
             animRoutine = null;

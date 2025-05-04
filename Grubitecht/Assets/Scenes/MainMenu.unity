@@ -418,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 72457745}
   - component: {fileID: 72457746}
+  - component: {fileID: 72457747}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -464,6 +465,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playScene: LevelSelect
+--- !u!114 &72457747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72457744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1acb7db91531a441834b47734a70756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &98065385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1975,7 @@ PrefabInstance:
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 72457746}
+      objectReference: {fileID: 72457747}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1973,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Grubitecht.UI.MainMenu, Assembly-CSharp
+      value: Grubitecht.UI.ButtonFunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8936338664948256973, guid: a5ea683bac1f3fb48ad533d3b212efa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
