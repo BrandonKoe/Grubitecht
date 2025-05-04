@@ -16,7 +16,7 @@ namespace Grubitecht.World.Objects
     public class SelectableObject : MonoBehaviour, ISelectable
     {
         #region CONSTS
-        private const int NAME_FONT_SIZE = 50;
+        private const int NAME_FONT_SIZE = 40;
         #endregion
 
         [Header("Default Object Information")]

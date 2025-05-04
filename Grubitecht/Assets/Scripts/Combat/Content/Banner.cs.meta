@@ -3,7 +3,9 @@ guid: 41cffd050d78be845bc3244b7b9d6422
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - buffEffect: {instanceID: 0}
+  - attackBoostFormatter: {fileID: 11400000, guid: 2fd2812778bbd2f44a31170c772c29eb, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
