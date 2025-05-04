@@ -221,6 +221,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 2731574801595987342}
   detectionRange: 7
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: -1
   detectionArea: {fileID: 554199331391295432}
@@ -239,8 +240,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 5735124070260143926}
   attackable: {fileID: 0}
+  attackEffects: {fileID: 0}
+  <AttackDamage>k__BackingField: 0
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 1
-  <AttackStat>k__BackingField: 4
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 4729045751414896831}
   projectilePrefab: {fileID: 3841403755064951916, guid: 5b52480c6b8efdf4bb2cbec57b7ea5ec, type: 3}
   projectileOffset: {x: 0, y: 1, z: 0}

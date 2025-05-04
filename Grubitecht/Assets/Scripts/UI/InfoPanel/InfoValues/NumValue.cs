@@ -13,6 +13,7 @@ namespace Grubitecht.UI.InfoPanel
     {
         public float FontSize { get; set; } = DEFAULT_FONT_SIZE;
         public string NumName { get; set; }
+        public string NumDescription { get; set; }
         public string NumSuffix { get; set; }
         public Sprite Icon { get; set; }
 
@@ -34,9 +35,11 @@ namespace Grubitecht.UI.InfoPanel
             NumSuffix = suffix;
         }
 
-        public NumValue(float value, int priority, Sprite icon) : base(value, priority)
+        public NumValue(float value, int priority, Sprite icon, string name, string numDescription) : base(value, priority)
         {
             Icon = icon;
+            NumDescription = numDescription;
+            NumName = name;
         }
 
         public NumValue(float value, int priority, string name, string suffix, Sprite icon) : base(value, priority)
@@ -44,6 +47,16 @@ namespace Grubitecht.UI.InfoPanel
             NumName = name;
             NumSuffix = suffix;
             Icon = icon;
+        }
+
+        public NumValue(float value, int priority, StatFormatter template) : base(value, priority)
+        {
+            // Skip all assignment if the template is null.
+            if (template == null) { return; }
+            NumName = template.Name;
+            NumDescription = template.Description;
+            Icon = template.Icon;
+            NumSuffix = template.Suffix;
         }
     }
 }

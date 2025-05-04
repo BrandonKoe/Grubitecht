@@ -116,6 +116,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 7463651812859560969}
   detectionRange: 4
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 1
   canTargetTags: 0
   detectionArea: {fileID: 5029498597334253135}

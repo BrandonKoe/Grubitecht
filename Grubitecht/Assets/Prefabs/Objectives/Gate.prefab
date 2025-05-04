@@ -126,6 +126,7 @@ MonoBehaviour:
   deathEffects: {fileID: 6507874470279212131, guid: 1d6159614e7dbdd4e8b4fc4d3194b4c6, type: 3}
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   <MaxHealth>k__BackingField: 180
+  maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0
   destroyOnDeath: 0
   hasHealthBar: 1

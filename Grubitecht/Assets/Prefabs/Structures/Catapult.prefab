@@ -146,6 +146,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 7730889048981972882}
   detectionRange: 20
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: 0
   detectionArea: {fileID: 5265212869986229716}
@@ -166,6 +167,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   attacker: {fileID: 5722466547020415271}
   aoeRange: 3
+  aoeStatFormatter: {fileID: 11400000, guid: 095c46a1302f2c348928b3aebad4ea74, type: 2}
   friendlyFire: 0
 --- !u!114 &5722466547020415271
 MonoBehaviour:
@@ -182,8 +184,10 @@ MonoBehaviour:
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
   attackEffects: {fileID: 799584395451922311, guid: d9a2e2fb3c722a24fb6b7fd6eb5ad82d, type: 3}
+  <AttackDamage>k__BackingField: 0
+  attackDamageFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <AttackCooldown>k__BackingField: 7
-  <AttackStat>k__BackingField: 8
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 4235892459804935470}
   projectilePrefab: {fileID: 927277716308103812, guid: 7f9055b03ffc5c54b9440eb48db43721, type: 3}
   projectileOffset: {x: 0, y: 0.75, z: 0}

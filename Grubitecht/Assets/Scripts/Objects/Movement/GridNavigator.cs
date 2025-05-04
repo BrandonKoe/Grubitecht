@@ -6,6 +6,7 @@
 // Brief Description : Base class for all components that control movement along the grid.
 *****************************************************************************/
 using Grubitecht.Tilemaps;
+using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using UnityEngine;
 namespace Grubitecht.World.Pathfinding
 {
     [RequireComponent(typeof(GridObject))]
-    public abstract class GridNavigator : MonoBehaviour
+    public abstract class GridNavigator : MonoBehaviour, IInfoProvider
     {
         #region CONSTS
         protected const float SPACE_CLAMP = 0.001f;
@@ -26,6 +27,7 @@ namespace Grubitecht.World.Pathfinding
         [SerializeField] private float rotationTime;
         [field: Header("Movement Settings")]
         [field: SerializeField] public float MoveSpeed { get; set; }
+        [SerializeField] private StatFormatter moveSpeedFormatter;
         [SerializeField, Tooltip("How large of an upward incline this object can move up.")]
         protected int climbHeight;
         //[SerializeField, Tooltip("Whether this object should ignore spaces that are blocked when navigating the " +
@@ -129,6 +131,14 @@ namespace Grubitecht.World.Pathfinding
             eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, rotationTime);
             //eulers.y = angle;
             rotateTransform.eulerAngles = eulers;
+        }
+
+        public InfoValueBase[] InfoGetter()
+        {
+            return new InfoValueBase[]
+            {
+                new NumValue(MoveSpeed, 90, moveSpeedFormatter)
+            };
         }
     }
 }

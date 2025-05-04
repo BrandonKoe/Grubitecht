@@ -15,8 +15,8 @@ namespace Grubitecht.UI.InfoPanel
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text text;
-        [SerializeField]
-
+        [SerializeField] private InfoPopup iconPopup;
+         
         /// <summary>
         /// initializes this int to display the proper name, icon, and font size.
         /// </summary>
@@ -24,14 +24,25 @@ namespace Grubitecht.UI.InfoPanel
         public override void Initialize(NumValue valueRef)
         {
             base.Initialize(valueRef);
-            string valueText = $"{valueRef.NumName}: {valueRef.Value}";
-            text.text = valueText;
-            text.fontSize = valueRef.FontSize;
+            string valueText;
             if (iconImage != null && valueRef.Icon != null)
             {
                 iconImage.gameObject.SetActive(true);
                 iconImage.sprite = valueRef.Icon;
+                valueText = $"{valueRef.Value}{valueRef.NumSuffix}";
+                // Configure the info popup for the icon so players know what each icon does.
+                if (iconPopup != null)
+                {
+                    iconPopup.TitleText = valueRef.NumName;
+                    iconPopup.BodyText = valueRef.NumDescription;
+                }
             }
+            else
+            {
+                valueText = $"{valueRef.NumName}: {valueRef.Value}{valueRef.NumSuffix}";
+            }
+            text.text = valueText;
+            text.fontSize = valueRef.FontSize;
         }
     }
 }

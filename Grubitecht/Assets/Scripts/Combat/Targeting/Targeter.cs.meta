@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - defaultSphereVisual: {fileID: 4350982274079875682, guid: 25dee89b7f04336428338dc5c3457adf, type: 3}
+  - detectionVisual: {instanceID: 0}
+  - rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -137,6 +137,7 @@ MonoBehaviour:
   deathEffects: {fileID: 129405880867092937, guid: 27781511dcf3f764fb478b8d58bc12d9, type: 3}
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
   <MaxHealth>k__BackingField: 50
+  maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0
   destroyOnDeath: 1
   hasHealthBar: 1
@@ -185,6 +186,7 @@ MonoBehaviour:
   rotateModel: {fileID: 0}
   rotationTime: 0
   <MoveSpeed>k__BackingField: 1
+  moveSpeedFormatter: {fileID: 11400000, guid: db817464a8b08fa4d9eaf4ba2c25524e, type: 2}
   climbHeight: 1
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 706373850487136439}

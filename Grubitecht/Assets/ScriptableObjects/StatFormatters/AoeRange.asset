@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa91f39241391c438db0da4a6150355, type: 3}
+  m_Name: AoeRange
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 303958245, guid: a5301f333e8fc414986a4e7a75295286, type: 3}
+  <Name>k__BackingField: Blast Range
+  <Description>k__BackingField: The area around the target that is affected by this
+    object's attacks.
+  <Suffix>k__BackingField: 

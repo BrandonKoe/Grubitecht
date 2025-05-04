@@ -138,6 +138,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 2377592230455766907}
   detectionRange: 1
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: 0
   detectionArea: {fileID: 5437131417601657913}
@@ -156,8 +157,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
   attackable: {fileID: 4758113411827519971}
+  attackEffects: {fileID: 0}
+  <AttackDamage>k__BackingField: 0
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 2
-  <AttackStat>k__BackingField: 5
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 6308435001518308473}
 --- !u!54 &4589588747310273762
 Rigidbody:
@@ -200,9 +204,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 4839938847972710440}
   attackable: {fileID: 4758113411827519971}
-  <MaxHealth>k__BackingField: 20
-  <Health>k__BackingField: 0
+  deathEffects: {fileID: 0}
   damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
+  <MaxHealth>k__BackingField: 20
+  maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
+  <Health>k__BackingField: 0
   destroyOnDeath: 1
   hasHealthBar: 0
   selectableObject: {fileID: 6254574678074587637}
@@ -249,6 +255,7 @@ MonoBehaviour:
   rotateModel: {fileID: 5093368743252289357}
   rotationTime: 0.2
   <MoveSpeed>k__BackingField: 3
+  moveSpeedFormatter: {fileID: 11400000, guid: db817464a8b08fa4d9eaf4ba2c25524e, type: 2}
   climbHeight: 1
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
