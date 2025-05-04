@@ -11,19 +11,8 @@ using UnityEngine;
 
 namespace Grubitecht
 {
-    public class GameSettings : MonoBehaviour
+    public static class GameSettings
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public static bool PauseMode { get; set; }
     }
-
 }
