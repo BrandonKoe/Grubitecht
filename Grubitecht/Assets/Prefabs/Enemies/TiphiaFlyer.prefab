@@ -88,15 +88,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4120784545069836916, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4120784545069836916, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4120784545069836916, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5313937129125306824, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_Name
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5646669548525877622, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: detectionRange
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5700895998332386554, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: objectName
@@ -117,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5955309066938386742, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: m_Radius
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <AttackDelay>k__BackingField
