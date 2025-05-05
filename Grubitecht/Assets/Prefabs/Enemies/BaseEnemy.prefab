@@ -85,6 +85,7 @@ MonoBehaviour:
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
   targeter: {fileID: 6308435001518308473}
   pathNavigator: {fileID: 3419658666011052324}
+  selectableObject: {fileID: 6254574678074587637}
 --- !u!135 &5437131417601657913
 SphereCollider:
   m_ObjectHideFlags: 0

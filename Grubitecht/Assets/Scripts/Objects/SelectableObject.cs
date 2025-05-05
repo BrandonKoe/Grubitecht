@@ -27,6 +27,11 @@ namespace Grubitecht.World.Objects
         public event Action<ISelectable> OnSelectEvent;
         public event Action<ISelectable> OnDeselectEvent;
 
+        #region Properties
+        public string ObjectName => objectName;
+        public string ObjectDesription => objectDesription;
+        #endregion
+
         /// <summary>
         /// Get references to all of this object's info getters on awake.
         /// </summary>

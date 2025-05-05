@@ -6,6 +6,7 @@
 // Brief Description : Controller for UI objects that displays the next upcoming enemies in a wave.
 *****************************************************************************/
 using Grubitecht.Waves;
+using Grubitecht.World;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -15,11 +16,13 @@ namespace Grubitecht.UI
 {
     public class WavePredictor : MonoBehaviour
     {
-        [SerializeField] private Vector3 baseOffset = new Vector3(0, 1, 0);
+        [Header("References")]
         [SerializeField] private Image enemyPredictionImage;
         [SerializeField] private Image timerImage;
         [SerializeField] private RectTransform backImageTransform;
         [SerializeField] private TMP_Text enemyNumberText;
+        [Header("Settings")]
+        [SerializeField] private Vector3 baseOffset = new Vector3(0, 1, 0);
         [SerializeField, Tooltip("The distance from the central position this object should offset itself.")] 
         private float offset;
         [SerializeField, Tooltip("The angle in degrees that each predictor will be offset from each other rotating " +
@@ -30,6 +33,16 @@ namespace Grubitecht.UI
         private Vector3 basePosition;
         private int typeNumber;
 
+        #region Component References
+        [SerializeReference, HideInInspector] private InfoPopup infoPopup;
+        /// <summary>
+        /// Assign component references on component reset.
+        /// </summary>
+        private void Reset()
+        {
+            infoPopup = GetComponent<InfoPopup>();
+        }
+        #endregion
 
         #region Properties
         private RectTransform rectTransform => (RectTransform)transform;
@@ -37,17 +50,19 @@ namespace Grubitecht.UI
         /// <summary>
         /// Initializes this object with values when it spawns.
         /// </summary>
-        /// <param name="predictionSprite">The sprite to display that represents the enemy type.</param>
+        /// <param name="enemyPrefab">The sprite to display that represents the enemy type.</param>
         /// <param name="basePosition">The position that this UI element reperesents in world space.</param>
         /// <param name="enemyNumber">The number of enemies of this type that will be in the next wave.</param>
         /// <param name="duration">The amount of time until this wave spawns.</param>
         /// <param name="typeNumber">
         /// The number of other predictors.  Used to offset this predictor by an angle.
         /// </param>
-        public void Initialize(Sprite predictionSprite, Vector3 basePosition, int enemyNumber, float duration, 
+        public void Initialize(EnemyController enemyPrefab, Vector3 basePosition, int enemyNumber, float duration, 
             int typeNumber)
         {
-            enemyPredictionImage.sprite = predictionSprite;
+            enemyPredictionImage.sprite = enemyPrefab.EnemySpriteIcon;
+            infoPopup.TitleText = enemyPrefab.EnemyName;
+            infoPopup.BodyText = enemyPrefab.EnemyDescription;
             enemyNumberText.text = enemyNumber.ToString();
             this.typeNumber = typeNumber;
             this.basePosition = basePosition;

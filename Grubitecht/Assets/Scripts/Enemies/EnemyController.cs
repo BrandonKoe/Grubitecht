@@ -33,6 +33,7 @@ namespace Grubitecht.World
         [field: SerializeReference, HideInInspector] public GridObject gridObject { get; private set; }
         [SerializeReference, HideInInspector] private Targeter targeter;
         [SerializeReference, HideInInspector] private PathNavigator pathNavigator;
+        [SerializeReference, HideInInspector] private SelectableObject selectableObject;
 
         /// <summary>
         /// Assign component references on reset.
@@ -42,6 +43,7 @@ namespace Grubitecht.World
             gridObject = GetComponent<GridObject>();
             targeter = GetComponent<Targeter>();
             pathNavigator = GetComponent<PathNavigator>();
+            selectableObject = GetComponent<SelectableObject>();
         }
         #endregion
 
@@ -55,6 +57,28 @@ namespace Grubitecht.World
                     enemyParent = GameObject.FindGameObjectWithTag(ENEMY_PARENT_TAG).transform;
                 }
                 return enemyParent;
+            }
+        }
+        public string EnemyName
+        {
+            get
+            {
+                if (selectableObject == null)
+                {
+                    return "";
+                }
+                return selectableObject.ObjectName;
+            }
+        }
+        public string EnemyDescription
+        {
+            get
+            {
+                if (selectableObject == null)
+                {
+                    return "";
+                }
+                return selectableObject.ObjectDesription;
             }
         }
         #endregion
