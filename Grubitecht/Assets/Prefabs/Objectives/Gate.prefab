@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingOrder: 0
+  onDeathModifier: {fileID: 11400000, guid: 305729c236228ca4db24310e361b7713, type: 2}
   <gridObject>k__BackingField: {fileID: 2379678157832995898}
   attackable: {fileID: 143026113051891342}
   gateAnimator: {fileID: 3634845277562245475}

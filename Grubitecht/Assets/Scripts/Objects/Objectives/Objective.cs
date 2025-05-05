@@ -20,6 +20,7 @@ namespace Grubitecht.World.Objects
         [SerializeField, Tooltip("The order in which enemies will go after objectives.  Lower numbers will be " +
             "attacked first.")] 
         public int targetingOrder;
+        [SerializeField] private Modifier<Attacker> onDeathModifier;
         //public static readonly BufferedNavigationMap NavMap = new BufferedNavigationMap(GetObjectivePositions, 1, 5f);
         private static List<Objective> currentObjectives = new();
 
@@ -153,6 +154,13 @@ namespace Grubitecht.World.Objects
         protected virtual void OnDeath()
         {
             currentObjectives.Remove(this);
+            foreach(var structure in FindObjectsOfType<Attacker>())
+            {
+                if (!structure.TryGetComponent(out EnemyController enemy))
+                {
+                    structure.ApplyModifier(onDeathModifier);
+                }
+            }
             if (currentObjectives.Count == 0)
             {
                 LevelManager.LoseLevel();
