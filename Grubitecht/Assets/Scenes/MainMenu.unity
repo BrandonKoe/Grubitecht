@@ -943,6 +943,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3743619098579623929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &182496145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182496147}
+  - component: {fileID: 182496146}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &182496146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182496145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3236e9eb4205da4ebce2a4199396b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionDuration: 3
+  musicTracks:
+  - <Name>k__BackingField: MainMenu
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 58b2e83fa0157d5499138578ab1b5f94, type: 3}
+    <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+    <Priority>k__BackingField: 50
+    <Volume>k__BackingField: 0.2
+    <Pitch>k__BackingField: 1
+    <Loop>k__BackingField: 1
+  - <Name>k__BackingField: Level1
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 989dc5b6e2f5b234b97c48fa0c23f584, type: 3}
+    <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+    <Priority>k__BackingField: 50
+    <Volume>k__BackingField: 0.2
+    <Pitch>k__BackingField: 1
+    <Loop>k__BackingField: 1
+  - <Name>k__BackingField: Level2
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 989dc5b6e2f5b234b97c48fa0c23f584, type: 3}
+    <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+    <Priority>k__BackingField: 50
+    <Volume>k__BackingField: 0.2
+    <Pitch>k__BackingField: 1
+    <Loop>k__BackingField: 1
+  - <Name>k__BackingField: Level3
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 989dc5b6e2f5b234b97c48fa0c23f584, type: 3}
+    <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+    <Priority>k__BackingField: 50
+    <Volume>k__BackingField: 0.2
+    <Pitch>k__BackingField: 1
+    <Loop>k__BackingField: 1
+  - <Name>k__BackingField: Credits
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: a91837cb98bb1ba43a74357dc07c745d, type: 3}
+    <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+    <Priority>k__BackingField: 50
+    <Volume>k__BackingField: 0.2
+    <Pitch>k__BackingField: 1
+    <Loop>k__BackingField: 1
+--- !u!4 &182496147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182496145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1041.7263, y: 450.5195, z: -10.866627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208068081
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,6 +4717,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 182496147}
   - {fileID: 868960347}
   - {fileID: 662489745}
   - {fileID: 1607122252}

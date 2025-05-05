@@ -12346,6 +12346,15 @@ MonoBehaviour:
     OnCreditSpawnEvent:
       m_PersistentCalls:
         m_Calls: []
+  - header: Music and SFX by
+    fontSize: 18
+    body: 'dkcompose
+
+      Steven Melin'
+    creditsPrefab: {fileID: 2819808026991938127, guid: 05b46e08f195fd14fada719c4718084b, type: 3}
+    OnCreditSpawnEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1490087304
 GameObject:
   m_ObjectHideFlags: 0
