@@ -31,6 +31,6 @@ MonoBehaviour:
       <EnemyPrefab>k__BackingField: {fileID: 411903346327987601, guid: cfddadef9cea95a4fbd51574f6d5f5c8, type: 3}
     - <Count>k__BackingField: 2
       <EnemyPrefab>k__BackingField: {fileID: 860886596398983487, guid: 315265ba73c9909419f348901ad4edb8, type: 3}
-    - <Count>k__BackingField: 2
+    - <Count>k__BackingField: 3
       <EnemyPrefab>k__BackingField: {fileID: 7524383864519132468, guid: 03c930a0a8d163e44b4c1612a801a361, type: 3}
-  enemyCount: 15
+  enemyCount: 16
