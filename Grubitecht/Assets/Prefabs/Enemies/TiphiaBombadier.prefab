@@ -205,6 +205,7 @@ MonoBehaviour:
   attackable: {fileID: 7733081156092412378}
   attacker: {fileID: 2076293223467440503}
   aoeRange: 2
+  aoeStatFormatter: {fileID: 11400000, guid: 095c46a1302f2c348928b3aebad4ea74, type: 2}
   friendlyFire: 0
 --- !u!114 &2076293223467440503
 MonoBehaviour:
@@ -221,8 +222,10 @@ MonoBehaviour:
   combatant: {fileID: 7670668218089949201}
   attackable: {fileID: 7733081156092412378}
   attackEffects: {fileID: 8852274700824418778, guid: f242c45c3aa8e5c4a9a80c3c963b832c, type: 3}
+  <AttackDamage>k__BackingField: 5
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 4
-  <AttackStat>k__BackingField: 7
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 9139293012344712256}
   projectilePrefab: {fileID: 4227983308657594734, guid: 81433633c698c8341b41f9f052c7d704, type: 3}
   projectileOffset: {x: 0, y: -0.5, z: 0}

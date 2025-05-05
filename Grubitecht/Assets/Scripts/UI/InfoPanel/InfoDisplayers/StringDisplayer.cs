@@ -23,7 +23,11 @@ namespace Grubitecht.UI.InfoPanel
         {
             base.Initialize(valueRef);
             text.text = valueRef.Value;
-            text.fontSize = valueRef.FontSize;
+            // Set font size if one was set.
+            if (valueRef.FontSize != 0)
+            {
+                text.fontSize = valueRef.FontSize;
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Grubitecht.Combat
         [Header("Targeting Stats")]
         [SerializeField] private Transform detectionVisual;
         [SerializeField, Min(0.1f)] private float detectionRange;
+        [SerializeField] private StatFormatter rangeFormatter;
         [Header("Targeting Filters")]
         [SerializeField, Tooltip("Controls what teams this component will target.")]
         protected TargetType targetingType;
@@ -167,7 +168,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(detectionRange, 20, "Range"),
+                new NumValue(detectionRange, 20, rangeFormatter),
                 new StringValue($"Targets {targetingType.ToString()}", 21)
             };
         }

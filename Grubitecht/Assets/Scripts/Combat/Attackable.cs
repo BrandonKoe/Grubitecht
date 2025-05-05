@@ -22,6 +22,7 @@ namespace Grubitecht.Combat
         [SerializeField] private Color damageIndicatorColor;
         [field: Header("Settings")]
         [field: SerializeField] public int MaxHealth { get; private set; }
+        [SerializeField] private StatFormatter maxHealthFormatter;
         [field: SerializeField, ReadOnly] public int Health { get; private set; }
         [SerializeField] private bool destroyOnDeath;
         [SerializeField] private bool hasHealthBar;
@@ -142,7 +143,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(MaxHealth, 01, "Max Health")
+                new NumValue(MaxHealth, 01, maxHealthFormatter)
             };
         }
     }

@@ -5,6 +5,7 @@
 //
 // Brief Description : Controls sub menus that pop up within the main and pause menus.
 *****************************************************************************/
+using System;
 using UnityEngine;
 
 namespace Grubitecht.UI
@@ -12,6 +13,9 @@ namespace Grubitecht.UI
     public class SubMenu : MonoBehaviour
     {
         [SerializeField] private BaseMenu baseMenu;
+
+        public event Action OnLoadMenu;
+        public event Action OnUnloadMenu;
         /// <summary>
         /// Controls loading/unloading this menu.
         /// </summary>
@@ -19,6 +23,7 @@ namespace Grubitecht.UI
         {
             // Do other stuff when the menu loads here.
             gameObject.SetActive(true);
+            OnLoadMenu?.Invoke();
             if (baseMenu != null )
             {
                 baseMenu.AddSubMenu(this);
@@ -26,7 +31,7 @@ namespace Grubitecht.UI
         }
         public void UnloadMenu()
         {
-            // Do ther stuff when the menu unloads here.
+            // Do other stuff when the menu unloads here.
             UnloadMenuRaw();
             if (baseMenu != null)
             {
@@ -40,6 +45,7 @@ namespace Grubitecht.UI
         public void UnloadMenuRaw()
         {
             gameObject.SetActive(false);
+            OnUnloadMenu?.Invoke();
         }
     }
 }

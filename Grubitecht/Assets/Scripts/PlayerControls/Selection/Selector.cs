@@ -160,14 +160,14 @@ namespace Grubitecht
         /// <returns>The selecteable object at that screen position.</returns>
         private ISelectable GetSelectableAtMousePos()
         {
-            return GetSelectableAtScreenPos(mousePosAction.ReadValue<Vector2>());
+            return GetSelectableAtScreenPos(mousePosAction.ReadValue<Vector2>(), cam);
         }
 
         /// <summary>
         /// Gets a selectable object at a given position on the screen.
         /// </summary>
         /// <returns>The selecteable object at that screen position.</returns>
-        private ISelectable GetSelectableAtScreenPos(Vector2 screenPos)
+        private static ISelectable GetSelectableAtScreenPos(Vector2 screenPos, Camera cam)
         {
             Ray selectionRay = cam.ScreenPointToRay(screenPos);
 

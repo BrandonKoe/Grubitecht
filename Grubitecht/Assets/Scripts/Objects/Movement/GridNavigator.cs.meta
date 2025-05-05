@@ -3,7 +3,9 @@ guid: 6dd9baad424004a40ba7e89ef2e5e3da
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rotateModel: {instanceID: 0}
+  - moveSpeedFormatter: {fileID: 11400000, guid: db817464a8b08fa4d9eaf4ba2c25524e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
