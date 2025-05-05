@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows an object to have health and be attacked by attackers.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.UI;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
@@ -17,9 +18,10 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public class Attackable : ModifiableCombatBehaviour<Attackable>, IInfoProvider
     {
-        [Header("Visuals")]
+        [Header("Effects")]
         [SerializeField] private GameObject deathEffects;
         [SerializeField] private Color damageIndicatorColor;
+        [SerializeField] private Sound deathSound;
         [field: Header("Settings")]
         [field: SerializeField] public int MaxHealth { get; private set; }
         [SerializeField] private StatFormatter maxHealthFormatter;
@@ -117,6 +119,8 @@ namespace Grubitecht.Combat
             {
                 Instantiate(deathEffects, transform.position, Quaternion.identity);
             }
+            // Plays a sound when this object dies.
+            AudioManager.PlaySoundAtPosition(deathSound, transform.position);
             // Destroy the health bar associated with this object.
             if (hasHealthBar)
             {

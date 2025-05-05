@@ -8,19 +8,32 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Member;
 
 namespace Grubitecht.Audio
 {
-    public delegate void AudioFadeCallback(Sound sound);
     public class MusicManager : MonoBehaviour
     {
         [SerializeField] private float transitionDuration;
-        [SerializeField] private Sound[] musicTracks;
+        [SerializeField] private SoundRef[] musicTracks;
 
-        private Sound currentTrack;
+        private SoundRef currentTrack;
 
         private static MusicManager instance;
+
+        #region Nested
+        private delegate void AudioFadeCallback(SoundRef sound);
+        [System.Serializable]
+        private class SoundRef
+        {
+            [SerializeField] internal string scene;
+            [SerializeField] internal Sound sound;
+
+            internal AudioSource source;
+        }
+        #endregion
 
         /// <summary>
         /// Assign singleton reference.
@@ -56,9 +69,11 @@ namespace Grubitecht.Audio
         /// </summary>
         private void SetupAudioSources()
         {
-            foreach (var track in musicTracks)
+            for(int i = 0; i < musicTracks.Length; i++)
             {
-                track.Setup(gameObject.AddComponent<AudioSource>());
+                AudioSource source = gameObject.AddComponent<AudioSource>();
+                musicTracks[i].sound.Setup(source); // Sets up the created AudioSource for the current track.
+                musicTracks[i].source = source;
             }
         }
 
@@ -69,7 +84,7 @@ namespace Grubitecht.Audio
         /// <param name="next">The new scene that is being loaded.</param>
         private void UpdateMusic(Scene current, Scene next)
         {
-            Sound musicForThisScene = Array.Find(musicTracks, item => item.Name == next.name);
+            SoundRef musicForThisScene = Array.Find(musicTracks, item => item.scene == next.name);
             // If we find a new track to play...
             if (musicForThisScene != null)
             {
@@ -83,7 +98,7 @@ namespace Grubitecht.Audio
         /// </summary>
         /// <param name="current">The current sound to transition away from.</param>
         /// <param name="next">The next track to transition to.</param>
-        private void TransitionToTrack(Sound current, Sound next)
+        private void TransitionToTrack(SoundRef current, SoundRef next)
         {
             Debug.Log("Transitioning");
             if (current != null)
@@ -94,9 +109,9 @@ namespace Grubitecht.Audio
             }
 
             // Plays the new audio and reduces it's volume to 0 so it can be faded in.
-            next.Source.Play();
-            float targetVolume = next.Volume;
-            next.Source.volume = 0f;
+            next.source.Play();
+            float targetVolume = next.sound.Volume;
+            next.source.volume = 0f;
             // Fade the new audio in to it's normal volume.
             StartCoroutine(FadeAudio(next, transitionDuration, targetVolume, null));
             // Our next track is now our current track.
@@ -107,12 +122,12 @@ namespace Grubitecht.Audio
         /// Resets the volume of a sound clip.
         /// </summary>
         /// <param name="toReset">The sound clip to reset.</param>
-        private void ResetVolume(Sound toReset)
+        private void ResetVolume(SoundRef toReset)
         {
             Debug.Log("reset volume");
             // Stops the audio source.
-            toReset.Source.Stop();
-            toReset.Source.volume = toReset.Volume;
+            toReset.source.Stop();
+            toReset.source.volume = toReset.sound.Volume;
         }
 
         /// <summary>
@@ -123,16 +138,16 @@ namespace Grubitecht.Audio
         /// <param name="targetVolume">The target volume that the sound should fade to.</param>
         /// <param name="callback">A callback to call when the fade finishes.</param>
         /// <returns>Coroutine</returns>
-        private static IEnumerator FadeAudio(Sound sound, float duration, float targetVolume, 
+        private static IEnumerator FadeAudio(SoundRef sound, float duration, float targetVolume, 
             AudioFadeCallback callback)
         {
             float timer = duration;
-            float startingVolume = sound.Source.volume;
+            float startingVolume = sound.source.volume;
             float normalizedProgress;
             while (timer > 0f)
             {
                 normalizedProgress = 1 - (timer / duration);
-                sound.Source.volume = Mathf.Lerp(startingVolume, targetVolume, normalizedProgress);
+                sound.source.volume = Mathf.Lerp(startingVolume, targetVolume, normalizedProgress);
 
                 timer -= Time.unscaledDeltaTime; // Should not scale with timeScale.
                 yield return null;
