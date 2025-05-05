@@ -1021,7 +1021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204817794}
   m_Layer: 5
-  m_Name: InfoPopups
+  m_Name: PopupParent
   m_TagString: PopupParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14627,7 +14627,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 628cd409cd1483d4d92228b4fb995a48, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
