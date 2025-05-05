@@ -20,8 +20,10 @@ namespace Grubitecht.Combat
     public class Healer : CombatBehaviour, IInfoProvider
     {
         [field: Header("Stats")]
-        [field: SerializeField] public float HealDelay { get; set; }
         [field: SerializeField] public int HealingStrength { get; set; }
+        [SerializeField] private StatFormatter healingStrengthFormatter;
+        [field: SerializeField] public float HealDelay { get; set; }
+        [SerializeField] private StatFormatter healDelayFormatter;
         private bool isHealing;
 
         public event Action<Attackable> OnHeal;
@@ -143,8 +145,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(HealingStrength, 10, "Healing Potency"),
-                new NumValue(HealDelay, 11, "Heal Delay")
+                new NumValue(HealingStrength, 10, healingStrengthFormatter),
+                new NumValue(HealDelay, 11, healDelayFormatter)
             };
         }
     }

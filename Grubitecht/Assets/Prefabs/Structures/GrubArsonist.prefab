@@ -132,10 +132,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: objectDesription
-      value: A rather... Unstable collective of grubs that have volunteered to help
-        fight.  They can deal powerful damage and burn enemies they hit, but beware
-        they can often get carried away and friendly targets can get caught in the
-        crossfire.
+      value: Deals damage in a large area and burns enemies they hit, but beware
+        they can often get carried away and hit friendly targets.
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
@@ -203,6 +201,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 2827851265261501313}
   detectionRange: 4
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: 0
   detectionArea: {fileID: 389247088020668871}
@@ -223,6 +222,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   attacker: {fileID: 8988062717168933357}
   aoeRange: 2
+  aoeStatFormatter: {fileID: 11400000, guid: 095c46a1302f2c348928b3aebad4ea74, type: 2}
   friendlyFire: 1
 --- !u!114 &2928615776038778580
 MonoBehaviour:
@@ -256,8 +256,10 @@ MonoBehaviour:
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
   attackEffects: {fileID: 6293503289599466285, guid: c69c43740045b9f4f85500ef0b2d337f, type: 3}
+  <AttackDamage>k__BackingField: 6
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 3
-  <AttackStat>k__BackingField: 6
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 8835481776803538693}
   projectilePrefab: {fileID: 5410392710843124268, guid: d69e6752010da904da2b136d0d1a2c95, type: 3}
   projectileOffset: {x: 0, y: 0.5, z: 0}

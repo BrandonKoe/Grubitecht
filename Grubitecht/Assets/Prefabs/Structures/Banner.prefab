@@ -159,6 +159,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 5023857816814874714}
   detectionRange: 5
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 1
   canTargetTags: -1
   detectionArea: {fileID: 7485050222826932764}
@@ -180,6 +181,7 @@ MonoBehaviour:
   targeter: {fileID: 5197117241284157715}
   buffEffect: {fileID: 7141992062831937616, guid: f836791310e541441ac76fd0e69d2d7b, type: 3}
   attackBoost: 2
+  attackBoostFormatter: {fileID: 11400000, guid: 2fd2812778bbd2f44a31170c772c29eb, type: 2}
   selectableObject: {fileID: 7498736004895158522}
 --- !u!114 &3442883350765597410 stripped
 MonoBehaviour:

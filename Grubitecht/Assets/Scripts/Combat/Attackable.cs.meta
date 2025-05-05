@@ -3,7 +3,9 @@ guid: 5f621950d4029aa468c091f0a6806d0a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathEffects: {instanceID: 0}
+  - maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

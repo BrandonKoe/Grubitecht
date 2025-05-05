@@ -16,6 +16,7 @@ namespace Grubitecht.Combat
     {
         [SerializeField] private GameObject buffEffect;
         [SerializeField] private int attackBoost;
+        [SerializeField] private StatFormatter attackBoostFormatter;
 
         private readonly Dictionary<Attacker, GameObject> buffEffects = new Dictionary<Attacker, GameObject>();
 
@@ -51,7 +52,7 @@ namespace Grubitecht.Combat
         /// <param name="buffedAttacker">The attacker that is now within range of this banner.</param>
         protected override void ApplyBuff(Attacker buffedAttacker)
         {
-            buffedAttacker.AttackStat += attackBoost;
+            buffedAttacker.AttackDamage += attackBoost;
             if (buffEffect != null)
             {
                 // Displays an effect at the position of buffed attackers to show their attack is increased.
@@ -67,7 +68,7 @@ namespace Grubitecht.Combat
         /// <param name="buffedAttacker">The attacker that is no longer within range of this banner.</param>
         protected override void RemoveBuff(Attacker buffedAttacker)
         {
-            buffedAttacker.AttackStat -= attackBoost;
+            buffedAttacker.AttackDamage -= attackBoost;
             // Destroys effects when a structure is no longer being buffed.
             if (buffEffects.ContainsKey(buffedAttacker))
             {
@@ -84,7 +85,7 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(attackBoost, 10, "Attack Boost"),
+                new NumValue(attackBoost, 10, attackBoostFormatter),
             };
         }
     }

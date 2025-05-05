@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "LevelMenu",
                     "type": "Button",
                     "id": "245c1c3f-cbc6-4f80-8c8f-54aa9fd6778b",
                     "expectedControlType": "Button",
@@ -81,6 +81,15 @@
                     "name": "Confirm",
                     "type": "Button",
                     "id": "05d237ef-0d89-4cf6-a846-cc29ad3e67cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "60ef4b97-1d29-4c78-b9f8-448b00579bbd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -117,7 +126,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "LevelMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -128,7 +137,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "LevelMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -195,6 +204,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7e44ebd-2968-487a-ab4a-0e84b54532c6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 2ba54051a8b12ab4485482348d7b3ca9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - popupDisplayerPrefab: {fileID: 4341121449038888939, guid: f4f66c1cb0ae4e74298ba812a4f0fa69, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

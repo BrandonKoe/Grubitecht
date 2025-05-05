@@ -60,7 +60,7 @@ namespace Grubitecht
         }
 
         /// <summary>
-        /// Checks if a given point in spaec is within the planes of a camera.
+        /// Checks if a given point in space is within the planes of a camera.
         /// </summary>
         /// <param name="cam">The camera to check if the object is within.</param>
         /// <param name="point">The point in space to check for.</param>
@@ -71,5 +71,4 @@ namespace Grubitecht
                 new Bounds(point, Vector3.zero));
         }
     }
-
 }

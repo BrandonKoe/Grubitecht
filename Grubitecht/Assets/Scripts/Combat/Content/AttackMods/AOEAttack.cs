@@ -15,13 +15,14 @@ namespace Grubitecht.Combat
     public class AOEAttack : AttackerMod, IInfoProvider
     {
         [SerializeField] private float aoeRange;
+        [SerializeField] private StatFormatter aoeStatFormatter;
         [SerializeField] private bool friendlyFire;
 
         public InfoValueBase[] InfoGetter()
         {
             return new InfoValueBase[]
             { 
-                new NumValue(aoeRange, 30, "AOE Range")
+                new NumValue(aoeRange, 30, aoeStatFormatter)
             };
         }
 

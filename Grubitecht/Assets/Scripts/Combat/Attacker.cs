@@ -18,8 +18,10 @@ namespace Grubitecht.Combat
     {
         [SerializeField] protected GameObject attackEffects;
         [field: Header("Stats")]
+        [field: SerializeField] public int AttackDamage { get; set; }
+        [SerializeField] private StatFormatter attackDamageFormatter;
         [field: SerializeField] public float AttackCooldown { get; set; }
-        [field: SerializeField] public int AttackStat { get; set; }
+        [SerializeField] private StatFormatter attackCooldownFormatter;
         protected bool onCooldown;
 
         public event Action<Attackable> OnAttack;
@@ -153,7 +155,7 @@ namespace Grubitecht.Combat
             // Prevent attacks on null targets.
             if (target == null) { return; }
             // Attack the closest target.
-            target.TakeDamage(AttackStat);
+            target.TakeDamage(AttackDamage);
             OnAttack?.Invoke(target);
         }
 
@@ -173,8 +175,8 @@ namespace Grubitecht.Combat
         {
             return new InfoValueBase[]
             {
-                new NumValue(AttackStat, 10, "Attack"),
-                new NumValue(AttackCooldown, 11, "Attack Cooldown")
+                new NumValue(AttackDamage, 10, attackDamageFormatter),
+                new NumValue(AttackCooldown, 11, attackCooldownFormatter)
             };
         }
     }

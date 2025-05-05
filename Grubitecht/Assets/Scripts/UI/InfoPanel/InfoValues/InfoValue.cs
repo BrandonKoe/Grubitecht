@@ -9,9 +9,9 @@ namespace Grubitecht.UI.InfoPanel
 {
     public abstract class InfoValue<T> : InfoValueBase
     {
-        #region CONSTS
-        public const float DEFAULT_FONT_SIZE = 30;
-        #endregion
+        //#region CONSTS
+        //public const float DEFAULT_FONT_SIZE = 22;
+        //#endregion
         public T Value { get; set; }
 
         /// <summary>

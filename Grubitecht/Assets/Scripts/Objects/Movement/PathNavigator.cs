@@ -21,7 +21,7 @@ namespace Grubitecht.World.Pathfinding
         Completed,
         Invalid
     }
-    public class PathNavigator : GridNavigator, IInfoProvider
+    public class PathNavigator : GridNavigator
     {
     //    [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
     //"path, or immediately as soon as it starts moving.")]
@@ -194,14 +194,6 @@ namespace Grubitecht.World.Pathfinding
             // Invoke the given finish callback.
             finishCallback?.Invoke(PathStatus.Completed);
             movementRoutine = null;
-        }
-
-        public InfoValueBase[] InfoGetter()
-        {
-            return new InfoValueBase[]
-            {
-                new NumValue(MoveSpeed, 90, "Movement Speed")
-            };
         }
     }
 }

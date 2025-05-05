@@ -164,7 +164,7 @@ namespace Grubitecht.Waves
             {
                 Wave.EnemyType enemy = subwave.Enemies[i];
                 WavePredictor predictor = Instantiate(predictorPrefab, PredictorParent);
-                predictor.Initialize(enemy.EnemyPrefab.EnemySpriteIcon, transform.position, enemy.Count, time, i);
+                predictor.Initialize(enemy.EnemyPrefab, transform.position, enemy.Count, time, i);
             }
         }
 

@@ -124,6 +124,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <AttackCooldown>k__BackingField
       value: 3
       objectReference: {fileID: 0}
