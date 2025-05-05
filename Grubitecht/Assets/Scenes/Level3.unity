@@ -1021,7 +1021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204817794}
   m_Layer: 5
-  m_Name: InfoPopups
+  m_Name: PopupParent
   m_TagString: PopupParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
