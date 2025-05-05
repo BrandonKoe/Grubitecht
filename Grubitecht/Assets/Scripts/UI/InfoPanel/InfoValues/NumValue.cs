@@ -11,7 +11,7 @@ namespace Grubitecht.UI.InfoPanel
 {
     public class NumValue : InfoValue<float>
     {
-        public float FontSize { get; set; } = DEFAULT_FONT_SIZE;
+        public float FontSize { get; set; }
         public string NumName { get; set; }
         public string NumDescription { get; set; }
         public string NumSuffix { get; set; }

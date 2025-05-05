@@ -184,8 +184,8 @@ MonoBehaviour:
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
   attackEffects: {fileID: 799584395451922311, guid: d9a2e2fb3c722a24fb6b7fd6eb5ad82d, type: 3}
-  <AttackDamage>k__BackingField: 0
-  attackDamageFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
+  <AttackDamage>k__BackingField: 8
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 7
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 4235892459804935470}

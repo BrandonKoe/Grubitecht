@@ -89,12 +89,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 75
-    m_Right: 75
+    m_Left: 110
+    m_Right: 85
     m_Top: 100
     m_Bottom: 100
   m_ChildAlignment: 0
-  m_Spacing: 35
+  m_Spacing: 20
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

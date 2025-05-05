@@ -118,6 +118,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   detectionVisual: {fileID: 0}
   detectionRange: 0
+  rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: 0
   detectionArea: {fileID: 6105128945973020178}
@@ -137,8 +138,10 @@ MonoBehaviour:
   combatant: {fileID: 4496811172796087783}
   attackable: {fileID: 0}
   attackEffects: {fileID: 8852274700824418778, guid: f242c45c3aa8e5c4a9a80c3c963b832c, type: 3}
+  <AttackDamage>k__BackingField: 3
+  attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 15
-  <AttackStat>k__BackingField: 3
+  attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 2579683083371204425}
   projectilePrefab: {fileID: 477935802266998269, guid: 45298b2b8dafe7945a70d9a06e7da121, type: 3}
   projectileOffset: {x: 0, y: 0, z: 0}
@@ -179,6 +182,7 @@ MonoBehaviour:
   attackable: {fileID: 0}
   attacker: {fileID: 4072706599021166688}
   aoeRange: 2
+  aoeStatFormatter: {fileID: 11400000, guid: 095c46a1302f2c348928b3aebad4ea74, type: 2}
   friendlyFire: 0
 --- !u!1 &8706371316230316493
 GameObject:
@@ -354,6 +358,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677027583254957291, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <AttackCooldown>k__BackingField
       value: 7
       objectReference: {fileID: 0}
@@ -371,10 +379,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6254574678074587637, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: objectDesription
-      value: This massive Tiphia is outfitted for absolute war.  The cannons on it's
-        back are powerful enough to blast multiple targets at once from an extreme
-        range with explosive rounds.  It's wings are also strong enough to lift it
-        off the ground.
+      value: The cannons on it's back can blast multiple targets from great range. 
+        It's wings are strong enough to lift it off the ground.
       objectReference: {fileID: 0}
     - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: detectionRange

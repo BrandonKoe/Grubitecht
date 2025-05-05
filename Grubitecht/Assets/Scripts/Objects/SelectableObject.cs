@@ -16,12 +16,12 @@ namespace Grubitecht.World.Objects
     public class SelectableObject : MonoBehaviour, ISelectable
     {
         #region CONSTS
-        private const int NAME_FONT_SIZE = 40;
+        private const int NAME_FONT_SIZE = 35;
         #endregion
 
         [Header("Default Object Information")]
         [SerializeField] private string objectName;
-        [SerializeField] private string objectDesription;
+        [SerializeField, TextArea] private string objectDesription;
 
         private readonly List<InfoValueGetter> infoGetters = new List<InfoValueGetter>();
         public event Action<ISelectable> OnSelectEvent;

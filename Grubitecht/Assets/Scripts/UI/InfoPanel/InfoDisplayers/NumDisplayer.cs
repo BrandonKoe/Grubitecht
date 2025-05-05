@@ -42,7 +42,11 @@ namespace Grubitecht.UI.InfoPanel
                 valueText = $"{valueRef.NumName}: {valueRef.Value}{valueRef.NumSuffix}";
             }
             text.text = valueText;
-            text.fontSize = valueRef.FontSize;
+            // Set font size if one was set.
+            if (valueRef.FontSize != 0)
+            {
+                text.fontSize = valueRef.FontSize;
+            }
         }
     }
 }

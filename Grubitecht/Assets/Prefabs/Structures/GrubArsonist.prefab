@@ -132,10 +132,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: objectDesription
-      value: A rather... Unstable collective of grubs that have volunteered to help
-        fight.  They can deal powerful damage and burn enemies they hit, but beware
-        they can often get carried away and friendly targets can get caught in the
-        crossfire.
+      value: Deals damage in a large area and burns enemies they hit, but beware
+        they can often get carried away and hit friendly targets.
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
@@ -258,7 +256,7 @@ MonoBehaviour:
   combatant: {fileID: 5566813652090124601}
   attackable: {fileID: 0}
   attackEffects: {fileID: 6293503289599466285, guid: c69c43740045b9f4f85500ef0b2d337f, type: 3}
-  <AttackDamage>k__BackingField: 0
+  <AttackDamage>k__BackingField: 6
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 3
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}

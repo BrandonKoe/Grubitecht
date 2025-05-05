@@ -11,7 +11,7 @@ namespace Grubitecht.UI.InfoPanel
 {
     public class StringValue : InfoValue<string>
     {
-        public float FontSize { get; set; } = DEFAULT_FONT_SIZE;
+        public float FontSize { get; set; }
 
         public StringValue(string value, int priority) : base(value, priority) { }
 
