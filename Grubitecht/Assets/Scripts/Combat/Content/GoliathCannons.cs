@@ -5,6 +5,7 @@
 //
 // Brief Description : Controls the cannon attack of the tiphia goliath boss.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.World.Objects;
 using System.Collections;
 using UnityEngine;
@@ -67,6 +68,8 @@ namespace Grubitecht.Combat
                     Quaternion.identity);
                 proj.Launch(target, ProjectileAttackAction);
             }
+            // Plays sound effects for launching the projectiles.
+            AudioManager.PlaySoundAtPosition(projectileLaunchSfx, transform.position);
             // Forces this attacker to cool down.
             StartCoroutine(Cooldown());
         }

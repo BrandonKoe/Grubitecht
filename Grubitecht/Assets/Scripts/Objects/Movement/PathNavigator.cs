@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows a grid object to move along the grid using pathfinding.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.Tilemaps;
 using Grubitecht.UI.InfoPanel;
 using System;
@@ -23,9 +24,12 @@ namespace Grubitecht.World.Pathfinding
     }
     public class PathNavigator : GridNavigator
     {
-    //    [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
-    //"path, or immediately as soon as it starts moving.")]
-    //    protected bool updateSpaceDuringPath;
+        //    [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
+        //"path, or immediately as soon as it starts moving.")]
+        //    protected bool updateSpaceDuringPath;
+        [Header("Sounds")]
+        [SerializeField] private Sound startMovingSound;
+        [SerializeField] private Sound endMovingSound;
 
         private List<VoxelTile> currentPath;
         private VoxelTile currentPathSpace;

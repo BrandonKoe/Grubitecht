@@ -6,6 +6,7 @@
 // Brief Description : Causes an enemy to periodically switch between walking grounded and flying.
 // Makes the assumption that enemies start out grounded.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.Combat;
 using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
@@ -20,6 +21,10 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Combatant))]
     public class FlyingToggle : MonoBehaviour
     {
+        [Header("Sounds")]
+        [SerializeField] private Sound ascendSound;
+        [SerializeField] private Sound descendSound;
+        [Header("Settings")]
         [SerializeField, Tooltip("The amount of time between when this enemy switches between flying and " +
             "grounded state.")] 
         private float switchTime;
@@ -121,6 +126,9 @@ namespace Grubitecht.World
             gridObject.Offset = flyingOffset;
             combatant.CombatTags |= CombatTags.Flying;
 
+            // Plays a sound when this enemy switches to the flying state.
+            AudioManager.PlaySoundAtPosition(ascendSound, transform.position);
+
             iterationLimit = 0;
         }
 
@@ -176,6 +184,9 @@ namespace Grubitecht.World
             gridObject.Layer = OccupyLayer.Ground;
             gridObject.Offset = groundedOffset;
             combatant.CombatTags &= ~CombatTags.Flying;
+
+            // Plays a sound when this enemy switches to the flying state.
+            AudioManager.PlaySoundAtPosition(descendSound, transform.position);
 
             iterationLimit = 0;
         }

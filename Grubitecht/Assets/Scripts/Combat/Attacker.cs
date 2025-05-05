@@ -17,6 +17,7 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(Combatant))]
     public class Attacker : ModifiableCombatBehaviour<Attacker>, IInfoProvider
     {
+        [Header("Effects")]
         [SerializeField] protected GameObject attackEffects;
         [SerializeField] protected Sound attackSfxName;
         [field: Header("Stats")]
