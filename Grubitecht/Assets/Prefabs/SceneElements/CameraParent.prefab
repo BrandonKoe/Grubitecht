@@ -206,6 +206,7 @@ MonoBehaviour:
   selectionIndicators:
   - {fileID: 0}
   - {fileID: 0}
+  selectSound: {fileID: 11400000, guid: 9bec1cc2e577099469bc26c63b414245, type: 2}
   cam: {fileID: 3470752395969770583}
 --- !u!114 &4893062342310525022
 MonoBehaviour:

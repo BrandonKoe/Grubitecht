@@ -14,6 +14,9 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Chunk))]
     public class SelectableChunk : MonoBehaviour, ISelectable
     {
+
+        public Vector3 Position => transform.position;
+
         #region Component References
         [field: SerializeReference, HideInInspector] public Chunk Chunk { get; private set; }
 

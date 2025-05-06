@@ -14,10 +14,11 @@ using UnityEngine.UI;
 
 namespace Grubitecht.UI
 {
-    public class ButtonSelectAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [SerializeField] private Image targetImage;
         [SerializeField] private Sound selectSound;
+        [SerializeField] private Sound clickSound;
         [Header("Settings")]
         [SerializeField] private float targetSelectedValue;
         [SerializeField] private float targetDeselectedValue;
@@ -76,6 +77,16 @@ namespace Grubitecht.UI
                 yield return null;
             }
             animRoutine = null;
+        }
+
+        /// <summary>
+        /// Play a sound when this object is clicked.
+        /// </summary>
+        /// <param name="eventData">Unused.</param>
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            // Click sounds should always DontDestroyOnLoad in case the scene changes.
+            AudioManager.PlaySoundAtPosition(clickSound, transform.position, true);
         }
     }
 }

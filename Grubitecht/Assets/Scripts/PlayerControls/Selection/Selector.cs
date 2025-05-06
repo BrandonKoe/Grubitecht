@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows player to select objects in the game world that they click on.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.Tilemaps;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World;
@@ -22,6 +23,7 @@ namespace Grubitecht
     public class Selector : MonoBehaviour
     {
         [SerializeField] private SelectionIndicator[] selectionIndicators;
+        [SerializeField] private Sound selectSound;
         #region Component References
         [SerializeReference, HideInInspector] private Camera cam;
         #endregion
@@ -111,8 +113,20 @@ namespace Grubitecht
             // Players cannot select if the level is not playing.
             if (!LevelManager.IsPlaying) { return; }
             ISelectable clicked = GetSelectableAtMousePos();
+            Debug.Log("Select input registered" + clicked);
             // If the currently selected object is clicked, then it is deselected.
-            CurrentSelection = clicked == CurrentSelection ? null : clicked;
+            if (clicked == CurrentSelection)
+            {
+                CurrentSelection = null;
+            }
+            else
+            {
+                if (clicked != null)
+                {
+                    AudioManager.PlaySoundAtPosition(selectSound, clicked.Position);
+                }
+                CurrentSelection = clicked;
+            }
 
             UpdateSelectionIndicator();
         }

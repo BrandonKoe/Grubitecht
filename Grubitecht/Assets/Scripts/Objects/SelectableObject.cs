@@ -30,6 +30,8 @@ namespace Grubitecht.World.Objects
         #region Properties
         public string ObjectName => objectName;
         public string ObjectDesription => objectDesription;
+
+        public Vector3 Position { get => transform.position; }
         #endregion
 
         /// <summary>

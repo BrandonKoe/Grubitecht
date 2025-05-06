@@ -15,7 +15,8 @@ namespace Grubitecht
 {
     public interface ISelectable
     {
-        // Add some mandatory descriptor here that can be shown to the player.
+        public Vector3 Position { get; }
+
 
         /// <summary>
         /// Handles specific behavoir that should happen upon selecting and deselecting this object.
