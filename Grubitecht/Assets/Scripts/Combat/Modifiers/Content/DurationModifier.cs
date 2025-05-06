@@ -5,6 +5,7 @@
 //
 // Brief Description : A modifier that has a given duration.
 *****************************************************************************/
+using Grubitecht.Audio;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Grubitecht.Combat
     public abstract class DurationModifier<T> : Modifier<T> where T : ModifiableCombatBehaviour<T>
     {
         [Header("Duration Modifier Settings")]
+        [SerializeField] private Sound tickSound;
+        [SerializeField] private Sound expireSound;
         [SerializeField] private float duration;
         [field: SerializeField] public bool ExtendDuration { get; private set; }
         [SerializeField, Tooltip("The amount of time between ticks of this modifier.")] 
@@ -51,6 +54,8 @@ namespace Grubitecht.Combat
                     if (tickTimer < 0)
                     {
                         durMod.OnModifierTick(appliedBehaviour);
+                        // Play a sound when this modifier ticks.
+                        AudioManager.PlaySoundAtPosition(durMod.tickSound, appliedBehaviour.transform.position);
                         tickTimer = tickInterval;
                     }
 
@@ -59,6 +64,7 @@ namespace Grubitecht.Combat
                 }
                 //yield return new WaitForSeconds(duration);
                 durMod.OnModifierExpired(appliedBehaviour);
+                AudioManager.PlaySoundAtPosition(durMod.expireSound, appliedBehaviour.transform.position);
                 // Remove this modifier once it has expired.
                 appliedBehaviour.RemoveModifier(this);
             }

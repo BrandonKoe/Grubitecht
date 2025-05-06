@@ -43,7 +43,7 @@ namespace Grubitecht.World.Pathfinding
         /// <summary>
         /// Assign necessary component references on reset.
         /// </summary>
-        private void Reset()
+        protected virtual void Reset()
         {
             gridObject = GetComponent<GridObject>();
         }

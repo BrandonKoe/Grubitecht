@@ -12,6 +12,7 @@ using UnityEngine;
 using Grubitecht.UI.InfoPanel;
 using System;
 using System.Linq;
+using Grubitecht.Audio;
 
 namespace Grubitecht.Combat
 {
@@ -19,6 +20,7 @@ namespace Grubitecht.Combat
     [RequireComponent(typeof(AttackableTargeter))]
     public class Healer : CombatBehaviour, IInfoProvider
     {
+        [SerializeField] private Sound healSound;
         [field: Header("Stats")]
         [field: SerializeField] public int HealingStrength { get; set; }
         [SerializeField] private StatFormatter healingStrengthFormatter;
@@ -120,6 +122,8 @@ namespace Grubitecht.Combat
                 return;
             }
             Debug.Log("Healing target " + target + " who has " + target.Health + " HP");
+            // Plays a sound.
+            AudioManager.PlaySoundAtPosition(healSound, target.transform.position);
             Heal(target);
             OnHealAction?.Invoke(target);
         }

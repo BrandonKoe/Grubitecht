@@ -148,7 +148,7 @@ MonoBehaviour:
   detectionRange: 20
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
-  canTargetTags: 0
+  canTargetTags: -1
   detectionArea: {fileID: 5265212869986229716}
   selectableObject: {fileID: 5107409746993080114}
 --- !u!114 &8595298514244447147
@@ -184,11 +184,13 @@ MonoBehaviour:
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
   attackEffects: {fileID: 799584395451922311, guid: d9a2e2fb3c722a24fb6b7fd6eb5ad82d, type: 3}
+  attackSfxName: {fileID: 11400000, guid: 6d796eacf5294104485ffa3cb79b5786, type: 2}
   <AttackDamage>k__BackingField: 8
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 7
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 4235892459804935470}
+  projectileLaunchSfx: {fileID: 11400000, guid: f025872e7e1c80144a9d7d7534fe54a0, type: 2}
   projectilePrefab: {fileID: 927277716308103812, guid: 7f9055b03ffc5c54b9440eb48db43721, type: 3}
   projectileOffset: {x: 0, y: 0.75, z: 0}
 --- !u!4 &3410031804182909830 stripped

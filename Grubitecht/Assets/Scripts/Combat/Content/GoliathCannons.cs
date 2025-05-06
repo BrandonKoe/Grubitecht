@@ -5,14 +5,18 @@
 //
 // Brief Description : Controls the cannon attack of the tiphia goliath boss.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.World.Objects;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
     public class GoliathCannons : ProjectileAttacker
     {
+        [SerializeField] private float cannonPeriod;
         /// <summary>
         /// Has the goliath cannons start attacking immediately on awake so they are constantly attacking.
         /// </summary>
@@ -54,7 +58,16 @@ namespace Grubitecht.Combat
             {
                 return;
             }
-            foreach (Objective objective in Objective.CurrentObjectives)
+            // Starts shooting all the cannons.
+            StartCoroutine(ShootRoutine());
+        }
+
+        private IEnumerator ShootRoutine()
+        {
+            // Create a new array for targets.
+            List<Objective> targets = new List<Objective>();
+            targets.AddRange(Objective.CurrentObjectives);
+            foreach (Objective objective in targets)
             {
                 if (objective == null) { continue; }
                 //base.AttackAction();
@@ -66,6 +79,9 @@ namespace Grubitecht.Combat
                 Projectile proj = Instantiate(projectilePrefab, transform.position + projectileOffset,
                     Quaternion.identity);
                 proj.Launch(target, ProjectileAttackAction);
+                // Plays sound effects for launching the projectiles.
+                AudioManager.PlaySoundAtPosition(projectileLaunchSfx, transform.position);
+                yield return new WaitForSeconds(cannonPeriod);
             }
             // Forces this attacker to cool down.
             StartCoroutine(Cooldown());

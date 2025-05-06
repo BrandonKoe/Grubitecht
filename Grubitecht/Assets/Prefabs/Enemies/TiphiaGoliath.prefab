@@ -138,13 +138,16 @@ MonoBehaviour:
   combatant: {fileID: 4496811172796087783}
   attackable: {fileID: 0}
   attackEffects: {fileID: 8852274700824418778, guid: f242c45c3aa8e5c4a9a80c3c963b832c, type: 3}
+  attackSfxName: {fileID: 11400000, guid: d3edb5ca4b184994085f6950f9242a59, type: 2}
   <AttackDamage>k__BackingField: 3
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 15
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 2579683083371204425}
+  projectileLaunchSfx: {fileID: 11400000, guid: 98fd1a30d755a0d459bb11a06bd795c8, type: 2}
   projectilePrefab: {fileID: 477935802266998269, guid: 45298b2b8dafe7945a70d9a06e7da121, type: 3}
   projectileOffset: {x: 0, y: 0, z: 0}
+  cannonPeriod: 0.2
 --- !u!65 &5886167135370091153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -254,8 +257,10 @@ MonoBehaviour:
   destructibleTags:
   - tag: Stone
     destroyEffect: {fileID: 1476216241858319519, guid: 4379f3148c5a81540b217be5b4a29efd, type: 3}
+    destroySound: {fileID: 0}
   - tag: Barricade
     destroyEffect: {fileID: 6507874470279212131, guid: 1d6159614e7dbdd4e8b4fc4d3194b4c6, type: 3}
+    destroySound: {fileID: 0}
   detectionArea: {fileID: 7097656753734218813}
 --- !u!1001 &33659164067880870
 PrefabInstance:
@@ -301,6 +306,10 @@ PrefabInstance:
       propertyPath: canPanic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4697995366346233101, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: onSpawnSound
+      value: 
+      objectReference: {fileID: 11400000, guid: ca135354a11f9514194c344a669b1a18, type: 2}
     - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <MaxHealth>k__BackingField
       value: 200
@@ -447,6 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441b6d2cf2c37ad4d9abd8f1db1c00d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ascendSound: {fileID: 0}
+  descendSound: {fileID: 0}
   switchTime: 15
   flyingClimbHeight: 10
   flyingOffset: {x: 0, y: 2, z: 0}

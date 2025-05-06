@@ -5,8 +5,8 @@
 //
 // Brief Description : Allows a grid object to move along the grid using pathfinding.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.Tilemaps;
-using Grubitecht.UI.InfoPanel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,17 +23,17 @@ namespace Grubitecht.World.Pathfinding
     }
     public class PathNavigator : GridNavigator
     {
-    //    [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
-    //"path, or immediately as soon as it starts moving.")]
-    //    protected bool updateSpaceDuringPath;
+        //    [SerializeField, Tooltip("Whether this object should update it's grid space while it is moving along a " +
+        //"path, or immediately as soon as it starts moving.")]
+        //    protected bool updateSpaceDuringPath;
+        [Header("Sounds")]
+        [SerializeField] private Sound startMovingSound;
+        [SerializeField] private Sound endMovingSound;
 
         private List<VoxelTile> currentPath;
         private VoxelTile currentPathSpace;
 
         public event Action<VoxelTile> NewSpaceEvent;
-
-        #region Propeties
-        #endregion
 
         /// <summary>
         /// Moves an object to a target destination on the grid.
@@ -106,6 +106,8 @@ namespace Grubitecht.World.Pathfinding
         /// <returns>Coroutine.</returns>
         private IEnumerator MovementRoutine(MovementFinishCallback finishCallback)
         {
+            // Plays a sound for this object to start moving.
+            AudioManager.PlaySoundAtPosition(startMovingSound, transform.position);
             VoxelTile destination = null;
             finishCallback?.Invoke(PathStatus.Started);
             void UpdateDirection()
@@ -191,6 +193,8 @@ namespace Grubitecht.World.Pathfinding
             //    gridObject.SnapToSpace();
             //}
             currentPathSpace = null;
+            // Plays a sound for this object to start moving.
+            AudioManager.PlaySoundAtPosition(endMovingSound, transform.position);
             // Invoke the given finish callback.
             finishCallback?.Invoke(PathStatus.Completed);
             movementRoutine = null;

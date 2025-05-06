@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <VisualEffects>k__BackingField: {fileID: 886992570074400436, guid: 925a29f503c4ceb4481ce4fa01d8ad3d, type: 3}
   <AllowDuplicates>k__BackingField: 0
+  tickSound: {fileID: 11400000, guid: cdbd6f279c5ffb34e8ae49a0c32e2252, type: 2}
   duration: 7
   <ExtendDuration>k__BackingField: 0
   tickInterval: 1

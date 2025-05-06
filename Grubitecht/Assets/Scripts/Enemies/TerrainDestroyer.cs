@@ -5,6 +5,7 @@
 //
 // Brief Description : Allows enemies to destroy destructible terrain that is nearby to them.
 *****************************************************************************/
+using Grubitecht.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,7 @@ namespace Grubitecht.World.Objects
         {
             [SerializeField] internal string tag;
             [SerializeField] internal GameObject destroyEffect;
+            [SerializeField] internal Sound destroySound;
         }
         #endregion
 
@@ -62,6 +64,7 @@ namespace Grubitecht.World.Objects
                 {
                     // Spawn effects when the object is destroyed.
                     Instantiate(tag.destroyEffect, other.transform.position, Quaternion.identity);
+                    AudioManager.PlaySoundAtPosition(tag.destroySound, other.transform.position);
                     Destroy(other.gameObject);
                 }
             }

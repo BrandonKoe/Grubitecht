@@ -136,6 +136,7 @@ MonoBehaviour:
   attackable: {fileID: 3340188535086003367}
   deathEffects: {fileID: 129405880867092937, guid: 27781511dcf3f764fb478b8d58bc12d9, type: 3}
   damageIndicatorColor: {r: 0.92156863, g: 0.9882353, b: 0.87058824, a: 1}
+  deathSound: {fileID: 11400000, guid: b2c7b3a45c2fba3408b4b8531355e783, type: 2}
   <MaxHealth>k__BackingField: 50
   maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0
@@ -190,6 +191,8 @@ MonoBehaviour:
   climbHeight: 1
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 706373850487136439}
+  startMovingSound: {fileID: 11400000, guid: f912e9aff2eafad4cb9f4760771921d2, type: 2}
+  endMovingSound: {fileID: 11400000, guid: 5cc1472e1576825498cfb2e34ca1ba44, type: 2}
 --- !u!114 &6398671505141222275
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -70,8 +70,10 @@ MonoBehaviour:
   destructibleTags:
   - tag: Stone
     destroyEffect: {fileID: 1476216241858319519, guid: 4379f3148c5a81540b217be5b4a29efd, type: 3}
+    destroySound: {fileID: 0}
   - tag: Barricade
     destroyEffect: {fileID: 6507874470279212131, guid: 1d6159614e7dbdd4e8b4fc4d3194b4c6, type: 3}
+    destroySound: {fileID: 0}
   detectionArea: {fileID: 1575628367919125306}
 --- !u!1001 &3963331941301906930
 PrefabInstance:
@@ -191,6 +193,10 @@ PrefabInstance:
       propertyPath: canPanic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4697995366346233101, guid: c49bd8c04679b404986746339f828842, type: 3}
+      propertyPath: onSpawnSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 615ace1b29462d749af8f3f37dedad62, type: 2}
     - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: maxHealth
       value: 60

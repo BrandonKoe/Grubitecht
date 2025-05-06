@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemySpriteIcon>k__BackingField: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
+  onSpawnSound: {fileID: 11400000, guid: e6e8b975425717940912454d6266ab59, type: 2}
   pathingType: 0
   rePathFrequency: 0.5
   canPanic: 1
@@ -159,6 +160,7 @@ MonoBehaviour:
   combatant: {fileID: 4839938847972710440}
   attackable: {fileID: 4758113411827519971}
   attackEffects: {fileID: 0}
+  attackSfxName: {fileID: 11400000, guid: d09ed03483ac6c94cada2cf5055ef554, type: 2}
   <AttackDamage>k__BackingField: 4
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 2
@@ -207,6 +209,7 @@ MonoBehaviour:
   attackable: {fileID: 4758113411827519971}
   deathEffects: {fileID: 0}
   damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
+  deathSound: {fileID: 11400000, guid: a74b675132ff0f04ea66871c4213b8cc, type: 2}
   <MaxHealth>k__BackingField: 20
   maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0
@@ -260,6 +263,8 @@ MonoBehaviour:
   climbHeight: 1
   restrictMovementAxes: 1
   <gridObject>k__BackingField: {fileID: 6023088415999457275}
+  startMovingSound: {fileID: 0}
+  endMovingSound: {fileID: 0}
 --- !u!1001 &4887689510105145310
 PrefabInstance:
   m_ObjectHideFlags: 0

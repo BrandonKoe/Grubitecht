@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: <AttackCooldown>k__BackingField
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6405158643414224898, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
+      propertyPath: onSpawnSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b6a476d65c44dd4785ba43accd7c568, type: 2}
     - target: {fileID: 6618363788783883500, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <MaxHealth>k__BackingField
       value: 30

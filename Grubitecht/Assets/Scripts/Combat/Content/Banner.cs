@@ -5,6 +5,7 @@
 //
 // Brief Description : Banner of the grubs that empowers all nearby grub structures.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Grubitecht.Combat
     public class Banner : Effector, IInfoProvider
     {
         [SerializeField] private GameObject buffEffect;
+        [SerializeField] private Sound buffSound;
         [SerializeField] private int attackBoost;
         [SerializeField] private StatFormatter attackBoostFormatter;
 
@@ -53,6 +55,7 @@ namespace Grubitecht.Combat
         protected override void ApplyBuff(Attacker buffedAttacker)
         {
             buffedAttacker.AttackDamage += attackBoost;
+            AudioManager.PlaySoundAtPosition(buffSound, buffedAttacker.transform.position);
             if (buffEffect != null)
             {
                 // Displays an effect at the position of buffed attackers to show their attack is increased.

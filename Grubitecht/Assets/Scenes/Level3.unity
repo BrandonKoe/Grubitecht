@@ -3250,8 +3250,8 @@ MonoBehaviour:
   waveTimerText: {fileID: 897941860}
   waveTimerObject: {fileID: 1627909897}
   progressBar: {fileID: 1761831839}
-  delayBetweenWaves: 35
-  firstWaveDelay: 50
+  delayBetweenWaves: 3
+  firstWaveDelay: 5
 --- !u!4 &476528021
 Transform:
   m_ObjectHideFlags: 0
@@ -14627,7 +14627,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 628cd409cd1483d4d92228b4fb995a48, type: 2}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
@@ -15124,6 +15124,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1828317196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2084303765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878754766736879400, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941408478185204898, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
+      propertyPath: m_Name
+      value: TiphiaBroodmother
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5348aa14e24d3c049b052d95572c2be8, type: 3}
 --- !u!1 &2091527863
 GameObject:
   m_ObjectHideFlags: 0
@@ -15500,3 +15557,4 @@ SceneRoots:
   - {fileID: 1641572417}
   - {fileID: 1095994656}
   - {fileID: 2013175656}
+  - {fileID: 2084303765}
