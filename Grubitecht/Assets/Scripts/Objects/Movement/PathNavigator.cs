@@ -7,7 +7,6 @@
 *****************************************************************************/
 using Grubitecht.Audio;
 using Grubitecht.Tilemaps;
-using Grubitecht.UI.InfoPanel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,9 +34,6 @@ namespace Grubitecht.World.Pathfinding
         private VoxelTile currentPathSpace;
 
         public event Action<VoxelTile> NewSpaceEvent;
-
-        #region Propeties
-        #endregion
 
         /// <summary>
         /// Moves an object to a target destination on the grid.
@@ -110,6 +106,8 @@ namespace Grubitecht.World.Pathfinding
         /// <returns>Coroutine.</returns>
         private IEnumerator MovementRoutine(MovementFinishCallback finishCallback)
         {
+            // Plays a sound for this object to start moving.
+            AudioManager.PlaySoundAtPosition(startMovingSound, transform.position);
             VoxelTile destination = null;
             finishCallback?.Invoke(PathStatus.Started);
             void UpdateDirection()
@@ -195,6 +193,8 @@ namespace Grubitecht.World.Pathfinding
             //    gridObject.SnapToSpace();
             //}
             currentPathSpace = null;
+            // Plays a sound for this object to start moving.
+            AudioManager.PlaySoundAtPosition(endMovingSound, transform.position);
             // Invoke the given finish callback.
             finishCallback?.Invoke(PathStatus.Completed);
             movementRoutine = null;

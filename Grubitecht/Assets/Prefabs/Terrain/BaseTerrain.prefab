@@ -54,6 +54,8 @@ MonoBehaviour:
   climbHeight: 1
   restrictMovementAxes: 0
   <gridObject>k__BackingField: {fileID: 268430985258743202}
+  startMovingSound: {fileID: 11400000, guid: f912e9aff2eafad4cb9f4760771921d2, type: 2}
+  endMovingSound: {fileID: 11400000, guid: 5cc1472e1576825498cfb2e34ca1ba44, type: 2}
 --- !u!114 &4383107722421398176
 MonoBehaviour:
   m_ObjectHideFlags: 0

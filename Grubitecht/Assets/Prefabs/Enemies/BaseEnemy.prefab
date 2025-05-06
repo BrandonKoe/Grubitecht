@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemySpriteIcon>k__BackingField: {fileID: 21300000, guid: b313450d6b602964eb53e52e68cc8d99, type: 3}
+  onSpawnSound: {fileID: 11400000, guid: e6e8b975425717940912454d6266ab59, type: 2}
   pathingType: 0
   rePathFrequency: 0.5
   canPanic: 1
@@ -208,7 +209,7 @@ MonoBehaviour:
   attackable: {fileID: 4758113411827519971}
   deathEffects: {fileID: 0}
   damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 11400000, guid: a74b675132ff0f04ea66871c4213b8cc, type: 2}
   <MaxHealth>k__BackingField: 20
   maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0

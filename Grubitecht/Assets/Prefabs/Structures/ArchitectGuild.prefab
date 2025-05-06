@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 1003168004002629297}
   attackable: {fileID: 0}
+  healSound: {fileID: 11400000, guid: 491a524cab5b4024ab183781f8251990, type: 2}
   <HealingStrength>k__BackingField: 4
   healingStrengthFormatter: {fileID: 11400000, guid: 8551619e645fa5449a6677b2898cad17, type: 2}
   <HealDelay>k__BackingField: 2.5

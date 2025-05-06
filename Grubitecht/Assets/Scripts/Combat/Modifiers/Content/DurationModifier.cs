@@ -15,6 +15,7 @@ namespace Grubitecht.Combat
     {
         [Header("Duration Modifier Settings")]
         [SerializeField] private Sound tickSound;
+        [SerializeField] private Sound expireSound;
         [SerializeField] private float duration;
         [field: SerializeField] public bool ExtendDuration { get; private set; }
         [SerializeField, Tooltip("The amount of time between ticks of this modifier.")] 
@@ -63,6 +64,7 @@ namespace Grubitecht.Combat
                 }
                 //yield return new WaitForSeconds(duration);
                 durMod.OnModifierExpired(appliedBehaviour);
+                AudioManager.PlaySoundAtPosition(durMod.expireSound, appliedBehaviour.transform.position);
                 // Remove this modifier once it has expired.
                 appliedBehaviour.RemoveModifier(this);
             }

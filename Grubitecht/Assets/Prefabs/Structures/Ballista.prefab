@@ -234,11 +234,13 @@ MonoBehaviour:
   combatant: {fileID: 4388331790138761451}
   attackable: {fileID: 0}
   attackEffects: {fileID: 0}
+  attackSfxName: {fileID: 11400000, guid: 3af9b65f0d1ff99489e58ca9f3309330, type: 2}
   <AttackDamage>k__BackingField: 15
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 8
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 2245593280625145446}
+  projectileLaunchSfx: {fileID: 11400000, guid: 714522f27580ca24eb5973814c1fd01c, type: 2}
   projectilePrefab: {fileID: 3185272158356184528, guid: 4d132dece0a810d44a51b44615e9360a, type: 3}
   projectileOffset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4388331790138761451 stripped

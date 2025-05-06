@@ -8,6 +8,8 @@
 using Grubitecht.Audio;
 using Grubitecht.World.Objects;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Grubitecht.Combat
@@ -62,7 +64,10 @@ namespace Grubitecht.Combat
 
         private IEnumerator ShootRoutine()
         {
-            foreach (Objective objective in Objective.CurrentObjectives)
+            // Create a new array for targets.
+            List<Objective> targets = new List<Objective>();
+            targets.AddRange(Objective.CurrentObjectives);
+            foreach (Objective objective in targets)
             {
                 if (objective == null) { continue; }
                 //base.AttackAction();

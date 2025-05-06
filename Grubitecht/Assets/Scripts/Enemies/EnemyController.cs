@@ -5,11 +5,13 @@
 //
 // Brief Description : Controls enemy movement along the grid using pathfinding to the closest objective.
 *****************************************************************************/
+using Grubitecht.Audio;
 using Grubitecht.Combat;
 using Grubitecht.Tilemaps;
 using Grubitecht.Waves;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +26,7 @@ namespace Grubitecht.World
         private const string ENEMY_PARENT_TAG = "EnemyParent";
         #endregion
         [field: SerializeField] public Sprite EnemySpriteIcon { get; private set; }
+        [SerializeField] private Sound onSpawnSound;
         [SerializeField] private PathingType pathingType;
         [SerializeField] private float rePathFrequency;
         [SerializeField] private bool canPanic;
@@ -325,6 +328,7 @@ namespace Grubitecht.World
         {
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
+            AudioManager.PlaySoundAtPosition(onSpawnSound, transform.position);
         }
         private void OnDestroy()
         {
@@ -369,6 +373,7 @@ namespace Grubitecht.World
         /// <summary>
         /// Has this enemy pathfind to the nearest objective if it doesnt have any targets.
         /// </summary>
+        [Button]
         public void PathToTarget()
         {
             if (!targeter.HasTarget)
