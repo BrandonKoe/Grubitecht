@@ -5,6 +5,7 @@
 //
 // Brief Description : Animates the fill of an image based on the selected status of a button.
 *****************************************************************************/
+using Grubitecht.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Grubitecht.UI
     public class ButtonSelectAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private Image targetImage;
+        [SerializeField] private Sound selectSound;
         [Header("Settings")]
         [SerializeField] private float targetSelectedValue;
         [SerializeField] private float targetDeselectedValue;
@@ -30,7 +32,7 @@ namespace Grubitecht.UI
         /// <param name="eventData"></param>
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("Pointer Entered");
+            AudioManager.PlaySoundAtPosition(selectSound, transform.position);
             AnimateTo(targetSelectedValue);
         }
         public void OnPointerExit(PointerEventData eventData)
