@@ -16,6 +16,8 @@ namespace Grubitecht
         public VoxelTile Tile { get; set; }
         public Vector3 WorldPosition { get; set; }
 
+        public Vector3 Position => WorldPosition;
+
         public SpaceSelection(VoxelTile tile, Vector3 worldPosition)
         {
             Tile = tile;
