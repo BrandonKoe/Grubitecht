@@ -60,7 +60,7 @@ namespace Grubitecht.World.Objects
                 if (GridNavigator.IsMoving || GrubManager.CheckGrub())
                 {
                     // Check for invalid paths here.
-                    if (CheckValidSpace(space.Tile))
+                    if (CheckValidObjectivePath(space.Tile))
                     {
                         GridNavigator.SetDestination(space.Tile, HandleMovementCallback);
                         GrubManager.AssignGrub(this);
@@ -68,7 +68,7 @@ namespace Grubitecht.World.Objects
                     else
                     {
                         // Invalid space.
-                        Debug.Log("Invalid Space");
+                        //Debug.Log("Invalid Space");
                         if (invalidSpacePrefab != null)
                         {
                             // Spawns a UI object to communicate that the space is invalid.
@@ -85,7 +85,7 @@ namespace Grubitecht.World.Objects
         /// objective.
         /// </summary>
         /// <returns></returns>
-        private bool CheckValidSpace(VoxelTile targetTile)
+        private bool CheckValidObjectivePath(VoxelTile targetTile)
         {
             // Spawns a dummy grid object to take up space during the pathfind.
             GameObject go = new GameObject();
@@ -115,7 +115,7 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Recalls a grub delegated to moving this object from the grub controller.
         /// </summary>
-        private void HandleMovementCallback(PathStatus pathStatus)
+        private void HandleMovementCallback(PathCallbackInfo pathStatus)
         {
             StartCoroutine(DelayedMovementCallback(pathStatus));   
         }
@@ -124,18 +124,23 @@ namespace Grubitecht.World.Objects
         /// Need to delay a frame before we handle the movement callback to ensure that grubs have been assigned
         /// before we handle returning them.
         /// </summary>
-        /// <param name="pathStatus"></param>
-        /// <returns></returns>
-        private IEnumerator DelayedMovementCallback(PathStatus pathStatus)
+        /// <param name="callbackInfo">Infor about the path that gave this callback.</param>
+        /// <returns>Coroutine.</returns>
+        private IEnumerator DelayedMovementCallback(PathCallbackInfo callbackInfo)
         {
             yield return null;
 
-            switch (pathStatus)
+            switch (callbackInfo.Status)
             {
                 case PathStatus.Started:
                     break;
-                case PathStatus.Completed:
                 case PathStatus.Invalid:
+                    WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
+                        VoxelTilemap3D.Main_GridToWorldPos(callbackInfo.EndTile.GridPosition));
+                    // Return the grub if the path status is completed or the path is invalid.
+                    GrubManager.ReturnGrub(this);
+                    break;
+                case PathStatus.Completed:
                     // Return the grub if the path status is completed or the path is invalid.
                     GrubManager.ReturnGrub(this);
                     break;
