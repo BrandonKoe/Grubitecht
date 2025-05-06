@@ -14,6 +14,7 @@ namespace Grubitecht.Combat
 {
     public class GoliathCannons : ProjectileAttacker
     {
+        [SerializeField] private float cannonPeriod;
         /// <summary>
         /// Has the goliath cannons start attacking immediately on awake so they are constantly attacking.
         /// </summary>
@@ -55,6 +56,12 @@ namespace Grubitecht.Combat
             {
                 return;
             }
+            // Starts shooting all the cannons.
+            StartCoroutine(ShootRoutine());
+        }
+
+        private IEnumerator ShootRoutine()
+        {
             foreach (Objective objective in Objective.CurrentObjectives)
             {
                 if (objective == null) { continue; }
@@ -67,9 +74,10 @@ namespace Grubitecht.Combat
                 Projectile proj = Instantiate(projectilePrefab, transform.position + projectileOffset,
                     Quaternion.identity);
                 proj.Launch(target, ProjectileAttackAction);
+                // Plays sound effects for launching the projectiles.
+                AudioManager.PlaySoundAtPosition(projectileLaunchSfx, transform.position);
+                yield return new WaitForSeconds(cannonPeriod);
             }
-            // Plays sound effects for launching the projectiles.
-            AudioManager.PlaySoundAtPosition(projectileLaunchSfx, transform.position);
             // Forces this attacker to cool down.
             StartCoroutine(Cooldown());
         }

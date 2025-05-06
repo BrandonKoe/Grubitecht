@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11cc2b74aea25f24a8d061d7f6b5841e, type: 3}
-  m_Name: LevelMusic
+  m_Name: HouseDestroy
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: LevelMusic
-  <AudioClip>k__BackingField: {fileID: 8300000, guid: 989dc5b6e2f5b234b97c48fa0c23f584, type: 3}
-  <MixerGroup>k__BackingField: {fileID: 3212314173525580979, guid: c2329052af98e694c9ea287891e2c199, type: 2}
-  <Priority>k__BackingField: 225
-  <Volume>k__BackingField: 0.1
+  <Name>k__BackingField: HouseDestroy
+  <AudioClip>k__BackingField: {fileID: 8300000, guid: 15ea94355b16de34abcc00acd4b31452, type: 3}
+  <MixerGroup>k__BackingField: {fileID: -1755444867518790315, guid: c2329052af98e694c9ea287891e2c199, type: 2}
+  <Priority>k__BackingField: 128
+  <Volume>k__BackingField: 1
   <Pitch>k__BackingField: 1
-  <Loop>k__BackingField: 1
-  <SpatialBlend>k__BackingField: 0
+  <Loop>k__BackingField: 0
+  <SpatialBlend>k__BackingField: 1
   <MinDistance>k__BackingField: 1
-  <MaxDistance>k__BackingField: 500
+  <MaxDistance>k__BackingField: 50

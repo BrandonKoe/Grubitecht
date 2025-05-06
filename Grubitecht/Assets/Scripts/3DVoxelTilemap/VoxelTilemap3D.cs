@@ -462,7 +462,7 @@ namespace Grubitecht.Tilemaps
                         {
                             continue;
                         }
-                        // If this position hasn't already been used and isnt occupied, then return it.
+                        // If this position isnt occupied, then return it.
                         if (!checkCell.ContainsObjectOnLayer(layer))
                         {
                             return checkCell;

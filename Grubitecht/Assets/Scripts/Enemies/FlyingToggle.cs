@@ -104,8 +104,7 @@ namespace Grubitecht.World
             // need to move to a valid position first.
             if (gridObject.CurrentTile.ContainsObjectOnLayer(OccupyLayer.Air))
             {
-                VoxelTile targetTile = VoxelTilemap3D.Main_FindEmptyTile(gridObject.CurrentTile,
-                            OccupyLayer.Air, 1);
+                VoxelTile targetTile = FindEmptyTile(gridObject.CurrentTile, 1);
                 pathNavigator.SetDestination(targetTile, MoveToFlying);
             }
             else
@@ -114,6 +113,53 @@ namespace Grubitecht.World
                 // flying state.
                 SetFlyingState();
             }
+        }
+
+        /// <summary>
+        /// Finds the nearest empty tile from a given origin tile.  Special case compared to the normal that checks
+        /// both air and ground layers.
+        /// </summary>
+        /// <param name="originTile">The tile to start finding a tile from.</param>
+        /// <param name="startingRange">The initial starting range to use when finding a space.</param>
+        /// <param name="maxRange">The max search range that to find a tile within.</param>
+        /// <returns>The closest unoccupied tile to the origin tile.</returns>
+        public VoxelTile FindEmptyTile(VoxelTile originTile, int startingRange = 0, int maxRange = 100)
+        {
+            int range = startingRange;
+            while (range < maxRange)
+            {
+                for (int x = -range; x <= range; x++)
+                {
+                    // Find the possible variance in y positions for a given range.
+                    int yRange = range - Mathf.Abs(x);
+                    // Loops through both positive and negative values for y that yields a manhatten distance of
+                    // range from the spawn point.
+                    for (int i = -1; i < 2; i += 2)
+                    {
+                        int y = i * yRange;
+                        // Check the positive and negative cells that have a manhatten distance of range.
+                        Vector2Int checkPos = new Vector2Int(x, y) + originTile.GridPosition2;
+                        VoxelTile checkCell = VoxelTilemap3D.Main_GetTile(checkPos);
+                        // If checkCell is returned as null, then the cell we're trying to get does not exist on the
+                        // tilemap and we should ignore it.
+                        if (checkCell == null)
+                        {
+                            continue;
+                        }
+                        // If this position isnt occupied, then return it.
+                        if (!checkCell.ContainsObjectOnLayer(OccupyLayer.Air) && 
+                            !checkCell.ContainsObjectOnLayer(OccupyLayer.Ground))
+                        {
+                            return checkCell;
+                        }
+                    }
+                }
+                // If we were not able to find a cell through looping, then increment range and recursively call this
+                // function agian.
+                range++;
+            }
+            // If max range is exceeded, then we didnt find a valid adjacent tile.
+            return null;
         }
 
         /// <summary>
