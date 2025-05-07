@@ -79,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -136,9 +136,9 @@ MonoBehaviour:
   combatant: {fileID: 1003168004002629297}
   attackable: {fileID: 0}
   healSound: {fileID: 11400000, guid: 491a524cab5b4024ab183781f8251990, type: 2}
-  <HealingStrength>k__BackingField: 4
+  <HealingStrength>k__BackingField: 6
   healingStrengthFormatter: {fileID: 11400000, guid: 8551619e645fa5449a6677b2898cad17, type: 2}
-  <HealDelay>k__BackingField: 2.5
+  <HealDelay>k__BackingField: 5
   healDelayFormatter: {fileID: 11400000, guid: e312d55288002154fbc1bc9e9645be29, type: 2}
   targeter: {fileID: 2650554700725743070}
 --- !u!114 &1003168004002629297 stripped

@@ -166,7 +166,7 @@ MonoBehaviour:
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
   attacker: {fileID: 5722466547020415271}
-  aoeRange: 3
+  aoeRange: 3.5
   aoeStatFormatter: {fileID: 11400000, guid: 095c46a1302f2c348928b3aebad4ea74, type: 2}
   friendlyFire: 0
 --- !u!114 &5722466547020415271

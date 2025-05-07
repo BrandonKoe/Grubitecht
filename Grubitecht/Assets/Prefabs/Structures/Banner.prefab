@@ -78,15 +78,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8455044086030430530, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
@@ -158,7 +158,7 @@ MonoBehaviour:
   combatant: {fileID: 3442883350765597410}
   attackable: {fileID: 0}
   detectionVisual: {fileID: 5023857816814874714}
-  detectionRange: 5
+  detectionRange: 6
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 1
   canTargetTags: -1

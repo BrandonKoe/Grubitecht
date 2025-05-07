@@ -9142,7 +9142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da6657a780464498747850026db5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredObjectiveAmount: 3
+  requiredObjectiveAmount: 1
   winLevelDisplay: {fileID: 353176615}
   winSound: {fileID: 11400000, guid: 6f92108debdd7d747b0075880f75c1f4, type: 2}
   loseLevelDisplay: {fileID: 1442161039}
