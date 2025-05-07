@@ -9,13 +9,16 @@ using Grubitecht.World.Objects;
 using UnityEngine;
 using Grubitecht.World.Pathfinding;
 using NaughtyAttributes;
+using Grubitecht.Audio;
 
 namespace Grubitecht.World
 {
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameObject winLevelDisplay;
+        [SerializeField] private Sound winSound;
         [SerializeField] private GameObject loseLevelDisplay;
+        [SerializeField] private Sound loseSound;
         private static LevelManager current;
         public static bool IsPlaying { get; private set; }
 
@@ -67,6 +70,7 @@ namespace Grubitecht.World
         public static void WinLevel()
         {
             current.winLevelDisplay.SetActive(true);
+            AudioManager.PlaySoundAtPosition(current.winSound, current.transform.position);
             IsPlaying = false;
         }
 
@@ -77,6 +81,7 @@ namespace Grubitecht.World
         public static void LoseLevel()
         {
             current.loseLevelDisplay.SetActive(true);
+            AudioManager.PlaySoundAtPosition(current.loseSound, current.transform.position);
             IsPlaying = false;
         }
         #endregion

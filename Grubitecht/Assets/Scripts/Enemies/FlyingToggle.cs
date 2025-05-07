@@ -21,6 +21,7 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Combatant))]
     public class FlyingToggle : MonoBehaviour
     {
+        [SerializeField] private Animator animator;
         [Header("Sounds")]
         [SerializeField] private Sound ascendSound;
         [SerializeField] private Sound descendSound;
@@ -80,18 +81,18 @@ namespace Grubitecht.World
         public void SetFlying()
         {
             Debug.Log(name + " is switching to flying.");
-            MoveToFlying(PathStatus.Invalid);
+            MoveToFlying(null);
         }
 
         /// <summary>
         /// Actually sets this enemy to flying internally.  Needs to take in a pathStatus so it can be used as a 
         /// path  navigator callback.
         /// </summary>
-        /// <param name="pathStatus">
+        /// <param name="callbackInfo">
         /// The status of the pathing.  We dont care about this at all, it's only here so that this function can be
         /// passed as a movement callback delegate.
         /// </param>
-        private void MoveToFlying(PathStatus pathStatus)
+        private void MoveToFlying(PathCallbackInfo callbackInfo)
         {
             // Prevent potential infinite loops temporarily until I can further diagonse the problem.
             iterationLimit++;
@@ -172,6 +173,7 @@ namespace Grubitecht.World
             gridObject.Offset = flyingOffset;
             combatant.CombatTags |= CombatTags.Flying;
 
+            animator.SetBool("IsFlying", true);
             // Plays a sound when this enemy switches to the flying state.
             AudioManager.PlaySoundAtPosition(ascendSound, transform.position);
 
@@ -184,18 +186,18 @@ namespace Grubitecht.World
         public void SetGrounded()
         {
             Debug.Log(name + " is switching to grounded.");
-            MoveToGrounded(PathStatus.Invalid);
+            MoveToGrounded(null);
         }
 
         /// <summary>
         /// Actually sets this enemy to flying internally.  Needs to take in a pathStatus so it can be used as a 
         /// path  navigator callback.
         /// </summary>
-        /// <param name="pathStatus">
+        /// <param name="callbackInfo">
         /// The status of the pathing.  We dont care about this at all, it's only here so that this function can be
         /// passed as a movement callback delegate.
         /// </param>
-        private void MoveToGrounded(PathStatus pathStatus)
+        private void MoveToGrounded(PathCallbackInfo callbackInfo)
         {
             // Prevent potential infinite loops temporarily until I can further diagonse the problem.
             iterationLimit++;
@@ -231,6 +233,7 @@ namespace Grubitecht.World
             gridObject.Offset = groundedOffset;
             combatant.CombatTags &= ~CombatTags.Flying;
 
+            animator.SetBool("IsFlying", false);
             // Plays a sound when this enemy switches to the flying state.
             AudioManager.PlaySoundAtPosition(descendSound, transform.position);
 

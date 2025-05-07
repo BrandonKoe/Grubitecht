@@ -434,9 +434,9 @@ namespace Grubitecht.World
         /// <param name="reachedDestination">
         /// True if the object reached it's destination after moving along a given path.
         /// </param>
-        private void OnMovingCallback(PathStatus endStatus)
+        private void OnMovingCallback(PathCallbackInfo callbackInfo)
         {
-            switch (endStatus)
+            switch (callbackInfo.Status)
             {
                 case PathStatus.Started:
                     state.OnStartedMoving(this);

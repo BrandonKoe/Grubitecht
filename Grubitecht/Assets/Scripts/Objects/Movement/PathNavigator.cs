@@ -14,12 +14,31 @@ using UnityEngine;
 
 namespace Grubitecht.World.Pathfinding
 {
-    public delegate void MovementFinishCallback(PathStatus endStatus);
+    public delegate void MovementFinishCallback(PathCallbackInfo endStatus);
     public enum PathStatus
     {
         Started,
         Completed,
         Invalid
+    }
+    public class PathCallbackInfo
+    {
+        private readonly PathStatus status;
+        private readonly VoxelTile startTile;
+        private readonly VoxelTile endTile;
+
+        #region Properties
+        public PathStatus Status => status;
+        public VoxelTile StartTile => startTile;
+        public VoxelTile EndTile => endTile;
+        #endregion
+
+        internal PathCallbackInfo(PathStatus status, VoxelTile startTile, VoxelTile endTile)
+        {
+            this.status = status;
+            this.startTile = startTile;
+            this.endTile = endTile;
+        }
     }
     public class PathNavigator : GridNavigator
     {
@@ -64,7 +83,7 @@ namespace Grubitecht.World.Pathfinding
             if (pathBuffer == null)
             {
                 //Debug.Log("Invalid path");
-                finishCallback?.Invoke(PathStatus.Invalid);
+                finishCallback?.Invoke(new PathCallbackInfo(PathStatus.Invalid, tileToStart, destinationSpace));
                 return;
             }
 
@@ -109,7 +128,6 @@ namespace Grubitecht.World.Pathfinding
             // Plays a sound for this object to start moving.
             AudioManager.PlaySoundAtPosition(startMovingSound, transform.position);
             VoxelTile destination = null;
-            finishCallback?.Invoke(PathStatus.Started);
             void UpdateDirection()
             {
                 // Update direction here to ensure directions are updated for later code execution.
@@ -133,8 +151,10 @@ namespace Grubitecht.World.Pathfinding
             // We can make the assumption that our path has at least 1 space in it because SetDestination filters out
             // empty paths.
             destination = currentPath[^1];
+            VoxelTile startSpace = currentPath[0];
             currentPathSpace = gridObject.CurrentTile;
             UpdateDirection();
+            finishCallback?.Invoke(new PathCallbackInfo(PathStatus.Started, currentPath[0], destination));
 
             //Debug.Log(currentPathSpace.GridPosition);
             //Debug.Log(currentPath[0].GridPosition);
@@ -176,7 +196,7 @@ namespace Grubitecht.World.Pathfinding
                 if (currentPath == null)
                 {
                     //Debug.Log("Invalid path");
-                    finishCallback?.Invoke(PathStatus.Invalid);
+                    finishCallback?.Invoke(new PathCallbackInfo(PathStatus.Invalid, startSpace, destination));
                     yield break;
                 }
             }
@@ -196,7 +216,7 @@ namespace Grubitecht.World.Pathfinding
             // Plays a sound for this object to start moving.
             AudioManager.PlaySoundAtPosition(endMovingSound, transform.position);
             // Invoke the given finish callback.
-            finishCallback?.Invoke(PathStatus.Completed);
+            finishCallback?.Invoke(new PathCallbackInfo(PathStatus.Completed, startSpace, destination));
             movementRoutine = null;
         }
     }

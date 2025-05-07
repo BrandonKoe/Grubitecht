@@ -16,7 +16,7 @@ MonoBehaviour:
   <AudioClip>k__BackingField: {fileID: 8300000, guid: de0028c9f29761f459e979efb1b2c7fd, type: 3}
   <MixerGroup>k__BackingField: {fileID: -1755444867518790315, guid: c2329052af98e694c9ea287891e2c199, type: 2}
   <Priority>k__BackingField: 128
-  <Volume>k__BackingField: 1
+  <Volume>k__BackingField: 0.5
   <Pitch>k__BackingField: 1
   <Loop>k__BackingField: 0
   <SpatialBlend>k__BackingField: 0

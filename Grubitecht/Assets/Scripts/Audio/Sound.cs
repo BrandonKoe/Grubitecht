@@ -21,6 +21,8 @@ namespace Grubitecht.Audio
         [field: SerializeField, Range(-3f, 3f)] public float Pitch { get; private set; } = 1f;
         [field: SerializeField] public bool Loop { get; private set; }
         [field: SerializeField, Range(0f, 1f)] public float SpatialBlend { get; private set; } = 0f;
+        [field: SerializeField] public AudioRolloffMode rolloffMode { get; private set; } = 
+            AudioRolloffMode.Logarithmic;
         [field: SerializeField] public float MinDistance { get; private set; } = 1f;
         [field: SerializeField] public float MaxDistance { get; private set; } = 500f;
 
@@ -40,6 +42,7 @@ namespace Grubitecht.Audio
             source.spatialBlend = SpatialBlend;
             source.minDistance = MinDistance;
             source.maxDistance = MaxDistance;
+            source.rolloffMode = rolloffMode;
         }
     }
 }
