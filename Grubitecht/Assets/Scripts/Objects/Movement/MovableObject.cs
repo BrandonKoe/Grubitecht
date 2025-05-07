@@ -20,6 +20,7 @@ namespace Grubitecht.World.Objects
     public class MovableObject : MonoBehaviour
     {
         [SerializeField] private TweenedObject invalidSpacePrefab;
+        [SerializeField] private TweenedObject noGrubsPrefab;
 
         public static event Action<MovableObject> OnObjectMove;
         #region Component References
@@ -78,6 +79,11 @@ namespace Grubitecht.World.Objects
                                 VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
                         }
                     }
+                }
+                else
+                {
+                    WorldSpaceCanvasManager.SpawnUIObject(noGrubsPrefab,
+                                VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
                 }
             }
         }
