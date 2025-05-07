@@ -210,7 +210,7 @@ MonoBehaviour:
   deathEffects: {fileID: 0}
   damageIndicatorColor: {r: 0.99371064, g: 0.94186604, b: 0.30936265, a: 1}
   deathSound: {fileID: 11400000, guid: a74b675132ff0f04ea66871c4213b8cc, type: 2}
-  <MaxHealth>k__BackingField: 20
+  <MaxHealth>k__BackingField: 25
   maxHealthFormatter: {fileID: 11400000, guid: 2a977740cc10dab498c13be9c0798734, type: 2}
   <Health>k__BackingField: 0
   destroyOnDeath: 1

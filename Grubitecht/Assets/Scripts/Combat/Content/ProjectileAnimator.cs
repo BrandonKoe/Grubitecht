@@ -44,7 +44,8 @@ namespace Grubitecht.Combat
         /// <returns>Coroutine.</returns>
         private IEnumerator AnimRoutine(Attackable target)
         {
-            float baseDistance = Vector2.Distance(transform.position, target.transform.position);
+            // Need to ensure that at least 0.01 is set as base distance so we dont end up dividing by 0.
+            float baseDistance = Mathf.Max(Vector2.Distance(transform.position, target.transform.position), 0.01f);
             float xVal = Random.Range(xMin, xMax);
             float yVal = Random.Range(yMin, yMax);
             float zVal = Random.Range(zMin, zMax);

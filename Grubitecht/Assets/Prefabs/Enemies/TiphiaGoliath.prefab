@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ca135354a11f9514194c344a669b1a18, type: 2}
     - target: {fileID: 4758113411827519971, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: <MaxHealth>k__BackingField
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5093368743252289357, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: m_LocalPosition.x
