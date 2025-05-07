@@ -178,11 +178,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 3442883350765597410}
   attackable: {fileID: 0}
+  appliedModifier: {fileID: 11400000, guid: bcd4236fea12e394dbca8f16ad415437, type: 2}
+  buffSound: {fileID: 0}
   targeter: {fileID: 5197117241284157715}
-  buffEffect: {fileID: 7141992062831937616, guid: f836791310e541441ac76fd0e69d2d7b, type: 3}
-  attackBoost: 2
-  attackBoostFormatter: {fileID: 11400000, guid: 2fd2812778bbd2f44a31170c772c29eb, type: 2}
-  selectableObject: {fileID: 7498736004895158522}
+  displayedBoost: 2
+  buffFormatter: {fileID: 11400000, guid: 2fd2812778bbd2f44a31170c772c29eb, type: 2}
 --- !u!114 &3442883350765597410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2694432537194622866, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}

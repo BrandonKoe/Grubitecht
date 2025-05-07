@@ -16,17 +16,26 @@ namespace Grubitecht.Combat
         [field: Header("Base Modifier Settings")]
         [field: SerializeField] public GameObject VisualEffects { get; private set; }
         [field: SerializeField] public bool AllowDuplicates { get; private set; }
+        [SerializeField] protected bool preventRemoval;
         /// <summary>
         /// Called whenever this modifier is added to/removed from a CombatBehaviour
         /// </summary>
-        /// <param name="instance">
-        /// The instance of this modifier that is occuring
+        /// <param name="appliedBehaviour">
+        /// The CombatBehaviour that has this modifier.
         /// </param>
         public virtual void OnModifierAdded(T appliedBehaviour)
         {
             
         }
         public virtual void OnModifierRemoved(T appliedBehaviour)
+        {
+
+        }
+        /// <summary>
+        /// Called when a second instance of this modifier is attempted to be added to a CombatBehaviour
+        /// </summary>
+        /// <param name="appliedBehaviour">The CombatBehaviour that had a second modifier applied.</param>
+        public virtual void OnModifierReapplied(T appliedBehaviour)
         {
 
         }
@@ -39,6 +48,15 @@ namespace Grubitecht.Combat
         public virtual ModifierInstance<T> NewInstance()
         {
             return new ModifierInstance<T>(this);
+        }
+
+        /// <summary>
+        /// Checks if this object is removable.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool CheckRemovable(T appliedBehaviour)
+        {
+            return !preventRemoval;
         }
     }
 }

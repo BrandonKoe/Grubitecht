@@ -6,14 +6,12 @@
 // Brief Description : Debuff effect that deals DoT damage to an attackable periodically and causes moving attackables
 // to run around in a frenzy.
 *****************************************************************************/
-using Grubitecht.World;
-using Grubitecht.World.Pathfinding;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
     [CreateAssetMenu(fileName = "StrengthBoost", menuName = "Grubitecht/Modifiers/Strength Boost")]
-    public class DamageBoost : Modifier<Attacker>
+    public class DamageBoost : StackableModifier<Attacker>
     {
         [Header("Strength Boost Settings")]
         [SerializeField] private int damageBoost;

@@ -27,6 +27,8 @@ namespace Grubitecht.Combat
             private readonly DurationModifier<T> durMod;
             private readonly float duration;
             private readonly float tickInterval;
+
+            private float timer;
             public DurationModInstance(DurationModifier<T> mod, float duration, float tickInterval) : base(mod)
             {
                 durMod = mod;
@@ -39,6 +41,18 @@ namespace Grubitecht.Combat
                 base.OnModifierAdded(thisBehaviour);
                 thisBehaviour.StartCoroutine(EffectTimer());
             }
+            /// <summary>
+            /// Refreshes this modifier's duration when it's reapplied if ExtendDuration is checked.
+            /// </summary>
+            /// <param name="thisBehaviour"></param>
+            public override void HandleModifierReapplied(T thisBehaviour)
+            {
+                if (durMod.ExtendDuration)
+                {
+                    timer = duration;
+                }
+                base.HandleModifierReapplied(thisBehaviour);
+            }
 
             /// <summary>
             /// Controls the lifetime of this affect and what happens when it expires.
@@ -46,7 +60,7 @@ namespace Grubitecht.Combat
             /// <returns>Corotuine.</returns>
             private IEnumerator EffectTimer()
             {
-                float timer = duration;
+                timer = duration;
                 float tickTimer = tickInterval;
                 while (timer > 0)
                 {
@@ -66,7 +80,7 @@ namespace Grubitecht.Combat
                 durMod.OnModifierExpired(appliedBehaviour);
                 AudioManager.PlaySoundAtPosition(durMod.expireSound, appliedBehaviour.transform.position);
                 // Remove this modifier once it has expired.
-                appliedBehaviour.RemoveModifier(this);
+                appliedBehaviour.RemoveModifier(this, true);
             }
         }
         #endregion
