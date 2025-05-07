@@ -73,6 +73,7 @@ namespace Grubitecht.Audio
 
             // Creates a game object that will play the sound.
             GameObject soundGo = new GameObject(sound.Name);
+            soundGo.transform.position = position;
             AudioSource source = soundGo.AddComponent<AudioSource>();
             sound.Setup(source);
             // Mark the sound object as DontDestroyOnLoad if that option is set.

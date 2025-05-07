@@ -9143,7 +9143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winLevelDisplay: {fileID: 353176615}
+  winSound: {fileID: 11400000, guid: 6f92108debdd7d747b0075880f75c1f4, type: 2}
   loseLevelDisplay: {fileID: 1442161039}
+  loseSound: {fileID: 11400000, guid: c1bb654858bbb5c4ca4487a64e9ca49f, type: 2}
 --- !u!4 &1266315537
 Transform:
   m_ObjectHideFlags: 0
