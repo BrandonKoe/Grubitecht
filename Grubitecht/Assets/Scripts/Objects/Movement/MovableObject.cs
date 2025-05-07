@@ -9,8 +9,8 @@ using Grubitecht.Tilemaps;
 using Grubitecht.UI;
 using Grubitecht.Waves;
 using Grubitecht.World.Pathfinding;
+using System;
 using System.Collections;
-using System.Net.Sockets;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -20,6 +20,8 @@ namespace Grubitecht.World.Objects
     public class MovableObject : MonoBehaviour
     {
         [SerializeField] private TweenedObject invalidSpacePrefab;
+
+        public static event Action<MovableObject> OnObjectMove;
         #region Component References
         [field: SerializeReference, HideInInspector] public PathNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
@@ -133,6 +135,8 @@ namespace Grubitecht.World.Objects
             switch (callbackInfo.Status)
             {
                 case PathStatus.Started:
+                    // Once this object starts moving, we should broadcast out that this object has started moving.
+                    OnObjectMove?.Invoke(this);
                     break;
                 case PathStatus.Invalid:
                     WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,

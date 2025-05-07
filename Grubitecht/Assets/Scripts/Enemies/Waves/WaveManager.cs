@@ -5,14 +5,14 @@
 //
 // Brief Description : Controls tracking enemies and coordinating when waves spawn and the delay between them.
 *****************************************************************************/
+using Grubitecht.UI;
 using Grubitecht.World;
+using Grubitecht.World.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Grubitecht.UI;
-using Grubitecht.Tilemaps;
 
 namespace Grubitecht.Waves
 {
@@ -66,6 +66,9 @@ namespace Grubitecht.Waves
             {
                 FindSpawnPoints();
                 currentLevel = this;
+                // The wave should initially start out paused and only start once the player has started moving things.
+                IsPaused = true;
+                MovableObject.OnObjectMove += MovableObject_OnObjectMove;
                 // Starts the wave routine for this level.
                 StartCoroutine(WaveRoutine());
             }
@@ -75,7 +78,18 @@ namespace Grubitecht.Waves
             if (currentLevel == this)
             {
                 currentLevel = null;
+                MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
             }
+        }
+
+        /// <summary>
+        /// When the first object is moved, we should start the wave.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void MovableObject_OnObjectMove(MovableObject obj)
+        {
+            IsPaused = false;
+            MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
         }
 
         /// <summary>
@@ -165,7 +179,19 @@ namespace Grubitecht.Waves
                 if (waveTimerObject != null)
                 {
                     waveTimerObject.SetActive(true);
+                
                 }
+
+                void UpdateUI()
+                {
+                    // Initially update the UI here.
+                    if (waveTimerText != null)
+                    {
+                        waveTimerText.text = ((int)waveDelayTimer + 1).ToString();
+                    }
+                }
+
+                UpdateUI();
                 while (waveDelayTimer > 0)
                 {
                     // Continually loop here while the wave manager is paused.
@@ -174,11 +200,7 @@ namespace Grubitecht.Waves
                         yield return null;
                         continue; 
                     }
-                    // Update the UI here.
-                    if (waveTimerText != null)
-                    {
-                        waveTimerText.text = ((int)waveDelayTimer + 1).ToString();
-                    }
+                    UpdateUI();
                     waveDelayTimer -= Time.deltaTime;
                     yield return null;
                 }
