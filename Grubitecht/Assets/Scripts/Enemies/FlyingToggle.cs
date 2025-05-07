@@ -21,6 +21,7 @@ namespace Grubitecht.World
     [RequireComponent(typeof(Combatant))]
     public class FlyingToggle : MonoBehaviour
     {
+        [SerializeField] private Animator animator;
         [Header("Sounds")]
         [SerializeField] private Sound ascendSound;
         [SerializeField] private Sound descendSound;
@@ -172,6 +173,7 @@ namespace Grubitecht.World
             gridObject.Offset = flyingOffset;
             combatant.CombatTags |= CombatTags.Flying;
 
+            animator.SetBool("IsFlying", true);
             // Plays a sound when this enemy switches to the flying state.
             AudioManager.PlaySoundAtPosition(ascendSound, transform.position);
 
@@ -231,6 +233,7 @@ namespace Grubitecht.World
             gridObject.Offset = groundedOffset;
             combatant.CombatTags &= ~CombatTags.Flying;
 
+            animator.SetBool("IsFlying", false);
             // Plays a sound when this enemy switches to the flying state.
             AudioManager.PlaySoundAtPosition(descendSound, transform.position);
 
