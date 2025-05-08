@@ -14,6 +14,7 @@ namespace Grubitecht.UI.InfoPanel
     public class InfoPanelController : MonoBehaviour
     {
         [SerializeField] private Transform infoPanelObject;
+        [SerializeField] private Transform infoPanelLayout;
         [Header("Info Displayer Prefabs")]
         [SerializeField] private StringDisplayer stringDisplayer;
         [SerializeField] private NumDisplayer numDisplayer;
@@ -100,17 +101,17 @@ namespace Grubitecht.UI.InfoPanel
                 switch(value)
                 {
                     case StringValue stVal:
-                        StringDisplayer stDist = Instantiate(stringDisplayer, infoPanelObject);
+                        StringDisplayer stDist = Instantiate(stringDisplayer, infoPanelLayout);
                         infoDisplayers.Add(stDist);
                         stDist.Initialize(stVal);
                         break;
                     case NumValue nVal:
-                        NumDisplayer nDist = Instantiate(numDisplayer, infoPanelObject);
+                        NumDisplayer nDist = Instantiate(numDisplayer, infoPanelLayout);
                         nDist.Initialize(nVal);
                         infoDisplayers.Add(nDist);
                         break;
                     case SpriteValue spVal:
-                        SpriteDisplayer spDist = Instantiate(spriteDisplayer, infoPanelObject);
+                        SpriteDisplayer spDist = Instantiate(spriteDisplayer, infoPanelLayout);
                         spDist.Initialize(spVal);
                         infoDisplayers.Add(spDist);
                         break;

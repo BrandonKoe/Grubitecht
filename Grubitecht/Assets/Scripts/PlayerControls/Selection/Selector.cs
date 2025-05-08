@@ -12,6 +12,7 @@ using Grubitecht.World;
 using Grubitecht.World.Objects;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -197,8 +198,13 @@ namespace Grubitecht
             // If the player clicks on a UI selectable object, they should ignore anything beneath it.
             foreach(var result in uiResults)
             {
-                Debug.Log("Checking result");
-                if (result.gameObject.TryGetComponent(out ISelectable uiSelection))
+                // If we click on a UI object tagged deselect, we should return null and deselect our current object.
+                //Debug.Log("Checking result");
+                if (result.gameObject.CompareTag("Deselect"))
+                {
+                    return null;
+                }
+                else if (result.gameObject.TryGetComponent(out ISelectable uiSelection))
                 {
                     return uiSelection;
                 }
