@@ -5,19 +5,22 @@
 //
 // Brief Description : Base class for components that apply buffs to allies and debuffs to enemies.
 *****************************************************************************/
-using Grubitecht.Combat;
-using System.Collections;
-using System.Collections.Generic;
+using Grubitecht.Audio;
+using Grubitecht.UI.InfoPanel;
+using Grubitecht.World.Objects;
 using UnityEngine;
 
 namespace Grubitecht.Combat
 {
     [RequireComponent(typeof(AttackerTargeter))]
     [RequireComponent(typeof(Combatant))]
-    public abstract class Effector : CombatBehaviour
+    public abstract class Effector<T, t> : CombatBehaviour where T : ModifiableCombatBehaviour<T> where t : 
+        TargeterGeneric<T>
     {
+        [SerializeField] private Modifier<T> appliedModifier;
+        [SerializeField] private Sound buffSound;
         #region Component References
-        [SerializeReference, HideInInspector] private AttackerTargeter targeter;
+        [SerializeReference, HideInInspector] private t targeter;
 
         /// <summary>
         /// Assign component references on reset.
@@ -25,7 +28,7 @@ namespace Grubitecht.Combat
         protected override void Reset()
         {
             base.Reset();
-            targeter = GetComponent<AttackerTargeter>();
+            targeter = GetComponent<t>();
         }
         #endregion
 
@@ -48,24 +51,31 @@ namespace Grubitecht.Combat
         /// <summary>
         /// When a new target is found, apply this buff to it.
         /// </summary>
-        private void HandleOnGainTarget(Attacker atk)
+        private void HandleOnGainTarget(T target)
         {
-            ApplyBuff(atk);
+            ApplyBuff(target);
         }
 
         /// <summary>
         /// When a target is lost, then remove the buff from it.
         /// </summary>
-        private void HandleOnLoseTarget(Attacker atk)
+        private void HandleOnLoseTarget(T target)
         {
-            RemoveBuff(atk);
+            RemoveBuff(target);
         }
 
         /// <summary>
-        /// Each child class will apply their own unique type of buff or debuff.
+        /// Applied/removes the given buff to the target when they enter/exit this object's range.
         /// </summary>
-        /// <param name="buffedAttacker">The attacker being buffed/debuffed.</param>
-        protected abstract void ApplyBuff(Attacker buffedAttacker);
-        protected abstract void RemoveBuff(Attacker buffedAttacker);
+        /// <param name="buffedTarget">The attacker being buffed/debuffed.</param>
+        protected virtual void ApplyBuff(T buffedTarget)
+        {
+            buffedTarget.ApplyModifier(appliedModifier);
+            AudioManager.PlaySoundAtPosition(buffSound, buffedTarget.transform.position);
+        }
+        protected virtual void RemoveBuff(T buffedTarget)
+        {
+            buffedTarget.RemoveModifier(appliedModifier);
+        }
     }
 }

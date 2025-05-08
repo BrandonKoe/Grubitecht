@@ -50,5 +50,23 @@ namespace Grubitecht.Combat
             GameObject.Destroy(modifierVFX);
             mod.OnModifierRemoved(thisBehaviour);
         }
+
+        /// <summary>
+        /// Controls what happens to this modifier when a second instance is applied to a target.
+        /// </summary>
+        /// <param name="thisBehaviour">The CombatBehaviour that had a second modifier applied.</param>
+        public virtual void HandleModifierReapplied(T thisBehaviour)
+        {
+            mod.OnModifierReapplied(thisBehaviour);
+        }
+
+        /// <summary>
+        /// Checks if this object is removable;
+        /// </summary>
+        /// <returns>True if this modifier can be removed.</returns>
+        public virtual bool CheckRemovable(T thisBehaviour)
+        {
+            return mod.CheckRemovable(thisBehaviour);
+        }
     }
 }

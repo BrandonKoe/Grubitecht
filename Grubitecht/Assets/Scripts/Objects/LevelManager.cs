@@ -5,16 +5,17 @@
 //
 // Brief Description : Manages operations that should be carried out once per level.
 *****************************************************************************/
-using Grubitecht.World.Objects;
-using UnityEngine;
-using Grubitecht.World.Pathfinding;
-using NaughtyAttributes;
 using Grubitecht.Audio;
+using NaughtyAttributes;
+using UnityEngine;
 
 namespace Grubitecht.World
 {
     public class LevelManager : MonoBehaviour
     {
+        [Header("Level Settings")]
+        [SerializeField] private int requiredObjectiveAmount;
+        [Header("Level End")]
         [SerializeField] private GameObject winLevelDisplay;
         [SerializeField] private Sound winSound;
         [SerializeField] private GameObject loseLevelDisplay;
@@ -62,6 +63,27 @@ namespace Grubitecht.World
             //Objective.NavMap.StartUpdating(this);
         }
 
+        #region Properties
+        private static LevelManager Current
+        {
+            get
+            {
+                if (current == null)
+                {
+                    current = FindObjectOfType<LevelManager>();
+                }
+                return current;
+            }
+        }
+        public static int RequiredObjectiveAmount
+        {
+            get
+            {
+                return Current.requiredObjectiveAmount;
+            }
+        }
+        #endregion
+
         #region Win & Lose
         /// <summary>
         /// Handles behaviour that should happen when you win a level.
@@ -69,8 +91,8 @@ namespace Grubitecht.World
         [Button]
         public static void WinLevel()
         {
-            current.winLevelDisplay.SetActive(true);
-            AudioManager.PlaySoundAtPosition(current.winSound, current.transform.position);
+            Current.winLevelDisplay.SetActive(true);
+            AudioManager.PlaySoundAtPosition(Current.winSound, Current.transform.position);
             IsPlaying = false;
         }
 
@@ -80,8 +102,8 @@ namespace Grubitecht.World
         [Button]
         public static void LoseLevel()
         {
-            current.loseLevelDisplay.SetActive(true);
-            AudioManager.PlaySoundAtPosition(current.loseSound, current.transform.position);
+            Current.loseLevelDisplay.SetActive(true);
+            AudioManager.PlaySoundAtPosition(Current.loseSound, Current.transform.position);
             IsPlaying = false;
         }
         #endregion

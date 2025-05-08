@@ -122,8 +122,6 @@ namespace Grubitecht.Combat
                 return;
             }
             Debug.Log("Healing target " + target + " who has " + target.Health + " HP");
-            // Plays a sound.
-            AudioManager.PlaySoundAtPosition(healSound, target.transform.position);
             Heal(target);
             OnHealAction?.Invoke(target);
         }
@@ -140,6 +138,8 @@ namespace Grubitecht.Combat
             {
                 return;
             }
+            // Plays a sound.
+            AudioManager.PlaySoundAtPosition(healSound, target.transform.position);
             // Heals the target.
             target.ChangeHealth(HealingStrength);
             OnHeal?.Invoke(target);

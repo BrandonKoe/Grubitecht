@@ -136,15 +136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6326358857753532744, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: detectionRange
@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2729263653826720574, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
@@ -220,7 +220,7 @@ MonoBehaviour:
   combatant: {fileID: 5735124070260143926}
   attackable: {fileID: 0}
   detectionVisual: {fileID: 2731574801595987342}
-  detectionRange: 7
+  detectionRange: 8
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: -1
@@ -244,7 +244,7 @@ MonoBehaviour:
   attackSfxName: {fileID: 11400000, guid: 3abe9ce7366cb034d900c1dda29dd2e7, type: 2}
   <AttackDamage>k__BackingField: 4
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
-  <AttackCooldown>k__BackingField: 1
+  <AttackCooldown>k__BackingField: 1.5
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
   <targeter>k__BackingField: {fileID: 4729045751414896831}
   projectileLaunchSfx: {fileID: 11400000, guid: 55022577779bc4141a44e6b4592a366a, type: 2}

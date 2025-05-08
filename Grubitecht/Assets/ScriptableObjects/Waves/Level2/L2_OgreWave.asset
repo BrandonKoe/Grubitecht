@@ -23,10 +23,12 @@ MonoBehaviour:
     <Enemies>k__BackingField:
     - <Count>k__BackingField: 1
       <EnemyPrefab>k__BackingField: {fileID: 860886596398983487, guid: 315265ba73c9909419f348901ad4edb8, type: 3}
-    - <Count>k__BackingField: 4
+    - <Count>k__BackingField: 6
       <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
   - <Delay>k__BackingField: 20
     <Enemies>k__BackingField:
-    - <Count>k__BackingField: 1
+    - <Count>k__BackingField: 2
       <EnemyPrefab>k__BackingField: {fileID: 860886596398983487, guid: 315265ba73c9909419f348901ad4edb8, type: 3}
-  enemyCount: 11
+    - <Count>k__BackingField: 4
+      <EnemyPrefab>k__BackingField: {fileID: 4677007144406543708, guid: 9f3044c87a11d2f43abd35fb61900c99, type: 3}
+  enemyCount: 18

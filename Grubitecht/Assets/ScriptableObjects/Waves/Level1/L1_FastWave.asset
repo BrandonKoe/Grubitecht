@@ -15,13 +15,16 @@ MonoBehaviour:
   <Subwaves>k__BackingField:
   - <Delay>k__BackingField: 0
     <Enemies>k__BackingField:
-    - <Count>k__BackingField: 3
-      <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
-  - <Delay>k__BackingField: 20
-    <Enemies>k__BackingField:
-    - <Count>k__BackingField: 3
+    - <Count>k__BackingField: 4
       <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
   - <Delay>k__BackingField: 20
     <Enemies>k__BackingField:
     - <Count>k__BackingField: 4
       <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
+    - <Count>k__BackingField: 2
+      <EnemyPrefab>k__BackingField: {fileID: 411903346327987601, guid: cfddadef9cea95a4fbd51574f6d5f5c8, type: 3}
+  - <Delay>k__BackingField: 20
+    <Enemies>k__BackingField:
+    - <Count>k__BackingField: 5
+      <EnemyPrefab>k__BackingField: {fileID: 6672460396613531500, guid: 7db5d598cc5e5b545a6b6eeeaf162ca3, type: 3}
+  enemyCount: 15

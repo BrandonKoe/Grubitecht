@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 078aac80f64de1248bea5c51843e4044, type: 3}
-  m_Name: Voxel Brush
+  m_Script: {fileID: 11500000, guid: 799da15ae9131c046b39511ffb52f73f, type: 3}
+  m_Name: StrengthBoost
   m_EditorClassIdentifier: 
-  smoothAbove: 0
+  <VisualEffects>k__BackingField: {fileID: 7141992062831937616, guid: f836791310e541441ac76fd0e69d2d7b, type: 3}
+  <AllowDuplicates>k__BackingField: 0
+  canBeRemoved: 0
+  damageBoost: 2
