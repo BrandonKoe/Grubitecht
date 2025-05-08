@@ -17,6 +17,8 @@ namespace Grubitecht.UI.Tutorial
     public class Tutorial
     {
         [SerializeField] private GameObject targetObject;
+        [field: SerializeField] private bool searchForGameObjectOfName;
+        [SerializeField, ShowIf("SearchForGameObjectOfName"), AllowNesting] private string gameObjectName;
         [SerializeField] private TutorialType type;
         [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting, TextArea] 
         private string tutorialText;
@@ -42,7 +44,10 @@ namespace Grubitecht.UI.Tutorial
         public Vector2 TutorialOffset => tutorialOffset;
         public TutorialUIObject TutorialPrefab => tutorialPrefab;
         public TutorialEvent FinishEvent => finishEvent;
+        public bool SearchForGameObjectOfName => searchForGameObjectOfName;
         #endregion
+
+
         #region Nested
         public enum TutorialType
         {
@@ -96,6 +101,17 @@ namespace Grubitecht.UI.Tutorial
             else
             {
                 TutorialManager.LogCompleted(this);
+            }
+        }
+
+        /// <summary>
+        /// Has this tutorial find an object if it's marked SearchForGameObjectOfName
+        /// </summary>
+        public void FindObject()
+        {
+            if (SearchForGameObjectOfName)
+            {
+                targetObject = GameObject.Find(gameObjectName);
             }
         }
     }
