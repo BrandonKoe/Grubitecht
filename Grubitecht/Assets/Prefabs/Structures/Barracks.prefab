@@ -132,15 +132,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5700233481113693482, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -216,7 +216,7 @@ MonoBehaviour:
   combatant: {fileID: 279858048249971797}
   attackable: {fileID: 0}
   detectionVisual: {fileID: 7610381134669924077}
-  detectionRange: 5
+  detectionRange: 4
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 0
   canTargetTags: 0
