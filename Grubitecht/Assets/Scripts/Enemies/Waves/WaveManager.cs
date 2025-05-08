@@ -30,6 +30,7 @@ namespace Grubitecht.Waves
         
         private static WaveManager currentLevel;
         public static bool IsPaused { get; set; }
+        private static bool isPausedInternal;
         //public static event Action<int> StartWaveEvent;
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
@@ -68,7 +69,7 @@ namespace Grubitecht.Waves
                 FindSpawnPoints();
                 currentLevel = this;
                 // The wave should initially start out paused and only start once the player has started moving things.
-                IsPaused = true;
+                isPausedInternal = true;
                 MovableObject.OnObjectMoveStatic += MovableObject_OnObjectMove;
                 // Starts the wave routine for this level.
                 StartCoroutine(WaveRoutine());
@@ -89,7 +90,7 @@ namespace Grubitecht.Waves
         /// <param name="obj"></param>
         private void MovableObject_OnObjectMove(MovableObject obj, VoxelTile endTile)
         {
-            IsPaused = false;
+            isPausedInternal = false;
             MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
         }
 
@@ -196,7 +197,7 @@ namespace Grubitecht.Waves
                 while (waveDelayTimer > 0)
                 {
                     // Continually loop here while the wave manager is paused.
-                    if (IsPaused) 
+                    if (IsPaused || isPausedInternal) 
                     { 
                         yield return null;
                         continue; 

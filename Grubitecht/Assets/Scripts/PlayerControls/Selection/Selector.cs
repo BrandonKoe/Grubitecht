@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Grubitecht
@@ -188,6 +189,22 @@ namespace Grubitecht
         /// <returns>The selecteable object at that screen position.</returns>
         private static ISelectable GetSelectableAtScreenPos(Vector2 screenPos, Camera cam)
         {
+            // Check for UI selections
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
+            pointerData.position = screenPos;
+            List<RaycastResult> uiResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, uiResults);
+            // If the player clicks on a UI selectable object, they should ignore anything beneath it.
+            foreach(var result in uiResults)
+            {
+                Debug.Log("Checking result");
+                if (result.gameObject.TryGetComponent(out ISelectable uiSelection))
+                {
+                    return uiSelection;
+                }
+            }
+
+            // Check for world point selections.
             Ray selectionRay = cam.ScreenPointToRay(screenPos);
 
             if (Physics.Raycast(selectionRay, out RaycastHit results))

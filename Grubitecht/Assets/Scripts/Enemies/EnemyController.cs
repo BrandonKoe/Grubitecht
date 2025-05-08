@@ -13,7 +13,6 @@ using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using NaughtyAttributes;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World
@@ -82,6 +81,14 @@ namespace Grubitecht.World
                     return "";
                 }
                 return selectableObject.ObjectDesription;
+            }
+        }
+
+        public SelectableObject Selectable
+        {
+            get
+            {
+                return selectableObject;
             }
         }
         #endregion

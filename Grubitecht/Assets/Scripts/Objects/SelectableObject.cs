@@ -20,10 +20,10 @@ namespace Grubitecht.World.Objects
         #endregion
 
         [Header("Default Object Information")]
-        [SerializeField] private string objectName;
-        [SerializeField, TextArea] private string objectDesription;
+        [SerializeField] protected string objectName;
+        [SerializeField, TextArea] protected string objectDesription;
 
-        private readonly List<InfoValueGetter> infoGetters = new List<InfoValueGetter>();
+        protected readonly List<InfoValueGetter> infoGetters = new List<InfoValueGetter>();
         public event Action<ISelectable> OnSelectEvent;
         public event Action<ISelectable> OnDeselectEvent;
 
@@ -37,12 +37,22 @@ namespace Grubitecht.World.Objects
         /// <summary>
         /// Get references to all of this object's info getters on awake.
         /// </summary>
-        private void Awake()
+        protected virtual void Awake()
         {
-            IInfoProvider[] providers = GetComponents<IInfoProvider>();
+            LoadGettersForObject(infoGetters, gameObject);
+        }
+
+        /// <summary>
+        /// Gets all the info getters from a specific object.
+        /// </summary>
+        /// <param name="obj">The object to get info getters from.</param>
+        /// <returns>The list of found info getters.</returns>
+        protected static void LoadGettersForObject(List<InfoValueGetter> getters, GameObject obj)
+        {
+            IInfoProvider[] providers = obj.GetComponents<IInfoProvider>();
             foreach (var component in providers)
             {
-                infoGetters.Add(component.InfoGetter);
+                getters.Add(component.InfoGetter);
             }
         }
 
@@ -62,8 +72,6 @@ namespace Grubitecht.World.Objects
         /// <returns>The list of info values that should be displayed on the info panel.</returns>
         public List<InfoValueBase> GetInfoValues()
         {
-
-
             // Sets up the list of values along with the default values that should be displayed for all selectable
             // objects.
             List<InfoValueBase> values = new List<InfoValueBase>()
