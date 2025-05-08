@@ -35,7 +35,7 @@ namespace Grubitecht.Waves
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
 
-        public event Action OnFinishWave;
+        public static event Action OnFinishWave;
 
         #region Properties
         public static int EnemyNumber

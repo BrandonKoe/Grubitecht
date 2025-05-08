@@ -18,7 +18,7 @@ namespace Grubitecht.UI.Tutorial
     {
         [SerializeField] private GameObject targetObject;
         [SerializeField] private TutorialType type;
-        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting] 
+        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting, TextArea] 
         private string tutorialText;
         [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting]
         private Vector2 tutorialDimensions;
