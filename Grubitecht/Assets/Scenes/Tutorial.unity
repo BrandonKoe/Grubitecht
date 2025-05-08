@@ -300,6 +300,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -366,7 +378,19 @@ MonoBehaviour:
     finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -543,7 +567,7 @@ MonoBehaviour:
     tutorialDimensions: {x: 350, y: 250}
     tutorialOffset: {x: 250, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    finishEvent: {fileID: 11400000, guid: 8ca2c063c9591f144994a8864fe1e77c, type: 2}
+    finishEvent: {fileID: 11400000, guid: cef824d5f7f0efe4b8b2df01df1c81d9, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
         m_Calls:
@@ -6255,6 +6279,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 511662168}
   m_SourcePrefab: {fileID: 100100000, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+--- !u!114 &6254850457336633896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7917805827299639527, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+  m_PrefabInstance: {fileID: 6254850457336633895}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511662159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abfbffdda7bd474d8dcb74a8e454a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6604125301987122489
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,16 +13,17 @@ namespace Grubitecht.UI.Tutorial
     [CreateAssetMenu(fileName = "OnMove", menuName = "Grubitecht/TutorialEvents/On Move")]
     public class OnMove : TutorialEvent
     {
+        [field: SerializeField] public Vector2 TargetSpace { get; private set; }
         public override void Initialize(Tutorial obj)
         {
-            GridObject gObj = obj.TargetObject.GetComponent<GridObject>();
-            gObj.OnChangeSpace += obj.CompleteTutorial;
+            MovableObject mObj = obj.TargetObject.GetComponent<MovableObject>();
+            mObj.OnObjectMove += obj.CompleteTutorial;
         }
 
         public override void Deinitialize(Tutorial obj)
         {
-            GridObject gObj = obj.TargetObject.GetComponent<GridObject>();
-            gObj.OnChangeSpace -= obj.CompleteTutorial;
+            MovableObject mObj = obj.TargetObject.GetComponent<MovableObject>();
+            mObj.OnObjectMove -= obj.CompleteTutorial;
         }
     }
 }

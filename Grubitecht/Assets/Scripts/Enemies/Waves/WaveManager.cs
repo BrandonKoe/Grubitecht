@@ -5,6 +5,7 @@
 //
 // Brief Description : Controls tracking enemies and coordinating when waves spawn and the delay between them.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.UI;
 using Grubitecht.World;
 using Grubitecht.World.Objects;
@@ -68,7 +69,7 @@ namespace Grubitecht.Waves
                 currentLevel = this;
                 // The wave should initially start out paused and only start once the player has started moving things.
                 IsPaused = true;
-                MovableObject.OnObjectMove += MovableObject_OnObjectMove;
+                MovableObject.OnObjectMoveStatic += MovableObject_OnObjectMove;
                 // Starts the wave routine for this level.
                 StartCoroutine(WaveRoutine());
             }
@@ -78,7 +79,7 @@ namespace Grubitecht.Waves
             if (currentLevel == this)
             {
                 currentLevel = null;
-                MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
+                MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
             }
         }
 
@@ -86,10 +87,10 @@ namespace Grubitecht.Waves
         /// When the first object is moved, we should start the wave.
         /// </summary>
         /// <param name="obj"></param>
-        private void MovableObject_OnObjectMove(MovableObject obj)
+        private void MovableObject_OnObjectMove(MovableObject obj, VoxelTile endTile)
         {
             IsPaused = false;
-            MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
+            MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
         }
 
         /// <summary>

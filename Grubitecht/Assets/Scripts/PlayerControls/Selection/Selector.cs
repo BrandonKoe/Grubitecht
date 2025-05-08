@@ -28,6 +28,8 @@ namespace Grubitecht
         [SerializeReference, HideInInspector] private Camera cam;
         #endregion
 
+        public static bool CanInput { get; set; } = true;
+
         // Input actions
         private InputAction selectAction;
         private InputAction deselectAction;
@@ -92,6 +94,7 @@ namespace Grubitecht
 
                 selectAction.performed += SelectAction_Performed;
                 deselectAction.performed += DeselectAction_Performed;
+                CanInput = true;
             }
         }
 
@@ -101,7 +104,7 @@ namespace Grubitecht
         private void OnDestroy()
         {
             selectAction.performed -= SelectAction_Performed;
-            deselectAction.performed += DeselectAction_Performed;
+            deselectAction.performed -= DeselectAction_Performed;
         }
 
         /// <summary>
@@ -110,6 +113,7 @@ namespace Grubitecht
         /// <param name="obj">unused.</param>
         private void SelectAction_Performed(InputAction.CallbackContext obj)
         {
+            if (!CanInput) { return; }
             // Players cannot select if the level is not playing.
             if (!LevelManager.IsPlaying) { return; }
             ISelectable clicked = GetSelectableAtMousePos();
@@ -137,6 +141,7 @@ namespace Grubitecht
         /// <param name="obj"></param>
         private void DeselectAction_Performed(InputAction.CallbackContext obj)
         {
+            if (!CanInput) { return; }
             CurrentSelection = null;
             UpdateSelectionIndicator();
         }

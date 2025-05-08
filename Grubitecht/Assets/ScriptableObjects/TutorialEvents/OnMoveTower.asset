@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c879c5115fe62f9409da8987b81036c3, type: 3}
-  m_Name: OnMove
+  m_Name: OnMoveTower
   m_EditorClassIdentifier: 
+  <TargetSpace>k__BackingField: {x: 2, y: 2}

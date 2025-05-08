@@ -22,7 +22,10 @@ namespace Grubitecht.World.Objects
         [SerializeField] private TweenedObject invalidSpacePrefab;
         [SerializeField] private TweenedObject noGrubsPrefab;
 
-        public static event Action<MovableObject> OnObjectMove;
+        public static event Action<MovableObject, VoxelTile> OnObjectMoveStatic;
+        public event Action<MovableObject, VoxelTile> OnObjectMove;
+
+        public bool IsMovable { get; set; }
         #region Component References
         [field: SerializeReference, HideInInspector] public PathNavigator GridNavigator { get; private set; }
         [SerializeReference, HideInInspector] private SelectableObject selectable;
@@ -42,6 +45,7 @@ namespace Grubitecht.World.Objects
         private void Awake()
         {
             selectable.OnDeselectEvent += MoveObject;
+            IsMovable = true;
         }
         private void OnDestroy()
         {
@@ -142,7 +146,8 @@ namespace Grubitecht.World.Objects
             {
                 case PathStatus.Started:
                     // Once this object starts moving, we should broadcast out that this object has started moving.
-                    OnObjectMove?.Invoke(this);
+                    OnObjectMoveStatic?.Invoke(this, callbackInfo.EndTile);
+                    OnObjectMove?.Invoke(this, callbackInfo.EndTile);
                     break;
                 case PathStatus.Invalid:
                     WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,

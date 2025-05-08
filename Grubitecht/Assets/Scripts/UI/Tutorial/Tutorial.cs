@@ -8,6 +8,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using NaughtyAttributes;
+using Grubitecht.World.Objects;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.UI.Tutorial
 {
@@ -77,6 +79,24 @@ namespace Grubitecht.UI.Tutorial
         public void CompleteTutorial(ISelectable selectableDummy)
         {
             TutorialManager.LogCompleted(this);
+        }
+
+        /// <summary>
+        /// Logs this tutorial as completed so the player can move to the next tutorial.
+        /// </summary>
+        public void CompleteTutorial(MovableObject obj, VoxelTile targetTile)
+        {
+            if (finishEvent is OnMove onMove)
+            {
+                if (targetTile.GridPosition2 == onMove.TargetSpace)
+                {
+                    TutorialManager.LogCompleted(this);
+                }
+            }
+            else
+            {
+                TutorialManager.LogCompleted(this);
+            }
         }
     }
 }
