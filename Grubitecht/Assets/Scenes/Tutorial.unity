@@ -279,6 +279,8 @@ MonoBehaviour:
   defaultTutorialObject: {fileID: 7769413107654449556, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
   tutorialProgression:
   - targetObject: {fileID: 1855537440}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 1
     tutorialText: 
     tutorialDimensions: {x: 0, y: 0}
@@ -300,10 +302,24 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: In Grubitech, it's your job to reorganize the town to keep these
       houses safe from incoming enemies.
@@ -318,6 +334,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1425347652}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: These Indicators show what enemies will spawn.
     tutorialDimensions: {x: 320, y: 200}
@@ -330,11 +348,41 @@ MonoBehaviour:
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
-  - targetObject: {fileID: 1164384557}
+  - targetObject: {fileID: 0}
+    searchForGameObjectOfName: 1
+    gameObjectName: WavePredictor(Clone)
     type: 0
-    tutorialText: Military structures like this will attack the enemies for you.
-    tutorialDimensions: {x: 300, y: 275}
-    tutorialOffset: {x: 0, y: 250}
+    tutorialText: Click on it to show more information about the incoming enemies.
+    tutorialDimensions: {x: 350, y: 250}
+    tutorialOffset: {x: 250, y: 200}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 994787934}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: While an enemy or structure is selected, you can view this panel
+      to see informatin about it.
+    tutorialDimensions: {x: 350, y: 300}
+    tutorialOffset: {x: -800, y: 400}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
@@ -344,6 +392,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: This house is too close to the spawn point, it's going to get slaughtered! 
       We should move it back to where the other structures are.
@@ -358,6 +408,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: Click on the house to select it.
     tutorialDimensions: {x: 300, y: 150}
@@ -366,11 +418,25 @@ MonoBehaviour:
     finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: Now, click on the highlighted space to move the house there.
     tutorialDimensions: {x: 350, y: 250}
@@ -408,11 +474,13 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1701894731}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: Congratulations!  You assigned a Grubitecht!  You can see the number
       of Grubitechts you have available to you up here.
     tutorialDimensions: {x: 350, y: 300}
-    tutorialOffset: {x: 0, y: -300}
+    tutorialOffset: {x: 0, y: -400}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
@@ -430,6 +498,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1701894731}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: Beware though, because you only have grubs equal to the amount
+      of houses you have left.  If a house gets destroyed, then you'll lose a grub
+      for that level!
+    tutorialDimensions: {x: 350, y: 400}
+    tutorialOffset: {x: 0, y: -450}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls: []
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls:
@@ -445,9 +542,110 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - targetObject: {fileID: 1425347652}
+  - targetObject: {fileID: 1164384557}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
-    tutorialText: 'The enemies are on their way!  '
+    tutorialText: Military structures like this will automatically attack nearby
+      enemies for you.
+    tutorialDimensions: {x: 350, y: 275}
+    tutorialOffset: {x: 0, y: 250}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1164384557}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: Like any other structure, they can be moved by Grubitechts.  Select
+      this barracks.
+    tutorialDimensions: {x: 350, y: 275}
+    tutorialOffset: {x: 0, y: 200}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: e1f58fbdf30fa914a9ae0d88cbfe2015, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6254850457336633896}
+          m_TargetAssemblyTypeName: Grubitecht.Selector, Assembly-CSharp
+          m_MethodName: set_CanInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1164384557}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: Lets move that barracks up to the highlighted position so it can
+      attack the incoming enemies.
+    tutorialDimensions: {x: 350, y: 275}
+    tutorialOffset: {x: 0, y: 250}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: 3720ecbf8ceb3444d8c44b92dd1666c5, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 727230803}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 727230803}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - targetObject: {fileID: 1164384557}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: Great!  Now this barracks should automatically defend the houses.
+    tutorialDimensions: {x: 350, y: 275}
+    tutorialOffset: {x: 0, y: 250}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1425347652}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
+    type: 0
+    tutorialText: The enemies are on their way!
     tutorialDimensions: {x: 200, y: 200}
     tutorialOffset: {x: 150, y: 150}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
@@ -470,20 +668,49 @@ MonoBehaviour:
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
-  - targetObject: {fileID: 476528019}
+  - targetObject: {fileID: 480546130}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
-    tutorialText: Defeat the enemies!
-    tutorialDimensions: {x: 200, y: 150}
-    tutorialOffset: {x: 200, y: 200}
+    tutorialText: During a wave, you can view this bar to see how much progress you've
+      made in beating it.
+    tutorialDimensions: {x: 400, y: 250}
+    tutorialOffset: {x: 0, y: -320}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: ba52873f75ad7e44fba68dbe692c51fa, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 764298440}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 764298440}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - targetObject: {fileID: 1425347652}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: 'There are flying enemies on the way next wave. Only certain structures
       can hit flying enemies. '
@@ -510,6 +737,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 990545845}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: Click on the Archery Tower.
     tutorialDimensions: {x: 200, y: 200}
@@ -523,27 +752,55 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 994787934}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
-    tutorialText: While an object is selected, you can view this panel to see informatin
-      about it, including enemies.
-    tutorialDimensions: {x: 350, y: 300}
+    tutorialText: As you can see on the info panel, archery towers are able to hit
+      flying enemies.
+    tutorialDimensions: {x: 350, y: 250}
     tutorialOffset: {x: -800, y: 400}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 872195728}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnTutorialFinishedEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 872195728}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - targetObject: {fileID: 990545845}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: We should move the archery tower up front so it can attack the
       flying enemies.
     tutorialDimensions: {x: 350, y: 250}
     tutorialOffset: {x: 250, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
-    finishEvent: {fileID: 11400000, guid: 8ca2c063c9591f144994a8864fe1e77c, type: 2}
+    finishEvent: {fileID: 11400000, guid: cef824d5f7f0efe4b8b2df01df1c81d9, type: 2}
     OnTutorialShownEvent:
       m_PersistentCalls:
         m_Calls:
@@ -575,6 +832,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1425347652}
+    searchForGameObjectOfName: 0
+    gameObjectName: 
     type: 0
     tutorialText: The enemies are on their way again!  It's up to you, arrange your
       defenses!
@@ -1102,6 +1361,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &480546130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8990618727688862954, guid: 4fd7770f4c8d41442869dad86345ccce, type: 3}
+  m_PrefabInstance: {fileID: 707509350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &511662159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6288933201780187722, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
@@ -1612,9 +1876,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 8990618727688862954, guid: 4fd7770f4c8d41442869dad86345ccce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4619388940375703960, guid: 4fd7770f4c8d41442869dad86345ccce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 764298441}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fd7770f4c8d41442869dad86345ccce, type: 3}
 --- !u!224 &707509351 stripped
@@ -1627,12 +1898,78 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1682053968347248952, guid: 4fd7770f4c8d41442869dad86345ccce, type: 3}
   m_PrefabInstance: {fileID: 707509350}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 480546130}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 937f78fecc3bdb8459f30afa461964c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &727230802
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.000002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_Name
+      value: SpaceIndicator (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+--- !u!1 &727230803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f04b7a95dc4bb634a95dffce6d21b775, type: 3}
+  m_PrefabInstance: {fileID: 727230802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &727791646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,6 +2104,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727791646}
   m_CullTransparentMesh: 1
+--- !u!1 &764298440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764298441}
+  - component: {fileID: 764298443}
+  - component: {fileID: 764298442}
+  m_Layer: 5
+  m_Name: ArrowIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &764298441
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764298440}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 707509351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 100, y: -75}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &764298442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764298440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 42bb48691239e0740b95aecd47d73441, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &764298443
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764298440}
+  m_CullTransparentMesh: 1
 --- !u!1 &829162963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +2270,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c41b26772424e48a2ae9735211ad1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &872195728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872195729}
+  - component: {fileID: 872195731}
+  - component: {fileID: 872195730}
+  m_Layer: 5
+  m_Name: ArrowIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &872195729
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872195728}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2096336062}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 65}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &872195730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872195728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 42bb48691239e0740b95aecd47d73441, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &872195731
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872195728}
+  m_CullTransparentMesh: 1
 --- !u!1001 &884458877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2228,15 +2715,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 4149936926295041779, guid: ae1104844ee36f0478022020b6c94f6d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2356,13 +2843,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4638426721106045215, guid: 41a1690e7e768ef42ae63c4a76add685, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6678483122359895080, guid: 41a1690e7e768ef42ae63c4a76add685, type: 3}
       propertyPath: m_Name
       value: InfoPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2837395382986947485, guid: 41a1690e7e768ef42ae63c4a76add685, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 872195729}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a1690e7e768ef42ae63c4a76add685, type: 3}
 --- !u!224 &994787933 stripped
@@ -3005,7 +3499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3013,7 +3507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5877,7 +6371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5885,7 +6379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3280588828935041785, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6023,6 +6517,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &2096336062 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2837395382986947485, guid: 41a1690e7e768ef42ae63c4a76add685, type: 3}
+  m_PrefabInstance: {fileID: 994787932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2110096224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6255,6 +6754,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 511662168}
   m_SourcePrefab: {fileID: 100100000, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+--- !u!114 &6254850457336633896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7917805827299639527, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+  m_PrefabInstance: {fileID: 6254850457336633895}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511662159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abfbffdda7bd474d8dcb74a8e454a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6604125301987122489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6373,3 +6883,4 @@ SceneRoots:
   - {fileID: 2013175656}
   - {fileID: 998909601}
   - {fileID: 1053142719}
+  - {fileID: 727230802}

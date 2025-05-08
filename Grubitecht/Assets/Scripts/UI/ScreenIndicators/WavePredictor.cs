@@ -5,16 +5,19 @@
 //
 // Brief Description : Controller for UI objects that displays the next upcoming enemies in a wave.
 *****************************************************************************/
+using Grubitecht.UI.InfoPanel;
 using Grubitecht.Waves;
 using Grubitecht.World;
+using Grubitecht.World.Objects;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Grubitecht.UI
 {
-    public class WavePredictor : MonoBehaviour
+    public class WavePredictor : SelectableObject, ISelectable
     {
         [Header("References")]
         [SerializeField] private Image enemyPredictionImage;
@@ -47,6 +50,18 @@ namespace Grubitecht.UI
         #region Properties
         private RectTransform rectTransform => (RectTransform)transform;
         #endregion
+
+        #region Nested
+        private delegate List<InfoValueBase> InfoGetterReplacer();
+        #endregion
+        /// <summary>
+        /// Don't load info getters on awake, as they are loaded on initialize.
+        /// </summary>
+        protected override void Awake()
+        {
+            //base.Awake();
+        }
+
         /// <summary>
         /// Initializes this object with values when it spawns.
         /// </summary>
@@ -63,6 +78,12 @@ namespace Grubitecht.UI
             enemyPredictionImage.sprite = enemyPrefab.EnemySpriteIcon;
             infoPopup.TitleText = enemyPrefab.EnemyName;
             infoPopup.BodyText = enemyPrefab.EnemyDescription;
+            // Sets the info getter this object will use to present info values to the panel
+            // This code is here to make it so that when the predictor is selected, it displays info about the enemy.
+            objectName = enemyPrefab.EnemyName;
+            objectDesription = enemyPrefab.EnemyDescription;
+            LoadGettersForObject(infoGetters, enemyPrefab.gameObject);
+
             enemyNumberText.text = enemyNumber.ToString();
             this.typeNumber = typeNumber;
             this.basePosition = basePosition;

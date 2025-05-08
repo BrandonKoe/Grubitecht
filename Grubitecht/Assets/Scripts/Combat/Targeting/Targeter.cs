@@ -8,6 +8,7 @@
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -166,11 +167,16 @@ namespace Grubitecht.Combat
         /// </summary>
         public InfoValueBase[] InfoGetter()
         {
-            return new InfoValueBase[]
+            List<InfoValueBase> returnVal = new List<InfoValueBase>()
             {
                 new NumValue(detectionRange, 20, rangeFormatter),
                 new StringValue($"Targets {targetingType.ToString()}", 21)
             };
+            if (canTargetTags.HasFlag(CombatTags.Flying))
+            {
+                returnVal.Add(new StringValue($"Can Hit Flying Enemies", 22));
+            }
+            return returnVal.ToArray();
         }
     }
 }

@@ -91,6 +91,8 @@ namespace Grubitecht.UI.Tutorial
         /// </summary>
         private static void ShowTutorial(Tutorial tutorialObj, string text)
         {
+            // First, get game objects if the tutorial is set to SearchForGameObjectsOfName
+            tutorialObj.FindObject();
             TutorialUIObject tObj = Instantiate(instance.defaultTutorialObject, instance.transform);
             tObj.TextObject.text = text;
             // Set the dimensions of the tutorial.

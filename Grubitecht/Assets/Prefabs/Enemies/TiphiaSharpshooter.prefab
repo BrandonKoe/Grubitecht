@@ -242,10 +242,6 @@ PrefabInstance:
         to attack their targets.
       objectReference: {fileID: 0}
     - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
-      propertyPath: canTargetTags
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308435001518308473, guid: c49bd8c04679b404986746339f828842, type: 3}
       propertyPath: detectionRange
       value: 12
       objectReference: {fileID: 0}

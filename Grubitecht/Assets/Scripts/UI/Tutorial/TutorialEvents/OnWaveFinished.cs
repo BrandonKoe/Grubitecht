@@ -16,14 +16,12 @@ namespace Grubitecht.UI.Tutorial
     {
         public override void Initialize(Tutorial obj)
         {
-            WaveManager sPoint = obj.TargetObject.GetComponent<WaveManager>();
-            sPoint.OnFinishWave += obj.CompleteTutorial;
+            WaveManager.OnFinishWave += obj.CompleteTutorial;
         }
 
         public override void Deinitialize(Tutorial obj)
         {
-            WaveManager sPoint = obj.TargetObject.GetComponent<WaveManager>();
-            sPoint.OnFinishWave -= obj.CompleteTutorial;
+            WaveManager.OnFinishWave -= obj.CompleteTutorial;
         }
     }
 }

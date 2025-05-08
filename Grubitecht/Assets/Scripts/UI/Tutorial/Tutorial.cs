@@ -8,6 +8,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using NaughtyAttributes;
+using Grubitecht.World.Objects;
+using Grubitecht.Tilemaps;
 
 namespace Grubitecht.UI.Tutorial
 {
@@ -15,8 +17,10 @@ namespace Grubitecht.UI.Tutorial
     public class Tutorial
     {
         [SerializeField] private GameObject targetObject;
+        [field: SerializeField] private bool searchForGameObjectOfName;
+        [SerializeField, ShowIf("SearchForGameObjectOfName"), AllowNesting] private string gameObjectName;
         [SerializeField] private TutorialType type;
-        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting] 
+        [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting, TextArea] 
         private string tutorialText;
         [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting]
         private Vector2 tutorialDimensions;
@@ -40,7 +44,10 @@ namespace Grubitecht.UI.Tutorial
         public Vector2 TutorialOffset => tutorialOffset;
         public TutorialUIObject TutorialPrefab => tutorialPrefab;
         public TutorialEvent FinishEvent => finishEvent;
+        public bool SearchForGameObjectOfName => searchForGameObjectOfName;
         #endregion
+
+
         #region Nested
         public enum TutorialType
         {
@@ -77,6 +84,35 @@ namespace Grubitecht.UI.Tutorial
         public void CompleteTutorial(ISelectable selectableDummy)
         {
             TutorialManager.LogCompleted(this);
+        }
+
+        /// <summary>
+        /// Logs this tutorial as completed so the player can move to the next tutorial.
+        /// </summary>
+        public void CompleteTutorial(MovableObject obj, VoxelTile targetTile)
+        {
+            if (finishEvent is OnMove onMove)
+            {
+                if (targetTile.GridPosition2 == onMove.TargetSpace)
+                {
+                    TutorialManager.LogCompleted(this);
+                }
+            }
+            else
+            {
+                TutorialManager.LogCompleted(this);
+            }
+        }
+
+        /// <summary>
+        /// Has this tutorial find an object if it's marked SearchForGameObjectOfName
+        /// </summary>
+        public void FindObject()
+        {
+            if (SearchForGameObjectOfName)
+            {
+                targetObject = GameObject.Find(gameObjectName);
+            }
         }
     }
 }

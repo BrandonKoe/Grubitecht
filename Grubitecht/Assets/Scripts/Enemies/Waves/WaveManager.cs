@@ -5,6 +5,7 @@
 //
 // Brief Description : Controls tracking enemies and coordinating when waves spawn and the delay between them.
 *****************************************************************************/
+using Grubitecht.Tilemaps;
 using Grubitecht.UI;
 using Grubitecht.World;
 using Grubitecht.World.Objects;
@@ -29,11 +30,12 @@ namespace Grubitecht.Waves
         
         private static WaveManager currentLevel;
         public static bool IsPaused { get; set; }
+        private static bool isPausedInternal;
         //public static event Action<int> StartWaveEvent;
         private SpawnPoint[] spawnPoints;
         private static readonly List<EnemyController> enemies = new List<EnemyController>();
 
-        public event Action OnFinishWave;
+        public static event Action OnFinishWave;
 
         #region Properties
         public static int EnemyNumber
@@ -67,8 +69,8 @@ namespace Grubitecht.Waves
                 FindSpawnPoints();
                 currentLevel = this;
                 // The wave should initially start out paused and only start once the player has started moving things.
-                IsPaused = true;
-                MovableObject.OnObjectMove += MovableObject_OnObjectMove;
+                isPausedInternal = true;
+                MovableObject.OnObjectMoveStatic += MovableObject_OnObjectMove;
                 // Starts the wave routine for this level.
                 StartCoroutine(WaveRoutine());
             }
@@ -78,7 +80,7 @@ namespace Grubitecht.Waves
             if (currentLevel == this)
             {
                 currentLevel = null;
-                MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
+                MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
             }
         }
 
@@ -86,10 +88,10 @@ namespace Grubitecht.Waves
         /// When the first object is moved, we should start the wave.
         /// </summary>
         /// <param name="obj"></param>
-        private void MovableObject_OnObjectMove(MovableObject obj)
+        private void MovableObject_OnObjectMove(MovableObject obj, VoxelTile endTile)
         {
-            IsPaused = false;
-            MovableObject.OnObjectMove -= MovableObject_OnObjectMove;
+            isPausedInternal = false;
+            MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
         }
 
         /// <summary>
@@ -195,7 +197,7 @@ namespace Grubitecht.Waves
                 while (waveDelayTimer > 0)
                 {
                     // Continually loop here while the wave manager is paused.
-                    if (IsPaused) 
+                    if (IsPaused || isPausedInternal) 
                     { 
                         yield return null;
                         continue; 
