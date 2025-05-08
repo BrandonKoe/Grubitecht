@@ -320,7 +320,7 @@ MonoBehaviour:
   attackable: {fileID: 7733081156092412378}
   attackEffects: {fileID: 8852274700824418778, guid: f242c45c3aa8e5c4a9a80c3c963b832c, type: 3}
   attackSfxName: {fileID: 11400000, guid: 98fd1a30d755a0d459bb11a06bd795c8, type: 2}
-  <AttackDamage>k__BackingField: 5
+  <AttackDamage>k__BackingField: 4
   attackDamageFormatter: {fileID: 11400000, guid: f264f4ec4da89814582a22385ec48ff5, type: 2}
   <AttackCooldown>k__BackingField: 3
   attackCooldownFormatter: {fileID: 11400000, guid: 4bc7400ee9a8e02499f0d9fc6dcd3a2b, type: 2}
