@@ -5,6 +5,7 @@
 //
 // Brief Description : Controller for UI objects that displays the next upcoming enemies in a wave.
 *****************************************************************************/
+using Grubitecht.DebugFeatures;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.Waves;
 using Grubitecht.World;
@@ -75,6 +76,12 @@ namespace Grubitecht.UI
         public void Initialize(EnemyController enemyPrefab, Vector3 basePosition, int enemyNumber, float duration, 
             int typeNumber)
         {
+            // If this object is not active in the hierarchy, we can't start the life cycle coroutine so we should
+            // just destroy this game object to avoid clutter.
+            if (!gameObject.activeInHierarchy)
+            {
+                Destroy(gameObject);
+            }
             enemyPredictionImage.sprite = enemyPrefab.EnemySpriteIcon;
             infoPopup.TitleText = enemyPrefab.EnemyName;
             infoPopup.BodyText = enemyPrefab.EnemyDescription;
@@ -91,7 +98,20 @@ namespace Grubitecht.UI
             // the camera moves and it needs to be.
             CameraController.OnCameraUpdate += UpdatePosition;
             UpdatePosition();
+            // If this object is already active in the hierarchy, then we start the life cycle.
             StartCoroutine(LifeCycle(duration));
+        }
+
+        /// <summary>
+        /// If this object is disabled by disabling the UI with H, then we should destroy this object immediately
+        /// so it doesnt cause clutter.
+        /// </summary>
+        private void OnDisable()
+        {
+            if (HideUI.IsUIHidden)
+            {
+                Destroy(gameObject);
+            }
         }
 
         /// <summary>

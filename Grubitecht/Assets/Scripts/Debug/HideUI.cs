@@ -12,8 +12,9 @@ namespace Grubitecht.DebugFeatures
 {
     public class HideUI : MonoBehaviour
     {
-        [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private GameObject canvas;
+
+        public static bool IsUIHidden { get; private set; }
         private InputAction hideUIAction;
 
         /// <summary>
@@ -21,12 +22,15 @@ namespace Grubitecht.DebugFeatures
         /// </summary>
         private void Awake()
         {
-            hideUIAction = inputActions.FindAction("HideUI");
-            hideUIAction.performed += HideUIAction_Performed;
+            if (TryGetComponent(out PlayerInput input))
+            {
+                hideUIAction = input.currentActionMap.FindAction("HideUI");
+                hideUIAction.performed += HideUIAction_Performed;
+            }
         }
         private void OnDestroy()
         {
-            Debug.Log("OnDestroy called");
+            //Debug.Log("OnDestroy called");
             hideUIAction.performed -= HideUIAction_Performed;
         }
 
@@ -36,8 +40,9 @@ namespace Grubitecht.DebugFeatures
         /// <param name="obj"></param>
         private void HideUIAction_Performed(InputAction.CallbackContext obj)
         {
-            Debug.Log("Hiding UI");
-            canvas.SetActive(!canvas.activeSelf);
+            //Debug.Log("Hiding UI");
+            IsUIHidden = !IsUIHidden;
+            canvas.SetActive(!IsUIHidden);
         }
     }
 }

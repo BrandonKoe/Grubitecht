@@ -114,6 +114,13 @@ namespace Grubitecht.Combat
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.
             DeathBroadcast?.Invoke(this);
+
+            // Calls OnRemove for all modifiers on affecting this object.
+            foreach (var modifier in modifiers)
+            {
+                modifier.OnModifierRemoved(this);
+            }
+
             // Spawn effects when this object dies.
             if (deathEffects != null)
             {
