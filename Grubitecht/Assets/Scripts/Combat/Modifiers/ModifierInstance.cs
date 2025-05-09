@@ -38,7 +38,7 @@ namespace Grubitecht.Combat
         public virtual void OnModifierAdded(T thisBehaviour)
         {
             appliedBehaviour = thisBehaviour;
-            Debug.Log("Modifier Instance Added.");
+            //Debug.Log("Modifier Instance Added.");
             // Show VFX when this modifier is added.
             modifierVFX = GameObject.Instantiate(mod.VisualEffects, thisBehaviour.transform);
             mod.OnModifierAdded(thisBehaviour);

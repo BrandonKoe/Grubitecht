@@ -102,7 +102,7 @@ namespace Grubitecht.UI
                 }
             }
 
-            Debug.Log(resultantNormal);
+            //Debug.Log(resultantNormal);
             // If one of our corners was out of bounds.
             if (resultantNormal != Vector2.zero)
             {

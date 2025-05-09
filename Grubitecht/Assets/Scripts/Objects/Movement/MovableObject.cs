@@ -110,7 +110,7 @@ namespace Grubitecht.World.Objects
             VoxelTile objectiveTile = Objective.TargetObjective.gridObject.CurrentTile;
             foreach(var spawnPoint in spawnPoints)
             {
-                Debug.Log(spawnPoint.gridObject);
+                //Debug.Log(spawnPoint.gridObject);
                 // If a spawn point doesnt have a valid path to the target objective, then this space is not valid.
                 if (!Pathfinder.CheckPath(spawnPoint.gridObject.CurrentTile, objectiveTile, 1, 
                     GridNavigator.gridObject.Layer, true))
