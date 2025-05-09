@@ -279,8 +279,8 @@ MonoBehaviour:
   defaultTutorialObject: {fileID: 7769413107654449556, guid: 73611ef1fdcbf284090945c266663cb5, type: 3}
   tutorialProgression:
   - targetObject: {fileID: 1855537440}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 1
     tutorialText: 
     tutorialDimensions: {x: 0, y: 0}
@@ -318,8 +318,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: In Grubitech, it's your job to reorganize the town to keep these
       houses safe from incoming enemies.
@@ -334,8 +334,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1425347652}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: These Indicators show what enemies will spawn.
     tutorialDimensions: {x: 320, y: 200}
@@ -348,9 +348,9 @@ MonoBehaviour:
     OnTutorialFinishedEvent:
       m_PersistentCalls:
         m_Calls: []
-  - targetObject: {fileID: 0}
-    searchForGameObjectOfName: 1
-    gameObjectName: WavePredictor(Clone)
+  - targetObject: {fileID: 1830920592}
+    targetChild: 1
+    childIndex: 0
     type: 0
     tutorialText: Click on it to show more information about the incoming enemies.
     tutorialDimensions: {x: 350, y: 250}
@@ -376,8 +376,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 994787934}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: While an enemy or structure is selected, you can view this panel
       to see informatin about it.
@@ -392,8 +392,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: This house is too close to the spawn point, it's going to get slaughtered! 
       We should move it back to where the other structures are.
@@ -408,8 +408,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Click on the house to select it.
     tutorialDimensions: {x: 300, y: 150}
@@ -435,8 +435,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1613366364}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Now, click on the highlighted space to move the house there.
     tutorialDimensions: {x: 350, y: 250}
@@ -474,8 +474,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1701894731}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Congratulations!  You assigned a Grubitecht!  You can see the number
       of Grubitechts you have available to you up here.
@@ -514,8 +514,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1701894731}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Beware though, because you only have grubs equal to the amount
       of houses you have left.  If a house gets destroyed, then you'll lose a grub
@@ -543,8 +543,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1164384557}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Military structures like this will automatically attack nearby
       enemies for you.
@@ -559,8 +559,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1164384557}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Like any other structure, they can be moved by Grubitechts.  Select
       this barracks.
@@ -587,8 +587,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1164384557}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Lets move that barracks up to the highlighted position so it can
       attack the incoming enemies.
@@ -627,8 +627,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1164384557}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Great!  Now this barracks should automatically defend the houses.
     tutorialDimensions: {x: 350, y: 275}
@@ -642,8 +642,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 1425347652}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: The enemies are on their way!
     tutorialDimensions: {x: 200, y: 200}
@@ -669,8 +669,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 480546130}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: During a wave, you can view this bar to see how much progress you've
       made in beating it.
@@ -709,8 +709,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1425347652}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: 'There are flying enemies on the way next wave. Only certain structures
       can hit flying enemies. '
@@ -737,8 +737,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 990545845}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: Click on the Archery Tower.
     tutorialDimensions: {x: 200, y: 200}
@@ -752,8 +752,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - targetObject: {fileID: 994787934}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: As you can see on the info panel, archery towers are able to hit
       flying enemies.
@@ -792,8 +792,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 990545845}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: We should move the archery tower up front so it can attack the
       flying enemies.
@@ -832,8 +832,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - targetObject: {fileID: 1425347652}
-    searchForGameObjectOfName: 0
-    gameObjectName: 
+    targetChild: 0
+    childIndex: 0
     type: 0
     tutorialText: The enemies are on their way again!  It's up to you, arrange your
       defenses!

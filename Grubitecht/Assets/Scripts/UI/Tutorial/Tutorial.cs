@@ -17,8 +17,8 @@ namespace Grubitecht.UI.Tutorial
     public class Tutorial
     {
         [SerializeField] private GameObject targetObject;
-        [field: SerializeField] private bool searchForGameObjectOfName;
-        [SerializeField, ShowIf("SearchForGameObjectOfName"), AllowNesting] private string gameObjectName;
+        [field: SerializeField] private bool targetChild;
+        [SerializeField, ShowIf("TargetChild"), AllowNesting] private int childIndex;
         [SerializeField] private TutorialType type;
         [SerializeField, ShowIf("type", TutorialType.Text), AllowNesting, TextArea] 
         private string tutorialText;
@@ -44,7 +44,7 @@ namespace Grubitecht.UI.Tutorial
         public Vector2 TutorialOffset => tutorialOffset;
         public TutorialUIObject TutorialPrefab => tutorialPrefab;
         public TutorialEvent FinishEvent => finishEvent;
-        public bool SearchForGameObjectOfName => searchForGameObjectOfName;
+        public bool TargetChild => targetChild;
         #endregion
 
 
@@ -109,9 +109,9 @@ namespace Grubitecht.UI.Tutorial
         /// </summary>
         public void FindObject()
         {
-            if (SearchForGameObjectOfName)
+            if (TargetChild && childIndex < targetObject.transform.childCount)
             {
-                targetObject = GameObject.Find(gameObjectName);
+                targetObject = targetObject.transform.GetChild(childIndex).gameObject;
             }
         }
     }
