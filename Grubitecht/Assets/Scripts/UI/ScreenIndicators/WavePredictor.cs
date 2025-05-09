@@ -49,7 +49,7 @@ namespace Grubitecht.UI
         #endregion
 
         #region Properties
-        private RectTransform rectTransform => (RectTransform)transform;
+        //private RectTransform rectTransform => (RectTransform)transform;
         #endregion
 
         #region Nested
@@ -149,6 +149,7 @@ namespace Grubitecht.UI
             //Vector2 realOriginPos = RectTransformUtility.WorldToScreenPoint(Camera.main,
             //    basePosition + baseOffset);
 
+            RectTransform rectTransform = transform as RectTransform;
             Vector2 realOriginPos = Camera.main.WorldToScreenPoint(basePosition + baseOffset);
             Vector2 margins = rectTransform.sizeDelta + (2 * offset * Vector2.one) + (Vector2.one * padding);
             // The actual base position that this predictor will be centered around after it has been clamped to
@@ -174,6 +175,7 @@ namespace Grubitecht.UI
         /// <param name="realOriginPos">The screen position that the pointer should point toward.</param>
         private void UpdatePointerRotation(Vector2 realOriginPos)
         {
+            RectTransform rectTransform = transform as RectTransform;
             Vector2 pointingVector = realOriginPos - (Vector2)rectTransform.position;
             float angle = MathHelpers.VectorToDegAngle(pointingVector);
             Vector3 eulers = backImageTransform.eulerAngles;

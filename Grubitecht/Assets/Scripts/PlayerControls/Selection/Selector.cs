@@ -64,7 +64,7 @@ namespace Grubitecht
                 // info about it's values.
                 if (value is SelectableObject sObj)
                 {
-                    Debug.Log("Updating info panel values");
+                    //Debug.Log("Updating info panel values");
                     InfoPanelController.UpdatePanel(sObj.GetInfoValues());
                 }
                 else
@@ -119,7 +119,7 @@ namespace Grubitecht
             // Players cannot select if the level is not playing.
             if (!LevelManager.IsPlaying) { return; }
             ISelectable clicked = GetSelectableAtMousePos();
-            Debug.Log("Select input registered" + clicked);
+            //Debug.Log("Select input registered" + clicked);
             // If the currently selected object is clicked, then it is deselected.
             if (clicked == CurrentSelection)
             {
