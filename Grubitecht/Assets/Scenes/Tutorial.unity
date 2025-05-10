@@ -3571,7 +3571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da6657a780464498747850026db5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredObjectiveAmount: 0
+  levelLossThreshold: 0
   winLevelDisplay: {fileID: 1344383405}
   winSound: {fileID: 11400000, guid: 6f92108debdd7d747b0075880f75c1f4, type: 2}
   loseLevelDisplay: {fileID: 974237559}
@@ -6753,9 +6753,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6288933201780187722, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 511662168}
-    - targetCorrespondingSourceObject: {fileID: 6288933201780187722, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6254850457336633897}
   m_SourcePrefab: {fileID: 100100000, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
 --- !u!114 &6254850457336633896 stripped
 MonoBehaviour:
@@ -6768,19 +6765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abfbffdda7bd474d8dcb74a8e454a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6254850457336633897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511662159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eabe3f9f265c8c46b022c9d510a7b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 392901948}
 --- !u!1001 &6604125301987122489
 PrefabInstance:
   m_ObjectHideFlags: 0
