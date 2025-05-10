@@ -5,12 +5,14 @@
 //
 // Brief Description : base Class form combat behaviour that can be modified.
 *****************************************************************************/
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace Grubitecht.Combat
 {
     public class ModifiableCombatBehaviour<T> : CombatBehaviour where T : ModifiableCombatBehaviour<T>
 {
+        [SerializeField] protected bool immuneToModifiers;
         protected readonly List<ModifierInstance<T>> modifiers = new List<ModifierInstance<T>>();
 
 
@@ -20,6 +22,8 @@ namespace Grubitecht.Combat
         /// <param name="modifier">The modifier to add.</param>
         public ModifierInstance<T> ApplyModifier(Modifier<T> modifier)
         {
+            // Prevent adding a modifier if we're immune to modifiers.
+            if (immuneToModifiers) { return null;  }
             ModifierInstance<T> inst = modifiers.Find(item => item.Modifier == modifier);
             // Prevent duplicate modifiers from being added.
             if (!modifier.AllowDuplicates && inst != null) 

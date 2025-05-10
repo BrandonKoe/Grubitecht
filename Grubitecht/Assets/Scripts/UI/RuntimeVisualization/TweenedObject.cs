@@ -49,7 +49,7 @@ namespace Grubitecht.UI
                     text.color = col;
                 }
 
-                timer -= Time.deltaTime;
+                timer -= Time.unscaledDeltaTime;
                 yield return null;
             }
             EndLifeCycle();

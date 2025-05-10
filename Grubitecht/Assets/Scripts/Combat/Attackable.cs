@@ -110,6 +110,10 @@ namespace Grubitecht.Combat
         [Button]
         private void Die()
         {
+            // Set this object as immune to modifiers on death in case any modifiers were intended to be added by the
+            // attack that killed this object.
+            immuneToModifiers = true;
+
             // Broadcast to other component on this game object that this object has died.
             OnDeath?.Invoke();
             // Broadcast out to any listeners that this object has died.

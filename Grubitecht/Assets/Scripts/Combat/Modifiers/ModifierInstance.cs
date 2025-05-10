@@ -48,6 +48,7 @@ namespace Grubitecht.Combat
         {
             // Destroy the vfx for this modifier once the modifier is removed.
             GameObject.Destroy(modifierVFX);
+            Debug.Log("Removing modifier vfx from " + thisBehaviour.name);
             mod.OnModifierRemoved(thisBehaviour);
         }
 

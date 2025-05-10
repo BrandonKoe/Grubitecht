@@ -39,6 +39,10 @@ namespace Grubitecht.World.Objects
         }
         #endregion
 
+        #region Properties
+        private GridObject gridObject => GridNavigator.gridObject;
+        #endregion
+
         /// <summary>
         /// Subscribe/unsubscribe from the OnDeselectEvent to control movement.
         /// </summary>
@@ -99,12 +103,16 @@ namespace Grubitecht.World.Objects
         /// <returns></returns>
         private bool CheckValidObjectivePath(VoxelTile targetTile)
         {
-            // Spawns a dummy grid object to take up space during the pathfind.
-            GameObject go = new GameObject();
-            GridObject tempGridObj = go.AddComponent<GridObject>();
-            tempGridObj.Layer = GridNavigator.gridObject.Layer;
-            tempGridObj.SetCurrentSpace(targetTile);
-            tempGridObj.SnapToSpace();
+            // Temporarily sets this object's current tile as the tile we want to move it to.
+            VoxelTile currentTille = gridObject.CurrentTile;
+            gridObject.SetCurrentSpace(targetTile);
+
+            //// Spawns a dummy grid object to take up space during the pathfind.
+            //GameObject go = new GameObject();
+            //GridObject tempGridObj = go.AddComponent<GridObject>();
+            //tempGridObj.Layer = GridNavigator.gridObject.Layer;
+            //tempGridObj.SetCurrentSpace(targetTile);
+            //tempGridObj.SnapToSpace();
 
             SpawnPoint[] spawnPoints = WaveManager.SpawnPoints;
             VoxelTile objectiveTile = Objective.TargetObjective.gridObject.CurrentTile;
@@ -116,11 +124,13 @@ namespace Grubitecht.World.Objects
                     GridNavigator.gridObject.Layer, true))
                 {
                     // Call OnDestroy here manually
-                    tempGridObj.DestroyImmediate();
+                    //tempGridObj.DestroyImmediate();
+                    gridObject.SetCurrentSpace(currentTille);
                     return false;
                 }
             }
-            tempGridObj.DestroyImmediate();
+            //tempGridObj.DestroyImmediate();
+            gridObject.SetCurrentSpace(currentTille);
             return true;
         }
 
