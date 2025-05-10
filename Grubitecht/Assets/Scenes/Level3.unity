@@ -9142,7 +9142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da6657a780464498747850026db5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredObjectiveAmount: 1
+  levelLossThreshold: 0
   winLevelDisplay: {fileID: 353176615}
   winSound: {fileID: 11400000, guid: 6f92108debdd7d747b0075880f75c1f4, type: 2}
   loseLevelDisplay: {fileID: 1442161039}
@@ -14630,7 +14630,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 262debeb0cf566b4b883cfd38c501a3b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 

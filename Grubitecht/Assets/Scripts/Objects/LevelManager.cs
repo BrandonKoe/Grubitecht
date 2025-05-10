@@ -14,7 +14,9 @@ namespace Grubitecht.World
     public class LevelManager : MonoBehaviour
     {
         [Header("Level Settings")]
-        [SerializeField] private int requiredObjectiveAmount;
+        [SerializeField, Tooltip("Once the player hits this number of objectives remaining, " +
+            "they will lose the level.")] 
+        private int levelLossThreshold;
         [Header("Level End")]
         [SerializeField] private GameObject winLevelDisplay;
         [SerializeField] private Sound winSound;
@@ -75,11 +77,11 @@ namespace Grubitecht.World
                 return current;
             }
         }
-        public static int RequiredObjectiveAmount
+        public static int LevelLossThreshold
         {
             get
             {
-                return Current.requiredObjectiveAmount;
+                return Current.levelLossThreshold;
             }
         }
         #endregion

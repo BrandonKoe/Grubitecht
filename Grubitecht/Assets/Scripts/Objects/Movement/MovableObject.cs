@@ -11,6 +11,7 @@ using Grubitecht.Waves;
 using Grubitecht.World.Pathfinding;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -103,9 +104,32 @@ namespace Grubitecht.World.Objects
         /// <returns></returns>
         private bool CheckValidObjectivePath(VoxelTile targetTile)
         {
+            // Temporarily move all grounded enemies to a placeholder layer so they dont iterfere with our pathfinding
+            // check.
+            List<EnemyController> ignoredEnemies = 
+                EnemyController.AllEnemies.FindAll(item => item.gridObject.Layer == OccupyLayer.Ground);
+
+            void SetEnemyLayer(OccupyLayer layer)
+            {
+                foreach (var enemy in ignoredEnemies)
+                {
+                    enemy.gridObject.Layer = layer;
+                }
+            }
+
+            // Move the enemies to a temp layer.
+            SetEnemyLayer(OccupyLayer.PlaceholderEnemy);
+
             // Temporarily sets this object's current tile as the tile we want to move it to.
             VoxelTile currentTille = gridObject.CurrentTile;
             gridObject.SetCurrentSpace(targetTile);
+
+            // Define a CleanUp function that we can call to revert any changes before we exit this function.
+            void CleanUp()
+            {
+                gridObject.SetCurrentSpace(currentTille);
+                SetEnemyLayer(OccupyLayer.Ground);
+            }
 
             //// Spawns a dummy grid object to take up space during the pathfind.
             //GameObject go = new GameObject();
@@ -125,12 +149,12 @@ namespace Grubitecht.World.Objects
                 {
                     // Call OnDestroy here manually
                     //tempGridObj.DestroyImmediate();
-                    gridObject.SetCurrentSpace(currentTille);
+                    CleanUp();
                     return false;
                 }
             }
             //tempGridObj.DestroyImmediate();
-            gridObject.SetCurrentSpace(currentTille);
+            CleanUp();
             return true;
         }
 
