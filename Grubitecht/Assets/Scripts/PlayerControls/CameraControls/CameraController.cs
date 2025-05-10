@@ -92,7 +92,7 @@ namespace Grubitecht
         /// </summary>
         protected void CallCameraUpdateEvent()
         {
-            Debug.LogError("Calling Camera Update Event");
+            //Debug.LogError("Calling Camera Update Event");
             OnCameraUpdate?.Invoke();
         }
 

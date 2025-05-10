@@ -214,5 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307f62c01d86f9942a853c4e3050b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endMode: 2
   text: {fileID: 1088610606695412472}
   animator: {fileID: 4526974731772807780}

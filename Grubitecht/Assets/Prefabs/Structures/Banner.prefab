@@ -161,7 +161,7 @@ MonoBehaviour:
   detectionRange: 6
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
   targetingType: 1
-  canTargetTags: -1
+  canTargetTags: 0
   detectionArea: {fileID: 7485050222826932764}
   selectableObject: {fileID: 7498736004895158522}
 --- !u!114 &5236637351628322605

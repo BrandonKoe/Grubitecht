@@ -459,6 +459,13 @@ MonoBehaviour:
   animator: {fileID: 673199585394215409}
   ascendSound: {fileID: 0}
   descendSound: {fileID: 0}
+  transitionTime: 0
+  transitionCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   switchTime: 15
   flyingClimbHeight: 10
   flyingOffset: {x: 0, y: 2, z: 0}

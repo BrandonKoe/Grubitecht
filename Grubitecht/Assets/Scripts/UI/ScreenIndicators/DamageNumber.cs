@@ -45,7 +45,8 @@ namespace Grubitecht.UI
         protected override IEnumerator LifeCycle()
         {
             yield return new WaitForSeconds(animator.GetAnimationDuration() - 0.02f);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            EndLifeCycle();
         }
     }
 }

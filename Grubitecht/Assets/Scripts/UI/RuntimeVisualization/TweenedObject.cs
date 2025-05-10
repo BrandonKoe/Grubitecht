@@ -13,7 +13,8 @@ namespace Grubitecht.UI
         [SerializeField] private TMP_Text[] fadeText;
         [Header("Settings")]
         [SerializeField] private float animationTime;
-        [SerializeField] private Vector3 tweenOffset;
+        [SerializeField, Tooltip("The offset from the object's current position that it should tween to.")]
+        private Vector3 tweenOffset;
         [SerializeField] private AnimationCurve alphaCurve;
 
         /// <summary>
@@ -51,7 +52,8 @@ namespace Grubitecht.UI
                 timer -= Time.deltaTime;
                 yield return null;
             }
-            Destroy(gameObject);
+            EndLifeCycle();
+            //Destroy(gameObject);
         }
     }
 }

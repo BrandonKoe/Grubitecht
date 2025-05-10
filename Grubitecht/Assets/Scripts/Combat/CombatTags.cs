@@ -13,6 +13,6 @@ namespace Grubitecht.Combat
     public enum CombatTags
     {
         None = 0,
-        Flying = 1 << 0,
+        Flying = 1 << 0
     }
 }

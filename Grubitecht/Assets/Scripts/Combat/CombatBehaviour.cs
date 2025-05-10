@@ -54,7 +54,7 @@ namespace Grubitecht.Combat
         {
             if (attackable != null)
             {
-                attackable.OnDeath += BroadcastDeath;
+                attackable.OnDeath -= BroadcastDeath;
             }
         }
 
