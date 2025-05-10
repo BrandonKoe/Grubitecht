@@ -70,10 +70,10 @@ MonoBehaviour:
   destructibleTags:
   - tag: Stone
     destroyEffect: {fileID: 1476216241858319519, guid: 4379f3148c5a81540b217be5b4a29efd, type: 3}
-    destroySound: {fileID: 0}
+    destroySound: {fileID: 11400000, guid: 5c5a04ce46c43bb46a9a9c40ff75de69, type: 2}
   - tag: Barricade
     destroyEffect: {fileID: 6507874470279212131, guid: 1d6159614e7dbdd4e8b4fc4d3194b4c6, type: 3}
-    destroySound: {fileID: 0}
+    destroySound: {fileID: 11400000, guid: 1cc704403724a8c429fbd94b6d311694, type: 2}
   detectionArea: {fileID: 1575628367919125306}
 --- !u!1001 &3963331941301906930
 PrefabInstance:

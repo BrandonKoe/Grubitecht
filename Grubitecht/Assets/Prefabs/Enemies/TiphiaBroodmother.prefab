@@ -93,8 +93,7 @@ PrefabInstance:
     - target: {fileID: 5700895998332386554, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: objectDesription
       value: These tiphia mothers will implant their eggs in any grub structure they
-        attack.  After a while, these eggs will hatch and produce more vicious tiphia
-        younglings.
+        attack.  These eggs will hatch and produce vicious tiphia younglings.
       objectReference: {fileID: 0}
     - target: {fileID: 6276270476897831396, guid: e3437bab7d8f5bb46a04a0998d7c13e3, type: 3}
       propertyPath: <AttackStat>k__BackingField

@@ -86,7 +86,7 @@ namespace Grubitecht.Audio
         {
             SoundRef musicForThisScene = Array.Find(musicTracks, item => item.scene == next.name);
             // If we find a new track to play...
-            if (musicForThisScene != null)
+            if (musicForThisScene != null && musicForThisScene != currentTrack)
             {
                 // Transition to the new track.
                 TransitionToTrack(currentTrack, musicForThisScene);

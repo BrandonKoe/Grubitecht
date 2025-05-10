@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Grubitecht.Credits
 {
@@ -18,6 +19,7 @@ namespace Grubitecht.Credits
         #endregion
         [SerializeField] private Transform targetTransform;
         [SerializeField] private float tweenTime;
+        [SerializeField] private UnityEvent onFinishTweenEvent;
 
         #region Properties
         public float Speed
@@ -54,6 +56,7 @@ namespace Grubitecht.Credits
                 timer -= Time.deltaTime;
                 yield return null;  
             }
+            onFinishTweenEvent?.Invoke();
         }
     }
 }

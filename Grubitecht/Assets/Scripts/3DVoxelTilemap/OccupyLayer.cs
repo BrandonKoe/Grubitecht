@@ -13,6 +13,7 @@ namespace Grubitecht.World
         Air,
         Grub,
         Gate,
-        Selection
+        Selection,
+        PlaceholderEnemy
     }
 }

@@ -5,6 +5,7 @@
 //
 // Brief Description : Controller for UI objects that displays the next upcoming enemies in a wave.
 *****************************************************************************/
+using Grubitecht.DebugFeatures;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.Waves;
 using Grubitecht.World;
@@ -75,6 +76,13 @@ namespace Grubitecht.UI
         public void Initialize(EnemyController enemyPrefab, Vector3 basePosition, int enemyNumber, float duration, 
             int typeNumber)
         {
+            // If this object is not active in the hierarchy, we can't start the life cycle coroutine so we should
+            // just destroy this game object to avoid clutter.
+            if (!gameObject.activeInHierarchy)
+            {
+                Destroy(gameObject);
+                return;
+            }
             enemyPredictionImage.sprite = enemyPrefab.EnemySpriteIcon;
             infoPopup.TitleText = enemyPrefab.EnemyName;
             infoPopup.BodyText = enemyPrefab.EnemyDescription;
@@ -89,9 +97,24 @@ namespace Grubitecht.UI
             this.basePosition = basePosition;
             // Subscribe to the camera pan event because this object's position should only ever be updated if
             // the camera moves and it needs to be.
+            //Debug.LogError("Subscribed to event.");
             CameraController.OnCameraUpdate += UpdatePosition;
+            //Debug.LogError("Camera update subscribed");
             UpdatePosition();
+            // If this object is already active in the hierarchy, then we start the life cycle.
             StartCoroutine(LifeCycle(duration));
+        }
+
+        /// <summary>
+        /// If this object is disabled by disabling the UI with H, then we should destroy this object immediately
+        /// so it doesnt cause clutter.
+        /// </summary>
+        private void OnDisable()
+        {
+            if (HideUI.IsUIHidden)
+            {
+                Destroy(gameObject);
+            }
         }
 
         /// <summary>
@@ -166,6 +189,7 @@ namespace Grubitecht.UI
         /// </summary>
         private void Unload()
         {
+            //Debug.LogError("Unloaded");
             CameraController.OnCameraUpdate -= UpdatePosition;
             Destroy(gameObject);
         }
@@ -175,6 +199,7 @@ namespace Grubitecht.UI
         /// </summary>
         private void OnDestroy()
         {
+            //Debug.LogError("OnDestroy");
             CameraController.OnCameraUpdate -= UpdatePosition;
         }
     }

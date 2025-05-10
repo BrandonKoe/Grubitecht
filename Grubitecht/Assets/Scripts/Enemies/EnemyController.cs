@@ -13,6 +13,7 @@ using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using NaughtyAttributes;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World
@@ -29,6 +30,8 @@ namespace Grubitecht.World
         [SerializeField] private PathingType pathingType;
         [SerializeField] private float rePathFrequency;
         [SerializeField] private bool canPanic;
+
+        private readonly static List<EnemyController> allEnemies = new List<EnemyController>();
 
         private static Transform enemyParent;
         #region Component References
@@ -61,6 +64,7 @@ namespace Grubitecht.World
                 return enemyParent;
             }
         }
+        public static List<EnemyController> AllEnemies => allEnemies;
         public string EnemyName
         {
             get
@@ -95,8 +99,6 @@ namespace Grubitecht.World
 
         // State Machine
         internal EnemyState state = new MovingState();
-
-        private Objective currentTarget;
 
         #region Nested Classes
         private enum PathingType
@@ -336,6 +338,7 @@ namespace Grubitecht.World
             targeter.OnGainTarget += HandleOnGainTarget;
             targeter.OnLoseTarget += HandleOnLoseTarget;
             AudioManager.PlaySoundAtPosition(onSpawnSound, transform.position);
+            allEnemies.Add(this);
         }
         private void OnDestroy()
         {
@@ -343,6 +346,7 @@ namespace Grubitecht.World
             WaveManager.RemoveEnemy(this);
             targeter.OnGainTarget -= HandleOnGainTarget;
             targeter.OnLoseTarget -= HandleOnLoseTarget;
+            allEnemies.Add(this);
         }
 
         /// <summary>

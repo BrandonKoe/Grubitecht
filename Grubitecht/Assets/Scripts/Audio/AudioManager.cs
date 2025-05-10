@@ -67,7 +67,7 @@ namespace Grubitecht.Audio
             //Sound sound = Array.Find(Instance.sounds, item => item.Name == sound);
             if (sound == null)
             {
-                Debug.Log($"No sound provided");
+                //Debug.Log($"No sound provided");
                 return;
             }
 

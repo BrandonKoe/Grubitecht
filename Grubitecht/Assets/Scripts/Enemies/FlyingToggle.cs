@@ -12,6 +12,7 @@ using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Grubitecht.World
@@ -25,6 +26,9 @@ namespace Grubitecht.World
         [Header("Sounds")]
         [SerializeField] private Sound ascendSound;
         [SerializeField] private Sound descendSound;
+        //[Header("Animation")]
+        //[SerializeField] private float transitionTime;
+        //[SerializeField] private AnimationCurve transitionCurve;
         [Header("Settings")]
         [SerializeField, Tooltip("The amount of time between when this enemy switches between flying and " +
             "grounded state.")] 

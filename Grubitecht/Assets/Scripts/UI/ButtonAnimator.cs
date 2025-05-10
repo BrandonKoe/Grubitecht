@@ -76,6 +76,8 @@ namespace Grubitecht.UI
                 timer -= Time.unscaledDeltaTime;
                 yield return null;
             }
+            // Once the animation is done, the fill amount should be exactly equal to the target.
+            targetImage.fillAmount = target;
             animRoutine = null;
         }
 

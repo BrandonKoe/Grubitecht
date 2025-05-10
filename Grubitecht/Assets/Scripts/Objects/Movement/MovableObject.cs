@@ -11,6 +11,7 @@ using Grubitecht.Waves;
 using Grubitecht.World.Pathfinding;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grubitecht.World.Objects
@@ -37,6 +38,10 @@ namespace Grubitecht.World.Objects
             GridNavigator = GetComponent<PathNavigator>();
             selectable = GetComponent<SelectableObject>();
         }
+        #endregion
+
+        #region Properties
+        private GridObject gridObject => GridNavigator.gridObject;
         #endregion
 
         /// <summary>
@@ -99,28 +104,57 @@ namespace Grubitecht.World.Objects
         /// <returns></returns>
         private bool CheckValidObjectivePath(VoxelTile targetTile)
         {
-            // Spawns a dummy grid object to take up space during the pathfind.
-            GameObject go = new GameObject();
-            GridObject tempGridObj = go.AddComponent<GridObject>();
-            tempGridObj.Layer = GridNavigator.gridObject.Layer;
-            tempGridObj.SetCurrentSpace(targetTile);
-            tempGridObj.SnapToSpace();
+            // Temporarily move all grounded enemies to a placeholder layer so they dont iterfere with our pathfinding
+            // check.
+            List<EnemyController> ignoredEnemies = 
+                EnemyController.AllEnemies.FindAll(item => item.gridObject.Layer == OccupyLayer.Ground);
+
+            void SetEnemyLayer(OccupyLayer layer)
+            {
+                foreach (var enemy in ignoredEnemies)
+                {
+                    enemy.gridObject.Layer = layer;
+                }
+            }
+
+            // Move the enemies to a temp layer.
+            SetEnemyLayer(OccupyLayer.PlaceholderEnemy);
+
+            // Temporarily sets this object's current tile as the tile we want to move it to.
+            VoxelTile currentTille = gridObject.CurrentTile;
+            gridObject.SetCurrentSpace(targetTile);
+
+            // Define a CleanUp function that we can call to revert any changes before we exit this function.
+            void CleanUp()
+            {
+                gridObject.SetCurrentSpace(currentTille);
+                SetEnemyLayer(OccupyLayer.Ground);
+            }
+
+            //// Spawns a dummy grid object to take up space during the pathfind.
+            //GameObject go = new GameObject();
+            //GridObject tempGridObj = go.AddComponent<GridObject>();
+            //tempGridObj.Layer = GridNavigator.gridObject.Layer;
+            //tempGridObj.SetCurrentSpace(targetTile);
+            //tempGridObj.SnapToSpace();
 
             SpawnPoint[] spawnPoints = WaveManager.SpawnPoints;
             VoxelTile objectiveTile = Objective.TargetObjective.gridObject.CurrentTile;
             foreach(var spawnPoint in spawnPoints)
             {
-                Debug.Log(spawnPoint.gridObject);
+                //Debug.Log(spawnPoint.gridObject);
                 // If a spawn point doesnt have a valid path to the target objective, then this space is not valid.
                 if (!Pathfinder.CheckPath(spawnPoint.gridObject.CurrentTile, objectiveTile, 1, 
                     GridNavigator.gridObject.Layer, true))
                 {
                     // Call OnDestroy here manually
-                    tempGridObj.DestroyImmediate();
+                    //tempGridObj.DestroyImmediate();
+                    CleanUp();
                     return false;
                 }
             }
-            tempGridObj.DestroyImmediate();
+            //tempGridObj.DestroyImmediate();
+            CleanUp();
             return true;
         }
 

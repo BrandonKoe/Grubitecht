@@ -9142,7 +9142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da6657a780464498747850026db5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredObjectiveAmount: 1
+  levelLossThreshold: 0
   winLevelDisplay: {fileID: 353176615}
   winSound: {fileID: 11400000, guid: 6f92108debdd7d747b0075880f75c1f4, type: 2}
   loseLevelDisplay: {fileID: 1442161039}
@@ -14630,7 +14630,7 @@ PrefabInstance:
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 628cd409cd1483d4d92228b4fb995a48, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 401068114100994138, guid: 114ac301c907e8f429acbb58ef9575f4, type: 3}
       propertyPath: waves.Array.data[1]
       value: 
@@ -15482,8 +15482,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6288933201780187722, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6254850457336633897}
   m_SourcePrefab: {fileID: 100100000, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+--- !u!1 &6254850457336633896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6288933201780187722, guid: b4905b4d55268e94b895a9933d324cc9, type: 3}
+  m_PrefabInstance: {fileID: 6254850457336633895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6254850457336633897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254850457336633896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eabe3f9f265c8c46b022c9d510a7b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 392901948}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

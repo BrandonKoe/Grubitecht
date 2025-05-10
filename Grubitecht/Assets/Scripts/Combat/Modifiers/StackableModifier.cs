@@ -46,7 +46,7 @@ namespace Grubitecht.Combat
             {
                 count += change;
                 stackMod.OnModifierStack(thisBehaviour, count);
-                Debug.Log(count);
+                //Debug.Log(count);
             }
 
             /// <summary>

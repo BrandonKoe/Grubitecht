@@ -26,7 +26,7 @@ namespace Grubitecht.Combat
         [SerializeField] private StatFormatter healingStrengthFormatter;
         [field: SerializeField] public float HealDelay { get; set; }
         [SerializeField] private StatFormatter healDelayFormatter;
-        private bool isHealing;
+        private bool onCooldown;
 
         public event Action<Attackable> OnHeal;
         // OnAttackAction is only called once ever.  Attack is called for every hit target.
@@ -52,13 +52,13 @@ namespace Grubitecht.Combat
         {
             base.Awake();
             targeter.OnGainTarget += HandleOnGainTarget;
-            targeter.OnLoseTarget += HandleOnLoseTarget;
+            //targeter.OnLoseTarget += HandleOnLoseTarget;
         }
         protected override void OnDestroy()
         {
             base.OnDestroy();
             targeter.OnGainTarget -= HandleOnGainTarget;
-            targeter.OnLoseTarget -= HandleOnLoseTarget;
+            //targeter.OnLoseTarget -= HandleOnLoseTarget;
         }
 
         /// <summary>
@@ -66,33 +66,47 @@ namespace Grubitecht.Combat
         /// </summary>
         private void HandleOnGainTarget()
         {
-            if (!isHealing)
+            if (!onCooldown)
             {
-                isHealing = true;
-                StartCoroutine(HealRoutine());
+                //onCooldown = true;
+                //StartCoroutine(HealRoutine());
+                HealAction();
             }
         }
 
-        /// <summary>
-        /// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
-        /// </summary>
-        private void HandleOnLoseTarget()
+        ///// <summary>
+        ///// When a target is lost, thne stop the attack routine if there are no valid targets anymore.
+        ///// </summary>
+        //private void HandleOnLoseTarget()
+        //{
+        //    if (!targeter.HasTarget && onCooldown)
+        //    {
+        //        //Debug.Log("Healing has stopped");
+        //        onCooldown = false;
+        //    }
+        //}
+        ///// <summary>
+        ///// Continually calls the attack function with a given delay in between,
+        ///// </summary>
+        ///// <returns>Coroutine.</returns>
+        //private IEnumerator HealRoutine()
+        //{
+        //    Debug.Log("Healing started");
+        //    while (onCooldown && LevelManager.IsPlaying)
+        //    {
+        //        yield return new WaitForSeconds(HealDelay);
+        //        HealAction();
+        //    }
+        //    Debug.Log("Healing ended");
+        //}
+
+        private IEnumerator Cooldown()
         {
-            if (!targeter.HasTarget && isHealing)
+            onCooldown = true;
+            yield return new WaitForSeconds(Mathf.Max(HealDelay, 0.25f));
+            onCooldown = false;
+            if (targeter.HasTarget)
             {
-                //Debug.Log("Healing has stopped");
-                isHealing = false;
-            }
-        }
-        /// <summary>
-        /// Continually calls the attack function with a given delay in between,
-        /// </summary>
-        /// <returns>Coroutine.</returns>
-        private IEnumerator HealRoutine()
-        {
-            while (isHealing && LevelManager.IsPlaying)
-            {
-                yield return new WaitForSeconds(HealDelay);
                 HealAction();
             }
         }
@@ -118,12 +132,13 @@ namespace Grubitecht.Combat
             // Stop healing if we attempt to heal a null target.
             if (target == null)
             {
-                HandleOnLoseTarget();
+                //HandleOnLoseTarget();
                 return;
             }
-            Debug.Log("Healing target " + target + " who has " + target.Health + " HP");
+            //Debug.Log("Healing target " + target + " who has " + target.Health + " HP");
             Heal(target);
             OnHealAction?.Invoke(target);
+            StartCoroutine(Cooldown());
         }
 
         /// <summary>

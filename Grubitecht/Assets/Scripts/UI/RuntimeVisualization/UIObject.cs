@@ -14,6 +14,15 @@ namespace Grubitecht.UI
 {
     public abstract class UIObject : MonoBehaviour
     {
+        [SerializeField] private EndMode endMode;
+        #region Nested
+        private enum EndMode
+        {
+            None,
+            Disable,
+            Destroy
+        }
+        #endregion
         /// <summary>
         /// Initializes this object when it spawns on the UI.
         /// </summary>
@@ -27,5 +36,25 @@ namespace Grubitecht.UI
         /// </summary>
         /// <returns>Coroutine.</returns>
         protected abstract IEnumerator LifeCycle();
+
+        /// <summary>
+        /// Handles what happens at the end of this object's life cycle based on it's endMode.
+        /// </summary>
+        protected void EndLifeCycle()
+        {
+            switch(endMode)
+            {
+                case EndMode.None:
+                    break;
+                case EndMode.Disable:
+                    gameObject.SetActive(false);
+                    break;
+                case EndMode.Destroy:
+                    Destroy(gameObject);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

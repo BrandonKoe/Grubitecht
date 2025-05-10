@@ -29,7 +29,8 @@ namespace Grubitecht.Waves
         private bool allEnemiesDead;
         
         private static WaveManager currentLevel;
-        public static bool IsPaused { get; set; }
+        //public static bool IsPaused { get; set; }
+        private static bool isPausedExternal;
         private static bool isPausedInternal;
         //public static event Action<int> StartWaveEvent;
         private SpawnPoint[] spawnPoints;
@@ -52,6 +53,17 @@ namespace Grubitecht.Waves
                 return currentLevel.spawnPoints;
             }
         }
+        public static bool IsPaused
+        {
+            get
+            {
+                return isPausedExternal || isPausedInternal;
+            }
+            set
+            {
+                isPausedExternal = value;
+            }
+        }    
         #endregion
 
         /// <summary>

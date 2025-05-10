@@ -153,7 +153,7 @@ namespace Grubitecht.World.Objects
         protected virtual void OnDeath()
         {
             currentObjectives.Remove(this);
-            if (currentObjectives.Count < LevelManager.RequiredObjectiveAmount)
+            if (currentObjectives.Count <= LevelManager.LevelLossThreshold)
             {
                 LevelManager.LoseLevel();
             }

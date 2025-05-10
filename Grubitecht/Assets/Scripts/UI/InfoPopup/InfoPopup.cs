@@ -45,7 +45,7 @@ namespace Grubitecht.UI
         /// <param name="eventData">Unused.</param>
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("Pointer Entered");
+            //Debug.Log("Pointer Entered");
             SpawnPopup();
         }
         public void OnPointerExit(PointerEventData eventData)
