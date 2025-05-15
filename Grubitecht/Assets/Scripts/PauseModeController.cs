@@ -52,6 +52,8 @@ namespace Grubitecht
             else
             {
                 uiOverlay = pauseUIOverlay;
+                isPausedByInput = false;
+                CheckPauseState();
             }
         }
         private void OnDestroy()

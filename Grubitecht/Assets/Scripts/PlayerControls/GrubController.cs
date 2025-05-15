@@ -70,11 +70,11 @@ namespace Grubitecht.World
                 //Debug.Log(dampAngleSmoother);
                 // If dampAngleSmoother is Nan, then set it to 0 to prevent errors.
                 dampAngleSmoother = float.IsNaN(dampAngleSmoother) ? 0f : dampAngleSmoother;
-                Debug.Log($"dampAngleSmoother: {dampAngleSmoother}");
-                Debug.Log($"Angle: {angle}");
+                //Debug.Log($"dampAngleSmoother: {dampAngleSmoother}");
+                //Debug.Log($"Angle: {angle}");
                 eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleTime);
                 //eulers.y = WhatTheSparkIsWrongWithYou.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleTime);
-                Debug.Log($"Eulers: {eulers}");
+                //Debug.Log($"Eulers: {eulers}");
                 //eulers.y = angle;
                 transform.eulerAngles = eulers;
             }
