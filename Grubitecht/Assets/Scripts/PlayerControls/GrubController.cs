@@ -8,6 +8,7 @@
 using Grubitecht.Tilemaps;
 using Grubitecht.World.Objects;
 using Grubitecht.World.Pathfinding;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -65,8 +66,15 @@ namespace Grubitecht.World
                 float angle = MathHelpers.VectorToDegAngleWorld(direction);
                 // Calculate the speed our angle should rotate at based on the time it takes the object we're following to
                 // reach it's next space based on it's speed.
-                float angleSpeed = VoxelTilemap3D.CELL_SIZE / followedObject.MoveSpeed;
-                eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleSpeed);
+                float angleTime = VoxelTilemap3D.CELL_SIZE / followedObject.MoveSpeed;
+                //Debug.Log(dampAngleSmoother);
+                // If dampAngleSmoother is Nan, then set it to 0 to prevent errors.
+                dampAngleSmoother = float.IsNaN(dampAngleSmoother) ? 0f : dampAngleSmoother;
+                Debug.Log($"dampAngleSmoother: {dampAngleSmoother}");
+                Debug.Log($"Angle: {angle}");
+                eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleTime);
+                //eulers.y = WhatTheSparkIsWrongWithYou.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, angleTime);
+                Debug.Log($"Eulers: {eulers}");
                 //eulers.y = angle;
                 transform.eulerAngles = eulers;
             }

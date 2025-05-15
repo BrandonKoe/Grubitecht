@@ -8,6 +8,7 @@
 using Grubitecht.Tilemaps;
 using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -128,6 +129,8 @@ namespace Grubitecht.World.Pathfinding
             float angle = MathHelpers.VectorToDegAngleWorld(direction);
             // Calculate the speed our angle should rotate at based on the time it takes the object we're following to
             // reach it's next space based on it's speed.
+            // If dampAngleSmoother is Nan, then set it to 0 to prevent errors.
+            dampAngleSmoother = float.IsNaN(dampAngleSmoother) ? 0f : dampAngleSmoother;
             eulers.y = Mathf.SmoothDampAngle(eulers.y, angle, ref dampAngleSmoother, rotationTime);
             //eulers.y = angle;
             rotateTransform.eulerAngles = eulers;

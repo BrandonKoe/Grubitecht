@@ -92,6 +92,8 @@ namespace Grubitecht.Waves
             if (currentLevel == this)
             {
                 currentLevel = null;
+                // Reset isPausedExternal on scene unload.
+                isPausedExternal = false;
                 MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
             }
         }

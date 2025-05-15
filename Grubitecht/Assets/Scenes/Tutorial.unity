@@ -626,7 +626,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - targetObject: {fileID: 1164384557}
+  - targetObject: {fileID: 1214632314}
     targetChild: 0
     childIndex: 0
     type: 0
@@ -3542,6 +3542,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
+--- !u!1 &1214632314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 812467525025399166, guid: 92b0985dda53c484e9d3c3cf1174a1fb, type: 3}
+  m_PrefabInstance: {fileID: 1214632313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1266315535
 GameObject:
   m_ObjectHideFlags: 0

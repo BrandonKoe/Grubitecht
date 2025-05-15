@@ -36,9 +36,21 @@ namespace Grubitecht.UI.Tutorial
             {
                 tutorialList = tutorialProgression.ToList();
                 instance = this;
+            }
+        }
+
+        /// <summary>
+        /// Start first tutorial in start not awake to ensure that everything is initialized in awake before the
+        /// tutorial begins.
+        /// </summary>
+        private void Start()
+        {
+            if (instance == this)
+            {
                 ShowNextTutorial();
             }
         }
+
         private void OnDestroy()
         {
             if (instance == this)
