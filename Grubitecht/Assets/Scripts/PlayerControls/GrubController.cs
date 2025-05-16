@@ -46,8 +46,8 @@ namespace Grubitecht.World
                 StopCoroutine(followRoutine);
                 followRoutine = null;
             }
-            gridObject.SetCurrentSpace(follow.gridObject.CurrentTile.GetAdjacent(follow.Direction));
-            gridObject.SnapToSpace();
+            //gridObject.SetCurrentSpace(follow.gridObject.CurrentTile.GetAdjacent(follow.Direction));
+            //gridObject.SnapToSpace();
             isFollowing = true;
             followRoutine = StartCoroutine(FollowRoutine(follow));
         }

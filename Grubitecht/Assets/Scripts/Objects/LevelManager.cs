@@ -93,9 +93,13 @@ namespace Grubitecht.World
         [Button]
         public static void WinLevel()
         {
-            Current.winLevelDisplay.SetActive(true);
-            AudioManager.PlaySoundAtPosition(Current.winSound, Current.transform.position);
-            IsPlaying = false;
+            // Only allow the level to be won or lost if we are currently playing.
+            if (IsPlaying)
+            {
+                Current.winLevelDisplay.SetActive(true);
+                AudioManager.PlaySoundAtPosition(Current.winSound, Current.transform.position);
+                IsPlaying = false;
+            }
         }
 
         /// <summary>
@@ -104,9 +108,13 @@ namespace Grubitecht.World
         [Button]
         public static void LoseLevel()
         {
-            Current.loseLevelDisplay.SetActive(true);
-            AudioManager.PlaySoundAtPosition(Current.loseSound, Current.transform.position);
-            IsPlaying = false;
+            // Only allow the level to be won or lost if we are currently playing.
+            if (IsPlaying)
+            {
+                Current.loseLevelDisplay.SetActive(true);
+                AudioManager.PlaySoundAtPosition(Current.loseSound, Current.transform.position);
+                IsPlaying = false;
+            }
         }
         #endregion
     }

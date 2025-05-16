@@ -645,6 +645,21 @@ MonoBehaviour:
     targetChild: 0
     childIndex: 0
     type: 0
+    tutorialText: Enemies will start arriving once you've moved at least one structure.
+    tutorialDimensions: {x: 350, y: 250}
+    tutorialOffset: {x: 250, y: 200}
+    tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
+    finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
+    OnTutorialShownEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTutorialFinishedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - targetObject: {fileID: 1425347652}
+    targetChild: 0
+    childIndex: 0
+    type: 0
     tutorialText: The enemies are on their way!
     tutorialDimensions: {x: 200, y: 200}
     tutorialOffset: {x: 150, y: 150}
