@@ -166,6 +166,7 @@ namespace Grubitecht.World.Pathfinding
                 if (currentPath[0].ContainsObjectOnLayer(gridObject.Layer, gridObject))
                 {
                     SetDestination(destination, finishCallback);
+                    movementRoutine = null;
                     yield break;
                 }
                 Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
