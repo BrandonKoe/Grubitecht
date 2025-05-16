@@ -79,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 7112244418961550730, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: objectDesription
       value: A powerful long range weapon that can decimate groups of invaders, but
-        takes a hefty amount of time to recharge.
+        has a long recharge time.
       objectReference: {fileID: 0}
     - target: {fileID: 7873178021456172908, guid: 151999f9bb3966b45b0d38f5756291e9, type: 3}
       propertyPath: m_Radius
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
+  immuneToModifiers: 0
   detectionVisual: {fileID: 7730889048981972882}
   detectionRange: 20
   rangeFormatter: {fileID: 11400000, guid: 6ee2db1e5a0f00048aeba7f9f7378bde, type: 2}
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatant: {fileID: 87365659610817834}
   attackable: {fileID: 0}
+  immuneToModifiers: 0
   attackEffects: {fileID: 799584395451922311, guid: d9a2e2fb3c722a24fb6b7fd6eb5ad82d, type: 3}
   attackSfxName: {fileID: 11400000, guid: 6d796eacf5294104485ffa3cb79b5786, type: 2}
   <AttackDamage>k__BackingField: 8

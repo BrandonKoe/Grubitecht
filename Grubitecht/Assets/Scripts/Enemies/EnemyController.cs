@@ -142,8 +142,12 @@ namespace Grubitecht.World
             }
             internal override void OnLoseTarget(EnemyController thisEnemy)
             {
-                thisEnemy.state = new MovingState();
-                thisEnemy.PathToTarget();
+                // Only move to the moving state if we dont still have a target already.
+                if (!thisEnemy.targeter.HasTarget)
+                {
+                    thisEnemy.state = new MovingState();
+                    thisEnemy.PathToTarget();
+                }
             }
         }
 
