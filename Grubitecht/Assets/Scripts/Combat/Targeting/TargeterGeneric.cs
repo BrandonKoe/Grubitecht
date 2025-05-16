@@ -96,13 +96,13 @@ namespace Grubitecht.Combat
         /// Adds/removes targets from the this object's effective range.
         /// </summary>
         /// <param name="target"></param>
-        protected void AddTarget(T target)
+        protected virtual void AddTarget(T target)
         {
             inRange.Add(target);
             OnGainTargetGeneric?.Invoke(target);
             CallOnGain();
         }
-        protected void RemoveTarget(T target)
+        protected virtual void RemoveTarget(T target)
         {
             if (inRange.Contains(target))
             {

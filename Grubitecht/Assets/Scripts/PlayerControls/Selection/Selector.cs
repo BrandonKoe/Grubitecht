@@ -222,8 +222,13 @@ namespace Grubitecht
                     if (selectable is SelectableChunk selectedChunk)
                     {
                         VoxelTilemap3D tilemap = selectedChunk.Chunk.Tilemap;
-                        Vector3Int gridPos = tilemap.WorldToGridPos(results.point);
+                        // Slightly move the selection position in by the normal to ensure that we end up inside of
+                        // the block we selected.  Ensures that the wrong grid position isn't used and a null tile
+                        // is returne.d
+                        Vector3Int gridPos = tilemap.WorldToGridPos(results.point - (results.normal * 0.5f));
                         VoxelTile tile = tilemap.GetTile((Vector2Int)gridPos);
+                        // If we dont find a tile at the selected position, return null to avoid null ref execp.
+                        if (tile == null) { return null; }
                         // Gets the closest space to location the player clicked.
                         return new SpaceSelection(tile, tilemap.GridToWorldPos(tile.GridPosition));
                     }

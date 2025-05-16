@@ -9,7 +9,6 @@ using Grubitecht.UI.InfoPanel;
 using Grubitecht.World.Objects;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Grubitecht.Combat

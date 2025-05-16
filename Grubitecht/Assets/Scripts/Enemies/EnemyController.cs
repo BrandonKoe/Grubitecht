@@ -30,6 +30,7 @@ namespace Grubitecht.World
         [SerializeField] private PathingType pathingType;
         [SerializeField] private float rePathFrequency;
         [SerializeField] private bool canPanic;
+        [SerializeField] private bool debug;
 
         private readonly static List<EnemyController> allEnemies = new List<EnemyController>();
 
@@ -436,6 +437,11 @@ namespace Grubitecht.World
                     //}
                 }
             }
+            // If we attempt to move but alreay have a target, then we just set our state to the attacking state.
+            else
+            {
+                state = new AttackingState(this);
+            }
         }
 
         /// <summary>
@@ -509,6 +515,14 @@ namespace Grubitecht.World
             // Adds the spawned enemy to the wave manager's enemy list.
             WaveManager.AddEnemy(spawnedEnemy, isSpawned);
             //Debug.Log("Spawned enemy " + spawnedEnemy.name+ " at position " + pos);
+        }
+
+        private void Update()
+        {
+           if (debug)
+            {
+                Debug.Log(state);
+            }
         }
     }
 }
