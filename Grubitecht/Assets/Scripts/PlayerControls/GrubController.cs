@@ -85,7 +85,12 @@ namespace Grubitecht.World
 
             // Updates the grub to start standing on the spot adjacent to the object that he will be pushing.
             VoxelTile startingTile = followedObject.gridObject.CurrentTile.GetAdjacent(-followedObject.Direction);
-            transform.position = gridObject.GetOccupyPosition(startingTile);
+            // Ensures that starting tile is not null.
+            startingTile = startingTile == null ? followedObject.gridObject.CurrentTile : startingTile;
+            if (startingTile != null)
+            {
+                transform.position = gridObject.GetOccupyPosition(startingTile);
+            }
             targetSpace = followedObject.gridObject.CurrentTile;
             Vector3 eulers = transform.eulerAngles;
             eulers.y = MathHelpers.VectorToDegAngleWorld(followedObject.Direction);

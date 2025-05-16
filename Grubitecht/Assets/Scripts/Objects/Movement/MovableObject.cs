@@ -194,7 +194,7 @@ namespace Grubitecht.World.Objects
                 case PathStatus.Invalid:
                     if (invalidPathPrefab != null)
                     {
-                        WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
+                        WorldSpaceCanvasManager.SpawnUIObject(invalidPathPrefab,
                             VoxelTilemap3D.Main_GridToWorldPos(callbackInfo.EndTile.GridPosition));
                     }
                     // Return the grub if the path status is completed or the path is invalid.

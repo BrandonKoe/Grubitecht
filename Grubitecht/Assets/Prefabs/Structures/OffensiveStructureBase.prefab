@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invalidSpacePrefab: {fileID: 7121491701815625478, guid: 23c29ef3353287240af872c758025db0, type: 3}
   noGrubsPrefab: {fileID: 4859997354359729192, guid: 1e71a6befe6cae9478c9b6107af63c23, type: 3}
+  invalidPathPrefab: {fileID: 2539795976283480870, guid: 06b4274500594dc46b44a7b86fe958a1, type: 3}
   <GridNavigator>k__BackingField: {fileID: 8455044086030430530}
   selectable: {fileID: 7112244418961550730}
 --- !u!114 &2694432537194622866
