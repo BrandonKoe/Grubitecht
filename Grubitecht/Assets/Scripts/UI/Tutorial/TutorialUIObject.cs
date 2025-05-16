@@ -85,7 +85,9 @@ namespace Grubitecht.UI.Tutorial
         {
             Vector2 realOriginPos = (Vector2)target.position + UIOffset;
 
-            rectTransform.position = realOriginPos;
+            Vector2 displayOriginPos = ClampToScreen(realOriginPos);
+
+            rectTransform.position = displayOriginPos;
 
             //UpdateArrow(realOriginPos);
         }
@@ -103,16 +105,27 @@ namespace Grubitecht.UI.Tutorial
             Vector2 realOriginPos = (Vector2)Camera.main.WorldToScreenPoint(target.transform.position + worldOffset);
             Vector2 offsetOriginPos = realOriginPos + UIOffset;
             //Debug.Log(realOriginPos);
-            Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
-            // The actual base position that this object will be located at after it has been clamped to
-            // be within the bounds of the canvas.
-            Vector2 displayOriginPos = new Vector2(
-                Mathf.Clamp(offsetOriginPos.x, margins.x, Screen.width - margins.x),
-                Mathf.Clamp(offsetOriginPos.y, margins.y, Screen.height - margins.y));
+            Vector2 displayOriginPos = ClampToScreen(offsetOriginPos);
 
             rectTransform.position = displayOriginPos;
 
             //UpdateArrow(realOriginPos);
+        }
+
+        /// <summary>
+        /// Clamps the position of the tutorial to be within the bounds of the screen.
+        /// </summary>
+        /// <param name="originPos"></param>
+        /// <returns></returns>
+        private Vector2 ClampToScreen(Vector2 originPos)
+        {
+            Vector2 margins = rectTransform.sizeDelta + (padding * Vector2.one);
+            // The actual base position that this object will be located at after it has been clamped to
+            // be within the bounds of the canvas.
+            Vector2 displayOriginPos = new Vector2(
+                Mathf.Clamp(originPos.x, margins.x, Screen.width - margins.x),
+                Mathf.Clamp(originPos.y, margins.y, Screen.height - margins.y));
+            return displayOriginPos;
         }
 
         ///// <summary>

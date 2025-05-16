@@ -323,7 +323,7 @@ MonoBehaviour:
     type: 0
     tutorialText: In Grubitech, it's your job to reorganize the town to keep these
       houses safe from incoming enemies.
-    tutorialDimensions: {x: 320, y: 300}
+    tutorialDimensions: {x: 350, y: 350}
     tutorialOffset: {x: 0, y: 250}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
@@ -397,7 +397,7 @@ MonoBehaviour:
     type: 0
     tutorialText: This house is too close to the spawn point, it's going to get slaughtered! 
       We should move it back to where the other structures are.
-    tutorialDimensions: {x: 400, y: 300}
+    tutorialDimensions: {x: 400, y: 350}
     tutorialOffset: {x: 0, y: 250}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
@@ -438,8 +438,9 @@ MonoBehaviour:
     targetChild: 0
     childIndex: 0
     type: 0
-    tutorialText: Now, click on the highlighted space to move the house there.
-    tutorialDimensions: {x: 350, y: 250}
+    tutorialText: Now, with the house selected, click on the highlighted space to
+      move the house there.
+    tutorialDimensions: {x: 350, y: 300}
     tutorialOffset: {x: 0, y: 200}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: 8ca2c063c9591f144994a8864fe1e77c, type: 2}
@@ -479,7 +480,7 @@ MonoBehaviour:
     type: 0
     tutorialText: Congratulations!  You assigned a Grubitecht!  You can see the number
       of Grubitechts you have available to you up here.
-    tutorialDimensions: {x: 350, y: 300}
+    tutorialDimensions: {x: 400, y: 350}
     tutorialOffset: {x: 0, y: -400}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
@@ -661,7 +662,7 @@ MonoBehaviour:
     childIndex: 0
     type: 0
     tutorialText: The enemies are on their way!
-    tutorialDimensions: {x: 200, y: 200}
+    tutorialDimensions: {x: 220, y: 200}
     tutorialOffset: {x: 150, y: 150}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: 49a20b20e73ddd243a7735a34f4bc4a4, type: 2}
@@ -729,7 +730,7 @@ MonoBehaviour:
     type: 0
     tutorialText: 'There are flying enemies on the way next wave. Only certain structures
       can hit flying enemies. '
-    tutorialDimensions: {x: 300, y: 300}
+    tutorialDimensions: {x: 300, y: 350}
     tutorialOffset: {x: 250, y: 300}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
     finishEvent: {fileID: 11400000, guid: f1b3c24873a17ae47b53ee4e1f2c36d3, type: 2}
