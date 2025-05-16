@@ -190,7 +190,10 @@ namespace Grubitecht.World.Objects
                     WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
                         VoxelTilemap3D.Main_GridToWorldPos(callbackInfo.EndTile.GridPosition));
                     // Return the grub if the path status is completed or the path is invalid.
-                    GrubManager.ReturnGrub(this);
+                    if (!GridNavigator.IsMoving)
+                    {
+                        GrubManager.ReturnGrub(this);
+                    }
                     break;
                 case PathStatus.Completed:
                     // Return the grub if the path status is completed or the path is invalid.
