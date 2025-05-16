@@ -50,6 +50,7 @@ namespace Grubitecht.Waves
         {
             get
             {
+                if (currentLevel == null) { return null; }
                 return currentLevel.spawnPoints;
             }
         }
