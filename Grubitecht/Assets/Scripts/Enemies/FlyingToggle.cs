@@ -45,6 +45,8 @@ namespace Grubitecht.World
         [SerializeReference, HideInInspector] private PathNavigator pathNavigator;
         [SerializeReference, HideInInspector] private GridObject gridObject;
         [SerializeReference, HideInInspector] private Combatant combatant;
+        [SerializeReference, HideInInspector] private EnemyController enemyController;
+
 
         /// <summary>
         /// Assign component references on reset.
@@ -54,6 +56,7 @@ namespace Grubitecht.World
             pathNavigator = GetComponent<PathNavigator>();
             gridObject = GetComponent<GridObject>();
             combatant = GetComponent<Combatant>();
+            enemyController = GetComponent<EnemyController>();
         }
         #endregion
 
@@ -90,7 +93,7 @@ namespace Grubitecht.World
 
         /// <summary>
         /// Actually sets this enemy to flying internally.  Needs to take in a pathStatus so it can be used as a 
-        /// path  navigator callback.
+        /// path navigator callback.
         /// </summary>
         /// <param name="callbackInfo">
         /// The status of the pathing.  We dont care about this at all, it's only here so that this function can be
@@ -98,6 +101,8 @@ namespace Grubitecht.World
         /// </param>
         private void MoveToFlying(PathCallbackInfo callbackInfo)
         {
+            // We dont care if the path started, so skip this if our path status for this callback is started.
+            if (callbackInfo != null && callbackInfo.Status == PathStatus.Started) { return; }
             // Prevent potential infinite loops temporarily until I can further diagonse the problem.
             iterationLimit++;
             if (iterationLimit > 100)
@@ -117,6 +122,9 @@ namespace Grubitecht.World
                 // If our current space has nothing in the air in it, then we can automatically switch to the
                 // flying state.
                 SetFlyingState();
+                // makes suer that the enemy starts pathfinding towards it's target once it's moved to a new valid
+                // space.
+                enemyController.PathToTarget();
             }
         }
 
@@ -203,6 +211,8 @@ namespace Grubitecht.World
         /// </param>
         private void MoveToGrounded(PathCallbackInfo callbackInfo)
         {
+            // We dont care if the path started, so skip this if our path status for this callback is started.
+            if (callbackInfo != null && callbackInfo.Status == PathStatus.Started) { return; }
             // Prevent potential infinite loops temporarily until I can further diagonse the problem.
             iterationLimit++;
             if (iterationLimit > 100)
@@ -215,8 +225,7 @@ namespace Grubitecht.World
             // need to move to a valid position first.
             if (gridObject.CurrentTile.ContainsObjectOnLayer(OccupyLayer.Ground))
             {
-                VoxelTile targetTile = VoxelTilemap3D.Main_FindEmptyTile(gridObject.CurrentTile,
-                            OccupyLayer.Ground, 1);
+                VoxelTile targetTile = FindEmptyTile(gridObject.CurrentTile, 1);
                 pathNavigator.SetDestination(targetTile, MoveToGrounded);
             }
             else
@@ -224,6 +233,9 @@ namespace Grubitecht.World
                 // If our current space has nothing in the air in it, then we can automatically switch to the
                 // flying state.
                 SetGroundedState();
+                // makes suer that the enemy starts pathfinding towards it's target once it's moved to a new valid
+                // space.
+                enemyController.PathToTarget();
             }
         }
 
