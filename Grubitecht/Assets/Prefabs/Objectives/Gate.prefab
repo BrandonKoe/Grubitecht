@@ -185,6 +185,8 @@ MonoBehaviour:
   - {fileID: 5700248200137246684}
   - {fileID: 7403782119003897917}
   - {fileID: 2021251651909971274}
+  removeComponents:
+  - {fileID: 2071108657113218160}
 --- !u!1 &898466087003307151
 GameObject:
   m_ObjectHideFlags: 0

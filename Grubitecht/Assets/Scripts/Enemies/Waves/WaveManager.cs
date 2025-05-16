@@ -81,9 +81,8 @@ namespace Grubitecht.Waves
             {
                 FindSpawnPoints();
                 currentLevel = this;
-                // The wave should initially start out paused and only start once the player has started moving things.
-                isPausedInternal = true;
-                MovableObject.OnObjectMoveStatic += MovableObject_OnObjectMove;
+                //// The wave should initially start out paused and only start once the player has started moving things.
+                //SetPausedInternal(true);
                 // Starts the wave routine for this level.
                 StartCoroutine(WaveRoutine());
             }
@@ -95,6 +94,23 @@ namespace Grubitecht.Waves
                 currentLevel = null;
                 // Reset isPausedExternal on scene unload.
                 isPausedExternal = false;
+                SetPausedInternal(false);
+            }
+        }
+
+        /// <summary>
+        /// Sets if the wave manager is internally paused and should wait for player input before continuing.
+        /// </summary>
+        /// <param name="isPaused">WHether thw wave should be paused.</param>
+        private void SetPausedInternal(bool isPaused)
+        {
+            isPausedInternal = isPaused;
+            if (isPaused)
+            {
+                MovableObject.OnObjectMoveStatic += MovableObject_OnObjectMove;
+            }
+            else
+            {
                 MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
             }
         }
@@ -105,8 +121,7 @@ namespace Grubitecht.Waves
         /// <param name="obj"></param>
         private void MovableObject_OnObjectMove(MovableObject obj, VoxelTile endTile)
         {
-            isPausedInternal = false;
-            MovableObject.OnObjectMoveStatic -= MovableObject_OnObjectMove;
+            SetPausedInternal(false);
         }
 
         /// <summary>
@@ -209,10 +224,12 @@ namespace Grubitecht.Waves
                 }
 
                 UpdateUI();
+                // Internally pause the wave manager at the start of each wave to give players time to think and input.
+                SetPausedInternal(true);
                 while (waveDelayTimer > 0)
                 {
                     // Continually loop here while the wave manager is paused.
-                    if (IsPaused || isPausedInternal) 
+                    if (IsPaused) 
                     { 
                         yield return null;
                         continue; 

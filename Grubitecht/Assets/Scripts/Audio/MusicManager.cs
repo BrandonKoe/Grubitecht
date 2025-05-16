@@ -100,7 +100,7 @@ namespace Grubitecht.Audio
         /// <param name="next">The next track to transition to.</param>
         private void TransitionToTrack(SoundRef current, SoundRef next)
         {
-            Debug.Log("Transitioning");
+            //Debug.Log("Transitioning");
             if (current != null)
             {
                 // Fades out the current music.  The reset callback will reset it's volume back to the default after
@@ -124,7 +124,7 @@ namespace Grubitecht.Audio
         /// <param name="toReset">The sound clip to reset.</param>
         private void ResetVolume(SoundRef toReset)
         {
-            Debug.Log("reset volume");
+            //Debug.Log("reset volume");
             // Stops the audio source.
             toReset.source.Stop();
             toReset.source.volume = toReset.sound.Volume;

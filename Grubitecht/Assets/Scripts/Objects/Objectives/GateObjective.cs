@@ -16,6 +16,7 @@ namespace Grubitecht.World.Objects
         [Header("Model Change Settings")]
         [SerializeField] private Animator gateAnimator;
         [SerializeField] private GridObject[] dummyObjects;
+        [SerializeField] private Component[] removeComponents;
         //[SerializeField,Tooltip("The model for this gate that will get deleted when the gate is destroyed.")] 
         //private GameObject gateModel;
 
@@ -31,6 +32,12 @@ namespace Grubitecht.World.Objects
             {
                 if (obj == null) { continue; }
                 Destroy(obj.gameObject);
+            }
+            /// Destroys all given components on this object that should be removed when this object is destroyed.
+            foreach (Component comp in removeComponents)
+            {
+                if (comp == null) { continue; }
+                Destroy(comp);
             }
             base.OnDeath();
             Destroy(this);

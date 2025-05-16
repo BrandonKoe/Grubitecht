@@ -20,8 +20,10 @@ namespace Grubitecht.World.Objects
     [RequireComponent(typeof(SelectableObject))]
     public class MovableObject : MonoBehaviour
     {
+        [Header("Player Feedback Indicators")]
         [SerializeField] private TweenedObject invalidSpacePrefab;
         [SerializeField] private TweenedObject noGrubsPrefab;
+        [SerializeField] private TweenedObject invalidPathPrefab;
 
         public static event Action<MovableObject, VoxelTile> OnObjectMoveStatic;
         public event Action<MovableObject, VoxelTile> OnObjectMove;
@@ -91,8 +93,11 @@ namespace Grubitecht.World.Objects
                 }
                 else
                 {
-                    WorldSpaceCanvasManager.SpawnUIObject(noGrubsPrefab,
-                                VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
+                    if (noGrubsPrefab != null)
+                    {
+                        WorldSpaceCanvasManager.SpawnUIObject(noGrubsPrefab,
+                            VoxelTilemap3D.Main_GridToWorldPos(space.Tile.GridPosition));
+                    }
                 }
             }
         }
@@ -187,8 +192,11 @@ namespace Grubitecht.World.Objects
                     OnObjectMove?.Invoke(this, callbackInfo.EndTile);
                     break;
                 case PathStatus.Invalid:
-                    WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
-                        VoxelTilemap3D.Main_GridToWorldPos(callbackInfo.EndTile.GridPosition));
+                    if (invalidPathPrefab != null)
+                    {
+                        WorldSpaceCanvasManager.SpawnUIObject(invalidSpacePrefab,
+                            VoxelTilemap3D.Main_GridToWorldPos(callbackInfo.EndTile.GridPosition));
+                    }
                     // Return the grub if the path status is completed or the path is invalid.
                     if (!GridNavigator.IsMoving)
                     {

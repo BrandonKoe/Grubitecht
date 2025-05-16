@@ -673,7 +673,7 @@ MonoBehaviour:
     childIndex: 0
     type: 0
     tutorialText: During a wave, you can view this bar to see how much progress you've
-      made in beating it.
+      made.
     tutorialDimensions: {x: 400, y: 250}
     tutorialOffset: {x: 0, y: -320}
     tutorialPrefab: {fileID: 2900325500585860923, guid: a196188e7d1d51548aef5dee3910e48e, type: 3}
