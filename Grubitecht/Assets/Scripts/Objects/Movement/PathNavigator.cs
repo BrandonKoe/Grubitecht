@@ -165,8 +165,9 @@ namespace Grubitecht.World.Pathfinding
                 // If the space we're attempting to move into is occupied, then we should attempt to find a new path.
                 if (currentPath[0].ContainsObjectOnLayer(gridObject.Layer, gridObject))
                 {
-                    SetDestination(destination, finishCallback);
+                    // Set movement routine to null first so that it gets reset by SetDestination.
                     movementRoutine = null;
+                    SetDestination(destination, finishCallback);
                     yield break;
                 }
                 Vector3 tilePos = gridObject.GetOccupyPosition(currentPath[0]);
