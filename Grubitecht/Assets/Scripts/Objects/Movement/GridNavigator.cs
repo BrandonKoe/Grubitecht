@@ -59,7 +59,7 @@ namespace Grubitecht.World.Pathfinding
         {
             get
             {
-                Debug.Log(movementRoutine);
+                //Debug.Log(movementRoutine);
                 return movementRoutine != null;
             }
         }

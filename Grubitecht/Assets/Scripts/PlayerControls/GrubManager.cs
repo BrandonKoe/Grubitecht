@@ -64,6 +64,17 @@ namespace Grubitecht
             {
                 instance = this;
                 MaxGrubCount = maxGrubCount;
+                //Debug.LogError("Hit that part");
+            }
+        }
+
+        /// <summary>
+        /// Update the text in start to ensure that it happens after objectives have been assigned.
+        /// </summary>
+        private void Start()
+        {
+            if (instance == this)
+            {
                 UpdateText();
             }
         }
@@ -141,8 +152,13 @@ namespace Grubitecht
         /// </summary>
         public static void UpdateText()
         {
-            if (instance == null || instance.grubText == null) { return; }
+            if (instance == null || instance.grubText == null)
+            {
+                Debug.LogError("Returned");
+                return; 
+            }
             instance.grubText.text = $"{Mathf.Max(AvailableGrubs, 0)}/{MaxGrubCount}";
+            //Debug.LogError(instance.grubText.text);
         }
     }
 }
