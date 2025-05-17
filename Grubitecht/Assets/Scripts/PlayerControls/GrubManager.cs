@@ -154,7 +154,7 @@ namespace Grubitecht
         {
             if (instance == null || instance.grubText == null)
             {
-                Debug.LogError("Returned");
+                //Debug.LogError("Returned");
                 return; 
             }
             instance.grubText.text = $"{Mathf.Max(AvailableGrubs, 0)}/{MaxGrubCount}";
